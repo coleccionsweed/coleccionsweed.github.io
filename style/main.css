@@ -1,0 +1,445 @@
+html {
+    background-color:#eeeeee
+} 
+
+body {
+    background-color:#FFFFFF;
+    font-family:Tahoma,Arial,Helvetica,sans-serif;
+    font-size:14pt;
+    margin-left:15%;
+    margin-right:15%;
+    border:3px groove #006600;
+    padding:15px;
+    border-radius: 11px;
+    -moz-border-radius: 11px;
+    -webkit-border-radius:11px;
+}
+
+a {
+    text-decoration: none;
+    color: #0088cc;
+}
+
+a.cell {
+    text-decoration: none;
+    color: black;
+    display: block;
+    width: 100%;
+}
+
+a.set {
+    color: white;
+}
+
+div.footer {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 8pt;
+}
+
+img.dot {
+    border: none;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    display: block;
+}
+
+img.icon {
+    border: none;
+    padding-right: 5px;
+}
+
+img.thumb {
+    border: none;
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+img.button {
+    border: none;
+}
+
+img.item {
+    margin-left: 0px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    border: solid 1px black;
+}
+
+img.disclosure {
+    border: 0px;
+}
+
+img.signature {
+    height: 60px;
+}
+
+td a {
+    width: 100%;
+}
+
+p.letters {
+}
+
+p.menu {
+    margin-top:0px;
+}
+
+p.title {
+    margin-left: 10px;
+    margin-bottom: 15px;
+    font-size: 14pt;
+}
+
+p.heading {
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    padding: 0px;
+    font-size: 14pt;
+}
+
+span.menu {
+    font-size: 16pt;
+}
+
+span.active {
+    font-weight: bold;
+}
+
+span.title {
+}
+
+span.subtitle {
+    color: gray;
+    font-size: 80%;
+}
+
+table.item {
+    width: 400px;
+    /*
+    background-image: url(../images/grpbg.png);
+    background-repeat: repeat;
+     */
+    background-color: lightgray;
+    /*padding: 10px;*/
+}
+
+table.cell {
+    width: 100%;
+    min-height: 34px;
+}
+
+table.groups {
+    width: 100%;
+}
+
+table.group {
+    margin-bottom: 15px;
+    width: 100%;
+    border: solid 1px gray;
+    /*
+    border-radius: 11px;
+    -webkit-border-radius: 11px;
+    -moz-border-radius: 11px;
+     */
+}
+
+tr.group {
+    color: black;
+    width: 100%;
+}
+
+td.localNav {
+}
+
+td.button {
+    border-bottom: solid 1px gray;
+    background-color: white;
+    width: 25px;
+}
+
+td.header {
+    padding-left: 10px;
+}
+
+td.mainNav {
+    text-align: right;
+    padding-left: 50px;
+}
+
+td.label {
+    width: 140px;
+    text-align: right;
+    font-size: 12pt;
+    color: darkgray; /*rgb(27.8%,36.9%,54.1%);*/
+    padding-right: 10px;
+    vertical-align: middle;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: solid 1px gray;
+    background-color: white;
+}
+
+td.value {
+    text-align: left;
+    font-size: 12pt;
+    color: black;
+    vertical-align: middle;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: solid 1px gray;
+    background-color: white;
+}
+
+td.name {
+    /*width: 90%;*/
+}
+
+td.title {
+    text-align: left;
+    font-size: 12pt;
+    color: black;
+    vertical-align: middle;
+    padding-left: 5px;
+    padding-top: 2px;
+    padding-bottom: 0px;
+    background-color: white;
+}
+
+td.subtitle {
+    text-align: left;
+    font-size: 10pt;
+    color: gray;
+    vertical-align: middle;
+    padding-left: 5px;
+    padding-top: 0px;
+    padding-bottom: 2px;
+    border-bottom: solid 1px gray;
+    background-color: white;
+}
+
+td.text {
+    font-size: 12pt;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    border-bottom: solid 1px gray;
+    background-color: white;
+}
+
+td.choice {
+    text-align: right;
+    font-size: 12pt;
+    color: rgb(27.8%,36.9%,54.1%);
+    vertical-align: middle;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    border-bottom: solid 1px gray;
+    background-color: white;
+}
+
+td.attrName {
+    text-align: left;
+    font-size: 14pt;
+    color: black;
+    vertical-align: middle;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: solid 1px gray;
+    background-color: white;
+}
+
+td.attrType {
+    text-align: right;
+    font-size: 14pt;
+    color: rgb(27.8%,36.9%,54.1%);
+    padding-right: 10px;
+    vertical-align: middle;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: solid 1px gray;
+    background-color: white;
+}
+
+td.tl {
+    /*
+    border-top-left-radius: 11px;
+    -webkit-border-top-left-radius: 11px;
+    -moz-border-radius-topleft: 11px;
+     */
+}
+
+td.tm {
+}
+
+td.tr {
+    /*
+    border-top-right-radius: 11px;
+    -webkit-border-top-right-radius: 11px;
+    -moz-border-radius-topright: 11px;
+     */
+}
+
+td.bl {
+    /*
+    border-bottom-left-radius: 11px;
+    -webkit-border-bottom-left-radius: 11px;
+    -moz-border-radius-bottomleft: 11px;
+     */
+    border-bottom: none;
+}
+
+td.bm {
+    border-bottom: none;
+}
+
+td.br {
+    /*
+    border-bottom-right-radius: 11px;
+    -webkit-border-bottom-right-radius: 11px;
+    -moz-border-radius-bottomright: 11px;
+     */
+    border-bottom: none;
+}
+
+table.list {
+    /* width: 320px; */
+    border-top: solid 1px lightgray;
+}
+
+table.list tr {
+}
+
+span.itmcnt {
+    border-radius: 9px;
+    -webkit-border-radius: 8px; /* Use 10 instead of 11, at 11 it's not rounded at all */
+    -moz-border-radius: 9px;
+    background-color: #8c99b4;
+    color: white;
+    font-size: 10pt;
+    font-weight: bold;
+    vertical-align: 0%;
+    padding: 1px 7px 1px 7px;
+}
+
+span.itmcntl {
+    border-bottom-left-radius: 9px;
+    -webkit-border-bottom-left-radius: 8px;
+    -moz-border-radius-bottomleft: 9px;
+    border-top-left-radius: 9px;
+    -webkit-border-top-left-radius: 8px;
+    -moz-border-radius-topleft: 9px;
+    background-color: #8c99b4;
+    color: white;
+    font-size: 10pt;
+    font-weight: bold;
+    vertical-align: 0%;
+    padding: 1px 6px 1px 7px;
+}
+
+span.itmcntr {
+    border-bottom-right-radius: 9px;
+    -webkit-border-bottom-right-radius: 8px;
+    -moz-border-radius-bottomright: 9px;
+    border-top-right-radius: 9px;
+    -webkit-border-top-right-radius: 8px;
+    -moz-border-radius-topright: 9px;
+    background-color: #8ccb8c;
+    color: white;
+    font-size: 10pt;
+    font-weight: bold;
+    vertical-align: 0%;
+    padding: 1px 7px 1px 6px;
+}
+
+td.itmcnt {
+    text-align: right;
+    padding-left: 15px;
+    padding-right: 10px;
+    /*border-bottom: solid 1px lightgray;*/
+}
+
+td.row {
+    /*width: 100%;*/
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 14pt;
+    border-bottom: solid 1px lightgray;
+}
+
+td.summary {
+    width: 95%;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 14pt;
+    font-style: italic;
+    border-bottom: solid 1px lightgray;
+}
+
+td.count {
+    width: 100%;
+    text-align: center;
+    color: lightgray;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 14pt;
+    border-bottom: solid 1px lightgray;
+}
+
+td.set {
+    text-align: center;
+    background-color: rgb(3, 119, 240);
+    color: white;
+}
+
+td.icon {
+    width: 24px;
+}
+
+td.thumb {
+    width: 40px;
+    height: 40px;
+}
+
+td.dot {
+    width: 24px;
+    vertical-align: middle;
+}
+
+td.image {
+    border-bottom: solid 1px lightgray;
+}
+
+td.disclosure {
+    border-bottom: solid 1px lightgray;
+    vertical-align: middle;
+    text-align: center;
+}
+
+td.letter {
+    color: white;
+    background-color: lightgray;
+    width: 100%;
+    font-size: 12pt;
+    padding-left: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-top: solid 1px darkgray;
+    border-bottom: solid 1px gray;
+}
+
+td.level1 {
+    padding-left: 25px;
+}
+
+td.level2 {
+    padding-left: 40px;
+}
