@@ -62,7 +62,13 @@
 	<option value="hpMP">Harry Potter - La magia de las películas</option>
 	<option value="hpWH">Harry Potter - Welcome to Hogwarts</option>
 	<option value="hpMB">Harry Potter - Magos y Brujas</option>
+	<option value="JND">El Jorobado de Notre Dame</option>
+	<option value="tarzan">Tarzan</option>
     <option value="monstruos">Monstruos S.A.</option>
+	<option value="TS2">Toy Story 2</option>
+	<option value="AAV">Astérix - Album de viajes</option>
+	<option value="L05">Liga 2005/2006</option>
+	<option value="WC22">Mundial Qatar 2022</option>
   </select>
 </div>
 
@@ -153,10 +159,71 @@
 	  numAlbum = 6628;
 	  mas = [];
 	  for (var i = 1; i <= 12; i++)mas.push("y" + i);
+    }else if (config === "JND") {
+      numImages = 232;
+	  numAlbum = 263;
     }else if (config === "monstruos") {
       numImages = 180;
 	  numAlbum = 185;
 	  mas = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r"];
+    }else if (config === "AAV") {
+      numImages = 164;
+	  numAlbum = 8139;
+    }else if (config === "tarzan") {
+      numImages = 200;
+	  numAlbum = 543;
+	  mas = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r"];
+	  for (var i = 1; i <= 20; i++)mas.push("p" + i);
+    }else if (config === "TS2") {
+      numImages = 180;
+	  numAlbum = 2727;
+	  mas = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r"];
+    }else if (config === "WC22") {
+      numImages = 0;
+	  numAlbum = 7915;
+	  mas = ["00"];
+	  for (var i = 1; i <= 18; i++)mas.push("fwc" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("qat" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("ecu" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("sen" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("ned" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("eng" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("irn" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("usa" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("wal" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("arg" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("ksa" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("mex" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("pol" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("fra" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("aus" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("den" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("tun" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("esp" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("crc" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("ger" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("jpn" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("bel" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("esp" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("can" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("mar" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("cro" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("bra" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("srb" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("sui" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("cmr" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("por" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("gha" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("uru" + i);
+	  for (var i = 1; i <= 20; i++)mas.push("kor" + i);
+	  for (var i = 19; i <= 29; i++)mas.push("fwc" + i);
+	  for (var i = 1; i <= 8; i++)mas.push("esp-j" + i);
+	  var inter = ["qat15x", "ecu6x", "sen5x", "sen9x", "sen10x", "ned4x", "ned12x", "ned15x", "ned17x", "ned20x", "irn11x", "usa4x", "usa7x", "usa17x", "arg12x", "ksa20x", "mex12x", "mex16x", "pol9x", "pol10x", "pol11x", "pol12x", "pol14x", "fra4x", "fra7x", "fra11x", "fra12x", "fra15x", "fra20x", "aus7x", "aus9x", "aus13x", "aus20x", "den9x", "tun4x", "tun9x", "crc4x", "crc5x", "crc13x", "ger6x", "ger18x", "ger20x", "jpn6x", "jpn11x", "jpn16x", "jpn20x", "bel7x", "can4x", "can6x", "mar7x", "mar8x", "mar12x", "mar14x", "mar16x", "mar18x", "mar19x", "mar20x", "cro5x", "cro17x", "bra11x", "sui7x", "sui16x", "cmr8x", "cmr9x", "cmr13x", "cmr17x", "por6x", "por14x", "por15x", "por19x", "por20x", "gha3x", "gha4x", "gha9x", "gha10x", "gha11x", "gha15x", "gha16x", "kor10x"];
+	  mas = mas.concat(inter);
+	  mas.push("ls-b");
+    }else if (config === "L05") {
+      numImages = 525;
+	  numAlbum = 2199;
     }
 	
     document.getElementById('imageGrid').innerHTML = "";
