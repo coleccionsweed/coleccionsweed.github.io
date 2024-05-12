@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista Cuadriculada de Imágenes</title>
+<style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    padding: 10px;
+  }
+  .grid-item {
+    border: none;
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+  }
+  .grid-item:hover {
+    transform: scale(1.1);
+  }
+  .grid-item img {
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Estilos para el modal */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+  .modal-content {
+    margin: auto;
+    display: block;
+    width: 80%; /* Cambiar el tamaño del modal según sea necesario */
+    max-width: 800px; /* Cambiar el tamaño del modal según sea necesario */
+    height: auto;
+  }
+  .modal-content img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: auto;
+    max-width: 100%; /* Para asegurarse de que la imagen no sea más grande que el modal */
+    max-height: calc(100% - 60px); /* Para asegurarse de que la imagen no sea más grande que el modal, dejando espacio para el botón de cierre */
+  }
+
+  /* Estilos para el selector */
+  .selector-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+  }
+
+  .selector-container select {
+    margin: 0 10px;
+  }
+</style>
+</head>
+<body>
+<!-- Selector para cambiar la URL base y el número de imágenes -->
+<div class="selector-container">
+  <select id="configSelector" onchange="changeConfig(this.value)">
+    <option value="wp2002">Mundial 2002</option>
+    <option value="monstruos">Monstruos S.A.</option>
+	<option value="hpWH">Harry Potter - Welcome to Hogwarts</option>
+  </select>
+</div>
+
+<div class="grid-container" id="imageGrid">
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <div class="modal-content">
+    <img id="modalImage">
+  </div>
+</div>
+
+<script>
+  // URL de la imagen base
+  let baseUrlAlbum = 'https://www.laststicker.com/i/album/'; // URL base predeterminada
+  let baseUrl = 'https://www.laststicker.com/i/cards/'; // URL base predeterminada
+  // Número de imágenes a mostrar
+  let numImages = 581; // Número de imágenes predeterminado
+  let mas = [];
+  changeConfig("wp2002");
+  // Función para cambiar la configuración según la opción seleccionada
+  function changeConfig(config) {
+	mas = [];
+    if (config === "wp2002") {
+	  numAlbum = 10;
+      numImages = 581;
+    } else if (config === "hpWH") {
+      numImages = 216;
+	  numAlbum = 5796;
+	  mas = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r"];
+    } else if (config === "monstruos") {
+      numImages = 180;
+	  numAlbum = 185;
+	  mas = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r"];
+    }
+    // Limpiar la cuadrícula de imágenes actual
+    document.getElementById('imageGrid').innerHTML = "";
+	
+	const imageUrlALBUM = `${baseUrlAlbum}${numAlbum}.jpg`;
+      const gridItem = document.createElement('div');
+      gridItem.classList.add('grid-item');
+      const image = document.createElement('img');
+      image.src = imageUrlALBUM;
+      image.alt = `Image ${numAlbum}`;
+      // Agregar evento de clic para abrir el modal con la imagen
+      image.addEventListener('click', function() {
+        const modal = document.getElementById('myModal');
+        const modalImg = document.getElementById('modalImage');
+        modal.style.display = "block";
+        modalImg.src = this.src;
+      });
+      gridItem.appendChild(image);
+      document.getElementById('imageGrid').appendChild(gridItem);
+	  
+	  
+    // Volver a generar y agregar las imágenes a la cuadrícula con la nueva configuración
+    for (let i = 1; i <= numImages; i++) {
+      const imageUrl = `${baseUrl}${numAlbum}/${i}.jpg`;
+      const gridItem = document.createElement('div');
+      gridItem.classList.add('grid-item');
+      const image = document.createElement('img');
+      image.src = imageUrl;
+      image.alt = `Image ${i}`;
+      // Agregar evento de clic para abrir el modal con la imagen
+      image.addEventListener('click', function() {
+        const modal = document.getElementById('myModal');
+        const modalImg = document.getElementById('modalImage');
+        modal.style.display = "block";
+        modalImg.src = this.src;
+      });
+      gridItem.appendChild(image);
+      document.getElementById('imageGrid').appendChild(gridItem);
+    }
+	
+	// Volver a generar y agregar las imágenes a la cuadrícula con la nueva configuración
+    for (let i = 0; i < mas.length; i++) {
+      const imageUrl = `${baseUrl}${numAlbum}/${mas[i]}.jpg`;
+      const gridItem = document.createElement('div');
+      gridItem.classList.add('grid-item');
+      const image = document.createElement('img');
+      image.src = imageUrl;
+      image.alt = `Image ${mas[i]}`;
+      // Agregar evento de clic para abrir el modal con la imagen
+      image.addEventListener('click', function() {
+        const modal = document.getElementById('myModal');
+        const modalImg = document.getElementById('modalImage');
+        modal.style.display = "block";
+        modalImg.src = this.src;
+      });
+      gridItem.appendChild(image);
+      document.getElementById('imageGrid').appendChild(gridItem);
+    }
+  }
+
+  // Cerrar el modal cuando se hace clic en el botón de cierre
+  const modal = document.getElementById('myModal');
+  const closeBtn = document.getElementsByClassName("close")[0];
+  closeBtn.addEventListener('click', function() {
+    modal.style.display = "none";
+  });
+
+  // Cerrar el modal cuando se hace clic fuera del contenido del modal
+  window.addEventListener('click', function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  });
+</script>
+</body>
+</html>
