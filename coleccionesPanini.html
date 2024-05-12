@@ -72,6 +72,7 @@
 	<option value="L07">Liga 2007/2008</option>
 	<option value="L08">Liga 2008/2009</option>
 	<option value="L09">Liga 2009/2010</option>
+	<option value="L10">Liga 2010/2011</option>
 	<option value="WC22">Mundial Qatar 2022</option>
   </select>
 </div>
@@ -242,6 +243,9 @@
       numImages = 780;
 	  numAlbum = 146;
 	  for (var i = 1; i <= 36; i++)mas.push("mi-" + i);
+    }else if (config === "L10") {
+      numImages = 693;
+	  numAlbum = 501;
     }
 	
     document.getElementById('imageGrid').innerHTML = "";
@@ -277,7 +281,45 @@
       gridItem.appendChild(image);
       document.getElementById('imageGrid').appendChild(gridItem);
     }
+	
+	verificarImagenes();
   }
+  
+  
+  // Función para verificar si una imagen existe y eliminarla junto con su contenedor
+	function verificarImagenes() {
+		// Obtener todos los contenedores de clase "grid"
+		const grids = document.getElementsByClassName('grid-item');
+
+		// Recorrer todos los contenedores
+		for (let i = 0; i < grids.length; i++) {
+			const grid = grids[i];
+			const imagen = grid.querySelector('img'); // Obtener la imagen dentro del contenedor
+
+			if (imagen) {
+				const imageUrl = imagen.src;
+
+				// Crear una nueva imagen para verificar su existencia
+				const testImage = new Image();
+				testImage.onload = function() {
+					// Si la imagen existe, no se hace nada
+				}
+				testImage.onerror = function() {
+					// Si la imagen no existe, se elimina el contenedor del DOM
+					console.error(`La imagen ${imageUrl} no existe.`);
+					grid.parentNode.removeChild(grid); // Eliminar el contenedor
+				}
+
+				// Cargar la imagen de prueba
+				testImage.src = imageUrl;
+			} else {
+				// Si no hay una imagen en el contenedor, eliminar el contenedor directamente
+				grid.parentNode.removeChild(grid);
+			}
+		}
+	}
+
+
 </script>
 </body>
 </html>
