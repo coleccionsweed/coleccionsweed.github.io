@@ -68,6 +68,10 @@
 	<option value="TS2">Toy Story 2</option>
 	<option value="AAV">Astérix - Album de viajes</option>
 	<option value="L05">Liga 2005/2006</option>
+	<option value="L06">Liga 2006/2007</option>
+	<option value="L07">Liga 2007/2008</option>
+	<option value="L08">Liga 2008/2009</option>
+	<option value="L09">Liga 2009/2010</option>
 	<option value="WC22">Mundial Qatar 2022</option>
   </select>
 </div>
@@ -224,6 +228,20 @@
     }else if (config === "L05") {
       numImages = 525;
 	  numAlbum = 2199;
+    }else if (config === "L06") {
+      numImages = 649;
+	  numAlbum = 1248;
+    }else if (config === "L07") {
+      numImages = 691;
+	  numAlbum = 1176;
+    }else if (config === "L08") {
+      numImages = 575;
+	  numAlbum = 496;
+	  for (var i = 1; i <= 36; i++)mas.push("mi-" + i);
+    }else if (config === "L09") {
+      numImages = 780;
+	  numAlbum = 146;
+	  for (var i = 1; i <= 36; i++)mas.push("mi-" + i);
     }
 	
     document.getElementById('imageGrid').innerHTML = "";
