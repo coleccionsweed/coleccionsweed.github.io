@@ -101,6 +101,7 @@ function getFirstImage(item) {
 
 // --- Modal ---
 function openModal(item) {
+  console.log(item);
   currentItem = item;
   currentImages = [];
   currentImgIndex = 0;
@@ -108,7 +109,7 @@ function openModal(item) {
   let buscar = true;
   let i = 1;
   function tryNext() {
-    if (!buscar || i > 10) {
+    if (!buscar || i > 20) {
       if (currentImages.length === 0) {
         currentImages = ['https://via.placeholder.com/800x600?text=Sin+imagen'];
       }
