@@ -71,6 +71,10 @@ function renderGrid() {
   grid.innerHTML = '';
   if (filtered.length === 0) {
     grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:#888;">No hay resultados</p>';
+    let countParagraph = document.getElementById('elementCount');
+    if (countParagraph) {
+      countParagraph.innerHTML = '';
+    }
     return;
   }
   filtered.forEach(item => {
@@ -88,6 +92,18 @@ function renderGrid() {
     card.onclick = () => openModal(item);
     grid.appendChild(card);
   });
+
+  let countParagraph = document.getElementById('elementCount');
+
+  if (!countParagraph) {
+    countParagraph = document.createElement('p');
+    countParagraph.id = 'elementCount';
+    countParagraph.style.textAlign = 'center';
+    countParagraph.style.marginTop = '1em';
+    grid.insertAdjacentElement('afterend', countParagraph);
+  }
+
+  countParagraph.innerHTML = `Mostrando ${grid.children.length} de ${collectibles.length} elementos`;
 }
 
 function getFirstImage(item) {
@@ -244,48 +260,6 @@ nextBtn.onclick = () => {
   }
 };
 
-// Drag/Swipe para carrusel
-function addCarouselDrag(imgEl) {
-  let startX = 0;
-  let dragging = false;
-  let moved = false;
-  let threshold = 40;
-  imgEl.addEventListener('mousedown', dragStart);
-  imgEl.addEventListener('touchstart', dragStart, {passive:true});
-  function dragStart(e) {
-    dragging = true;
-    moved = false;
-    startX = e.touches ? e.touches[0].clientX : e.clientX;
-    document.addEventListener('mousemove', dragMove);
-    document.addEventListener('touchmove', dragMove, {passive:false});
-    document.addEventListener('mouseup', dragEnd);
-    document.addEventListener('touchend', dragEnd);
-  }
-  function dragMove(e) {
-    if (!dragging) return;
-    let x = e.touches ? e.touches[0].clientX : e.clientX;
-    let dx = x - startX;
-    if (Math.abs(dx) > threshold) {
-      moved = true;
-      if (dx > 0 && currentImgIndex > 0) {
-        currentImgIndex--;
-        renderModalCarousel();
-        dragging = false;
-      } else if (dx < 0 && currentImgIndex < currentImages.length - 1) {
-        currentImgIndex++;
-        renderModalCarousel();
-        dragging = false;
-      }
-    }
-  }
-  function dragEnd() {
-    dragging = false;
-    document.removeEventListener('mousemove', dragMove);
-    document.removeEventListener('touchmove', dragMove);
-    document.removeEventListener('mouseup', dragEnd);
-    document.removeEventListener('touchend', dragEnd);
-  }
-}
 
 function renderModalDetails() {
   let html = '<table class="details-table">';
