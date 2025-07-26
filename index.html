@@ -1,8 +1,75 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-    <meta http-equiv="Refresh" content="0; URL=categories.html">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Colección Sweed</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <header>
+    <h1>Colección Sweed</h1>
+    <form class="filters-bar" onsubmit="return false;">
+      <label>
+        Buscar:
+        <input type="text" id="searchInput" placeholder="Nombre..." />
+      </label>
+      <label>
+        Franquicia:
+        <select id="filterFranchise">
+          <option value="">Todas</option>
+        </select>
+      </label>
+      <label>
+        Tipo:
+        <select id="filterType">
+          <option value="">Todos</option>
+        </select>
+      </label>
+      <label>
+        Ordenar por:
+        <select id="orderBy">
+          <option value="name">Nombre</option>
+          <option value="franchise">Franquicia</option>
+          <option value="type">Tipo</option>
+          <option value="brand">Marca</option>
+          <option value="purchasePrice">Precio compra</option>
+          <option value="condition">Estado</option>
+          <option value="quantity">Cantidad</option>
+          <option value="language">Idioma</option>
+        </select>
+      </label>
+      <label>
+        Dirección:
+        <select id="orderDir">
+          <option value="asc">Ascendente</option>
+          <option value="desc">Descendente</option>
+        </select>
+      </label>
+    </form>
+  </header>
+  <main>
+    <div id="grid" class="grid"></div>
+  </main>
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <button id="closeModal" class="close-btn" title="Cerrar">&times;</button>
+      <div class="modal-body">
+        <div class="modal-carousel">
+          <button id="prevBtn" class="nav-btn" title="Anterior">&#10094;</button>
+          <div id="carousel" class="carousel"></div>
+          <button id="nextBtn" class="nav-btn" title="Siguiente">&#10095;</button>
+        </div>
+        <div id="detailsText" class="details-text"></div>
+      </div>
+    </div>
+  </div>
+  <div id="imgOverlay" class="img-overlay hidden">
+    <button id="closeImgOverlay" class="close-img-overlay">&times;</button>
+    <img id="imgOverlayImg" src="" alt="Imagen grande" />
+  </div>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
 
