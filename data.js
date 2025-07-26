@@ -2836,4 +2836,164 @@ const collectibles = [ {
   "extraAttributes" : {
     "Collection" : "Yu-Gi-Oh!"
   }
+}, {
+  "name" : "Pokémon",
+  "franchise" : "Pokémon",
+  "type" : "Card Collection",
+  "brand" : "Pokémon",
+  "purchasePrice" : "1500,00€",
+  "condition" : "used",
+  "barcode" : "",
+  "quantity" : 1,
+  "language" : "Español/Inglés",
+  "notes" : "Para ver la colección en detalle: <p>https://www.tcgcollector.com/dashboard/intl?viewUser=sweed333</p>",
+  "extraAttributes" : { }
+}, {
+  "name" : "Animales Fantásticos - Los Secretos de Dumbledore",
+  "franchise" : "Harry Potter",
+  "type" : "Sticker Collection",
+  "brand" : "Panini",
+  "purchasePrice" : "55,00€",
+  "condition" : "new",
+  "barcode" : "8018190029574",
+  "quantity" : 1,
+  "language" : "Inglés",
+  "notes" : "",
+  "extraAttributes" : {
+    "Collection Status" : "Complete and unpasted"
+  }
+}, {
+  "name" : "El Retorno del Rey",
+  "franchise" : "El Señor de los Anillos",
+  "type" : "Sticker Collection",
+  "brand" : "Merlin Stickers",
+  "purchasePrice" : "84,00€",
+  "condition" : "new",
+  "barcode" : "5018819903127",
+  "quantity" : 1,
+  "language" : "Español",
+  "notes" : "Ver todos los cromos en: https://coleccionsweed.github.io/coleccionesPanini",
+  "extraAttributes" : {
+    "Collection Status" : "Complete and unpasted"
+  }
+}, {
+  "name" : "La Comunidad del Anillo",
+  "franchise" : "El Señor de los Anillos",
+  "type" : "Sticker Collection",
+  "brand" : "Merlin Stickers",
+  "purchasePrice" : "84,00€",
+  "condition" : "new",
+  "barcode" : "5018819900461",
+  "quantity" : 1,
+  "language" : "Español",
+  "notes" : "Ver todos los cromos en: https://coleccionsweed.github.io/coleccionesPanini",
+  "extraAttributes" : {
+    "Collection Status" : "Complete and unpasted"
+  }
+}, {
+  "name" : "Las Dos Torres",
+  "franchise" : "El Señor de los Anillos",
+  "type" : "Sticker Collection",
+  "brand" : "Panini",
+  "purchasePrice" : "84,00€",
+  "condition" : "new",
+  "barcode" : "5018819902595",
+  "quantity" : 1,
+  "language" : "Español",
+  "notes" : "Ver todos los cromos en: https://coleccionsweed.github.io/coleccionesPanini",
+  "extraAttributes" : {
+    "Collection Status" : "Complete and unpasted"
+  }
+}, {
+  "name" : "Animales Fantásticos - Los Secretos de Dumbledore - Niffler",
+  "franchise" : "Harry Potter",
+  "type" : "Sticker Pack",
+  "brand" : "Panini",
+  "purchasePrice" : "1,00€",
+  "condition" : "new",
+  "barcode" : "",
+  "quantity" : 1,
+  "language" : "Inglés",
+  "notes" : "",
+  "extraAttributes" : {
+    "Collection" : "Animales Fantásticos - Los Secretos de Dumbledore"
+  }
+}, {
+  "name" : "Animales Fantásticos - Los Secretos de Dumbledore - Newt Scamander y Albus Dumbledore",
+  "franchise" : "Harry Potter",
+  "type" : "Sticker Pack",
+  "brand" : "Panini",
+  "purchasePrice" : "1,00€",
+  "condition" : "new",
+  "barcode" : "",
+  "quantity" : 1,
+  "language" : "Portugués",
+  "notes" : "",
+  "extraAttributes" : {
+    "Collection" : "Animales Fantásticos - Los Secretos de Dumbledore"
+  }
+}, {
+  "name" : "Animales Fantásticos - Los Secretos de Dumbledore - Gellert Grindelwald y Albus Dumbledore",
+  "franchise" : "Harry Potter",
+  "type" : "Sticker Pack",
+  "brand" : "Panini",
+  "purchasePrice" : "1,00€",
+  "condition" : "new",
+  "barcode" : "",
+  "quantity" : 1,
+  "language" : "Turco",
+  "notes" : "",
+  "extraAttributes" : {
+    "Collection" : "Animales Fantásticos - Los Secretos de Dumbledore"
+  }
+}, {
+  "name" : "Animales Fantásticos - Los Secretos de Dumbledore - Queenie Goldstein y Jacob Kowalski",
+  "franchise" : "Harry Potter",
+  "type" : "Sticker Pack",
+  "brand" : "Panini",
+  "purchasePrice" : "1,00€",
+  "condition" : "new",
+  "barcode" : "",
+  "quantity" : 1,
+  "language" : "Italiano",
+  "notes" : "",
+  "extraAttributes" : {
+    "Collection" : "Animales Fantásticos - Los Secretos de Dumbledore"
+  }
+}, {
+  "name" : "Ronaldinho",
+  "franchise" : "Barça",
+  "type" : "Toy",
+  "brand" : "Kick-O-Mania",
+  "purchasePrice" : "25,68€",
+  "condition" : "used",
+  "barcode" : "4009803095387",
+  "quantity" : 1,
+  "language" : "Inglés",
+  "notes" : "",
+  "extraAttributes" : { }
+}, {
+  "name" : "Espectro del Anillo - Las Dos Torres",
+  "franchise" : "El Señor de los Anillos",
+  "type" : "Toy",
+  "brand" : "Toy Biz",
+  "purchasePrice" : "0,00€",
+  "condition" : "new",
+  "barcode" : "035112711452",
+  "quantity" : 1,
+  "language" : "Español",
+  "notes" : "",
+  "extraAttributes" : { }
+}, {
+  "name" : "Ryuk",
+  "franchise" : "Death Note",
+  "type" : "Toy",
+  "brand" : "SFC",
+  "purchasePrice" : "0,00€",
+  "condition" : "new",
+  "barcode" : "3665361021148",
+  "quantity" : 1,
+  "language" : "Español",
+  "notes" : "",
+  "extraAttributes" : { }
 } ];
