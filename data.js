@@ -1717,7 +1717,7 @@ const collectibles = [ {
     "Collection" : "Disney Universe"
   }
 }, {
-  "name" : "E.T.",
+  "name" : "E.T",
   "franchise" : "E.T.",
   "type" : "Sticker Pack",
   "brand" : "Panini",
