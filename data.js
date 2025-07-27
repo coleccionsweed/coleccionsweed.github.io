@@ -2996,4 +2996,16 @@ const collectibles = [ {
   "language" : "Español",
   "notes" : "",
   "extraAttributes" : { }
+}, {
+  "name" : "Troll Armado",
+  "franchise" : "El Señor de los Anillos",
+  "type" : "Toy",
+  "brand" : "Toy Biz",
+  "purchasePrice" : "55,00€",
+  "condition" : "new",
+  "barcode" : "035112713418",
+  "quantity" : 1,
+  "language" : "Inglés",
+  "notes" : "",
+  "extraAttributes" : { }
 } ];
