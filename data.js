@@ -2997,7 +2997,7 @@ const collectibles = [ {
   "notes" : "",
   "extraAttributes" : { }
 }, {
-  "name" : "Troll Armado",
+  "name" : "Troll armado",
   "franchise" : "El Señor de los Anillos",
   "type" : "Toy",
   "brand" : "Toy Biz",
