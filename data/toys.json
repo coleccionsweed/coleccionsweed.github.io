@@ -288,5 +288,17 @@
 	"language" : "Español",
     "folder": "iniesta-barça-toons",
     "category": "toys"
+  },
+  {
+    "id": "legolas-la-comunidad-del-anillo",
+    "name": "Legolas - La Comunidad del Anillo",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Toy Biz",
+    "purchasePrice": "25,00€",
+    "condition": "new",
+	"barcode": "035112710004",
+	"language" : "Español",
+    "folder": "legolas-la-comunidad-del-anillo",
+    "category": "toys"
   }
 ]

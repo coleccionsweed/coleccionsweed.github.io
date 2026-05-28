@@ -12,10 +12,11 @@ export function setupFilters(items, onChange) {
   const franchise = document.getElementById('franchiseFilter')
   const sortOrder = document.getElementById('sortOrder')
   const search = document.getElementById('search')
+  // 🔥 NUEVO: Capturamos el contenedor del contador
+  const counterContainer = document.getElementById('items-counter')
 
-  // 🔥 NUEVO: Variables para controlar el paginado de elementos
   let itemsFiltradosYOrdenados = [];
-  let limiteActual = 20; // Cuántos elementos cargamos de golpe (puedes subirlo a 30 o 40 si quieres)
+  let limiteActual = 20; 
 
   // únicos (filtramos nulos o undefined por si acaso con .filter(Boolean))
   const categories = [...new Set(items.map(i => i.category))]
@@ -26,15 +27,12 @@ export function setupFilters(items, onChange) {
     .filter(Boolean)
     .sort((a, b) => t(a).localeCompare(t(b)))
 
-  // Traducimos la opción por defecto y mapeamos los valores internos manteniendo el value original
   category.innerHTML = `<option value="">${t('Category')}</option>` +
     categories.map(c => `<option value="${c}">${t(c)}</option>`).join('')
 
-  // Lo mismo para las franquicias
   franchise.innerHTML = `<option value="">${t('Franchise')}</option>` +
     franchises.map(f => `<option value="${f}">${t(f)}</option>`).join('')
 
-  // Función auxiliar para transformar "25,00€" en el número decimal 25.00
   function parsePrice(priceStr) {
     if (!priceStr) return 0;
     const clean = priceStr.replace('€', '').replace(',', '.').trim();
@@ -42,23 +40,34 @@ export function setupFilters(items, onChange) {
     return isNaN(parsed) ? 0 : parsed;
   }
 
-  // 🔥 NUEVO: Evento que detecta cuando el usuario llega al final de la página para cargar más
+  // 🔥 ACTUALIZADO: Evento de scroll
   window.onscroll = () => {
-    // Si el usuario ha bajado hasta el fondo de la pantalla (con un margen de 100px para que sea fluido)
     if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 100) {
-      // Si todavía quedan elementos por mostrar del total filtrado
       if (limiteActual < itemsFiltradosYOrdenados.length) {
-        limiteActual += 20; // Aumentamos el límite en otros 20
+        limiteActual += 20; 
         
-        // Cortamos el array desde el principio hasta el nuevo límite y los mandamos a pintar
         const porciones = itemsFiltradosYOrdenados.slice(0, limiteActual);
         onChange(porciones);
+
+        // 🔥 NUEVO: Actualizamos el texto al cargar más con el scroll
+        actualizarContador(porciones.length, itemsFiltradosYOrdenados.length);
       }
     }
   };
 
+  // 🔥 NUEVO: Función auxiliar para pintar el contador de forma dinámica
+  function actualizarContador(mostrados, totales) {
+    if (!counterContainer) return;
+    
+    // Si no hay resultados
+    if (totales === 0) {
+      counterContainer.textContent = "No se encontraron objetos";
+    } else {
+      counterContainer.textContent = `Mostrando ${mostrados} de ${totales} objetos`;
+    }
+  }
+
   function apply() {
-    // Cada vez que el usuario cambia un filtro o busca, reiniciamos el límite a los primeros 20
     limiteActual = 20; 
 
     // 1. Filtramos el array original
@@ -71,9 +80,8 @@ export function setupFilters(items, onChange) {
       )
     })
 
-    // 2. Ordenamos el resultado filtrado según la opción seleccionada
+    // 2. Ordenamos el resultado
     const order = sortOrder.value;
-    
     if (order === 'name-asc') {
       result.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
     } 
@@ -87,13 +95,12 @@ export function setupFilters(items, onChange) {
       result.sort((a, b) => parsePrice(b.purchasePrice) - parsePrice(a.purchasePrice));
     }
 
-    // 🔥 NUEVO: Guardamos todo el resultado completo en la variable persistente
     itemsFiltradosYOrdenados = result;
-
-    // 🔥 NUEVO: En lugar de enviar TODO el resultado, solo enviamos una "porción" (los primeros 20)
     const primeraTanda = itemsFiltradosYOrdenados.slice(0, limiteActual);
 
-    // 3. Enviamos los datos listos al cargador visual
+    // 🔥 NUEVO: Actualizamos el contador nada más aplicar los filtros/búsqueda inicial
+    actualizarContador(primeraTanda.length, itemsFiltradosYOrdenados.length);
+
     onChange(primeraTanda);
   }
 
