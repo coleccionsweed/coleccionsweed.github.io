@@ -1,183 +1,169 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background: #0d0f14;
-  color: white;
-  font-family: Inter, sans-serif;
-  min-height: 100vh;
+/* =========================
+   ESTRUCTURA Y CENTRADO MÁXIMO
+========================= */
+main {
+  max-width: 1300px; /* Límite para que no se desparrame en monitores grandes */
+  margin: 0 auto;    /* Centra el contenedor en la pantalla */
+  padding: 40px;
 }
 
 .topbar {
   position: sticky;
   top: 0;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 20px;
-
-  background: rgba(15, 17, 25, 0.8);
+  background: rgba(13, 15, 20, 0.85);
   backdrop-filter: blur(20px);
-
   border-bottom: 1px solid rgba(255,255,255,0.05);
-
+  padding: 15px 40px;
   z-index: 100;
 }
 
-#searchInput {
-  width: 320px;
-
-  background: #161922;
-
-  border: 1px solid rgba(255,255,255,0.08);
-
-  border-radius: 14px;
-
-  padding: 12px 16px;
-
-  color: white;
-
-  outline: none;
-}
-
-main {
-  padding: 30px;
+.topbar-content {
+  max-width: 1300px; /* Mismo límite que el main */
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 /* =========================
-   TOPBAR & FILTERS
+   BUSCADOR Y FILTROS PREMIUM
 ========================= */
 .filters-wrapper {
   display: flex;
   gap: 16px;
   align-items: center;
-  flex-wrap: wrap;
 }
 
 .dynamic-filters {
   display: flex;
   gap: 12px;
-  flex-wrap: wrap;
 }
 
-.filter-select, #searchInput {
-  background: #161922;
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 12px;
+/* Diseño de los selectores (Categoría, Franquicia...) */
+.filter-select {
+  background-color: #141822;
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #e2e8f0;
   padding: 10px 16px;
-  color: white;
-  outline: none;
+  border-radius: 12px;
   font-family: inherit;
-  transition: border-color 0.2s;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+  appearance: auto; /* Muestra la flechita nativa con estilo */
 }
 
-.filter-select:focus, #searchInput:focus {
-  border-color: rgba(255,255,255,0.3);
+.filter-select:hover {
+  background-color: #1a1e2b;
+  border-color: rgba(255,255,255,0.2);
+}
+
+/* Diseño del Buscador */
+#search {
+  background: #141822;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px; /* Forma de píldora redonda */
+  padding: 10px 20px;
+  color: white;
+  font-family: inherit;
+  font-size: 14px;
+  width: 240px;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#search::placeholder {
+  color: #6b7280;
+}
+
+#search:focus {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: #1a1e2b;
+  width: 320px; /* Se expande suavemente al escribir */
+  box-shadow: 0 0 0 4px rgba(255,255,255,0.05);
 }
 
 /* =========================
-   DETAIL PAGE & SLIDER
+   VISTA DE DETALLE REPARADA
 ========================= */
-.detail-header {
-  margin-bottom: 24px;
+.detail-container {
+  width: 100%;
 }
 
-.back-btn {
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.1);
-  color: white;
-  padding: 8px 16px;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: background 0.2s;
+.detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Divide la pantalla en 2 mitades exactas */
+  gap: 60px; /* Espacio amplio entre foto e información */
+  align-items: start;
 }
 
-.back-btn:hover {
-  background: rgba(255,255,255,0.05);
+/* Caja de la imagen */
+.slider {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #0f1115;
+  border: 1px solid rgba(255,255,255,0.05);
 }
 
 .slider-window img {
   width: 100%;
-  height: 550px; /* Un poco más alto para mayor impacto */
-  object-fit: contain; /* Evita que las imágenes se recorten de forma extraña */
-  background: #0a0b0e;
+  height: 650px;
+  object-fit: contain; /* Evita que la foto se corte o deforme */
+  display: block;
 }
 
-.nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(15, 17, 21, 0.6);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.1);
-  color: white;
-  font-size: 24px;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.2s ease;
-}
-
-.nav:hover {
-  background: rgba(255,255,255,0.1);
-  transform: translateY(-50%) scale(1.05);
-}
-
-.prev { left: 16px; }
-.next { right: 16px; }
-
-/* Info Card Premium */
+/* Tarjeta de Información */
 .info-card {
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  padding: 30px;
+  background: #11141c;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.info-card h1 {
+  font-size: 32px;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #8c97a8;
+  margin-bottom: 30px;
+}
+
+/* La cuadrícula de "Tipo, Marca, Estado..." */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 16px;
+  margin-bottom: 30px;
 }
 
 .info-grid div {
-  border: 1px solid rgba(255,255,255,0.02);
+  background: #161922;
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border: 1px solid rgba(255,255,255,0.03);
 }
 
+/* Arreglo para que no se pegue el texto (Ej: TIPO Hardcover) */
 .info-grid span {
+  font-size: 11px;
+  color: #6b7280;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
   font-weight: 600;
-  margin-bottom: 4px;
 }
 
-/* =========================
-   RESPONSIVE OVERHAUL
-========================= */
-@media (max-width: 900px) {
-  .topbar {
-    flex-direction: column;
-    align-items: stretch; /* Ocupa todo el ancho */
-  }
-
-  .filters-wrapper {
-    flex-direction: column;
-  }
-
-  .dynamic-filters {
-    width: 100%;
-  }
-
-  .filter-select, #searchInput {
-    width: 100%; /* Filtros a tamaño completo en móvil */
-  }
-
-  .detail {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .slider-window img {
-    height: 400px;
-  }
+.info-grid b {
+  font-size: 15px;
+  color: #e2e8f0;
+  font-weight: 500;
 }

@@ -26,12 +26,12 @@ export function renderDetail(item) {
           <h1>${item.name}</h1>
           <p class="subtitle">${item.franchise || ''}</p>
 
-          <div class="info-grid">
-            ${item.type ? `<div><span>Tipo</span><b>${item.type}</b></div>` : ''}
-            ${item.brand ? `<div><span>Marca</span><b>${item.brand}</b></div>` : ''}
-            ${item.condition ? `<div><span>Estado</span><b>${item.condition}</b></div>` : ''}
-            ${item.language ? `<div><span>Idioma</span><b>${item.language}</b></div>` : ''}
-          </div>
+           <div class="info-grid">
+			  ${item.type ? `<div><span>Tipo</span><b>${item.type}</b></div>` : ''}
+			  ${item.brand ? `<div><span>Marca</span><b>${item.brand}</b></div>` : ''}
+			  ${item.condition ? `<div><span>Estado</span><b>${item.condition}</b></div>` : ''}
+			  ${item.language ? `<div><span>Idioma</span><b>${item.language}</b></div>` : ''}
+			</div>
 
           <div class="tags">
             ${(item.tags || []).map(t => `<span>${t}</span>`).join('')}
