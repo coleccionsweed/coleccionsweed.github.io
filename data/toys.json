@@ -37,7 +37,7 @@
   },
   {
     "id": "barbol-kinder",
-    "name": "Bárbol",
+    "name": "Bárbol - Kinder",
     "franchise": "El Señor de los Anillos",
     "brand": "Kinder",
     "purchasePrice": "4,99€",
@@ -278,7 +278,7 @@
     "category": "toys"
   },
   {
-    "id": "iniesta-barça-toons",
+    "id": "iniesta-barcelona-toons",
     "name": "Iniesta - Barça Toons",
     "franchise": "Barça",
     "brand": "Comansi",
@@ -286,7 +286,7 @@
     "condition": "new",
 	"barcode": "8412906741208",
 	"language" : "Español",
-    "folder": "iniesta-barça-toons",
+    "folder": "iniesta-barcelona-toons",
     "category": "toys"
   },
   {
@@ -345,6 +345,29 @@
 	"barcode": "6932136821317",
 	"language": "Inglés",
     "folder": "metal-garurumon-a-gabumon",
+    "category": "toys"
+  },
+  {
+    "id": "minilibro-la-comunidad-del-anillo-kinder",
+    "name": "Minilibro - La Comunidad del Anillo - Kinder",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Kinder",
+    "purchasePrice": "29,90€",
+    "condition": "used",
+	"language": "Alemán",
+    "folder": "minilibro-la-comunidad-del-anillo-kinder",
+    "category": "toys"
+  },
+  {
+    "id": "mister-increible-increibles-2",
+    "name": "Míster Increíble - Increíbles 2",
+    "franchise": "Los Increíbles",
+    "brand": "jakks",
+    "purchasePrice": "6,00€",
+    "condition": "new",
+	"barcode": "039897749525",
+	"language": "Español",
+    "folder": "mister-increible-increibles-2",
     "category": "toys"
   }
 ]
