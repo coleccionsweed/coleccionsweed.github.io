@@ -32,7 +32,58 @@ export async function renderDetail(item) {
     images.push(`images/${item.category}/${item.folder}/1.webp`);
   }
 
-  // 2. Renderizar la estructura limpia y profesional con los datos bien separados
+  // ==========================================
+  // 👉 PROCESAMIENTO DINÁMICO DE DATOS DEL JSON
+  // ==========================================
+  
+  // Claves internas de control que NO queremos meter dentro del info-grid de cuadraditos
+  const clavesAIgnorar = ['id', 'name', 'franchise', 'folder', 'category', 'tags', 'notes', 'extraAttributes'];
+
+  // Diccionario de traducciones automáticas para las etiquetas legibles
+  const diccionarioEtiquetas = {
+    type: 'Tipo',
+    brand: 'Marca',
+    condition: 'Estado',
+    language: 'Idioma',
+    purchasePrice: 'Precio',
+    quantity: 'Cantidad',
+    barcode: 'Cód. Barras',
+    author: 'Autor'
+  };
+
+  // Función para formatear el nombre si llega una clave nueva que no está en el diccionario
+  // Ejemplo: "releaseYear" -> "Release Year" o "paginas" -> "Paginas"
+  function obtenerEtiquetaLegible(clave) {
+    if (diccionarioEtiquetas[clave]) return diccionarioEtiquetas[clave];
+    
+    // Separar camelCase (por si acaso) y capitalizar primera letra de forma limpia
+    return clave
+      .replace(/([A-Z])/g, ' $1')
+      .replace(/^./, str => str.toUpperCase())
+      .trim();
+  }
+
+  // Lista temporal donde guardaremos los bloques HTML generados
+  const bloquesInfoHTML = [];
+
+  // A) Procesar atributos de la raíz del JSON (excluyendo los ignorados)
+  Object.keys(item).forEach(key => {
+    if (!clavesAIgnorar.includes(key) && item[key] !== undefined && item[key] !== null && item[key] !== '') {
+      bloquesInfoHTML.push(`<div><span>${obtenerEtiquetaLegible(key)}</span><b>${item[key]}</b></div>`);
+    }
+  });
+
+  // B) Procesar atributos anidados dentro de "extraAttributes" (si existen en este ítem)
+  if (item.extraAttributes && typeof item.extraAttributes === 'object') {
+    Object.keys(item.extraAttributes).forEach(key => {
+      const valor = item.extraAttributes[key];
+      if (valor !== undefined && valor !== null && valor !== '') {
+        bloquesInfoHTML.push(`<div><span>${obtenerEtiquetaLegible(key)}</span><b>${valor}</b></div>`);
+      }
+    });
+  }
+
+  // 2. Renderizar la estructura limpia y profesional
   grid.innerHTML = `
     <div class="detail-container">
       <div class="detail-header">
@@ -55,12 +106,7 @@ export async function renderDetail(item) {
           <p class="subtitle">${item.franchise || ''}</p>
 
           <div class="info-grid">
-            ${item.type ? `<div><span>Tipo</span><b>${item.type}</b></div>` : ''}
-            ${item.brand ? `<div><span>Marca</span><b>${item.brand}</b></div>` : ''}
-            ${item.condition ? `<div><span>Estado</span><b>${item.condition}</b></div>` : ''}
-            ${item.language ? `<div><span>Idioma</span><b>${item.language}</b></div>` : ''}
-            ${item.purchasePrice ? `<div><span>Precio</span><b>${item.purchasePrice}</b></div>` : ''}
-            ${item.quantity ? `<div><span>Cantidad</span><b>${item.quantity}</b></div>` : ''}
+            ${bloquesInfoHTML.join('')}
           </div>
 
           <div class="tags">
