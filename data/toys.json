@@ -334,5 +334,17 @@
 	"language": "Español",
     "folder": "mario-super-mario-odyssey",
     "category": "toys"
+  },
+  {
+    "id": "metal-garurumon-a-gabumon",
+    "name": "Metal Garurumon a Gabumon",
+    "franchise": "Digimon",
+    "brand": "Digimon",
+    "purchasePrice": "29,90€",
+    "condition": "new",
+	"barcode": "6932136821317",
+	"language": "Inglés",
+    "folder": "metal-garurumon-a-gabumon",
+    "category": "toys"
   }
 ]
