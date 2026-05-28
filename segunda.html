@@ -9,22 +9,17 @@
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/cards.css">
   <link rel="stylesheet" href="styles/modal.css">
-  <link rel="stylesheet" href="styles/responsive.css">
 </head>
 <body>
 
-  <header class="topbar">
-    <h1>Mi Colección</h1>
-
-	<div id="filters">
-
-	  <select id="categoryFilter"></select>
-	  <select id="franchiseFilter"></select>
-
-	  <input id="search" placeholder="Buscar...">
-
-	</div>
-  </header>
+<header class="topbar">
+  <h1>Mi Colección</h1>
+  <div id="filters" class="filters-wrapper">
+    <!-- Los selects se generarán aquí con JS -->
+    <div id="dynamicFilters" class="dynamic-filters"></div>
+    <input id="search" placeholder="Buscar...">
+  </div>
+</header>
 
   <aside class="sidebar" id="filtersContainer">
   </aside>

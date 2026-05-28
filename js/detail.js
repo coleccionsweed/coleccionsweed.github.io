@@ -1,60 +1,52 @@
 export function renderDetail(item) {
-
-  const grid = document.getElementById('collectionGrid')
-
-  // 👉 generar imágenes dinámicamente hasta que falle
-  const images = []
+  const grid = document.getElementById('collectionGrid');
+  const images = [];
 
   for (let i = 1; i <= 20; i++) {
-    const img = `images/${item.category}/${item.folder}/${i}.webp`
-    images.push(img)
+    images.push(`images/${item.category}/${item.folder}/${i}.webp`);
   }
 
+  // Se añade el botón de volver en la parte superior
   grid.innerHTML = `
-    <div class="detail">
-
-      <!-- SLIDER -->
-      <div class="slider">
-
-        <button class="nav prev">‹</button>
-
-        <div class="slider-window">
-          <img id="sliderImage" src="${images[0]}" />
-        </div>
-
-        <button class="nav next">›</button>
-
+    <div class="detail-container">
+      <div class="detail-header">
+        <button id="backBtn" class="back-btn">← Volver a la galería</button>
       </div>
-
-      <!-- INFO -->
-      <div class="info-card">
-
-        <h1>${item.name}</h1>
-        <p class="subtitle">${item.franchise || ''}</p>
-
-        <div class="info-grid">
-
-          <div><span>Tipo</span><b>${item.type}</b></div>
-          <div><span>Marca</span><b>${item.brand}</b></div>
-          <div><span>Estado</span><b>${item.condition}</b></div>
-          <div><span>Idioma</span><b>${item.language}</b></div>
-          <div><span>Precio</span><b>${item.purchasePrice}</b></div>
-          <div><span>Cantidad</span><b>${item.quantity}</b></div>
-
+      
+      <div class="detail">
+        <div class="slider">
+          <button class="nav prev">‹</button>
+          <div class="slider-window">
+            <img id="sliderImage" src="${images[0]}" />
+          </div>
+          <button class="nav next">›</button>
         </div>
 
-        <div class="tags">
-          ${(item.tags || []).map(t => `<span>${t}</span>`).join('')}
-        </div>
+        <div class="info-card">
+          <h1>${item.name}</h1>
+          <p class="subtitle">${item.franchise || ''}</p>
 
-        <div class="notes">
-          ${item.notes || ''}
-        </div>
+          <div class="info-grid">
+            ${item.type ? `<div><span>Tipo</span><b>${item.type}</b></div>` : ''}
+            ${item.brand ? `<div><span>Marca</span><b>${item.brand}</b></div>` : ''}
+            ${item.condition ? `<div><span>Estado</span><b>${item.condition}</b></div>` : ''}
+            ${item.language ? `<div><span>Idioma</span><b>${item.language}</b></div>` : ''}
+          </div>
 
+          <div class="tags">
+            ${(item.tags || []).map(t => `<span>${t}</span>`).join('')}
+          </div>
+          
+          ${item.notes ? `<div class="notes">${item.notes}</div>` : ''}
+        </div>
       </div>
-
     </div>
-  `
+  `;
+
+  // Lógica del botón volver
+  document.getElementById('backBtn').addEventListener('click', () => {
+    window.location.hash = ''; // Vuelve a la vista de cuadrícula
+  });
   let index = 0
   const img = document.getElementById('sliderImage')
 
