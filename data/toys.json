@@ -28,5 +28,20 @@
     "category": "toys",
     "tags": ["arwen"],
     "extraAttributes": { }
+  },
+  {
+    "id": "asno-shrek-2",
+    "name": "Asno - Shrek 2",
+    "franchise": "Shrek",
+    "brand": "Hasbro",
+    "purchasePrice": "6,00€",
+    "condition": "new",
+    "barcode": "5023117770937",
+    "quantity": 1,
+    "language": "Español",
+    "folder": "asno-shrek-2",
+    "category": "toys",
+    "tags": ["asno"],
+    "extraAttributes": { }
   }
 ]
