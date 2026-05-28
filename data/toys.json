@@ -487,5 +487,53 @@
 	"language" : "Inglés",
     "folder": "yami-yugi",
     "category": "toys"
+  },
+  {
+    "id": "ronaldinho",
+    "name": "Ronaldinho",
+    "franchise": "Barça",
+    "brand": "Kick-O-Mania",
+    "purchasePrice": "25,68€",
+    "condition": "used",
+	"barcode": "4009803095387",
+	"language" : "Español",
+    "folder": "ronaldinho",
+    "category": "toys"
+  },
+  {
+    "id": "espectro-del-anillo-las-dos-torres",
+    "name": "Espectro del Anillo - Las Dos Torres",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Toy Biz",
+    "purchasePrice": "0,00€",
+    "condition": "new",
+    "barcode": "035112711452",
+    "language": "Español",
+    "folder": "espectro-del-anillo-las-dos-torres",
+    "category": "toys"
+  },
+  {
+    "id": "ryuk",
+    "name": "Ryuk",
+    "franchise": "Death Note",
+    "brand": "SFC",
+    "purchasePrice": "0,00€",
+    "condition": "new",
+    "barcode": "3665361021148",
+    "language": "Español",
+    "folder": "ryuk",
+    "category": "toys"
+  },
+  {
+    "id": "troll-armado-las-dos-torres",
+    "name": "Troll armado - Las Dos Torres",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Toy Biz",
+    "purchasePrice": "55,00€",
+    "condition": "new",
+    "barcode": "035112713418",
+    "language": "Inglés",
+    "folder": "troll-armado-las-dos-torres",
+    "category": "toys"
   }
 ]
