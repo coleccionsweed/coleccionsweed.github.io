@@ -324,98 +324,59 @@ main {
    7. RESPONSIVE (MÓVILES Y TABLETS)
 ========================================= */
 @media (max-width: 900px) {
-
-  /* REESTRUCTURACIÓN DE LA CABECERA EN MÓVIL */
+  /* 1. La cabecera base */
   .topbar {
-    position: relative !important;   
-    display: flex !important;        
-    flex-direction: column !important; 
-    gap: 16px !important;
-    padding: 24px 20px !important;  
-    align-items: stretch !important;
+    position: relative;   
+    display: flex;        
+    flex-direction: column; 
+    gap: 16px;
+    padding: 24px 20px;  
+    align-items: stretch;
   }
 
-  .topbar h1 {
-    text-align: center;
-    font-size: 24px;
+  /* 2. Si el JS oculta filtros, compactamos la cabecera */
+  #filters[style*="display: none"] {
+    display: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
-  /* El contenedor principal de filtros se vuelve columna en móviles */
+  /* Si los filtros están ocultos (display: none), ajustamos padding de topbar */
+  #filters[style*="display: none"] ~ .topbar,
+  body:has(#filters[style*="display: none"]) .topbar {
+    padding: 10px 20px !important;
+  }
+
+  /* 3. Filtros y Buscador */
   #filters {
-    display: flex !important;
-    flex-direction: column !important; 
-    gap: 12px !important;
-    width: 100% !important;
-    margin: 0 auto !important;        
+    display: flex; 
+    flex-direction: column; 
+    gap: 12px;
+    width: 100%;
+    margin: 0 auto;        
   }
 
-  /* El contenedor dinámico se adapta */
-  #dynamicFilters {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 12px !important;
-    width: 100% !important;
-  }
-
-  /* SOLUCIÓN MÓVIL: Todos los inputs y selects se expanden al 100% con estética unificada */
   #filters select,
-  #dynamicFilters select, 
-  .filter-select,
   #sortOrder,
   #search {
     width: 100% !important;
-    max-width: 100% !important;
-    height: 46px !important;              /* Un poco más altos en móviles para interactuar mejor con los dedos */
-    padding: 0 16px !important; 
-    font-size: 16px !important;
-    border-radius: 12px !important;
-    box-sizing: border-box !important;
+    height: 46px; 
+    padding: 0 16px; 
+    font-size: 16px;
+    border-radius: 12px;
+    box-sizing: border-box;
   }
 
-  /* AJUSTES DE LA VISTA DETALLE */
-  .detail {
-    grid-template-columns: 1fr !important; 
-    gap: 24px !important;
-  }
-
-  .slider {
-    height: auto !important; 
-    min-height: 200px;
-    padding: 10px 0;
-  }
-
-  .slider-window {
-    height: auto !important;
-  }
-
-  .slider-window img {
-    width: 100% !important;
-    height: auto !important;       
-    max-height: 380px !important; 
-    object-fit: contain !important;
-    display: block !important;
-  }
-
-  .info-card {
-    padding: 20px !important;
-  }
-
-  .info-card h1 {
-    font-size: 26px !important;
-  }
-
-  .info-grid {
-    gap: 12px !important;
-  }
-
-  /* GALERÍA DE TARJETAS GENERAL */
-  main {
-    padding: 20px !important;
-  }
-
+  /* 4. Galería */
   .collection-grid {
     grid-template-columns: 1fr !important;
     gap: 16px !important;
+  }
+  
+  /* 5. Ajustes de detalle para que no haya huecos */
+  .detail {
+    grid-template-columns: 1fr !important; 
+    gap: 24px !important;
   }
 }
 

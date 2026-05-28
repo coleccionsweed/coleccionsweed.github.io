@@ -8,16 +8,13 @@ let itemsAMostrar = []
 let posicionScrollGuardada = 0 
 
 async function init() {
-  // Desactivar control automático de scroll del navegador
   if ('scrollRestoration' in window.history) {
     window.history.scrollRestoration = 'manual';
   }
 
-  // 1. Cargar datos
   allItems = await loadCollection()
   itemsAMostrar = allItems 
 
-  // 2. Inicializar filtros
   setupFilters(allItems, (filteredItems) => {
     itemsAMostrar = filteredItems 
     if (!window.location.hash) {
@@ -25,7 +22,6 @@ async function init() {
     }
   })
 
-  // 3. Detectar navegación
   handleRoute()
   window.addEventListener('hashchange', handleRoute)
 }
@@ -36,27 +32,10 @@ function handleRoute() {
   const filters = document.getElementById('filters')
   const counter = document.getElementById('items-counter') 
 
-  // Función maestra de visibilidad
-  const toggleVisibility = (visible) => {
-    if (visible) {
-      if (filters) {
-        filters.classList.remove('hidden-element');
-        filters.style.display = ''; 
-      }
-      if (counter) {
-        counter.classList.remove('hidden-element');
-        counter.style.display = '';
-      }
-    } else {
-      if (filters) filters.classList.add('hidden-element');
-      if (counter) counter.classList.add('hidden-element');
-    }
-  };
-
-  // --- VISTA LISTA ---
+  // Vista Lista
   if (!id) {
-    document.body.classList.remove('detail-active'); // Limpiamos clase de seguridad
-    toggleVisibility(true);
+    if (filters) filters.style.display = ''; 
+    if (counter) counter.style.display = '';
     
     grid.style.display = ''; 
     grid.style.opacity = '1'; 
@@ -71,21 +50,19 @@ function handleRoute() {
     return;
   }
 
-  // --- VISTA DETALLE ---
+  // Vista Detalle
   const item = allItems.find(i => i.id === id);
 
   if (item) {
     posicionScrollGuardada = window.scrollY;
 
-    // Marcamos que estamos en detalle para el CSS si fuera necesario
-    document.body.classList.add('detail-active');
+    // Ocultamos elementos: el navegador los ignora y el CSS colapsa el espacio
+    if (filters) filters.style.display = 'none';
+    if (counter) counter.style.display = 'none';
 
-    // Congelamos el grid antes de borrar
     grid.style.height = grid.offsetHeight + 'px'; 
     grid.style.opacity = '0';
     
-    toggleVisibility(false);
-
     requestAnimationFrame(() => {
       grid.innerHTML = ''; 
       window.scrollTo(0, 0);
@@ -96,9 +73,9 @@ function handleRoute() {
     });
     
   } else {
-    // Si no hay item, restauramos vista lista
-    document.body.classList.remove('detail-active');
-    toggleVisibility(true);
+    // Reset de seguridad
+    if (filters) filters.style.display = '';
+    if (counter) counter.style.display = '';
     grid.style.display = '';
     grid.style.opacity = '1';
     grid.className = 'collection-grid';
