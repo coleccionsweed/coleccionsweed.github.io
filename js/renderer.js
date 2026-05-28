@@ -19,12 +19,6 @@ export function renderItems(items) {
 
         <div class="card-subtitle">${item.franchise || ''}</div>
 
-        <div class="tag-list">
-          ${(item.tags || []).map(tag => `
-            <div class="tag">${tag}</div>
-          `).join('')}
-        </div>
-
       </div>
     `
 

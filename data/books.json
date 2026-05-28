@@ -12,7 +12,6 @@
     "language": "Español",
     "folder": "beren-y-luthien",
     "category": "books",
-    "tags": ["tolkien", "beren", "luthien"],
     "extraAttributes": {
       "author": "J.R.R. Tolkien"
     }
@@ -28,7 +27,6 @@
     "language": "Español",
     "folder": "cartas-de-papa-noel",
     "category": "books",
-    "tags": ["tolkien", "noel"],
     "extraAttributes": {
       "author": "J.R.R. Tolkien"
     }

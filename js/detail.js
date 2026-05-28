@@ -95,10 +95,6 @@ export async function renderDetail(item) {
             ${bloquesInfoHTML.join('')}
           </div>
 
-          <div class="tags">
-            ${(item.tags || []).map(t => `<span>${t}</span>`).join('')}
-          </div>
-
           ${item.notes ? `<div class="notes">${item.notes}</div>` : ''}
         </div>
       </div>
