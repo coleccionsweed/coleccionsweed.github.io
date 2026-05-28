@@ -108,4 +108,6 @@ export function setupFilters(items, onChange) {
   franchise.onchange = apply
   sortOrder.onchange = apply
   search.oninput = apply
+  
+  apply();
 }
