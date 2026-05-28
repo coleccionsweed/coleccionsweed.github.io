@@ -1,12 +1,38 @@
-export function renderDetail(item) {
-  const grid = document.getElementById('collectionGrid');
-  const images = [];
+// Función auxiliar para verificar si una imagen existe realmente en el servidor
+function comprobarSiExisteImagen(src) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(true);  // La imagen existe y cargó bien
+    img.onerror = () => resolve(false); // La imagen no existe (404)
+    img.src = src;
+  });
+}
 
-  for (let i = 1; i <= 20; i++) {
-    images.push(`images/${item.category}/${item.folder}/${i}.webp`);
+export async function renderDetail(item) {
+  const grid = document.getElementById('collectionGrid');
+
+  // 1. Buscamos imágenes secuencialmente hasta que una falle
+  const images = [];
+  let i = 1;
+  
+  while (true) {
+    const imgUrl = `images/${item.category}/${item.folder}/${i}.webp`;
+    const existe = await comprobarSiExisteImagen(imgUrl);
+    
+    if (!existe) {
+      break; // 🛑 Se detiene inmediatamente en cuanto una no está
+    }
+    
+    images.push(imgUrl);
+    i++;
   }
 
-  // Se añade el botón de volver en la parte superior
+  // Salvaguarda: Si por algún motivo no encuentra ninguna, dejamos al menos la primera
+  if (images.length === 0) {
+    images.push(`images/${item.category}/${item.folder}/1.webp`);
+  }
+
+  // 2. Renderizar la estructura limpia y profesional con los datos bien separados
   grid.innerHTML = `
     <div class="detail-container">
       <div class="detail-header">
@@ -15,94 +41,60 @@ export function renderDetail(item) {
       
       <div class="detail">
         <div class="slider">
-          <button class="nav prev">‹</button>
+          <button class="nav prev" ${images.length <= 1 ? 'style="display:none;"' : ''}>‹</button>
+          
           <div class="slider-window">
-            <img id="sliderImage" src="${images[0]}" />
+            <img id="sliderImage" src="${images[0]}" alt="${item.name}" />
           </div>
-          <button class="nav next">›</button>
+          
+          <button class="nav next" ${images.length <= 1 ? 'style="display:none;"' : ''}>›</button>
         </div>
 
         <div class="info-card">
           <h1>${item.name}</h1>
           <p class="subtitle">${item.franchise || ''}</p>
 
-           <div class="info-grid">
-			  ${item.type ? `<div><span>Tipo</span><b>${item.type}</b></div>` : ''}
-			  ${item.brand ? `<div><span>Marca</span><b>${item.brand}</b></div>` : ''}
-			  ${item.condition ? `<div><span>Estado</span><b>${item.condition}</b></div>` : ''}
-			  ${item.language ? `<div><span>Idioma</span><b>${item.language}</b></div>` : ''}
-			</div>
+          <div class="info-grid">
+            ${item.type ? `<div><span>Tipo</span><b>${item.type}</b></div>` : ''}
+            ${item.brand ? `<div><span>Marca</span><b>${item.brand}</b></div>` : ''}
+            ${item.condition ? `<div><span>Estado</span><b>${item.condition}</b></div>` : ''}
+            ${item.language ? `<div><span>Idioma</span><b>${item.language}</b></div>` : ''}
+            ${item.purchasePrice ? `<div><span>Precio</span><b>${item.purchasePrice}</b></div>` : ''}
+            ${item.quantity ? `<div><span>Cantidad</span><b>${item.quantity}</b></div>` : ''}
+          </div>
 
           <div class="tags">
             ${(item.tags || []).map(t => `<span>${t}</span>`).join('')}
           </div>
-          
+
           ${item.notes ? `<div class="notes">${item.notes}</div>` : ''}
         </div>
       </div>
     </div>
   `;
 
-  // Lógica del botón volver
+  // 3. Asignar eventos de navegación de la interfaz
+  
+  // Botón Volver
   document.getElementById('backBtn').addEventListener('click', () => {
-    window.location.hash = ''; // Vuelve a la vista de cuadrícula
+    window.location.hash = ''; // Borra el hash para regresar a la galería
   });
-  let index = 0
-  const img = document.getElementById('sliderImage')
 
-  const prev = grid.querySelector('.prev')
-  const next = grid.querySelector('.next')
+  // Lógica de movimiento del Slider (solo si tiene varias imágenes)
+  if (images.length > 1) {
+    let index = 0;
+    const imgElement = document.getElementById('sliderImage');
+    const prevBtn = grid.querySelector('.prev');
+    const nextBtn = grid.querySelector('.next');
 
-  function setImage(i) {
-    img.src = images[i]
+    nextBtn.addEventListener('click', () => {
+      index = (index + 1) % images.length;
+      imgElement.src = images[index];
+    });
+
+    prevBtn.addEventListener('click', () => {
+      index = (index - 1 + images.length) % images.length;
+      imgElement.src = images[index];
+    });
   }
-
-  next.addEventListener('click', () => {
-    index++
-    if (index >= images.length) index = 0
-    setImage(index)
-  })
-
-  prev.addEventListener('click', () => {
-    index--
-    if (index < 0) index = images.length - 1
-    setImage(index)
-  })
-
-  // 👉 auto-detectar fin real de imágenes
-  let validImages = []
-
-  let loaded = 0
-
-  images.forEach((src, i) => {
-    const test = new Image()
-
-    test.onload = () => {
-      validImages[i] = src
-      loaded++
-    }
-
-    test.onerror = () => {
-      loaded++
-    }
-
-    test.src = src
-  })
-
-  // después de cargar, filtrar válidas
-  setTimeout(() => {
-    const realImages = images.filter(src => {
-      const img = new Image()
-      img.src = src
-      return img.complete && img.naturalWidth > 0
-    })
-
-    if (realImages.length > 0) {
-      index = 0
-      images.length = 0
-      images.push(...realImages)
-      setImage(0)
-    }
-
-  }, 300)
 }
