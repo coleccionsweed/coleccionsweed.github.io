@@ -12,7 +12,23 @@
     "language": "Español",
     "folder": "beren-y-luthien",
     "category": "books",
-    "tags": ["anillos", "beren", "luthien"],
+    "tags": ["tolkien", "beren", "luthien"],
+    "extraAttributes": {
+      "author": "J.R.R. Tolkien"
+    }
+  },
+  {
+    "id": "cartas-de-papa-noel",
+    "name": "Cartas de Papá Noel",
+    "type": "Hardcover",
+    "brand": "minotauro",
+    "purchasePrice": "0,00€",
+    "condition": "used",
+    "quantity": 1,
+    "language": "Español",
+    "folder": "cartas-de-papa-noel",
+    "category": "books",
+    "tags": ["tolkien", "noel"],
     "extraAttributes": {
       "author": "J.R.R. Tolkien"
     }

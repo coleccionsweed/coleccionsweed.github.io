@@ -10,7 +10,7 @@ export function renderItems(items) {
 
     card.className = 'card'
 
-    const image = `images/${item.category}/${item.folder}/1.jpg`
+    const image = `images/${item.category}/${item.folder}/1.webp`
 
     card.innerHTML = `
       <img class="card-image" src="${image}">
