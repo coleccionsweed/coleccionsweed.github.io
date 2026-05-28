@@ -7,7 +7,6 @@
     "purchasePrice": "25,00€",
     "condition": "new",
     "barcode": "035112710608",
-    "quantity": 1,
     "language": "Español",
     "folder": "aragorn-la-comunidad-del-anillo",
     "category": "toys"
@@ -20,7 +19,6 @@
     "purchasePrice": "30,44€",
     "condition": "new",
     "barcode": "035112810537",
-    "quantity": 1,
     "language": "Inglés",
     "folder": "arwen-special-edition-collector-series-la-comunidad-del-anillo",
     "category": "toys"
@@ -33,7 +31,6 @@
     "purchasePrice": "6,00€",
     "condition": "new",
     "barcode": "5023117770937",
-    "quantity": 1,
     "language": "Español",
     "folder": "asno-shrek-2",
     "category": "toys"
@@ -45,7 +42,6 @@
     "brand": "Kinder",
     "purchasePrice": "4,99€",
     "condition": "used",
-    "quantity": 1,
 	"language" : "Alemán",
     "folder": "barbol-kinder",
     "category": "toys"
@@ -58,7 +54,6 @@
     "purchasePrice": "11,11€",
     "condition": "new",
 	"barcode": "PUA-NVL-C-AAAW-EUR-C3",
-    "quantity": 1,
 	"language": "Español",
     "folder": "bowser-super-smash-bros.-collection",
     "category": "toys"
@@ -71,7 +66,6 @@
     "purchasePrice": "0,00€",
     "condition": "used",
 	"barcode": "8435039121464",
-    "quantity": 1,
     "folder": "camp-nou",
     "category": "toys"
   },
@@ -82,7 +76,6 @@
     "brand": "Kinder",
     "purchasePrice": "19,56€",
     "condition": "used",
-    "quantity": 1,
 	"language" : "Alemán",
     "folder": "el-retorno-del-rey-coleccion-completa-kinder",
     "category": "toys",
@@ -95,7 +88,6 @@
     "brand": "Kinder",
     "purchasePrice": "19,56€",
     "condition": "used",
-    "quantity": 1,
 	"language" : "Alemán",
     "folder": "la-comunidad-del-anillo-coleccion-completa-kinder",
     "category": "toys"
@@ -107,7 +99,6 @@
     "brand": "Kinder",
     "purchasePrice": "19,56€",
     "condition": "used",
-    "quantity": 1,
 	"language" : "Alemán",
     "folder": "las-dos-torres-coleccion-completa-kinder",
     "category": "toys"
@@ -120,7 +111,6 @@
     "purchasePrice": "12,00€",
     "condition": "new",
 	"barcode": "5023117664762",
-    "quantity": 1,
 	"language" : "Español",
     "folder": "cyborg-silver-lanza-misiles",
     "category": "toys"
@@ -133,7 +123,6 @@
     "purchasePrice": "2,50€",
     "condition": "new",
 	"barcode": "039897748474",
-    "quantity": 1,
 	"language" : "Inglés",
     "folder": "edna-&-jack-jack-incredibles-2",
     "category": "toys"
@@ -146,7 +135,6 @@
     "purchasePrice": "30,44€",
     "condition": "new",
 	"barcode": "4904810526346",
-    "quantity": 1,
 	"language" : "Japonés",
     "folder": "entei",
     "category": "toys"
@@ -158,7 +146,6 @@
     "brand": "applause",
     "purchasePrice": "10,69€",
     "condition": "used",
-    "quantity": 1,
     "folder": "esmeralda",
     "category": "toys"
   },
@@ -170,7 +157,6 @@
     "purchasePrice": "13,00€",
     "condition": "new",
 	"barcode": "461020924842",
-    "quantity": 1,
 	"language" : "Inglés",
     "folder": "coche-pizza-planet",
     "category": "toys"
@@ -183,7 +169,6 @@
     "purchasePrice": "8,41€",
     "condition": "new",
 	"barcode": "026676662144",
-    "quantity": 1,
 	"language" : "Español",
     "folder": "esmeralda-febo-claude-frollo",
     "category": "toys"
@@ -196,7 +181,6 @@
     "purchasePrice": "15,00€",
     "condition": "new",
 	"barcode": "035112711452",
-    "quantity": 1,
 	"language" : "Español",
     "folder": "frodo-las-dos-torres",
     "category": "toys"
@@ -209,7 +193,6 @@
     "purchasePrice": "10,69€",
     "condition": "used",
 	"barcode": "083361421301",
-    "quantity": 1,
 	"language" : "Inglés",
     "folder": "febo",
     "category": "toys"
@@ -222,7 +205,6 @@
     "purchasePrice": "20,00€",
     "condition": "new",
 	"barcode": "026676694220",
-    "quantity": 1,
 	"language" : "Inglés",
     "folder": "febo-aquiles",
     "category": "toys"
@@ -235,7 +217,6 @@
     "purchasePrice": "25,00€",
     "condition": "new",
 	"barcode": "035112710202",
-    "quantity": 1,
 	"language" : "Español",
     "folder": "febo-aquiles",
     "category": "toys"
@@ -248,7 +229,6 @@
     "purchasePrice": "35,00€",
     "condition": "new",
 	"barcode": "074299474040",
-    "quantity": 1,
 	"language" : "Español",
     "folder": "hagrid-coleccion-mini-magicos",
     "category": "toys"
@@ -260,7 +240,6 @@
     "brand": "Jada Toys",
     "purchasePrice": "3,00€",
     "condition": "used",
-    "quantity": 1,
     "folder": "hagrid-nano-metalfigs",
     "category": "toys"
   },
@@ -271,8 +250,43 @@
     "brand": "Jada Toys",
     "purchasePrice": "3,00€",
     "condition": "used",
-    "quantity": 1,
     "folder": "harry-potter-nano-metalfigs",
+    "category": "toys"
+  },
+  {
+    "id": "hermione-coleccion-camara-de-la-serpiente",
+    "name": "Hermione - Colección Cámara de la Serpiente",
+    "franchise": "Harry Potter",
+    "brand": "Mattel",
+    "purchasePrice": "14,69€",
+    "condition": "new",
+	"barcode": "074299548734",
+	"language" : "Español",
+    "folder": "hermione-coleccion-camara-de-la-serpiente",
+    "category": "toys"
+  },
+  {
+    "id": "huida-de-jim-hawkins",
+    "name": "Huida de Jim Hawkins",
+    "franchise": "El Planeta del Tesoro",
+    "brand": "Hasbro",
+    "purchasePrice": "12,00€",
+    "condition": "new",
+	"barcode": "5023117664762",
+	"language" : "Español",
+    "folder": "huida-de-jim-hawkins",
+    "category": "toys"
+  },
+  {
+    "id": "iniesta-barça-toons",
+    "name": "Iniesta - Barça Toons",
+    "franchise": "Barça",
+    "brand": "Comansi",
+    "purchasePrice": "1,99€",
+    "condition": "new",
+	"barcode": "8412906741208",
+	"language" : "Español",
+    "folder": "iniesta-barça-toons",
     "category": "toys"
   }
 ]
