@@ -452,5 +452,40 @@
 	"language": "Español",
     "folder": "torre-notre-dame",
     "category": "toys"
+  },
+  {
+    "id": "xavi-barcelona-toons",
+    "name": "Xavi - Barça Toons",
+    "franchise": "Barça",
+    "brand": "Comansi",
+    "purchasePrice": "1,99€",
+    "condition": "new",
+	"barcode": "8412906741208",
+	"language" : "Español",
+    "folder": "xavi-barcelona-toons",
+    "category": "toys"
+  },
+  {
+    "id": "varita-harry-potter",
+    "name": "Varita Harry Potter",
+    "franchise": "Harry Potter",
+    "brand": "Wizarding World",
+    "purchasePrice": "37,00€",
+    "condition": "new",
+	"barcode": "400002563204",
+    "folder": "varita-harry-potter",
+    "category": "toys"
+  },
+  {
+    "id": "yami-yugi",
+    "name": "Yami Yugi",
+    "franchise": "Yu-Gi-Oh!",
+    "brand": "Bizak",
+    "purchasePrice": "13,99€",
+    "condition": "new",
+	"barcode": "8432752039526",
+	"language" : "Inglés",
+    "folder": "yami-yugi",
+    "category": "toys"
   }
 ]
