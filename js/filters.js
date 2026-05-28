@@ -1,38 +1,35 @@
 import { t } from './translations.js';
 
-// Configuración centralizada de filtros
-const FILTER_CONFIG = [
-  { key: 'category', label: 'Categoría' },
-  { key: 'franchise', label: 'Franquicia' }
-];
-
 export function setupFilters(items, onChange) {
 
-  const category = document.getElementById('categoryFilter')
-  const franchise = document.getElementById('franchiseFilter')
-  const sortOrder = document.getElementById('sortOrder')
-  const search = document.getElementById('search')
-  // 🔥 NUEVO: Capturamos el contenedor del contador
-  const counterContainer = document.getElementById('items-counter')
+  const category = document.getElementById('categoryFilter');
+  const franchise = document.getElementById('franchiseFilter');
+  const sortOrder = document.getElementById('sortOrder');
+  const search = document.getElementById('search');
+  const counterContainer = document.getElementById('items-counter');
 
+  // Guardamos el total real de la colección (esto no cambia nunca)
+  const totalAbsoluto = items.length;
+  
   let itemsFiltradosYOrdenados = [];
   let limiteActual = 20; 
 
-  // únicos (filtramos nulos o undefined por si acaso con .filter(Boolean))
+  // --- Inicialización de los selectores ---
   const categories = [...new Set(items.map(i => i.category))]
     .filter(Boolean)
-    .sort((a, b) => t(a).localeCompare(t(b)))
+    .sort((a, b) => t(a).localeCompare(t(b)));
 
   const franchises = [...new Set(items.map(i => i.franchise))]
     .filter(Boolean)
-    .sort((a, b) => t(a).localeCompare(t(b)))
+    .sort((a, b) => t(a).localeCompare(t(b)));
 
   category.innerHTML = `<option value="">${t('Category')}</option>` +
-    categories.map(c => `<option value="${c}">${t(c)}</option>`).join('')
+    categories.map(c => `<option value="${c}">${t(c)}</option>`).join('');
 
   franchise.innerHTML = `<option value="">${t('Franchise')}</option>` +
-    franchises.map(f => `<option value="${f}">${t(f)}</option>`).join('')
+    franchises.map(f => `<option value="${f}">${t(f)}</option>`).join('');
 
+  // --- Funciones auxiliares ---
   function parsePrice(priceStr) {
     if (!priceStr) return 0;
     const clean = priceStr.replace('€', '').replace(',', '.').trim();
@@ -40,7 +37,18 @@ export function setupFilters(items, onChange) {
     return isNaN(parsed) ? 0 : parsed;
   }
 
-  // 🔥 ACTUALIZADO: Evento de scroll
+  function actualizarContador(mostrados, totalGeneral) {
+    if (!counterContainer) return;
+    
+    if (mostrados === 0) {
+      counterContainer.textContent = "No se encontraron objetos";
+    } else {
+      // Muestra: "Mostrando X de Y objetos"
+      counterContainer.textContent = `Mostrando ${mostrados} de ${totalGeneral} objetos`;
+    }
+  }
+
+  // --- Lógica de Scroll Infinito ---
   window.onscroll = () => {
     if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 100) {
       if (limiteActual < itemsFiltradosYOrdenados.length) {
@@ -49,65 +57,54 @@ export function setupFilters(items, onChange) {
         const porciones = itemsFiltradosYOrdenados.slice(0, limiteActual);
         onChange(porciones);
 
-        // 🔥 NUEVO: Actualizamos el texto al cargar más con el scroll
-        actualizarContador(porciones.length, itemsFiltradosYOrdenados.length);
+        // Actualizamos el contador con los nuevos cargados vs el total de la base de datos
+        actualizarContador(porciones.length, totalAbsoluto);
       }
     }
   };
 
-  // 🔥 NUEVO: Función auxiliar para pintar el contador de forma dinámica
-  function actualizarContador(mostrados, totales) {
-    if (!counterContainer) return;
-    
-    // Si no hay resultados
-    if (totales === 0) {
-      counterContainer.textContent = "No se encontraron objetos";
-    } else {
-      counterContainer.textContent = `Mostrando ${mostrados} de ${totales} objetos`;
-    }
-  }
-
+  // --- Lógica principal de filtrado y ordenación ---
   function apply() {
     limiteActual = 20; 
 
-    // 1. Filtramos el array original
+    // 1. Filtrado
     let result = items.filter(i => {
       return (
         (!category.value || i.category === category.value) &&
         (!franchise.value || i.franchise === franchise.value) &&
         (!search.value ||
           i.name.toLowerCase().includes(search.value.toLowerCase()))
-      )
-    })
+      );
+    });
 
-    // 2. Ordenamos el resultado
+    // 2. Ordenación
     const order = sortOrder.value;
     if (order === 'name-asc') {
       result.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
-    } 
-    else if (order === 'name-desc') {
+    } else if (order === 'name-desc') {
       result.sort((a, b) => (b.name || '').localeCompare(a.name || ''));
-    } 
-    else if (order === 'price-asc') {
+    } else if (order === 'price-asc') {
       result.sort((a, b) => parsePrice(a.purchasePrice) - parsePrice(b.purchasePrice));
-    } 
-    else if (order === 'price-desc') {
+    } else if (order === 'price-desc') {
       result.sort((a, b) => parsePrice(b.purchasePrice) - parsePrice(a.purchasePrice));
     }
 
     itemsFiltradosYOrdenados = result;
     const primeraTanda = itemsFiltradosYOrdenados.slice(0, limiteActual);
 
-    // 🔥 NUEVO: Actualizamos el contador nada más aplicar los filtros/búsqueda inicial
-    actualizarContador(primeraTanda.length, itemsFiltradosYOrdenados.length);
+    // 3. Actualizar contador usando el total absoluto
+    actualizarContador(primeraTanda.length, totalAbsoluto);
 
+    // 4. Enviar resultados al renderizador
     onChange(primeraTanda);
   }
 
-  category.onchange = apply
-  franchise.onchange = apply
-  sortOrder.onchange = apply
-  search.oninput = apply
+  // --- Listeners ---
+  category.onchange = apply;
+  franchise.onchange = apply;
+  sortOrder.onchange = apply;
+  search.oninput = apply;
   
+  // Ejecución inicial para que al entrar ya se vea el estado correcto
   apply();
 }
