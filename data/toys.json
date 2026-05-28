@@ -323,4 +323,16 @@
     "folder": "luigi-super-smash-bros.-collection",
     "category": "toys"
   },
+  {
+    "id": "mario-super-mario-odyssey",
+    "name": "Mario - Super Mario Odyssey",
+    "franchise": "Super Mario",
+    "brand": "Nintendo",
+    "purchasePrice": "12,95€",
+    "condition": "new",
+	"barcode": "PUA-NVL-C-ABAT-EUR-C4",
+	"language": "Español",
+    "folder": "mario-super-mario-odyssey",
+    "category": "toys"
+  }
 ]
