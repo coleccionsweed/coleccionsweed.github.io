@@ -5,6 +5,7 @@ export const diccionario = {
   "Search": "Buscar...",
   "books": "Libros",
   "toys": "Juguetes",
+  "card-box": "Cajas de cartas/cromos",
 };
 
 // Función helper para traducir de forma segura (si no existe, devuelve la palabra original)
