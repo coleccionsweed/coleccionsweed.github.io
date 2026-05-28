@@ -138,4 +138,41 @@
     "folder": "edna-&-jack-jack-incredibles-2",
     "category": "toys"
   },
+  {
+    "id": "entei",
+    "name": "Entei",
+    "franchise": "Pokémon",
+    "brand": "Tomy",
+    "purchasePrice": "30,44€",
+    "condition": "new",
+	"barcode": "4904810526346",
+    "quantity": 1,
+	"language" : "Japonés",
+    "folder": "entei",
+    "category": "toys"
+  },
+  {
+    "id": "esmeralda",
+    "name": "Esmeralda",
+    "franchise": "El Jorobado de Notre Dame",
+    "brand": "applause",
+    "purchasePrice": "10,69€",
+    "condition": "used",
+    "quantity": 1,
+    "folder": "esmeralda",
+    "category": "toys"
+  },
+  {
+    "id": "coche-pizza-planet",
+    "name": "Coche Pizza Planet",
+    "franchise": "Toy Story",
+    "brand": "Disney",
+    "purchasePrice": "13,00€",
+    "condition": "new",
+	"barcode": "461020924842",
+    "quantity": 1,
+	"language" : "Inglés",
+    "folder": "coche-pizza-planet",
+    "category": "toys"
+  }
 ]
