@@ -33,7 +33,7 @@ main {
   border-bottom: 1px solid rgba(255,255,255,0.05);
   padding: 15px 40px;
   z-index: 100;
-  /* CORRECCIÓN: Alinea el título y los filtros en PC correctamente */
+  /* CORRECCIÓN PC: Alinea el título a la izquierda y filtros a la derecha */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -46,7 +46,7 @@ main {
 }
 
 /* =========================================
-   3. BUSCADOR Y FILTROS PC
+   3. BUSCADOR Y FILTROS PREMIUM
 ========================================= */
 #filters {
   display: flex;
@@ -147,6 +147,7 @@ main {
    5. VISTA DE DETALLE
 ========================================= */
 .detail-container { width: 100%; }
+
 .detail-header { margin-bottom: 24px; }
 
 .back-btn {
@@ -175,6 +176,7 @@ main {
   align-items: start;
 }
 
+/* Contenedor de la Imagen */
 .slider {
   position: relative;
   border-radius: 20px;
@@ -199,6 +201,7 @@ main {
   display: block;
 }
 
+/* Flechas del slider */
 .nav {
   position: absolute;
   top: 50%;
@@ -226,6 +229,7 @@ main {
 .prev { left: 16px; }
 .next { right: 16px; }
 
+/* Tarjeta de Información */
 .info-card {
   padding: 40px;
   background: #11141c;
@@ -297,15 +301,26 @@ main {
 ========================================= */
 @media (max-width: 900px) {
 
-  /* ===================================================
-     1. CABECERA Y FILTROS (Se deslizan y se apilan)
-     =================================================== */
+  /* -----------------------------------------
+     SÚPER MEJORA: OCULTAR FILTROS EN DETALLE
+     ----------------------------------------- */
+  body:has(.detail) #filters {
+    display: none !important; /* Esconde la búsqueda y selectores en el detalle */
+  }
+  body:has(.detail) .topbar {
+    justify-content: center !important; /* Centra el título de la app en el detalle */
+    padding: 15px 20px !important;
+  }
+
+  /* -----------------------------------------
+     CORRECCIÓN DE FILTROS EN PÁGINA PRINCIPAL
+     ----------------------------------------- */
   .topbar {
-    position: relative !important;   /* Desactiva el 'sticky' para que suba con el scroll */
-    display: flex !important;        /* Activa flexbox en móvil */
-    flex-direction: column !important; /* Pone título arriba y filtros abajo */
+    position: relative !important;   /* Hace que se deslice con el dedo */
+    display: flex !important;        /* Forzamos comportamiento Flexbox */
+    flex-direction: column !important; 
     gap: 16px !important;
-    padding: 20px 16px !important;
+    padding: 24px 20px !important;  /* Margen interno estético para que respire */
     align-items: stretch !important;
   }
 
@@ -314,36 +329,35 @@ main {
     font-size: 24px;
   }
 
-  /* Forzamos a que los filtros ocupen una línea cada uno */
   #filters {
     display: flex !important;
-    flex-direction: column !important;
+    flex-direction: column !important; /* Se apilan verticalmente */
     gap: 12px !important;
     width: 100% !important;
+    margin: 0 auto !important;        /* Evita desalineaciones laterales */
   }
 
-  /* Los selectores y el buscador ocupan todo el ancho */
+  /* Forzamos a que ocupen todo el ancho con márgenes limpios */
   #filters select, 
   #search {
     width: 100% !important;
     max-width: 100% !important;
-    padding: 12px 16px !important;
-    font-size: 16px !important; /* Evita zoom molesto en iOS */
+    padding: 14px 16px !important; /* Más altos y cómodos para pulsar */
+    font-size: 16px !important;
     border-radius: 12px !important;
     box-sizing: border-box !important;
   }
 
-  /* ===================================================
-     2. VISTA DE DETALLE (Bloque adaptado a la imagen)
-     =================================================== */
+  /* -----------------------------------------
+     CORRECCIÓN DE DETALLE (ALTO DINÁMICO)
+     ----------------------------------------- */
   .detail {
     grid-template-columns: 1fr !important; 
     gap: 24px !important;
   }
 
-  /* CORRECCIÓN CRÍTICA: Quitamos los 650px al bloque contenedor */
   .slider {
-    height: auto !important; /* El contenedor gris se encoge al tamaño real de la foto */
+    height: auto !important; /* El marco gris se adapta a la foto */
     min-height: 200px;
     padding: 10px 0;
   }
@@ -352,11 +366,10 @@ main {
     height: auto !important;
   }
 
-  /* La imagen se auto-escala según su proporción real */
   .slider-window img {
     width: 100% !important;
     height: auto !important;       
-    max-height: 380px !important; /* Límite para que portadas verticales no ocupen toda la pantalla */
+    max-height: 380px !important; 
     object-fit: contain !important;
     display: block !important;
   }
@@ -373,9 +386,9 @@ main {
     gap: 12px !important;
   }
 
-  /* ===================================================
-     3. GALERÍA DE TARJETAS GENERAL
-     =================================================== */
+  /* -----------------------------------------
+     GALERÍA DE TARJETAS GENERAL
+     ----------------------------------------- */
   main {
     padding: 20px !important;
   }
