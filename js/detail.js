@@ -34,7 +34,7 @@ export async function renderDetail(item) {
   // =======================================================
   // 2. PASO DE CÓMPUTO: Procesar JSON y textos (Aún no tocamos la pantalla)
   // =======================================================
-  const clavesAIgnorar = ['id', 'name', 'franchise', 'folder', 'category', 'tags', 'notes', 'extraAttributes'];
+  const clavesAIgnorar = ['id', 'name', 'franchise', 'folder', 'category', 'tags', 'notes'];
   const diccionarioEtiquetas = {
     type: 'Tipo', brand: 'Marca', condition: 'Estado', language: 'Idioma', purchasePrice: 'Precio', quantity: 'Cantidad', barcode: 'Cód. Barras', author: 'Autor'
   };
@@ -50,15 +50,6 @@ export async function renderDetail(item) {
       bloquesInfoHTML.push(`<div><span>${obtenerEtiquetaLegible(key)}</span><b>${item[key]}</b></div>`);
     }
   });
-
-  if (item.extraAttributes && typeof item.extraAttributes === 'object') {
-    Object.keys(item.extraAttributes).forEach(key => {
-      const valor = item.extraAttributes[key];
-      if (valor !== undefined && valor !== null && valor !== '') {
-        bloquesInfoHTML.push(`<div><span>${obtenerEtiquetaLegible(key)}</span><b>${valor}</b></div>`);
-      }
-    });
-  }
 
   // =======================================================
   // 3. PASO DOM ATÓMICO: Modificamos todo a la vez en el mismo milisegundo

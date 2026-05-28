@@ -10,8 +10,7 @@
     "quantity": 1,
     "language": "Español",
     "folder": "aragorn-la-comunidad-del-anillo",
-    "category": "toys",
-    "extraAttributes": { }
+    "category": "toys"
   },
   {
     "id": "arwen-special-edition-collector-series-la-comunidad-del-anillo",
@@ -24,8 +23,7 @@
     "quantity": 1,
     "language": "Inglés",
     "folder": "arwen-special-edition-collector-series-la-comunidad-del-anillo",
-    "category": "toys",
-    "extraAttributes": { }
+    "category": "toys"
   },
   {
     "id": "asno-shrek-2",
@@ -38,8 +36,7 @@
     "quantity": 1,
     "language": "Español",
     "folder": "asno-shrek-2",
-    "category": "toys",
-    "extraAttributes": { }
+    "category": "toys"
   },
   {
     "id": "barbol-kinder",
@@ -50,7 +47,6 @@
     "condition": "used",
     "quantity": 1,
     "folder": "barbol-kinder",
-    "category": "toys",
-    "extraAttributes": { }
+    "category": "toys"
   }
 ]
