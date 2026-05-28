@@ -312,50 +312,84 @@ main {
 ========================================= */
 @media (max-width: 900px) {
 
-  /* 1. Forzamos a la barra superior a apilar el título y los filtros verticalmente */
+  /* ===================================================
+     1. BARRA SUPERIOR Y FILTROS (Cada uno en una línea)
+     =================================================== */
   .topbar {
+    padding: 15px 20px;
+  }
+
+  /* Forzamos a que el título y los filtros se apilen verticalmente */
+  .topbar-content, .topbar {
     flex-direction: column;
     gap: 16px;
-    align-items: stretch; /* Hace que los filtros se estiren a los lados sin salirse */
-    padding: 16px;
+    align-items: stretch;
   }
 
   .topbar h1 {
     text-align: center;
-    font-size: 24px; /* Reducimos un pelín el título en móvil */
+    font-size: 24px;
   }
 
-  /* 2. Convertimos el contenedor de filtros en una rejilla de 2 columnas */
-  #filters {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Divide el espacio en dos mitades exactas */
-    gap: 10px; /* Espacio uniforme entre los filtros */
+  /* Hacemos que el contenedor de filtros apile sus elementos (uno por línea) */
+  #filters, .filters-wrapper, .dynamic-filters {
+    display: flex;
+    flex-direction: column; /* 👈 Esto pone cada filtro en una línea nueva */
+    gap: 12px;
     width: 100%;
   }
 
-  /* 3. Hacemos que los selectores se adapten perfectamente a sus casillas */
-  #filters select {
-    width: 100% !important;
-    max-width: 100%;
-    padding: 10px; /* Un tamaño cómodo para pulsar con el dedo */
-    font-size: 14px;
-  }
-
-  /* 4. El buscador se expande y ocupa toda la fila inferior */
+  /* Selectores y buscador a ancho completo para que el texto se lea perfecto */
+  #filters select, 
+  #filters input,
+  #searchInput,
   #search {
-    grid-column: span 2; /* Ocupa las 2 columnas de la rejilla */
     width: 100% !important;
-    max-width: 100%;
-    padding: 12px;
+    max-width: 100% !important;
+    padding: 12px 16px;
+    font-size: 16px; /* 👈 16px evita que los iPhones hagan un zoom molesto al pulsar */
+    border-radius: 12px;
     box-sizing: border-box;
   }
 
-  /* El resto de tus estilos responsive que ya tenías */
+
+  /* ===================================================
+     2. ARREGLO DE LA VISTA DE DETALLE (Una sola columna)
+     =================================================== */
+  .detail {
+    /* Pasamos de 2 columnas a 1 sola fila vertical (la foto arriba, la info abajo) */
+    grid-template-columns: 1fr !important; 
+    gap: 24px; /* Reducimos el espacio exagerado de PC */
+  }
+
+  /* Ajustamos el tamaño de la imagen para pantallas táctiles */
+  .slider-window img {
+    height: 360px; /* 👈 Altura ideal para móviles, evita que ocupe toda la pantalla */
+    object-fit: contain; /* Conserva la proporción original de tus fotos sin cortarlas */
+  }
+
+  .info-card {
+    padding: 20px; /* Compactamos un poco los márgenes internos */
+  }
+
+  .info-card h1 {
+    font-size: 26px; /* Título ligeramente más pequeño para móviles */
+  }
+
+  .info-grid {
+    gap: 12px; /* Cuadraditos de atributos más compactos */
+  }
+
+
+  /* ===================================================
+     3. GALERÍA DE TARJETAS GENERAL
+     =================================================== */
   main {
-    padding: 16px;
+    padding: 20px;
   }
 
   .collection-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Tarjetas de la galería en una sola columna */
+    gap: 16px;
   }
 }
