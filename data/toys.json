@@ -1,0 +1,17 @@
+[
+  {
+    "id": "aragorn-comunidad-del-anillo",
+    "name": "Aragorn - La Comunidad del Anillo",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Toy Biz",
+    "purchasePrice": "25,00€",
+    "condition": "new",
+    "barcode": "035112710608",
+    "quantity": 1,
+    "language": "Español",
+    "folder": "aragorn-comunidad-del-anillo",
+    "category": "toys",
+    "tags": ["aragorn"],
+    "extraAttributes": { }
+  }
+]

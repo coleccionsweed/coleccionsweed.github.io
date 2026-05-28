@@ -1,7 +1,8 @@
 export async function loadCollection() {
 
   const files = [
-    'data/books.json'
+    'data/books.json',
+	'data/toys.json'
   ]
 
   const results = await Promise.all(
