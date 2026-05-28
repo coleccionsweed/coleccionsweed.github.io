@@ -325,15 +325,6 @@ main {
 ========================================= */
 @media (max-width: 900px) {
 
-  /* OCULTAR FILTROS EN DETALLE */
-  body:has(.detail) #filters {
-    display: none !important;
-  }
-  body:has(.detail) .topbar {
-    justify-content: center !important;
-    padding: 15px 20px !important;
-  }
-
   /* REESTRUCTURACIÓN DE LA CABECERA EN MÓVIL */
   .topbar {
     position: relative !important;   

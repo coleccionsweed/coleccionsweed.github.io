@@ -36,11 +36,17 @@ function handleRoute() {
   const filters = document.getElementById('filters')
   const counter = document.getElementById('items-counter') 
 
-  // Esta función es ahora nuestro "interruptor" maestro
+  // Función maestra de visibilidad
   const toggleVisibility = (visible) => {
     if (visible) {
-      if (filters) filters.classList.remove('hidden-element');
-      if (counter) counter.classList.remove('hidden-element');
+      if (filters) {
+        filters.classList.remove('hidden-element');
+        filters.style.display = ''; 
+      }
+      if (counter) {
+        counter.classList.remove('hidden-element');
+        counter.style.display = '';
+      }
     } else {
       if (filters) filters.classList.add('hidden-element');
       if (counter) counter.classList.add('hidden-element');
@@ -49,7 +55,7 @@ function handleRoute() {
 
   // --- VISTA LISTA ---
   if (!id) {
-    // 🔥 FORZAMOS que siempre aparezcan al no haber ID
+    document.body.classList.remove('detail-active'); // Limpiamos clase de seguridad
     toggleVisibility(true);
     
     grid.style.display = ''; 
@@ -71,10 +77,13 @@ function handleRoute() {
   if (item) {
     posicionScrollGuardada = window.scrollY;
 
+    // Marcamos que estamos en detalle para el CSS si fuera necesario
+    document.body.classList.add('detail-active');
+
+    // Congelamos el grid antes de borrar
     grid.style.height = grid.offsetHeight + 'px'; 
     grid.style.opacity = '0';
     
-    // 🔥 FORZAMOS que desaparezcan al entrar al detalle
     toggleVisibility(false);
 
     requestAnimationFrame(() => {
@@ -87,7 +96,8 @@ function handleRoute() {
     });
     
   } else {
-    // Si no hay item, restauramos vista lista por seguridad
+    // Si no hay item, restauramos vista lista
+    document.body.classList.remove('detail-active');
     toggleVisibility(true);
     grid.style.display = '';
     grid.style.opacity = '1';
@@ -96,4 +106,4 @@ function handleRoute() {
   }
 }
 
-init()
+init();
