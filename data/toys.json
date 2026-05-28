@@ -1,6 +1,6 @@
 [
   {
-    "id": "aragorn-comunidad-del-anillo",
+    "id": "aragorn-la-comunidad-del-anillo",
     "name": "Aragorn - La Comunidad del Anillo",
     "franchise": "El Señor de los Anillos",
     "brand": "Toy Biz",
@@ -9,9 +9,24 @@
     "barcode": "035112710608",
     "quantity": 1,
     "language": "Español",
-    "folder": "aragorn-comunidad-del-anillo",
+    "folder": "aragorn-la-comunidad-del-anillo",
     "category": "toys",
     "tags": ["aragorn"],
+    "extraAttributes": { }
+  },
+  {
+    "id": "arwen-special-edition-collector-series-la-comunidad-del-anillo",
+    "name": "Arwen - Special edition collector series - La Comunidad del Anillo",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Toy Biz",
+    "purchasePrice": "30,44€",
+    "condition": "new",
+    "barcode": "035112810537",
+    "quantity": 1,
+    "language": "Inglés",
+    "folder": "arwen-special-edition-collector-series-la-comunidad-del-anillo",
+    "category": "toys",
+    "tags": ["arwen"],
     "extraAttributes": { }
   }
 ]
