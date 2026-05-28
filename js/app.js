@@ -1,38 +1,44 @@
 import { loadCollection } from './dataLoader.js'
 import { renderItems } from './renderer.js'
+import { setupFilters } from './filters.js'
+import { renderDetail } from './detail.js'
 
 let allItems = []
 
 async function init() {
 
+  // 1. Cargar datos
   allItems = await loadCollection()
 
-  renderItems(allItems)
+  // 2. Inicializar filtros
+  setupFilters(allItems, (filteredItems) => {
+    renderItems(filteredItems)
+  })
 
-  setupSearch()
+  // 3. Detectar navegación (detalle o lista)
+  handleRoute()
+
+  window.addEventListener('hashchange', handleRoute)
 }
 
-function setupSearch() {
+function handleRoute() {
 
-  const input = document.getElementById('searchInput')
+  const id = window.location.hash.replace('#', '')
 
-  input.addEventListener('input', () => {
+  // si no hay hash → vista lista
+  if (!id) {
+    renderItems(allItems)
+    return
+  }
 
-    const value = input.value.toLowerCase()
+  // buscar item
+  const item = allItems.find(i => i.id === id)
 
-    const filtered = allItems.filter(item => {
-
-      return (
-        item.name.toLowerCase().includes(value)
-        ||
-        (item.franchise || '')
-          .toLowerCase()
-          .includes(value)
-      )
-    })
-
-    renderItems(filtered)
-  })
+  if (item) {
+    renderDetail(item)
+  } else {
+    renderItems(allItems)
+  }
 }
 
 init()
