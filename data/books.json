@@ -1,4 +1,4 @@
-[
+{
   {
     "id": "berenyluthien",
     "name": "Beren y Lúthien",
@@ -16,5 +16,5 @@
     "extraAttributes": {
       "Author": "J.R.R. Tolkien"
     }
-  },
-]
+  }
+}
