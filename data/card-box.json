@@ -10,5 +10,29 @@
     "language": "Inglés",
     "folder": "bundle-the-lord-of-the-rings-tales-of-middle-earth",
     "category": "card-box"
+  },
+  {
+    "id": "el-retorno-del-rey-caja-de-cromos",
+    "name": "El Retorno del Rey - Caja de cromos",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Merlin Stickers",
+    "purchasePrice": "45,75€",
+    "condition": "new",
+    "barcode": "5018819903110",
+    "language": "Español",
+    "folder": "el-retorno-del-rey-caja-de-cromos",
+    "category": "card-box"
+  },
+  {
+    "id": "harry-potter-y-la-piedra-filosofal-caja-de-cromos",
+    "name": "Harry Potter y la piedra filosofal - Caja de cromos",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "68,66€",
+    "condition": "new",
+    "barcode": "8018190017441",
+    "language": "Español",
+    "folder": "harry-potter-y-la-piedra-filosofal-caja-de-cromos",
+    "category": "card-box"
   }
 ]
