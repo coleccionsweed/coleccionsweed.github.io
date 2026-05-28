@@ -36,13 +36,14 @@ function handleRoute() {
   const filters = document.getElementById('filters')
   const counter = document.getElementById('items-counter') 
 
-  // Vista Lista (Galería)
+  // --- VISTA LISTA ---
   if (!id) {
     if (filters) filters.style.display = 'flex' 
     if (counter) counter.style.display = 'block' 
     
     grid.style.display = ''; 
-    grid.style.height = 'auto'; // Restaurar altura automática
+    grid.style.opacity = '1'; // 🔥 Aseguramos visibilidad
+    grid.style.height = 'auto';
     grid.className = 'collection-grid'          
     
     renderItems(itemsAMostrar)                       
@@ -50,43 +51,41 @@ function handleRoute() {
     setTimeout(() => {
       window.scrollTo(0, posicionScrollGuardada);
     }, 0)
-
     return
   }
 
-  // Vista Detalle
+  // --- VISTA DETALLE ---
   const item = allItems.find(i => i.id === id)
 
   if (item) {
-    // 1. Guardar scroll
     posicionScrollGuardada = window.scrollY
 
-    // 2. 🔥 SOLUCIÓN: Fijar altura para que la cabecera no se mueva
+    // 1. 🔥 TRUCO FINAL: Hacemos invisible el contenedor antes de tocar nada
+    // Esto evita que se vea el "salto" de cabecera o el borrado de elementos.
+    grid.style.opacity = '0';
     grid.style.height = grid.offsetHeight + 'px'; 
     
-    // 3. Ocultar elementos de lista
     if (filters) filters.style.display = 'none'
     if (counter) counter.style.display = 'none' 
 
-    // 4. Vaciado
     grid.innerHTML = '' 
 
-    // 5. Scroll arriba inmediato
     window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
 
-    // 6. Renderizar detalle
     renderDetail(item) 
     
-    // 7. Liberar altura fija para el contenido del detalle
+    // 2. 🔥 Una vez renderizado el detalle, volvemos a mostrarlo de golpe
     grid.style.height = 'auto';
+    grid.style.opacity = '1'; 
     
   } else {
-    // Fallback si no encuentra ítem
+    // Fallback
     if (filters) filters.style.display = 'flex'
     if (counter) counter.style.display = 'block'
     grid.style.display = '';
+    grid.style.opacity = '1';
     grid.className = 'collection-grid'
     renderItems(itemsAMostrar)
   }
