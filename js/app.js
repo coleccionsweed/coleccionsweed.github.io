@@ -8,8 +8,7 @@ let itemsAMostrar = []
 let posicionScrollGuardada = 0 
 
 async function init() {
-  // 🔥 NUEVO PARA MÓVILES: Le ordenamos al teléfono que desactive su control 
-  // automático de scroll para que no intente adivinar dónde posicionar la pantalla.
+  // Desactivar control automático de scroll del navegador
   if ('scrollRestoration' in window.history) {
     window.history.scrollRestoration = 'manual';
   }
@@ -26,9 +25,8 @@ async function init() {
     }
   })
 
-  // 3. Detectar navegación (detalle o lista)
+  // 3. Detectar navegación
   handleRoute()
-
   window.addEventListener('hashchange', handleRoute)
 }
 
@@ -38,18 +36,17 @@ function handleRoute() {
   const filters = document.getElementById('filters')
   const counter = document.getElementById('items-counter') 
 
-  // Si no hay hash → vista lista (Galería)
+  // Vista Lista (Galería)
   if (!id) {
     if (filters) filters.style.display = 'flex' 
     if (counter) counter.style.display = 'block' 
     
-    // 🔥 Aseguramos que la cuadrícula vuelva a ser visible en la lista
     grid.style.display = ''; 
+    grid.style.height = 'auto'; // Restaurar altura automática
     grid.className = 'collection-grid'          
     
     renderItems(itemsAMostrar)                       
 
-    // Devolvemos al usuario a su posición exacta de scroll
     setTimeout(() => {
       window.scrollTo(0, posicionScrollGuardada);
     }, 0)
@@ -57,35 +54,36 @@ function handleRoute() {
     return
   }
 
-  // Buscar ítem
+  // Vista Detalle
   const item = allItems.find(i => i.id === id)
 
   if (item) {
-    // 1. Guardamos el scroll actual
+    // 1. Guardar scroll
     posicionScrollGuardada = window.scrollY
 
-    // 2. 🔥 EL TRUCO MAESTRO PARA MÓVILES: Convertimos el contenedor en invisible ('none').
-    // Al no tener espacio físico en la pantalla, el móvil rompe cualquier animación de scroll automático.
-    grid.style.display = 'none';
+    // 2. 🔥 SOLUCIÓN: Fijar altura para que la cabecera no se mueva
+    grid.style.height = grid.offsetHeight + 'px'; 
+    
+    // 3. Ocultar elementos de lista
     if (filters) filters.style.display = 'none'
     if (counter) counter.style.display = 'none' 
 
-    // 3. Vaciamos las tarjetas antiguas
+    // 4. Vaciado
     grid.innerHTML = '' 
 
-    // 4. 🔥 Forzamos la subida a la posición 0 de la forma más estricta posible para iOS y Android.
-    // Usar números directos en vez de objetos evita que el móvil obedezca al 'scroll-behavior: smooth' del CSS.
+    // 5. Scroll arriba inmediato
     window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
 
-    // 5. Renderizamos el detalle del producto (estando ya situados arriba en total oscuridad)
+    // 6. Renderizar detalle
     renderDetail(item) 
     
-    // 6. 🔥 Volvemos a hacer visible el contenedor. Ahora aparecerá instantáneamente el detalle.
-    grid.style.display = '';
+    // 7. Liberar altura fija para el contenido del detalle
+    grid.style.height = 'auto';
     
   } else {
+    // Fallback si no encuentra ítem
     if (filters) filters.style.display = 'flex'
     if (counter) counter.style.display = 'block'
     grid.style.display = '';
