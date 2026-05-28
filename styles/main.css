@@ -311,35 +311,51 @@ main {
    7. RESPONSIVE (MÓVILES Y TABLETS)
 ========================================= */
 @media (max-width: 900px) {
-  /* Al cambiar a 'static', la cabecera sube y desaparece de la pantalla al hacer scroll hacia abajo */
-  .topbar { 
-    position: static; 
-    padding: 15px 20px;
+
+  /* 1. Forzamos a la barra superior a apilar el título y los filtros verticalmente */
+  .topbar {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch; /* Hace que los filtros se estiren a los lados sin salirse */
+    padding: 16px;
   }
 
-  .topbar-content { 
-    flex-direction: column; 
-    gap: 12px; 
+  .topbar h1 {
     text-align: center;
+    font-size: 24px; /* Reducimos un pelín el título en móvil */
   }
 
-  /* Ajustes extra para el buscador en móvil */
-  #search { 
-    width: 100% !important; 
-    max-width: 100%; 
+  /* 2. Convertimos el contenedor de filtros en una rejilla de 2 columnas */
+  #filters {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Divide el espacio en dos mitades exactas */
+    gap: 10px; /* Espacio uniforme entre los filtros */
+    width: 100%;
   }
 
-  /* Ajustes del detalle en móvil */
-  .detail {
+  /* 3. Hacemos que los selectores se adapten perfectamente a sus casillas */
+  #filters select {
+    width: 100% !important;
+    max-width: 100%;
+    padding: 10px; /* Un tamaño cómodo para pulsar con el dedo */
+    font-size: 14px;
+  }
+
+  /* 4. El buscador se expande y ocupa toda la fila inferior */
+  #search {
+    grid-column: span 2; /* Ocupa las 2 columnas de la rejilla */
+    width: 100% !important;
+    max-width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+  }
+
+  /* El resto de tus estilos responsive que ya tenías */
+  main {
+    padding: 16px;
+  }
+
+  .collection-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  
-  .slider { 
-    height: 380px; /* Reducimos la altura del slider en móvil para que no tape todo */
-  }
-  
-  .info-card { 
-    padding: 20px; 
   }
 }

@@ -28,9 +28,9 @@ function handleRoute() {
 
   // Si no hay hash → vista lista (Galería)
   if (!id) {
-    grid.className = 'collection-grid' // Volvemos a poner la cuadrícula
-    if (filters) filters.style.display = 'flex'
-    renderItems(allItems)
+    if (filters) filters.style.display = 'flex' // 1. Mostramos filtros
+    grid.className = 'collection-grid'          // 2. Restauramos cuadrícula
+    renderItems(allItems)                       // 3. Pintamos tarjetas (Todo síncrono y limpio)
     return
   }
 
@@ -38,12 +38,11 @@ function handleRoute() {
   const item = allItems.find(i => i.id === id)
 
   if (item) {
-    if (filters) filters.style.display = 'none'
-    // 🛑 QUITAMOS grid.className = '' de aquí.
-    renderDetail(item) // Dejamos que renderDetail se encargue cuando esté 100% listo
+    // 🛑 YA NO OCULTAMOS FILTROS AQUÍ. Dejamos que renderDetail se encargue al final.
+    renderDetail(item) 
   } else {
-    grid.className = 'collection-grid'
     if (filters) filters.style.display = 'flex'
+    grid.className = 'collection-grid'
     renderItems(allItems)
   }
 }

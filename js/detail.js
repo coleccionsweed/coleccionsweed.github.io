@@ -2,16 +2,16 @@
 function comprobarSiExisteImagen(src) {
   return new Promise((resolve) => {
     const img = new Image();
-    img.onload = () => resolve(true);  // La imagen existe y cargó bien
-    img.onerror = () => resolve(false); // La imagen no existe (404)
+    img.onload = () => resolve(true);  
+    img.onerror = () => resolve(false); 
     img.src = src;
   });
 }
 
 export async function renderDetail(item) {
-  const grid = document.getElementById('collectionGrid');
-
-  // 1. Buscamos imágenes secuencialmente hasta que una falle
+  // =======================================================
+  // 1. PASO ASÍNCRONO: Buscar imágenes (La galería sigue intacta y bonita en pantalla)
+  // =======================================================
   const images = [];
   let i = 1;
   
@@ -20,62 +20,37 @@ export async function renderDetail(item) {
     const existe = await comprobarSiExisteImagen(imgUrl);
     
     if (!existe) {
-      break; // 🛑 Se detiene inmediatamente en cuanto una no está
+      break; 
     }
     
     images.push(imgUrl);
     i++;
   }
 
-  // Salvaguarda: Si por algún motivo no encuentra ninguna, dejamos al menos la primera
   if (images.length === 0) {
     images.push(`images/${item.category}/${item.folder}/1.webp`);
   }
-  
-  grid.className = '';
 
-  // ==========================================
-  // 👉 PROCESAMIENTO DINÁMICO DE DATOS DEL JSON
-  // ==========================================
-  
-  // Claves internas de control que NO queremos meter dentro del info-grid de cuadraditos
+  // =======================================================
+  // 2. PASO DE CÓMPUTO: Procesar JSON y textos (Aún no tocamos la pantalla)
+  // =======================================================
   const clavesAIgnorar = ['id', 'name', 'franchise', 'folder', 'category', 'tags', 'notes', 'extraAttributes'];
-
-  // Diccionario de traducciones automáticas para las etiquetas legibles
   const diccionarioEtiquetas = {
-    type: 'Tipo',
-    brand: 'Marca',
-    condition: 'Estado',
-    language: 'Idioma',
-    purchasePrice: 'Precio',
-    quantity: 'Cantidad',
-    barcode: 'Cód. Barras',
-    author: 'Autor'
+    type: 'Tipo', brand: 'Marca', condition: 'Estado', language: 'Idioma', purchasePrice: 'Precio', quantity: 'Cantidad', barcode: 'Cód. Barras', author: 'Autor'
   };
 
-  // Función para formatear el nombre si llega una clave nueva que no está en el diccionario
-  // Ejemplo: "releaseYear" -> "Release Year" o "paginas" -> "Paginas"
   function obtenerEtiquetaLegible(clave) {
     if (diccionarioEtiquetas[clave]) return diccionarioEtiquetas[clave];
-    
-    // Separar camelCase (por si acaso) y capitalizar primera letra de forma limpia
-    return clave
-      .replace(/([A-Z])/g, ' $1')
-      .replace(/^./, str => str.toUpperCase())
-      .trim();
+    return clave.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase()).trim();
   }
 
-  // Lista temporal donde guardaremos los bloques HTML generados
   const bloquesInfoHTML = [];
-
-  // A) Procesar atributos de la raíz del JSON (excluyendo los ignorados)
   Object.keys(item).forEach(key => {
     if (!clavesAIgnorar.includes(key) && item[key] !== undefined && item[key] !== null && item[key] !== '') {
       bloquesInfoHTML.push(`<div><span>${obtenerEtiquetaLegible(key)}</span><b>${item[key]}</b></div>`);
     }
   });
 
-  // B) Procesar atributos anidados dentro de "extraAttributes" (si existen en este ítem)
   if (item.extraAttributes && typeof item.extraAttributes === 'object') {
     Object.keys(item.extraAttributes).forEach(key => {
       const valor = item.extraAttributes[key];
@@ -85,7 +60,16 @@ export async function renderDetail(item) {
     });
   }
 
-  // 2. Renderizar la estructura limpia y profesional
+  // =======================================================
+  // 3. PASO DOM ATÓMICO: Modificamos todo a la vez en el mismo milisegundo
+  // =======================================================
+  const grid = document.getElementById('collectionGrid');
+  const filters = document.getElementById('filters');
+
+  if (filters) filters.style.display = 'none'; // Ocultamos barra superior
+  grid.className = '';                         // Quitamos rejilla de la galería
+  
+  // Inyectamos el nuevo HTML encima del anterior eliminando las tarjetas al instante
   grid.innerHTML = `
     <div class="detail-container">
       <div class="detail-header">
@@ -121,14 +105,13 @@ export async function renderDetail(item) {
     </div>
   `;
 
-  // 3. Asignar eventos de navegación de la interfaz
-  
-  // Botón Volver
+  // =======================================================
+  // 4. PASO DE EVENTOS: Asignar listeners del slider y botón
+  // =======================================================
   document.getElementById('backBtn').addEventListener('click', () => {
-    window.location.hash = ''; // Borra el hash para regresar a la galería
+    window.location.hash = ''; 
   });
 
-  // Lógica de movimiento del Slider (solo si tiene varias imágenes)
   if (images.length > 1) {
     let index = 0;
     const imgElement = document.getElementById('sliderImage');
