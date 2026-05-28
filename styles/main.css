@@ -436,3 +436,9 @@ main {
   font-weight: 500;
   letter-spacing: 0.5px;
 }
+
+.hidden-element {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}

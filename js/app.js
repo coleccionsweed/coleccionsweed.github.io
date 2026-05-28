@@ -36,64 +36,63 @@ function handleRoute() {
   const filters = document.getElementById('filters')
   const counter = document.getElementById('items-counter') 
 
+  // Función para manejar la visibilidad de forma limpia
+  const toggleVisibility = (visible) => {
+    if (visible) {
+      if (filters) filters.classList.remove('hidden-element');
+      if (counter) counter.classList.remove('hidden-element');
+    } else {
+      if (filters) filters.classList.add('hidden-element');
+      if (counter) counter.classList.add('hidden-element');
+    }
+  };
+
   // --- VISTA LISTA ---
   if (!id) {
-    if (filters) filters.style.display = 'flex' 
-    if (counter) counter.style.display = 'block' 
-    
+    toggleVisibility(true);
     grid.style.display = ''; 
     grid.style.opacity = '1'; 
     grid.style.height = 'auto';
-    grid.className = 'collection-grid'          
+    grid.className = 'collection-grid';
     
-    renderItems(itemsAMostrar)                       
+    renderItems(itemsAMostrar);
 
     setTimeout(() => {
       window.scrollTo(0, posicionScrollGuardada);
-    }, 0)
-    return
+    }, 0);
+    return;
   }
 
   // --- VISTA DETALLE ---
-  const item = allItems.find(i => i.id === id)
+  const item = allItems.find(i => i.id === id);
 
   if (item) {
-    posicionScrollGuardada = window.scrollY
+    posicionScrollGuardada = window.scrollY;
 
-    // 1. Fijamos altura y ocultamos opacidad para "congelar" la vista actual
+    // Fijamos altura y opacidad
     grid.style.height = grid.offsetHeight + 'px'; 
     grid.style.opacity = '0';
     
-    // 2. Ocultamos controles
-    if (filters) filters.style.display = 'none'
-    if (counter) counter.style.display = 'none' 
+    // Ocultamos elementos usando la clase CSS potente
+    toggleVisibility(false);
 
-    // 3. 🔥 Usamos requestAnimationFrame para asegurar que el navegador 
-    // termine de procesar el ocultado antes de cambiar el contenido
     requestAnimationFrame(() => {
-      grid.innerHTML = '' 
-      
-      // Scroll estricto
+      grid.innerHTML = ''; 
       window.scrollTo(0, 0);
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
-
-      // Renderizamos detalle
-      renderDetail(item) 
+      renderDetail(item); 
       
-      // 4. 🔥 Solo cuando el detalle está pintado, restauramos la visibilidad
       grid.style.height = 'auto';
       grid.style.opacity = '1'; 
     });
     
   } else {
-    // Fallback
-    if (filters) filters.style.display = 'flex'
-    if (counter) counter.style.display = 'block'
+    toggleVisibility(true);
     grid.style.display = '';
     grid.style.opacity = '1';
-    grid.className = 'collection-grid'
-    renderItems(itemsAMostrar)
+    grid.className = 'collection-grid';
+    renderItems(itemsAMostrar);
   }
 }
 
