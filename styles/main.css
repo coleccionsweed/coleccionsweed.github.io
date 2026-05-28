@@ -33,7 +33,6 @@ main {
   border-bottom: 1px solid rgba(255,255,255,0.05);
   padding: 15px 40px;
   z-index: 100;
-  /* CORRECCIÓN PC: Alinea el título a la izquierda y filtros a la derecha */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -46,12 +45,18 @@ main {
 }
 
 /* =========================================
-   3. BUSCADOR Y FILTROS PREMIUM
+   3. BUSCADOR Y FILTROS PREMIUM (PC)
 ========================================= */
 #filters {
   display: flex;
-  gap: 16px;
+  gap: 20px;
   align-items: center;
+}
+
+/* CORRECCIÓN: Separación interna para los select generados por JS */
+#dynamicFilters {
+  display: flex;
+  gap: 12px; /* Margen perfecto entre select y select */
 }
 
 .filter-select {
@@ -147,7 +152,6 @@ main {
    5. VISTA DE DETALLE
 ========================================= */
 .detail-container { width: 100%; }
-
 .detail-header { margin-bottom: 24px; }
 
 .back-btn {
@@ -176,7 +180,6 @@ main {
   align-items: start;
 }
 
-/* Contenedor de la Imagen */
 .slider {
   position: relative;
   border-radius: 20px;
@@ -201,7 +204,6 @@ main {
   display: block;
 }
 
-/* Flechas del slider */
 .nav {
   position: absolute;
   top: 50%;
@@ -229,7 +231,6 @@ main {
 .prev { left: 16px; }
 .next { right: 16px; }
 
-/* Tarjeta de Información */
 .info-card {
   padding: 40px;
   background: #11141c;
@@ -301,26 +302,22 @@ main {
 ========================================= */
 @media (max-width: 900px) {
 
-  /* -----------------------------------------
-     SÚPER MEJORA: OCULTAR FILTROS EN DETALLE
-     ----------------------------------------- */
+  /* OCULTAR FILTROS EN DETALLE */
   body:has(.detail) #filters {
-    display: none !important; /* Esconde la búsqueda y selectores en el detalle */
+    display: none !important;
   }
   body:has(.detail) .topbar {
-    justify-content: center !important; /* Centra el título de la app en el detalle */
+    justify-content: center !important;
     padding: 15px 20px !important;
   }
 
-  /* -----------------------------------------
-     CORRECCIÓN DE FILTROS EN PÁGINA PRINCIPAL
-     ----------------------------------------- */
+  /* REESTRUCTURACIÓN DE LA CABECERA EN MÓVIL */
   .topbar {
-    position: relative !important;   /* Hace que se deslice con el dedo */
-    display: flex !important;        /* Forzamos comportamiento Flexbox */
+    position: relative !important;   
+    display: flex !important;        
     flex-direction: column !important; 
     gap: 16px !important;
-    padding: 24px 20px !important;  /* Margen interno estético para que respire */
+    padding: 24px 20px !important;  
     align-items: stretch !important;
   }
 
@@ -329,35 +326,42 @@ main {
     font-size: 24px;
   }
 
+  /* El contenedor principal de filtros se vuelve columna */
   #filters {
     display: flex !important;
-    flex-direction: column !important; /* Se apilan verticalmente */
+    flex-direction: column !important; 
     gap: 12px !important;
     width: 100% !important;
-    margin: 0 auto !important;        /* Evita desalineaciones laterales */
+    margin: 0 auto !important;        
   }
 
-  /* Forzamos a que ocupen todo el ancho con márgenes limpios */
-  #filters select, 
+  /* CORRECCIÓN MÓVIL: El contenedor dinámico se vuelve columna con separación */
+  #dynamicFilters {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    width: 100% !important;
+  }
+
+  /* Los selects dinámicos y el buscador se adaptan al 100% de ancho con márgenes limpios */
+  #dynamicFilters select, 
   #search {
     width: 100% !important;
     max-width: 100% !important;
-    padding: 14px 16px !important; /* Más altos y cómodos para pulsar */
+    padding: 14px 16px !important; 
     font-size: 16px !important;
     border-radius: 12px !important;
     box-sizing: border-box !important;
   }
 
-  /* -----------------------------------------
-     CORRECCIÓN DE DETALLE (ALTO DINÁMICO)
-     ----------------------------------------- */
+  /* AJUSTES DE LA VISTA DETALLE */
   .detail {
     grid-template-columns: 1fr !important; 
     gap: 24px !important;
   }
 
   .slider {
-    height: auto !important; /* El marco gris se adapta a la foto */
+    height: auto !important; 
     min-height: 200px;
     padding: 10px 0;
   }
@@ -386,9 +390,7 @@ main {
     gap: 12px !important;
   }
 
-  /* -----------------------------------------
-     GALERÍA DE TARJETAS GENERAL
-     ----------------------------------------- */
+  /* GALERÍA DE TARJETAS GENERAL */
   main {
     padding: 20px !important;
   }
