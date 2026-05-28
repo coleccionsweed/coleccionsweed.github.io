@@ -200,5 +200,31 @@
 	"language" : "Español",
     "folder": "frodo-las-dos-torres",
     "category": "toys"
+  },
+  {
+    "id": "febo",
+    "name": "Febo",
+    "franchise": "El Jorobado de Notre Dame",
+    "brand": "applause",
+    "purchasePrice": "10,69€",
+    "condition": "used",
+	"barcode": "083361421301",
+    "quantity": 1,
+	"language" : "Inglés",
+    "folder": "febo",
+    "category": "toys"
+  },
+  {
+    "id": "febo-aquiles",
+    "name": "Febo y Aquiles",
+    "franchise": "El Jorobado de Notre Dame",
+    "brand": "Mattel",
+    "purchasePrice": "20,00€",
+    "condition": "new",
+	"barcode": "026676694220",
+    "quantity": 1,
+	"language" : "Inglés",
+    "folder": "febo-aquiles",
+    "category": "toys"
   }
 ]
