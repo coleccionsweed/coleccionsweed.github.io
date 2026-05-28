@@ -10,16 +10,26 @@
 </head>
 <body>
 
-<header class="topbar">
-  <div class="topbar-content">
+  <header class="topbar">
     <h1>Mi Colección</h1>
-    
-    <div id="filters" class="filters-wrapper">
-      <div id="dynamicFilters" class="dynamic-filters"></div>
-      <input id="search" placeholder="Buscar en la colección...">
-    </div>
-  </div>
-</header>
+
+	<div id="filters">
+
+	  <select id="categoryFilter"></select>
+	  <select id="franchiseFilter"></select>
+
+	  <select id="sortOrder">
+	    <option value="">Ordenar por...</option>
+	    <option value="name-asc">Nombre (A-Z)</option>
+	    <option value="name-desc">Nombre (Z-A)</option>
+	    <option value="price-asc">Precio (Menor a Mayor)</option>
+	    <option value="price-desc">Precio (Mayor a Menor)</option>
+	  </select>
+
+	  <input id="search" placeholder="Buscar...">
+
+	</div>
+  </header>
 
   <aside class="sidebar" id="filtersContainer">
   </aside>

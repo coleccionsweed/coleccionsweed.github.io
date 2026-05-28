@@ -5,76 +5,65 @@ const FILTER_CONFIG = [
 ];
 
 export function setupFilters(items, onChange) {
-  // Sincronizado con el id="filters" real de tu segunda.html
-  const container = document.getElementById('filters');
-  if (!container) return;
-  
-  // Limpiamos el contenedor para generarlo todo de forma limpia y dinámica
-  container.innerHTML = '';
-  const selects = {};
 
-  // 1. Generar los menús desplegables dinámicamente
-  FILTER_CONFIG.forEach(config => {
-    // Extraer valores únicos ignorando nulos/undefined y limpiando espacios
-    const rawValues = items.map(i => i[config.key]).filter(Boolean);
-    const cleanValues = [...new Set(rawValues.map(v => String(v).trim()))];
-    
-    // Ordenar alfabéticamente para que quede impecable
-    cleanValues.sort((a, b) => a.localeCompare(b));
-    
-    const select = document.createElement('select');
-    select.id = `filter-${config.key}`;
-    select.className = 'filter-select';
-    
-    // Guardamos los values en minúsculas para una comparación infalible después
-    let optionsHtml = `<option value="">${config.label}</option>`;
-    cleanValues.forEach(val => {
-      optionsHtml += `<option value="${val.toLowerCase()}">${val}</option>`;
-    });
-    
-    select.innerHTML = optionsHtml;
-    container.appendChild(select);
-    selects[config.key] = select;
-    
-    select.addEventListener('change', apply);
-  });
+  const category = document.getElementById('categoryFilter')
+  const franchise = document.getElementById('franchiseFilter')
+  const sortOrder = document.getElementById('sortOrder')
+  const search = document.getElementById('search')
 
-  // 2. Inyectar el input de búsqueda de nuevo para que no se pierda al limpiar
-  const search = document.createElement('input');
-  search.id = 'search';
-  search.placeholder = 'Buscar...';
-  container.appendChild(search);
-  
-  search.addEventListener('input', apply);
+  // únicos (filtramos nulos o undefined por si acaso con .filter(Boolean))
+  const categories = [...new Set(items.map(i => i.category))].filter(Boolean)
+  const franchises = [...new Set(items.map(i => i.franchise))].filter(Boolean)
 
-  // 3. Lógica de filtrado inteligente y tolerante a propiedades vacías
-  function apply() {
-    const searchQuery = search.value.trim().toLowerCase();
+  category.innerHTML = `<option value="">Category</option>` +
+    categories.map(c => `<option>${c}</option>`).join('')
 
-    const result = items.filter(item => {
-      // Evaluar cada uno de los desplegables
-      const matchesFilters = FILTER_CONFIG.every(config => {
-        const selectValue = selects[config.key].value; // Valor seleccionado (en minúsculas)
-        
-        // Si no se ha seleccionado ninguna opción en este filtro, el artículo pasa automáticamente
-        if (!selectValue) return true;
-        
-        const itemValue = item[config.key];
-        // Si el artículo no tiene esta propiedad (como el juguete con 'type'), 
-        // pero el usuario SÍ busca un tipo concreto, este artículo no coincide
-        if (!itemValue) return false;
+  franchise.innerHTML = `<option value="">Franchise</option>` +
+    franchises.map(f => `<option>${f}</option>`).join('')
 
-        // Comparación segura ignorando mayúsculas/minúsculas y espacios rebeldes
-        return String(itemValue).trim().toLowerCase() === selectValue;
-      });
-
-      // Evaluar la barra de búsqueda por texto
-      const matchesSearch = !searchQuery || 
-        (item.name && item.name.toLowerCase().includes(searchQuery));
-
-      return matchesFilters && matchesSearch;
-    });
-
-    onChange(result);
+  // NUEVO: Función auxiliar para transformar "25,00€" en el número decimal 25.00
+  function parsePrice(priceStr) {
+    if (!priceStr) return 0;
+    // Quitamos el símbolo €, reemplazamos la coma decimal por un punto y quitamos espacios
+    const clean = priceStr.replace('€', '').replace(',', '.').trim();
+    const parsed = parseFloat(clean);
+    return isNaN(parsed) ? 0 : parsed;
   }
+
+  function apply() {
+
+    // 1. Primero filtramos el array original como ya hacías
+    let result = items.filter(i => {
+      return (
+        (!category.value || i.category === category.value) &&
+        (!franchise.value || i.franchise === franchise.value) &&
+        (!search.value ||
+          i.name.toLowerCase().includes(search.value.toLowerCase()))
+      )
+    })
+
+    // 2. NUEVO: Ordenamos el resultado filtrado según la opción seleccionada
+    const order = sortOrder.value;
+    
+    if (order === 'name-asc') {
+      result.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+    } 
+    else if (order === 'name-desc') {
+      result.sort((a, b) => (b.name || '').localeCompare(a.name || ''));
+    } 
+    else if (order === 'price-asc') {
+      result.sort((a, b) => parsePrice(a.purchasePrice) - parsePrice(b.purchasePrice));
+    } 
+    else if (order === 'price-desc') {
+      result.sort((a, b) => parsePrice(b.purchasePrice) - parsePrice(a.purchasePrice));
+    }
+
+    // 3. Enviamos los datos listos al cargador visual
+    onChange(result)
+  }
+
+  category.onchange = apply
+  franchise.onchange = apply
+  sortOrder.onchange = apply
+  search.oninput = apply
 }
