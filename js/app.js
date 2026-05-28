@@ -4,19 +4,23 @@ import { setupFilters } from './filters.js'
 import { renderDetail } from './detail.js'
 
 let allItems = []
-let itemsAMostrar = []        // 🔥 NUEVO: Recuerda qué estaba viendo el usuario (con filtros incluidos)
-let posicionScrollGuardada = 0 // 🔥 NUEVO: Almacena los píxeles exactos de la posición del scroll
+let itemsAMostrar = []        
+let posicionScrollGuardada = 0 
 
 async function init() {
-
   // 1. Cargar datos
   allItems = await loadCollection()
-  itemsAMostrar = allItems // Al inicio, los ítems a mostrar son todos
+  itemsAMostrar = allItems 
 
   // 2. Inicializar filtros
+  // Cada vez que se cargue la web o se filtre, guardamos el resultado en itemsAMostrar
   setupFilters(allItems, (filteredItems) => {
-    itemsAMostrar = filteredItems // Guardamos los ítems filtrados en tiempo real cada vez que se busca/filtra
-    renderItems(filteredItems)
+    itemsAMostrar = filteredItems 
+    
+    // 🔥 SOLUCIÓN: Solo pintamos en la cuadrícula si el usuario está en la vista Galería (sin hash)
+    if (!window.location.hash) {
+      renderItems(filteredItems)
+    }
   })
 
   // 3. Detectar navegación (detalle o lista)
@@ -29,13 +33,16 @@ function handleRoute() {
   const id = window.location.hash.replace('#', '')
   const grid = document.getElementById('collectionGrid')
   const filters = document.getElementById('filters')
+  const counter = document.getElementById('items-counter') 
 
   // Si no hay hash → vista lista (Galería)
   if (!id) {
-    if (filters) filters.style.display = 'flex' // 1. Mostramos filtros
-    grid.className = 'collection-grid'          // 2. Restauramos cuadrícula
+    if (filters) filters.style.display = 'flex' 
+    if (counter) counter.style.display = 'block' // Mostramos el contador
+    grid.className = 'collection-grid'          
     
-    // Pintamos 'itemsAMostrar' en vez de 'allItems'. 
+    // 🛑 CORRECCIÓN: Ya NO llamamos a 'renderItems(allItems)' a lo bruto.
+    // Usamos 'itemsAMostrar' que ya viene precargado por el primer 'apply()' de tus filtros.
     renderItems(itemsAMostrar)                       
 
     // Devolvemos al usuario a su posición exacta de scroll de forma instantánea
@@ -50,22 +57,19 @@ function handleRoute() {
   const item = allItems.find(i => i.id === id)
 
   if (item) {
-    // 1. Guardamos el scroll actual antes de romper nada
+    // Guardamos el scroll actual antes de romper nada
     posicionScrollGuardada = window.scrollY
 
-    // 2. 🔥 EL TRUCO: Ocultamos los filtros y vaciamos la cuadrícula instantáneamente.
-    // Esto hace que la página "pese" 0 píxeles y el scroll suba al techo de forma invisible.
     if (filters) filters.style.display = 'none'
+    if (counter) counter.style.display = 'none' // Ocultamos el contador en el detalle
     grid.innerHTML = '' 
 
-    // 3. 🔥 Subimos arriba DEL TODO ahora que la pantalla está limpia (así no hay saltos feos)
     window.scrollTo({ top: 0, behavior: 'instant' })
-
-    // 4. Finalmente, dibujamos el detalle del producto ya estando situados arriba
     renderDetail(item) 
     
   } else {
     if (filters) filters.style.display = 'flex'
+    if (counter) counter.style.display = 'block'
     grid.className = 'collection-grid'
     renderItems(itemsAMostrar)
   }
