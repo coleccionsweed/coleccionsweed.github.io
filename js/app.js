@@ -42,7 +42,7 @@ function handleRoute() {
     if (counter) counter.style.display = 'block' 
     
     grid.style.display = ''; 
-    grid.style.opacity = '1'; // 🔥 Aseguramos visibilidad
+    grid.style.opacity = '1'; 
     grid.style.height = 'auto';
     grid.className = 'collection-grid'          
     
@@ -60,25 +60,31 @@ function handleRoute() {
   if (item) {
     posicionScrollGuardada = window.scrollY
 
-    // 1. 🔥 TRUCO FINAL: Hacemos invisible el contenedor antes de tocar nada
-    // Esto evita que se vea el "salto" de cabecera o el borrado de elementos.
-    grid.style.opacity = '0';
+    // 1. Fijamos altura y ocultamos opacidad para "congelar" la vista actual
     grid.style.height = grid.offsetHeight + 'px'; 
+    grid.style.opacity = '0';
     
+    // 2. Ocultamos controles
     if (filters) filters.style.display = 'none'
     if (counter) counter.style.display = 'none' 
 
-    grid.innerHTML = '' 
+    // 3. 🔥 Usamos requestAnimationFrame para asegurar que el navegador 
+    // termine de procesar el ocultado antes de cambiar el contenido
+    requestAnimationFrame(() => {
+      grid.innerHTML = '' 
+      
+      // Scroll estricto
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
 
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-
-    renderDetail(item) 
-    
-    // 2. 🔥 Una vez renderizado el detalle, volvemos a mostrarlo de golpe
-    grid.style.height = 'auto';
-    grid.style.opacity = '1'; 
+      // Renderizamos detalle
+      renderDetail(item) 
+      
+      // 4. 🔥 Solo cuando el detalle está pintado, restauramos la visibilidad
+      grid.style.height = 'auto';
+      grid.style.opacity = '1'; 
+    });
     
   } else {
     // Fallback
