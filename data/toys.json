@@ -393,5 +393,17 @@
 	"language": "Español",
     "folder": "quasimodo-gargolas",
     "category": "toys"
+  },
+  {
+    "id": "sauron",
+    "name": "Sauron",
+    "franchise": "El Señor de los Anillos",
+    "brand": "BST AXN",
+    "purchasePrice": "11,45€",
+    "condition": "new",
+	"barcode": "850795008732",
+	"language": "Inglés",
+    "folder": "sauron",
+    "category": "toys"
   }
 ]
