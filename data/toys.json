@@ -46,6 +46,7 @@
     "purchasePrice": "4,99€",
     "condition": "used",
     "quantity": 1,
+	"language" : "Alemán",
     "folder": "barbol-kinder",
     "category": "toys"
   },
@@ -60,6 +61,54 @@
     "quantity": 1,
 	"language": "Español",
     "folder": "bowser-super-smash-bros.-collection",
+    "category": "toys"
+  },
+  {
+    "id": "camp-nou",
+    "name": "Camp Nou",
+    "franchise": "Barça",
+    "brand": "Barça",
+    "purchasePrice": "0,00€",
+    "condition": "used",
+	"barcode": "8435039121464",
+    "quantity": 1,
+    "folder": "camp-nou",
+    "category": "toys"
+  },
+  {
+    "id": "el-retorno-del-rey-coleccion-completa-kinder",
+    "name": "El Retorno del Rey - Colección completa - Kinder",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Kinder",
+    "purchasePrice": "19,56€",
+    "condition": "used",
+    "quantity": 1,
+	"language" : "Alemán",
+    "folder": "el-retorno-del-rey-coleccion-completa-kinder",
+    "category": "toys"
+  },
+  {
+    "id": "la-comunidad-del-anillo-coleccion-completa-kinder",
+    "name": "La Comunidad del Anillo - Colección completa - Kinder",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Kinder",
+    "purchasePrice": "19,56€",
+    "condition": "used",
+    "quantity": 1,
+	"language" : "Alemán",
+    "folder": "la-comunidad-del-anillo-coleccion-completa-kinder",
+    "category": "toys"
+  },
+  {
+    "id": "las-dos-torres-coleccion-completa-kinder",
+    "name": "Las Dos Torres - Colección completa - Kinder",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Kinder",
+    "purchasePrice": "19,56€",
+    "condition": "used",
+    "quantity": 1,
+	"language" : "Alemán",
+    "folder": "las-dos-torres-coleccion-completa-kinder",
     "category": "toys"
   }
 ]
