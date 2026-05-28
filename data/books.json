@@ -1,6 +1,6 @@
-{
+[
   {
-    "id": "berenyluthien",
+    "id": "beren-y-luthien",
     "name": "Beren y Lúthien",
     "franchise": "El Señor de los Anillos",
     "type": "Hardcover",
@@ -10,11 +10,11 @@
     "barcode": "9788445005064",
     "quantity": 1,
     "language": "Español",
-    "folder": "Beren y Lúthien",
+    "folder": "beren-y-luthien",
     "category": "books",
     "tags": ["anillos", "beren", "luthien"],
     "extraAttributes": {
-      "Author": "J.R.R. Tolkien"
+      "author": "J.R.R. Tolkien"
     }
   }
-}
+]
