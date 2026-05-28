@@ -85,7 +85,8 @@
     "quantity": 1,
 	"language" : "Alemán",
     "folder": "el-retorno-del-rey-coleccion-completa-kinder",
-    "category": "toys"
+    "category": "toys",
+	"notes": "Contiene 9 figuras"
   },
   {
     "id": "la-comunidad-del-anillo-coleccion-completa-kinder",
@@ -110,5 +111,31 @@
 	"language" : "Alemán",
     "folder": "las-dos-torres-coleccion-completa-kinder",
     "category": "toys"
-  }
+  },
+  {
+    "id": "cyborg-silver-lanza-misiles",
+    "name": "Cyborg Silver Lanza-Misiles",
+    "franchise": "El Planeta del Tesoro",
+    "brand": "Hasbro",
+    "purchasePrice": "12,00€",
+    "condition": "new",
+	"barcode": "5023117664762",
+    "quantity": 1,
+	"language" : "Español",
+    "folder": "cyborg-silver-lanza-misiles",
+    "category": "toys"
+  },
+  {
+    "id": "edna-&-jack-jack-incredibles-2",
+    "name": "Edna & Jack-Jack - Incredibles 2",
+    "franchise": "Los Increíbles",
+    "brand": "jakks",
+    "purchasePrice": "2,50€",
+    "condition": "new",
+	"barcode": "039897748474",
+    "quantity": 1,
+	"language" : "Inglés",
+    "folder": "edna-&-jack-jack-incredibles-2",
+    "category": "toys"
+  },
 ]
