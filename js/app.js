@@ -48,8 +48,13 @@ function handleRoute() {
   };
 
   // --- VISTA LISTA ---
+  // --- VISTA LISTA ---
   if (!id) {
-    toggleVisibility(true);
+    // 🔥 Aquí le decimos que elimine la clase "hidden-element"
+    // Esto debería devolverles su visibilidad original
+    if (filters) filters.classList.remove('hidden-element');
+    if (counter) counter.classList.remove('hidden-element');
+    
     grid.style.display = ''; 
     grid.style.opacity = '1'; 
     grid.style.height = 'auto';
