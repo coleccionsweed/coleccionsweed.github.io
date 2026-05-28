@@ -31,6 +31,8 @@ export async function renderDetail(item) {
   if (images.length === 0) {
     images.push(`images/${item.category}/${item.folder}/1.webp`);
   }
+  
+  grid.className = '';
 
   // ==========================================
   // 👉 PROCESAMIENTO DINÁMICO DE DATOS DEL JSON

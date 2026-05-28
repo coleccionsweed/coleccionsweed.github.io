@@ -22,29 +22,29 @@ async function init() {
 }
 
 function handleRoute() {
-  const id = window.location.hash.replace('#', '');
-  const grid = document.getElementById('collectionGrid');
-  const filters = document.getElementById('filters'); // 1. Capturamos el contenedor de filtros
+  const id = window.location.hash.replace('#', '')
+  const grid = document.getElementById('collectionGrid')
+  const filters = document.getElementById('filters')
 
-  // Si no hay hash → Vista de la Galería
+  // Si no hay hash → vista lista (Galería)
   if (!id) {
-    grid.className = 'collection-grid';
-    if (filters) filters.style.display = 'flex'; // 2. Mostramos los filtros en la galería
-    renderItems(allItems);
-    return;
+    grid.className = 'collection-grid' // Volvemos a poner la cuadrícula
+    if (filters) filters.style.display = 'flex'
+    renderItems(allItems)
+    return
   }
 
   // Buscar ítem
-  const item = allItems.find(i => i.id === id);
+  const item = allItems.find(i => i.id === id)
 
   if (item) {
-    grid.className = ''; 
-    if (filters) filters.style.display = 'none'; // 3. ¡OCULTAMOS los filtros en el detalle! Espacio libre instantáneo.
-    renderDetail(item);
+    if (filters) filters.style.display = 'none'
+    // 🛑 QUITAMOS grid.className = '' de aquí.
+    renderDetail(item) // Dejamos que renderDetail se encargue cuando esté 100% listo
   } else {
-    grid.className = 'collection-grid';
-    if (filters) filters.style.display = 'flex';
-    renderItems(allItems);
+    grid.className = 'collection-grid'
+    if (filters) filters.style.display = 'flex'
+    renderItems(allItems)
   }
 }
 
