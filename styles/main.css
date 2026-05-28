@@ -33,15 +33,10 @@ main {
   border-bottom: 1px solid rgba(255,255,255,0.05);
   padding: 15px 40px;
   z-index: 100;
-}
-
-.topbar-content {
-  max-width: 1300px; 
-  margin: 0 auto;
+  /* CORRECCIÓN: Alinea el título y los filtros en PC correctamente */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
 }
 
 .topbar h1 {
@@ -51,17 +46,12 @@ main {
 }
 
 /* =========================================
-   3. BUSCADOR Y FILTROS PREMIUM
+   3. BUSCADOR Y FILTROS PC
 ========================================= */
-.filters-wrapper {
+#filters {
   display: flex;
   gap: 16px;
   align-items: center;
-}
-
-.dynamic-filters {
-  display: flex;
-  gap: 12px;
 }
 
 .filter-select {
@@ -154,13 +144,11 @@ main {
 }
 
 /* =========================================
-   5. VISTA DE DETALLE (ARREGLADA)
+   5. VISTA DE DETALLE
 ========================================= */
 .detail-container { width: 100%; }
-
 .detail-header { margin-bottom: 24px; }
 
-/* Botón de volver estilizado */
 .back-btn {
   background: transparent;
   border: 1px solid rgba(255,255,255,0.15);
@@ -187,7 +175,6 @@ main {
   align-items: start;
 }
 
-/* Contenedor de la Imagen */
 .slider {
   position: relative;
   border-radius: 20px;
@@ -212,7 +199,6 @@ main {
   display: block;
 }
 
-/* Flechas del slider */
 .nav {
   position: absolute;
   top: 50%;
@@ -240,7 +226,6 @@ main {
 .prev { left: 16px; }
 .next { right: 16px; }
 
-/* Tarjeta de Información */
 .info-card {
   padding: 40px;
   background: #11141c;
@@ -293,7 +278,7 @@ main {
 }
 
 /* =========================================
-   6. MODAL (POR SI LO USAS)
+   6. MODAL
 ========================================= */
 .modal {
   position: fixed;
@@ -313,17 +298,15 @@ main {
 @media (max-width: 900px) {
 
   /* ===================================================
-     1. BARRA SUPERIOR Y FILTROS (Ahora se deslizan)
+     1. CABECERA Y FILTROS (Se deslizan y se apilan)
      =================================================== */
   .topbar {
-    position: relative !important; /* 👈 Cambia de 'sticky' a 'relative' para que se deslice con la página */
-    padding: 15px 20px;
-  }
-
-  .topbar-content, .topbar {
-    flex-direction: column;
-    gap: 16px;
-    align-items: stretch;
+    position: relative !important;   /* Desactiva el 'sticky' para que suba con el scroll */
+    display: flex !important;        /* Activa flexbox en móvil */
+    flex-direction: column !important; /* Pone título arriba y filtros abajo */
+    gap: 16px !important;
+    padding: 20px 16px !important;
+    align-items: stretch !important;
   }
 
   .topbar h1 {
@@ -331,66 +314,74 @@ main {
     font-size: 24px;
   }
 
-  /* Contenedor de filtros */
-  #filters, .filters-wrapper, .dynamic-filters {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    width: 100%;
+  /* Forzamos a que los filtros ocupen una línea cada uno */
+  #filters {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    width: 100% !important;
   }
 
+  /* Los selectores y el buscador ocupan todo el ancho */
   #filters select, 
-  #filters input,
-  #searchInput,
   #search {
     width: 100% !important;
     max-width: 100% !important;
-    padding: 12px 16px;
-    font-size: 16px;
-    border-radius: 12px;
-    box-sizing: border-box;
+    padding: 12px 16px !important;
+    font-size: 16px !important; /* Evita zoom molesto en iOS */
+    border-radius: 12px !important;
+    box-sizing: border-box !important;
   }
 
-
   /* ===================================================
-     2. ARREGLO DE DETALLE (Alto dinámico según la imagen)
+     2. VISTA DE DETALLE (Bloque adaptado a la imagen)
      =================================================== */
   .detail {
     grid-template-columns: 1fr !important; 
-    gap: 24px;
+    gap: 24px !important;
   }
 
-  /* Forzamos a que el bloque mida exactamente lo que mide la foto */
+  /* CORRECCIÓN CRÍTICA: Quitamos los 650px al bloque contenedor */
+  .slider {
+    height: auto !important; /* El contenedor gris se encoge al tamaño real de la foto */
+    min-height: 200px;
+    padding: 10px 0;
+  }
+
+  .slider-window {
+    height: auto !important;
+  }
+
+  /* La imagen se auto-escala según su proporción real */
   .slider-window img {
-    width: 100%;
-    height: auto !important;     /* 👈 'auto' hace que el alto se adapte a la proporción real de la foto */
-    max-height: 400px;           /* Límite máximo para que una foto muy vertical no rompa el diseño */
-    object-fit: contain;         /* Mantiene la foto perfecta sin recortarla */
-    display: block;
+    width: 100% !important;
+    height: auto !important;       
+    max-height: 380px !important; /* Límite para que portadas verticales no ocupen toda la pantalla */
+    object-fit: contain !important;
+    display: block !important;
   }
 
   .info-card {
-    padding: 20px;
+    padding: 20px !important;
   }
 
   .info-card h1 {
-    font-size: 26px;
+    font-size: 26px !important;
   }
 
   .info-grid {
-    gap: 12px;
+    gap: 12px !important;
   }
-
 
   /* ===================================================
      3. GALERÍA DE TARJETAS GENERAL
      =================================================== */
   main {
-    padding: 20px;
+    padding: 20px !important;
   }
 
   .collection-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
   }
 }
