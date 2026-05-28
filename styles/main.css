@@ -49,18 +49,20 @@ main {
 ========================================= */
 #filters {
   display: flex;
-  gap: 16px;            /* Margen idéntico y limpio hacia todos los lados entre elementos */
+  gap: 16px;            /* Margen idéntico hacia todos los lados */
   align-items: center;
-  flex-wrap: wrap;      /* Permite envolver si es necesario sin romper nada */
+  flex-wrap: wrap;      
 }
 
-/* Contenedor intermedio para los select generados por JS */
+/* Contenedor para los select generados por JS (si los usas) */
 #dynamicFilters {
   display: flex;
-  gap: 12px;            /* Margen perfecto entre select y select */
+  gap: 12px;            
 }
 
-/* MEJORA: Estilo premium unificado para todos los Selects (Filtros y Ordenación) */
+/* SOLUCIÓN: Aplicar el estilo premium a ABSOLUTAMENTE TODOS los selects de filtros */
+#filters select,
+#dynamicFilters select,
 .filter-select,
 #sortOrder {
   background-color: #141822;
@@ -68,37 +70,41 @@ main {
   color: #e2e8f0;
   padding: 0 16px;
   height: 42px;         /* Altura idéntica y simétrica a la del buscador */
-  border-radius: 12px;  /* Bordes suaves y modernos */
+  border-radius: 12px;  /* Bordes suaves */
   font-family: inherit;
   font-size: 14px;
   cursor: pointer;
   outline: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  appearance: auto;     
+  appearance: auto;     /* Muestra la flechita nativa del navegador de forma limpia */
 }
 
-/* Efecto Hover para los Selects */
+/* Efecto Hover unificado */
+#filters select:hover,
+#dynamicFilters select:hover,
 .filter-select:hover,
 #sortOrder:hover {
   background-color: #1a1e2b;
   border-color: rgba(255, 255, 255, 0.25);
 }
 
-/* Efecto Focus Premium para los Selects (Igual que el buscador) */
+/* Efecto Focus Premium unificado (Efecto de iluminación al hacer clic) */
+#filters select:focus,
+#dynamicFilters select:focus,
 .filter-select:focus,
 #sortOrder:focus {
   border-color: rgba(255, 255, 255, 0.45);
   background: #1a1e2b;
-  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.06); /* Iluminación perimetral */
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.06); 
 }
 
 /* Estilo Premium del Buscador */
 #search {
   background: #141822;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 999px; /* Mantiene su diseño ovalado estilizado */
+  border-radius: 999px; /* Diseño ovalado */
   padding: 0 20px;
-  height: 42px;         /* Forzamos la misma altura exacta */
+  height: 42px;         /* Misma altura exacta que los filtros */
   color: white;
   font-family: inherit;
   font-size: 14px;
@@ -352,7 +358,7 @@ main {
     margin: 0 auto !important;        
   }
 
-  /* El contenedor dinámico y el selector de orden se vuelven columna completa */
+  /* El contenedor dinámico se adapta */
   #dynamicFilters {
     display: flex !important;
     flex-direction: column !important;
@@ -360,14 +366,15 @@ main {
     width: 100% !important;
   }
 
-  /* MEJORA MÓVIL: Todos los elementos se expanden elegantemente al 100% conservando sus paddings */
+  /* SOLUCIÓN MÓVIL: Todos los inputs y selects se expanden al 100% con estética unificada */
+  #filters select,
   #dynamicFilters select, 
   .filter-select,
   #sortOrder,
   #search {
     width: 100% !important;
     max-width: 100% !important;
-    height: 46px !important;              /* Un poco más altos en móvil para pulsar fácilmente con el dedo */
+    height: 46px !important;              /* Un poco más altos en móviles para interactuar mejor con los dedos */
     padding: 0 16px !important; 
     font-size: 16px !important;
     border-radius: 12px !important;
