@@ -36,7 +36,7 @@ function handleRoute() {
   const filters = document.getElementById('filters')
   const counter = document.getElementById('items-counter') 
 
-  // Función para manejar la visibilidad de forma limpia
+  // Esta función es ahora nuestro "interruptor" maestro
   const toggleVisibility = (visible) => {
     if (visible) {
       if (filters) filters.classList.remove('hidden-element');
@@ -48,12 +48,9 @@ function handleRoute() {
   };
 
   // --- VISTA LISTA ---
-  // --- VISTA LISTA ---
   if (!id) {
-    // 🔥 Aquí le decimos que elimine la clase "hidden-element"
-    // Esto debería devolverles su visibilidad original
-    if (filters) filters.classList.remove('hidden-element');
-    if (counter) counter.classList.remove('hidden-element');
+    // 🔥 FORZAMOS que siempre aparezcan al no haber ID
+    toggleVisibility(true);
     
     grid.style.display = ''; 
     grid.style.opacity = '1'; 
@@ -74,18 +71,15 @@ function handleRoute() {
   if (item) {
     posicionScrollGuardada = window.scrollY;
 
-    // Fijamos altura y opacidad
     grid.style.height = grid.offsetHeight + 'px'; 
     grid.style.opacity = '0';
     
-    // Ocultamos elementos usando la clase CSS potente
+    // 🔥 FORZAMOS que desaparezcan al entrar al detalle
     toggleVisibility(false);
 
     requestAnimationFrame(() => {
       grid.innerHTML = ''; 
       window.scrollTo(0, 0);
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
       renderDetail(item); 
       
       grid.style.height = 'auto';
@@ -93,6 +87,7 @@ function handleRoute() {
     });
     
   } else {
+    // Si no hay item, restauramos vista lista por seguridad
     toggleVisibility(true);
     grid.style.display = '';
     grid.style.opacity = '1';
