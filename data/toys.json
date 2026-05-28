@@ -352,7 +352,7 @@
     "name": "Minilibro - La Comunidad del Anillo - Kinder",
     "franchise": "El Señor de los Anillos",
     "brand": "Kinder",
-    "purchasePrice": "29,90€",
+    "purchasePrice": "2,00€",
     "condition": "used",
 	"language": "Alemán",
     "folder": "minilibro-la-comunidad-del-anillo-kinder",
@@ -428,6 +428,29 @@
     "barcode": "5023117770937",
     "language": "Español",
     "folder": "shrek-shrek-2",
+    "category": "toys"
+  },
+  {
+    "id": "sombragris-gandalf-kinder",
+    "name": "Sombragrís y Gandalf - Kinder",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Kinder",
+    "purchasePrice": "4,99€",
+    "condition": "used",
+	"language": "Alemán",
+    "folder": "sombragris-gandalf-kinder",
+    "category": "toys"
+  },
+  {
+    "id": "torre-notre-dame",
+    "name": "Torre de Notre Dame",
+    "franchise": "El Jorobado de Notre Dame",
+    "brand": "Mattel",
+    "purchasePrice": "33,59€",
+    "condition": "new",
+	"barcode": "026676662076",
+	"language": "Español",
+    "folder": "torre-notre-dame",
     "category": "toys"
   }
 ]
