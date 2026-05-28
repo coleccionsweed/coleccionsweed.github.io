@@ -22,25 +22,29 @@ async function init() {
 }
 
 function handleRoute() {
-  const id = window.location.hash.replace('#', '')
-  const grid = document.getElementById('collectionGrid') // 1. Capturamos el contenedor principal
+  const id = window.location.hash.replace('#', '');
+  const grid = document.getElementById('collectionGrid');
+  const filters = document.getElementById('filters'); // 1. Capturamos el contenedor de filtros
 
-  // Si no hay hash → vista lista (Galería)
+  // Si no hay hash → Vista de la Galería
   if (!id) {
-    grid.className = 'collection-grid' // 2. Restauramos la cuadrícula de tarjetas para la galería
-    renderItems(allItems)
-    return
+    grid.className = 'collection-grid';
+    if (filters) filters.style.display = 'flex'; // 2. Mostramos los filtros en la galería
+    renderItems(allItems);
+    return;
   }
 
   // Buscar ítem
-  const item = allItems.find(i => i.id === id)
+  const item = allItems.find(i => i.id === id);
 
   if (item) {
-    grid.className = '' // 3. ¡EL TRUCO! Eliminamos la clase para que el detalle ocupe el 100% del ancho libre
-    renderDetail(item)
+    grid.className = ''; 
+    if (filters) filters.style.display = 'none'; // 3. ¡OCULTAMOS los filtros en el detalle! Espacio libre instantáneo.
+    renderDetail(item);
   } else {
-    grid.className = 'collection-grid'
-    renderItems(allItems)
+    grid.className = 'collection-grid';
+    if (filters) filters.style.display = 'flex';
+    renderItems(allItems);
   }
 }
 

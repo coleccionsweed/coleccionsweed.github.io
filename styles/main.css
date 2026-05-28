@@ -311,18 +311,35 @@ main {
    7. RESPONSIVE (MÓVILES Y TABLETS)
 ========================================= */
 @media (max-width: 900px) {
-  .topbar-content { flex-direction: column; gap: 16px; }
-  .filters-wrapper { flex-direction: column; width: 100%; }
-  .dynamic-filters { flex-wrap: wrap; width: 100%; justify-content: center; }
-  
-  #search, .filter-select { width: 100%; max-width: 100%; }
-  #search:focus { width: 100%; }
+  /* Al cambiar a 'static', la cabecera sube y desaparece de la pantalla al hacer scroll hacia abajo */
+  .topbar { 
+    position: static; 
+    padding: 15px 20px;
+  }
 
+  .topbar-content { 
+    flex-direction: column; 
+    gap: 12px; 
+    text-align: center;
+  }
+
+  /* Ajustes extra para el buscador en móvil */
+  #search { 
+    width: 100% !important; 
+    max-width: 100%; 
+  }
+
+  /* Ajustes del detalle en móvil */
   .detail {
-    grid-template-columns: 1fr; /* Una columna en móvil */
-    gap: 24px;
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
   
-  .slider { height: 400px; }
-  .info-card { padding: 24px; }
+  .slider { 
+    height: 380px; /* Reducimos la altura del slider en móvil para que no tape todo */
+  }
+  
+  .info-card { 
+    padding: 20px; 
+  }
 }
