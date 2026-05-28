@@ -174,5 +174,31 @@
 	"language" : "Inglés",
     "folder": "coche-pizza-planet",
     "category": "toys"
+  },
+  {
+    "id": "esmeralda-febo-claude-frollo",
+    "name": "Esmeralda, Febo y Claude Frollo",
+    "franchise": "El Jorobado de Notre Dame",
+    "brand": "Mattel",
+    "purchasePrice": "8,41€",
+    "condition": "new",
+	"barcode": "026676662144",
+    "quantity": 1,
+	"language" : "Español",
+    "folder": "esmeralda-febo-claude-frollo",
+    "category": "toys"
+  },
+  {
+    "id": "frodo-las-dos-torres",
+    "name": "Frodo - Las Dos Torres",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Toy Biz",
+    "purchasePrice": "15,00€",
+    "condition": "new",
+	"barcode": "035112711452",
+    "quantity": 1,
+	"language" : "Español",
+    "folder": "frodo-las-dos-torres",
+    "category": "toys"
   }
 ]

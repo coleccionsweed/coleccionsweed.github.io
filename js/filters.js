@@ -13,15 +13,20 @@ export function setupFilters(items, onChange) {
   const sortOrder = document.getElementById('sortOrder')
   const search = document.getElementById('search')
 
-  // únicos (filtramos nulos o undefined por si acaso con .filter(Boolean))
-  const categories = [...new Set(items.map(i => i.category))].filter(Boolean)
-  const franchises = [...new Set(items.map(i => i.franchise))].filter(Boolean)
+  // 🔥 SOLUCIÓN: Filtramos los existentes y los ORDENAMOS alfabéticamente por su traducción en español
+  const categories = [...new Set(items.map(i => i.category))]
+    .filter(Boolean)
+    .sort((a, b) => t(a).localeCompare(t(b)))
 
-  // 1. SOLUCIÓN: Traducimos la opción por defecto y mapeamos los valores internos manteniendo el value original
+  const franchises = [...new Set(items.map(i => i.franchise))]
+    .filter(Boolean)
+    .sort((a, b) => t(a).localeCompare(t(b)))
+
+  // 1. Traducimos la opción por defecto y mapeamos los valores internos manteniendo el value original
   category.innerHTML = `<option value="">${t('Category')}</option>` +
     categories.map(c => `<option value="${c}">${t(c)}</option>`).join('')
 
-  // 2. SOLUCIÓN: Lo mismo para las franquicias
+  // 2. Lo mismo para las franquicias (ahora saldrán de la A a la Z en la web)
   franchise.innerHTML = `<option value="">${t('Franchise')}</option>` +
     franchises.map(f => `<option value="${f}">${t(f)}</option>`).join('')
 
