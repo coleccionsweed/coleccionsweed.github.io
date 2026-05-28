@@ -405,5 +405,29 @@
 	"language": "Inglés",
     "folder": "sauron",
     "category": "toys"
+  },
+  {
+    "id": "screenslaver-incredibles-2",
+    "name": "Screenslaver - Incredibles 2",
+    "franchise": "Los Increíbles",
+    "brand": "jakks",
+    "purchasePrice": "2,50€",
+    "condition": "new",
+	"barcode": "039897748238",
+	"language" : "Inglés",
+    "folder": "screenslaver-incredibles-2",
+    "category": "toys"
+  },
+  {
+    "id": "shrek-shrek-2",
+    "name": "Shrek - Shrek 2",
+    "franchise": "Shrek",
+    "brand": "Hasbro",
+    "purchasePrice": "6,00€",
+    "condition": "new",
+    "barcode": "5023117770937",
+    "language": "Español",
+    "folder": "shrek-shrek-2",
+    "category": "toys"
   }
 ]
