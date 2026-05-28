@@ -35,11 +35,10 @@ function handleRoute() {
     if (filters) filters.style.display = 'flex' // 1. Mostramos filtros
     grid.className = 'collection-grid'          // 2. Restauramos cuadrícula
     
-    // 🔄 MEJORA: Pintamos 'itemsAMostrar' en vez de 'allItems'. 
-    // Así, si el usuario filtró por "Libros", al volver seguirá viendo solo "Libros".
+    // Pintamos 'itemsAMostrar' en vez de 'allItems'. 
     renderItems(itemsAMostrar)                       
 
-    // 🟢 NUEVO: Devolvemos al usuario a su posición exacta de scroll de forma instantánea
+    // Devolvemos al usuario a su posición exacta de scroll de forma instantánea
     setTimeout(() => {
       window.scrollTo({ top: posicionScrollGuardada, behavior: 'instant' })
     }, 0)
@@ -51,13 +50,20 @@ function handleRoute() {
   const item = allItems.find(i => i.id === id)
 
   if (item) {
-    // 🟢 NUEVO: Guardamos el scroll actual JUSTO ANTES de que la pantalla cambie al detalle
+    // 1. Guardamos el scroll actual antes de romper nada
     posicionScrollGuardada = window.scrollY
 
-    renderDetail(item) 
+    // 2. 🔥 EL TRUCO: Ocultamos los filtros y vaciamos la cuadrícula instantáneamente.
+    // Esto hace que la página "pese" 0 píxeles y el scroll suba al techo de forma invisible.
+    if (filters) filters.style.display = 'none'
+    grid.innerHTML = '' 
 
-    // 🟢 NUEVO: Mandamos la pantalla al techo (0) inmediatamente para ver el producto desde arriba
+    // 3. 🔥 Subimos arriba DEL TODO ahora que la pantalla está limpia (así no hay saltos feos)
     window.scrollTo({ top: 0, behavior: 'instant' })
+
+    // 4. Finalmente, dibujamos el detalle del producto ya estando situados arriba
+    renderDetail(item) 
+    
   } else {
     if (filters) filters.style.display = 'flex'
     grid.className = 'collection-grid'
