@@ -1,0 +1,20 @@
+[
+  {
+    "id": "berenyluthien",
+    "name": "Beren y Lúthien",
+    "franchise": "El Señor de los Anillos",
+    "type": "Hardcover",
+    "brand": "minotauro",
+    "purchasePrice": "21,95€",
+    "condition": "used",
+    "barcode": "9788445005064",
+    "quantity": 1,
+    "language": "Español",
+    "folder": "Beren y Lúthien",
+    "category": "books",
+    "tags": ["anillos", "beren", "luthien"],
+    "extraAttributes": {
+      "Author": "J.R.R. Tolkien"
+    }
+  },
+]
