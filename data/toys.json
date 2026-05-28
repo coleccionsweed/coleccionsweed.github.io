@@ -300,5 +300,27 @@
 	"language" : "Español",
     "folder": "legolas-la-comunidad-del-anillo",
     "category": "toys"
-  }
+  },
+  {
+    "id": "lord-voldemort-nano-metalfigs",
+    "name": "Lord Voldemort - Nano metalfigs",
+    "franchise": "Harry Potter",
+    "brand": "Jada Toys",
+    "purchasePrice": "3,00€",
+    "condition": "used",
+    "folder": "lord-voldemort-nano-metalfigs",
+    "category": "toys"
+  },
+  {
+    "id": "luigi-super-smash-bros.-collection",
+    "name": "Luigi - Super Smash Bros. Collection",
+    "franchise": "Super Mario",
+    "brand": "Nintendo",
+    "purchasePrice": "11,11€",
+    "condition": "new",
+	"barcode": "PUA-NVL-C-AAAN-EUR-C3",
+	"language": "Español",
+    "folder": "luigi-super-smash-bros.-collection",
+    "category": "toys"
+  },
 ]
