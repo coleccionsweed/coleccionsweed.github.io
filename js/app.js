@@ -22,21 +22,24 @@ async function init() {
 }
 
 function handleRoute() {
-
   const id = window.location.hash.replace('#', '')
+  const grid = document.getElementById('collectionGrid') // 1. Capturamos el contenedor principal
 
-  // si no hay hash → vista lista
+  // Si no hay hash → vista lista (Galería)
   if (!id) {
+    grid.className = 'collection-grid' // 2. Restauramos la cuadrícula de tarjetas para la galería
     renderItems(allItems)
     return
   }
 
-  // buscar item
+  // Buscar ítem
   const item = allItems.find(i => i.id === id)
 
   if (item) {
+    grid.className = '' // 3. ¡EL TRUCO! Eliminamos la clase para que el detalle ocupe el 100% del ancho libre
     renderDetail(item)
   } else {
+    grid.className = 'collection-grid'
     renderItems(allItems)
   }
 }
