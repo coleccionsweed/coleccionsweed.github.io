@@ -226,5 +226,31 @@
 	"language" : "Inglés",
     "folder": "febo-aquiles",
     "category": "toys"
+  },
+  {
+    "id": "gimli-la-comunidad-del-anillo",
+    "name": "Gimli - La Comunidad del Anillo",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Toy Biz",
+    "purchasePrice": "25,00€",
+    "condition": "new",
+	"barcode": "035112710202",
+    "quantity": 1,
+	"language" : "Español",
+    "folder": "febo-aquiles",
+    "category": "toys"
+  },
+  {
+    "id": "hagrid-coleccion-mini-magicos",
+    "name": "Hagrid - Colección Mini-Mágicos",
+    "franchise": "Harry Potter",
+    "brand": "Mattel",
+    "purchasePrice": "35,00€",
+    "condition": "new",
+	"barcode": "074299474040",
+    "quantity": 1,
+	"language" : "Español",
+    "folder": "hagrid-coleccion-mini-magicos",
+    "category": "toys"
   }
 ]
