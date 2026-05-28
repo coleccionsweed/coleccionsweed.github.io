@@ -48,5 +48,18 @@
     "quantity": 1,
     "folder": "barbol-kinder",
     "category": "toys"
+  },
+  {
+    "id": "bowser-super-smash-bros.-collection",
+    "name": "Bowser - Super Smash Bros. Collection",
+    "franchise": "Super Mario",
+    "brand": "Nintendo",
+    "purchasePrice": "11,11€",
+    "condition": "new",
+	"barcode": "PUA-NVL-C-AAAW-EUR-C3",
+    "quantity": 1,
+	"language": "Español",
+    "folder": "bowser-super-smash-bros.-collection",
+    "category": "toys"
   }
 ]

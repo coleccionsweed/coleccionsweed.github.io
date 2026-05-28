@@ -1,3 +1,5 @@
+import { t } from './translations.js';
+
 // Configuración centralizada de filtros
 const FILTER_CONFIG = [
   { key: 'category', label: 'Categoría' },
@@ -15,11 +17,13 @@ export function setupFilters(items, onChange) {
   const categories = [...new Set(items.map(i => i.category))].filter(Boolean)
   const franchises = [...new Set(items.map(i => i.franchise))].filter(Boolean)
 
-  category.innerHTML = `<option value="">Category</option>` +
-    categories.map(c => `<option>${c}</option>`).join('')
+  // 1. SOLUCIÓN: Traducimos la opción por defecto y mapeamos los valores internos manteniendo el value original
+  category.innerHTML = `<option value="">${t('Category')}</option>` +
+    categories.map(c => `<option value="${c}">${t(c)}</option>`).join('')
 
-  franchise.innerHTML = `<option value="">Franchise</option>` +
-    franchises.map(f => `<option>${f}</option>`).join('')
+  // 2. SOLUCIÓN: Lo mismo para las franquicias
+  franchise.innerHTML = `<option value="">${t('Franchise')}</option>` +
+    franchises.map(f => `<option value="${f}">${t(f)}</option>`).join('')
 
   // NUEVO: Función auxiliar para transformar "25,00€" en el número decimal 25.00
   function parsePrice(priceStr) {
@@ -32,7 +36,7 @@ export function setupFilters(items, onChange) {
 
   function apply() {
 
-    // 1. Primero filtramos el array original como ya hacías
+    // 3. ¡Magia! category.value seguirá valiendo "books" en vez de "Libros", por lo que esta comparación funciona perfecta:
     let result = items.filter(i => {
       return (
         (!category.value || i.category === category.value) &&
