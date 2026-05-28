@@ -313,13 +313,13 @@ main {
 @media (max-width: 900px) {
 
   /* ===================================================
-     1. BARRA SUPERIOR Y FILTROS (Cada uno en una línea)
+     1. BARRA SUPERIOR Y FILTROS (Ahora se deslizan)
      =================================================== */
   .topbar {
+    position: relative !important; /* 👈 Cambia de 'sticky' a 'relative' para que se deslice con la página */
     padding: 15px 20px;
   }
 
-  /* Forzamos a que el título y los filtros se apilen verticalmente */
   .topbar-content, .topbar {
     flex-direction: column;
     gap: 16px;
@@ -331,15 +331,14 @@ main {
     font-size: 24px;
   }
 
-  /* Hacemos que el contenedor de filtros apile sus elementos (uno por línea) */
+  /* Contenedor de filtros */
   #filters, .filters-wrapper, .dynamic-filters {
     display: flex;
-    flex-direction: column; /* 👈 Esto pone cada filtro en una línea nueva */
+    flex-direction: column;
     gap: 12px;
     width: 100%;
   }
 
-  /* Selectores y buscador a ancho completo para que el texto se lea perfecto */
   #filters select, 
   #filters input,
   #searchInput,
@@ -347,37 +346,39 @@ main {
     width: 100% !important;
     max-width: 100% !important;
     padding: 12px 16px;
-    font-size: 16px; /* 👈 16px evita que los iPhones hagan un zoom molesto al pulsar */
+    font-size: 16px;
     border-radius: 12px;
     box-sizing: border-box;
   }
 
 
   /* ===================================================
-     2. ARREGLO DE LA VISTA DE DETALLE (Una sola columna)
+     2. ARREGLO DE DETALLE (Alto dinámico según la imagen)
      =================================================== */
   .detail {
-    /* Pasamos de 2 columnas a 1 sola fila vertical (la foto arriba, la info abajo) */
     grid-template-columns: 1fr !important; 
-    gap: 24px; /* Reducimos el espacio exagerado de PC */
+    gap: 24px;
   }
 
-  /* Ajustamos el tamaño de la imagen para pantallas táctiles */
+  /* Forzamos a que el bloque mida exactamente lo que mide la foto */
   .slider-window img {
-    height: 360px; /* 👈 Altura ideal para móviles, evita que ocupe toda la pantalla */
-    object-fit: contain; /* Conserva la proporción original de tus fotos sin cortarlas */
+    width: 100%;
+    height: auto !important;     /* 👈 'auto' hace que el alto se adapte a la proporción real de la foto */
+    max-height: 400px;           /* Límite máximo para que una foto muy vertical no rompa el diseño */
+    object-fit: contain;         /* Mantiene la foto perfecta sin recortarla */
+    display: block;
   }
 
   .info-card {
-    padding: 20px; /* Compactamos un poco los márgenes internos */
+    padding: 20px;
   }
 
   .info-card h1 {
-    font-size: 26px; /* Título ligeramente más pequeño para móviles */
+    font-size: 26px;
   }
 
   .info-grid {
-    gap: 12px; /* Cuadraditos de atributos más compactos */
+    gap: 12px;
   }
 
 
@@ -389,7 +390,7 @@ main {
   }
 
   .collection-grid {
-    grid-template-columns: 1fr; /* Tarjetas de la galería en una sola columna */
+    grid-template-columns: 1fr;
     gap: 16px;
   }
 }
