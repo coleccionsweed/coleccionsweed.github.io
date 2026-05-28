@@ -369,5 +369,29 @@
 	"language": "Español",
     "folder": "mister-increible-increibles-2",
     "category": "toys"
+  },
+  {
+    "id": "quasimodo",
+    "name": "Quasimodo",
+    "franchise": "El Jorobado de Notre Dame",
+    "brand": "Mattel",
+    "purchasePrice": "0,00€",
+    "condition": "new",
+	"barcode": "074299153136",
+	"language": "Español",
+    "folder": "quasimodo",
+    "category": "toys"
+  },
+  {
+    "id": "quasimodo-gargolas",
+    "name": "Quasimodo y Gárgolas",
+    "franchise": "El Jorobado de Notre Dame",
+    "brand": "Mattel",
+    "purchasePrice": "25,44€",
+    "condition": "new",
+	"barcode": "026676662212",
+	"language": "Español",
+    "folder": "quasimodo-gargolas",
+    "category": "toys"
   }
 ]
