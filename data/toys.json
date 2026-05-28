@@ -252,5 +252,27 @@
 	"language" : "Español",
     "folder": "hagrid-coleccion-mini-magicos",
     "category": "toys"
+  },
+  {
+    "id": "hagrid-nano-metalfigs",
+    "name": "Hagrid - Nano metalfigs",
+    "franchise": "Harry Potter",
+    "brand": "Jada Toys",
+    "purchasePrice": "3,00€",
+    "condition": "used",
+    "quantity": 1,
+    "folder": "hagrid-nano-metalfigs",
+    "category": "toys"
+  },
+  {
+    "id": "harry-potter-nano-metalfigs",
+    "name": "Harry Potter - Nano metalfigs",
+    "franchise": "Harry Potter",
+    "brand": "Jada Toys",
+    "purchasePrice": "3,00€",
+    "condition": "used",
+    "quantity": 1,
+    "folder": "harry-potter-nano-metalfigs",
+    "category": "toys"
   }
 ]
