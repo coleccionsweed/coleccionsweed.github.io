@@ -66,5 +66,31 @@
     "folder": "el-anillo-de-morgoth",
     "category": "books",
 	"author": "J.R.R. Tolkien"
+  },
+  {
+    "id": "el-bicho-que-se-devora-a-si-mismo",
+    "name": "El bicho que se devora a sí mismo",
+    "brand": "temas de hoy",
+    "purchasePrice": "0,00€",
+    "condition": "used",
+    "barcode": "9788499988894",
+    "quantity": 1,
+    "language": "Español",
+    "folder": "el-bicho-que-se-devora-a-si-mismo",
+    "category": "books",
+	"author": "Ignatius Farray"
+  },
+  {
+    "id": "el-demonio-de-arbennios",
+    "name": "El Demonio de Arbennios",
+    "brand": "minotauro",
+    "purchasePrice": "20,00€",
+    "condition": "used",
+    "barcode": "9788445009673",
+    "quantity": 1,
+    "language": "Español",
+    "folder": "el-demonio-de-arbennios",
+    "category": "books",
+	"author": "Bernard Torelló"
   }
 ]
