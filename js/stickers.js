@@ -58,6 +58,6 @@ function openModal(src) {
     const modal = document.createElement('div');
     modal.id = 'stickerModal';
     modal.innerHTML = `<div class="modal-content"><img src="${src}"></div>`;
-    modal.onclick = (e) => { if (e.target !== modal.querySelector('img')) modal.remove(); };
+    modal.onclick = () => modal.remove();
     document.body.appendChild(modal);
 }
