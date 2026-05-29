@@ -134,5 +134,47 @@
     "folder": "las-dos-torres",
     "category": "books",
 	"author": "J.R.R. Tolkien"
+  },
+  {
+    "id": "el-silmarillion",
+    "name": "El Silmarillion",
+    "franchise": "El Señor de los Anillos",
+    "brand": "minotauro",
+    "purchasePrice": "20,95€",
+    "condition": "used",
+    "barcode": "9788445073810",
+    "quantity": 1,
+    "language": "Español",
+    "folder": "el-silmarillion",
+    "category": "books",
+	"author": "J.R.R. Tolkien"
+  },
+  {
+    "id": "harry-potter-y-la-piedra-filosofal-edicion-minalima",
+    "name": "Harry Potter y la piedra filosofal - Edición Minalima",
+    "franchise": "Harry Potter",
+    "brand": "salamandra",
+    "purchasePrice": "30,40€",
+    "condition": "used",
+    "barcode": "9788418174070",
+    "quantity": 1,
+    "language": "Español",
+    "folder": "harry-potter-y-la-piedra-filosofal-edicion-minalima",
+    "category": "books",
+	"author": "J.K. Rowling"
+  },
+  {
+    "id": "harry-potter-y-la-camara-secreta-edicion-minalima",
+    "name": "Harry Potter y la cámara secreta - Edición Minalima",
+    "franchise": "Harry Potter",
+    "brand": "salamandra",
+    "purchasePrice": "0,00€",
+    "condition": "used",
+    "barcode": "9788418637018",
+    "quantity": 1,
+    "language": "Español",
+    "folder": "harry-potter-y-la-camara-secreta-edicion-minalima",
+    "category": "books",
+	"author": "J.K. Rowling"
   }
 ]
