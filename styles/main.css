@@ -408,21 +408,21 @@ main {
 /* El "marco" del cromo con proporciones fijas (Portrait) */
 .sticker-item {
   width: 100%;
-  aspect-ratio: 0.72 / 1; /* Proporción Portrait estándar (aprox. 55x76mm) */
+  aspect-ratio: 0.72 / 1; 
   cursor: pointer;
   border-radius: 6px;
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   
-  /* ESTO ES CLAVE: Fondo y flex para centrar */
-  background: #fdfdfd; /* Fondo claro para rellenar huecos si es apaisado */
+  background: transparent !important; 
+  
   display: flex;
   align-items: center;
   justify-content: center;
   
-  /* Efecto de relieve */
-  border: 1px solid rgba(0,0,0,0.08);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  /* Quitamos bordes y sombras si quieres un efecto "limpio" total */
+  border: none;
+  box-shadow: none;
 }
 
 .sticker-item:hover {
@@ -433,12 +433,9 @@ main {
 
 /* La imagen dentro del marco */
 .sticker-item img {
-  max-width: 95%; /* Pequeño margen interno */
-  max-height: 95%;
-  
-  /* ESTO ES CLAVE: Contain para que no recorte */
+  max-width: 100%; 
+  max-height: 100%;
   object-fit: contain; 
-  
   display: block;
 }
 
