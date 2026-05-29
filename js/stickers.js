@@ -1,13 +1,14 @@
+// stickers.js
+
 const albumConfigs = {
     "la-comunidad-del-anillo-coleccion-completa": { 
-        folder: "cromos", 
         maxNum: 265, 
         extra: ["a", "b", "c", "d", "e", "f", "g", "h", "j", "k", "l", "m", "n", "p"] 
     },
-	"el-retorno-del-rey-coleccion-completa": { 
-        folder: "cromos", 
+    "el-retorno-del-rey-coleccion-completa": { 
         maxNum: 226, 
-        extra: ["r1", "r2", "r3", "r4", "r5", "r6", "r7", "r8", "r9", "r10", "r11", "r12", "r13", "r14", "r15", "r16", "r17", "r18", "r19", "r20", "r21", "r22"] 
+        // Generación automática de "r1" a "r22"
+        extra: Array.from({ length: 22 }, (_, i) => `r${i + 1}`) 
     },
 };
 
@@ -16,19 +17,20 @@ export function renderStickers(containerId, folderId) {
     if (!config) return;
 
     const container = document.getElementById(containerId);
-    container.innerHTML = ""; // Limpiar antes de renderizar
+    container.innerHTML = "";
     
     const grid = document.createElement('div');
     grid.className = 'stickers-grid';
 
     // 1. Generar cromos numéricos (del 1 al maxNum)
     for (let i = 1; i <= config.maxNum; i++) {
-        createSticker(grid, `assets/cromos/${config.folder}/${i}.jpg`);
+        // La ruta asume: assets/ID_CARPETA/cromos/N.jpg
+        createSticker(grid, `assets/${folderId}/cromos/${i}.jpg`);
     }
 
-    // 2. Generar cromos extra (letras/códigos)
+    // 2. Generar cromos extra
     config.extra.forEach(ext => {
-        createSticker(grid, `assets/cromos/${config.folder}/${ext}.jpg`);
+        createSticker(grid, `assets/${folderId}/cromos/${ext}.jpg`);
     });
 
     container.appendChild(grid);
@@ -42,7 +44,7 @@ function createSticker(parent, src) {
     img.src = src;
     img.loading = "lazy";
     
-    // Si la imagen no existe en la carpeta, simplemente no la mostramos
+    // Si la imagen no existe, eliminamos el contenedor
     img.onerror = () => item.remove(); 
     
     item.onclick = () => openModal(src);
@@ -54,6 +56,6 @@ function openModal(src) {
     const modal = document.createElement('div');
     modal.id = 'stickerModal';
     modal.innerHTML = `<div class="modal-content"><img src="${src}"></div>`;
-    modal.onclick = () => modal.remove();
+    modal.onclick = (e) => { if (e.target !== modal.querySelector('img')) modal.remove(); };
     document.body.appendChild(modal);
 }
