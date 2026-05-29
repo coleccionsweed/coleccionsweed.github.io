@@ -5,10 +5,14 @@ const albumConfigs = {
         maxNum: 265, 
         extra: ["a", "b", "c", "d", "e", "f", "g", "h", "j", "k", "l", "m", "n", "p"] 
     },
+    "las-dos-torres-coleccion-completa": { 
+        maxNum: 186, 
+        extra: ["a", "b", "c", "d", "e", "f", "g", "h", "j", "k", "l", "m", "n", "p"] 
+    },
     "el-retorno-del-rey-coleccion-completa": { 
         maxNum: 226, 
         extra: Array.from({ length: 22 }, (_, i) => `r${i + 1}`) 
-    },
+    }
 };
 
 export function renderStickers(containerId, folderId) {
@@ -24,8 +28,8 @@ export function renderStickers(containerId, folderId) {
     const grid = document.createElement('div');
     grid.className = 'stickers-grid';
 
-    // 1. Generar cromos numéricos (1 a maxNum)
-    for (let i = 1; i <= config.maxNum; i++) {
+    // 1. Generar cromos numéricos (0 a maxNum)
+    for (let i = 0; i <= config.maxNum; i++) {
         // La ruta ahora es: images/ID/cromos/N.jpg
         createSticker(grid, `images/card-collection/${folderId}/cromos/${i}.jpg`);
     }
