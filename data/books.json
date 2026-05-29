@@ -221,8 +221,8 @@
   },
   {
     "id": "the-making-of-harry potter",
-    "name": "Harry Potter",
-    "franchise": "El Señor de los Anillos",
+    "name": "The making of Harry Potter",
+    "franchise": "Harry Potter",
     "brand": "Wizarding World",
     "purchasePrice": "11,58€",
     "condition": "used",
@@ -232,5 +232,47 @@
     "folder": "the-making-of-harry potter",
     "category": "books",
 	"author": "Warner Bros."
+  },
+  {
+    "id": "mortadelo-y-filemon-el-sulfato-atomico",
+    "name": "Mortadelo y Filemón - El sulfato atómico",
+    "franchise": "Mortadelo y Filemón",
+    "brand": "Bruguera",
+    "purchasePrice": "11,90€",
+    "condition": "used",
+    "barcode": "9788402424259",
+    "quantity": 1,
+    "language": "Español",
+    "folder": "mortadelo-y-filemon-el-sulfato-atomico",
+    "category": "books",
+	"author": "Francisco Ibáñez"
+  },
+  {
+    "id": "seres-magicos-de-la-tierra-media",
+    "name": "Seres mágicos de la Tierra Media",
+    "franchise": "El Señor de los Anillos",
+    "brand": "AS",
+    "purchasePrice": "0,00€",
+    "condition": "used",
+    "barcode": "9788415238423",
+    "quantity": 1,
+    "language": "Español",
+    "folder": "seres-magicos-de-la-tierra-media",
+    "category": "books",
+	"author": "Alberto Santos"
+  },
+  {
+    "id": "the-war-of-the-jewels",
+    "name": "The War of the Jewels",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Harper Collins",
+    "purchasePrice": "12,00€",
+    "condition": "used",
+    "barcode": "9780261103245",
+    "quantity": 1,
+    "language": "Inglés",
+    "folder": "the-war-of-the-jewels",
+    "category": "books",
+	"author": "J.R.R. Tolkien"
   }
 ]
