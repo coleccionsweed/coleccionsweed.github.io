@@ -76,5 +76,18 @@
     "language": "Español",
     "folder": "la-comunidad-del-anillo-pc",
     "category": "video-games"
+  },
+  {
+    "id": "las-dos-torres-p2",
+    "name": "La Comunidad del Anillo",
+    "franchise": "El Señor de los Anillos",
+	"Platform" : "PlayStation 2",
+    "brand": "EA Games",
+    "purchasePrice": "8,00€",
+    "condition": "used",
+    "barcode": "5030934030359",
+    "language": "Español",
+    "folder": "las-dos-torres-ps2",
+    "category": "video-games"
   }
 ]
