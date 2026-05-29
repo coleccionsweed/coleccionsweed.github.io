@@ -232,5 +232,44 @@
     "language": "Español",
     "folder": "the-legend-of-zelda-twilight-princess-wii",
     "category": "video-games"
+  },
+  {
+    "id": "need-for-speed-carbono-platinum-psp",
+    "name": "Need for Speed Carbono (Platinum)",
+    "franchise": "Need for Speed",
+	"Platform" : "PSP",
+    "brand": "EA Games",
+    "purchasePrice": "0,00€",
+    "condition": "used",
+    "barcode": "5030934059732",
+    "language": "Español",
+    "folder": "need-for-speed-carbono-platinum-psp",
+    "category": "video-games"
+  },
+  {
+    "id": "pes-2009-ps3",
+    "name": "PES 2009",
+    "franchise": "PES",
+	"Platform" : "PlayStation 3",
+    "brand": "Konami",
+    "purchasePrice": "3,00€",
+    "condition": "used",
+    "barcode": "4012927050866",
+    "language": "Español",
+    "folder": "pes-2009-ps3",
+    "category": "video-games"
+  },
+  {
+    "id": "piratas-del-caribe-pc",
+    "name": "Piratas del Caribe",
+    "franchise": "Piratas del Caribe",
+	"Platform" : "PC",
+    "brand": "Bethesda",
+    "purchasePrice": "1,00€",
+    "condition": "used",
+    "barcode": "3307210123077",
+    "language": "Español",
+    "folder": "piratas-del-caribe-pc",
+    "category": "video-games"
   }
 ]
