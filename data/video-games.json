@@ -167,5 +167,31 @@
     "language": "Español",
     "folder": "harry-potter-y-la-camara-secreta-pc",
     "category": "video-games"
+  },
+  {
+    "id": "harry-potter-y-las-reliquias-de-la-muerte-parte-1-wii",
+    "name": "Harry Potter y las reliquias de la muerte - Parte 1",
+    "franchise": "Harry Potter",
+	"Platform" : "Nintendo Wii",
+    "brand": "EA Games",
+    "purchasePrice": "12,50€",
+    "condition": "used",
+    "barcode": "5030934087476",
+    "language": "Español",
+    "folder": "harry-potter-y-las-reliquias-de-la-muerte-parte-1-wii",
+    "category": "video-games"
+  },
+  {
+    "id": "las-cronicas-de-narnia-el-leon-la-bruja-y-el-armario-gba",
+    "name": "Las crónicas de Narnia - El león, la bruja y el armario",
+    "franchise": "Harry Potter",
+	"Platform" : "Game Boy Advance",
+    "brand": "Buena Vista Games",
+    "purchasePrice": "3,00€",
+    "condition": "used",
+    "barcode": "8717418064648",
+    "language": "Español",
+    "folder": "las-cronicas-de-narnia-el-leon-la-bruja-y-el-armario-gba",
+    "category": "video-games"
   }
 ]
