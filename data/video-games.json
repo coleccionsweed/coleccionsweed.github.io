@@ -219,5 +219,18 @@
     "language": "Español",
     "folder": "the-legend-of-zelda-tears-of-the-kingdom-sealed-switch",
     "category": "video-games"
+  },
+  {
+    "id": "the-legend-of-zelda-twilight-princess-wii",
+    "name": "The Legend of Zelda - Twilight Princess",
+    "franchise": "The Legend of Zelda",
+	"Platform" : "Nintendo Wii",
+    "brand": "Nintendo",
+    "purchasePrice": "25,68€",
+    "condition": "used",
+    "barcode": "045496362393",
+    "language": "Español",
+    "folder": "the-legend-of-zelda-twilight-princess-wii",
+    "category": "video-games"
   }
 ]
