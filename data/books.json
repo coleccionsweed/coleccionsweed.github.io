@@ -176,5 +176,61 @@
     "folder": "harry-potter-y-la-camara-secreta-edicion-minalima",
     "category": "books",
 	"author": "J.K. Rowling"
+  },
+  {
+    "id": "la-caida-de-gondolin",
+    "name": "La Caída de Gondolin",
+    "franchise": "El Señor de los Anillos",
+    "brand": "minotauro",
+    "purchasePrice": "21,95€",
+    "condition": "used",
+    "barcode": "9788445006092",
+    "quantity": 1,
+    "language": "Español",
+    "folder": "la-caida-de-gondolin",
+    "category": "books",
+	"author": "J.R.R. Tolkien"
+  },
+  {
+    "id": "la-lengua-de-los-elfos",
+    "name": "La lengua de los elfos",
+    "franchise": "El Señor de los Anillos",
+    "brand": "booket",
+    "purchasePrice": "0,00€",
+    "condition": "used",
+    "barcode": "9788445000694",
+    "quantity": 1,
+    "language": "Español",
+    "folder": "la-lengua-de-los-elfos",
+    "category": "books",
+	"author": "J.R.R. Tolkien"
+  },
+  {
+    "id": "the-return-of-the-king",
+    "name": "The Lord of the Rings - The Return of the King",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Harper Colling",
+    "purchasePrice": "12,50€",
+    "condition": "used",
+    "barcode": "9780261103597",
+    "quantity": 1,
+    "language": "Inglés",
+    "folder": "the-return-of-the-king",
+    "category": "books",
+	"author": "J.R.R. Tolkien"
+  },
+  {
+    "id": "the-making-of-harry potter",
+    "name": "Harry Potter",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Wizarding World",
+    "purchasePrice": "11,58€",
+    "condition": "used",
+    "barcode": "400077777773",
+    "quantity": 1,
+    "language": "Inglés",
+    "folder": "the-making-of-harry potter",
+    "category": "books",
+	"author": "Warner Bros."
   }
 ]
