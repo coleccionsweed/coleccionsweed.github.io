@@ -102,5 +102,18 @@
     "language": "Español",
     "folder": "f1-04-platinum-ps2",
     "category": "video-games"
+  },
+  {
+    "id": "guitar-hero-on-tour-ds",
+    "name": "Guitar Hero On Tour",
+    "franchise": "Guitar Hero",
+	"Platform" : "Nintendo DS",
+    "brand": "Activision",
+    "purchasePrice": "14,18€",
+    "condition": "used",
+    "barcode": "5030917054488",
+    "language": "Español",
+    "folder": "guitar-hero-on-tour-ds",
+    "category": "video-games"
   }
 ]
