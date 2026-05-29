@@ -11,5 +11,18 @@
     "language": "Español",
     "folder": "buzz-concurso-de-bolsillo",
     "category": "video-games"
+  },
+  {
+    "id": "disney-classic-games-collection",
+    "name": "Disney Classic Games Collection",
+    "franchise": "Disney",
+	"Platform" : "Nintendo Switch",
+    "brand": "Disney",
+    "purchasePrice": "24,95€",
+    "condition": "used",
+    "barcode": "5060760884727",
+    "language": "Español",
+    "folder": "disney-classic-games-collection",
+    "category": "video-games"
   }
 ]
