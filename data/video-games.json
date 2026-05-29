@@ -323,5 +323,18 @@
     "language": "Español",
     "folder": "super-mario-3d-all-stars-switch",
     "category": "video-games"
+  },
+  {
+    "id": "super-mario-3d-world-wii-u",
+    "name": "Super Mario 3D All Stars",
+    "franchise": "Super Mario",
+	"Platform" : ""Nintendo Wii U",
+    "brand": "Nintendo",
+    "purchasePrice": "12,50€",
+    "condition": "new",
+    "barcode": "045496332785",
+    "language": "Español",
+    "folder": "super-mario-3d-world-wii-u",
+    "category": "video-games"
   }
 ]
