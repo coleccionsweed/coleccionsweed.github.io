@@ -57,7 +57,12 @@ function createSticker(parent, src) {
 function openModal(src) {
     const modal = document.createElement('div');
     modal.id = 'stickerModal';
-    modal.innerHTML = `<div class="modal-content"><img src="${src}"></div>`;
+    // El modal de zoom no necesita un contenedor .modal-content extra,
+    // simplemente inyecta la imagen para maximizar el tamaño
+    modal.innerHTML = `<img src="${src}">`;
+    
+    // Al hacer clic en cualquier parte, el modal se cierra
     modal.onclick = () => modal.remove();
+    
     document.body.appendChild(modal);
 }

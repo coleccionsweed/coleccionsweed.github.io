@@ -395,56 +395,69 @@ main {
   visibility: hidden !important;
 }
 
-/* Contenedor del grid de cromos */
+/* Contenedor principal del grid en PC */
 .stickers-grid {
   display: grid;
-  /* Esto crea filas automáticas. En PC ajusta 6-8 cromos, en móvil 3-4 */
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); 
+  /* Definimos columnas fijas en PC para un diseño más ordenado */
+  grid-template-columns: repeat(7, 1fr); /* 7 cromos por fila en PC */
   gap: 15px;
   padding: 20px 0;
   width: 100%;
 }
 
-/* El contenedor del cromo */
+/* El "marco" del cromo con proporciones fijas (Portrait) */
 .sticker-item {
   width: 100%;
-  aspect-ratio: 0.7 / 1; /* Mantiene la proporción de cromo */
+  aspect-ratio: 0.72 / 1; /* Proporción Portrait estándar (aprox. 55x76mm) */
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border-radius: 8px;
+  border-radius: 6px;
   overflow: hidden;
-  background: #f0f0f0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+  /* ESTO ES CLAVE: Fondo y flex para centrar */
+  background: #fdfdfd; /* Fondo claro para rellenar huecos si es apaisado */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Efecto de relieve */
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
-/* Efecto hover profesional */
 .sticker-item:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  transform: scale(1.06);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  z-index: 10; /* Se superpone a los vecinos al hacer zoom */
 }
 
+/* La imagen dentro del marco */
 .sticker-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Recorta la imagen para llenar el cromo perfectamente */
+  max-width: 95%; /* Pequeño margen interno */
+  max-height: 95%;
+  
+  /* ESTO ES CLAVE: Contain para que no recorte */
+  object-fit: contain; 
+  
   display: block;
 }
 
-/* Modal de zoom */
-#stickerModal {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.9);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  cursor: zoom-out;
+/* Ajustes para Móvil (Media Query) */
+@media (max-width: 768px) {
+  .stickers-grid {
+    grid-template-columns: repeat(4, 1fr); /* 4 cromos por fila en móvil */
+    gap: 10px;
+  }
 }
 
+/* === Modal de zoom (Sigue igual) === */
+#stickerModal {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 9999; cursor: zoom-out;
+}
 .modal-content img {
-  max-width: 90vw;
-  max-height: 85vh;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(255,255,255,0.1);
+  max-width: 90vw; max-height: 85vh;
+  border-radius: 10px; box-shadow: 0 0 20px rgba(255,255,255,0.1);
 }
