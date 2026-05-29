@@ -115,5 +115,18 @@
     "language": "Español",
     "folder": "guitar-hero-on-tour-ds",
     "category": "video-games"
+  },
+  {
+    "id": "harry-potter-la-coleccion-pc",
+    "name": "Harry Potter - La colección",
+    "franchise": "Harry Potter",
+	"Platform" : "PC",
+    "brand": "EA Games",
+    "purchasePrice": "35,44€",
+    "condition": "used",
+    "barcode": "8414185032756",
+    "language": "Español",
+    "folder": "harry-potter-la-coleccion-pc",
+    "category": "video-games"
   }
 ]
