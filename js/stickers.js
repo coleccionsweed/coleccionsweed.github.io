@@ -1,6 +1,3 @@
-// stickers.js
-
-// Definimos las colecciones aquí
 const albumConfigs = {
     "la-comunidad-del-anillo-coleccion-completa": { 
         folder: "cromos", 
@@ -10,7 +7,7 @@ const albumConfigs = {
 	"el-retorno-del-rey-coleccion-completa": { 
         folder: "cromos", 
         maxNum: 226, 
-        extra: ["r1", "r2"] 
+        extra: ["r1", "r2", "r3", "r4", "r5", "r6", "r7", "r8", "r9", "r10", "r11", "r12", "r13", "r14", "r15", "r16", "r17", "r18", "r19", "r20", "r21", "r22"] 
     },
 };
 

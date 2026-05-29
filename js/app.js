@@ -2,7 +2,6 @@ import { loadCollection } from './dataLoader.js'
 import { renderItems } from './renderer.js'
 import { setupFilters } from './filters.js'
 import { renderDetail } from './detail.js'
-import { renderStickers } from './stickers.js'
 
 let allItems = []
 let itemsAMostrar = []        

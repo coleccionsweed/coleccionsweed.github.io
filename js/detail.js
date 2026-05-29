@@ -1,3 +1,5 @@
+import { renderStickers } from './stickers.js';
+
 // Función auxiliar para verificar si una imagen existe realmente en el servidor
 function comprobarSiExisteImagen(src) {
   return new Promise((resolve) => {
