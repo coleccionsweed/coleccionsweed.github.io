@@ -92,5 +92,47 @@
     "folder": "el-demonio-de-arbennios",
     "category": "books",
 	"author": "Bernard Torelló"
+  },
+  {
+    "id": "el-retorno-del-rey",
+    "name": "El Retorno del Rey",
+    "franchise": "El Señor de los Anillos",
+    "brand": "minotauro",
+    "purchasePrice": "0,00€",
+    "condition": "used",
+    "barcode": "9788445073742",
+    "quantity": 1,
+    "language": "Español",
+    "folder": "el-retorno-del-rey",
+    "category": "books",
+	"author": "J.R.R. Tolkien"
+  },
+  {
+    "id": "la-comunidad-del-anillo",
+    "name": "La Comunidad del Anillo",
+    "franchise": "El Señor de los Anillos",
+    "brand": "minotauro",
+    "purchasePrice": "0,00€",
+    "condition": "used",
+    "barcode": "9788445073728",
+    "quantity": 1,
+    "language": "Español",
+    "folder": "la-comunidad-del-anillo",
+    "category": "books",
+	"author": "J.R.R. Tolkien"
+  },
+  {
+    "id": "las-dos-torres",
+    "name": "Las Dos Torres",
+    "franchise": "El Señor de los Anillos",
+    "brand": "minotauro",
+    "purchasePrice": "0,00€",
+    "condition": "used",
+    "barcode": "9788445073735",
+    "quantity": 1,
+    "language": "Español",
+    "folder": "las-dos-torres",
+    "category": "books",
+	"author": "J.R.R. Tolkien"
   }
 ]
