@@ -184,7 +184,7 @@
   {
     "id": "las-cronicas-de-narnia-el-leon-la-bruja-y-el-armario-gba",
     "name": "Las crónicas de Narnia - El león, la bruja y el armario",
-    "franchise": "Harry Potter",
+    "franchise": "Las crónicas de Narnia",
 	"Platform" : "Game Boy Advance",
     "brand": "Buena Vista Games",
     "purchasePrice": "3,00€",
@@ -270,6 +270,58 @@
     "barcode": "3307210123077",
     "language": "Español",
     "folder": "piratas-del-caribe-pc",
+    "category": "video-games"
+  },
+  {
+    "id": "prince-of-persia-las-arenas-del-tiempo-pc",
+    "name": "Prince of Persia - Las arenas del tiempo",
+    "franchise": "Prince of Persia",
+	"Platform" : "PC",
+    "brand": "Ubisoft",
+    "purchasePrice": "1,00€",
+    "condition": "used",
+    "barcode": "3307210133694",
+    "language": "Español",
+    "folder": "prince-of-persia-las-arenas-del-tiempo-pc",
+    "category": "video-games"
+  },
+  {
+    "id": "shrek-super-slam-gba",
+    "name": "Shrek Super Slam",
+    "franchise": "Shrek",
+	"Platform" : "Game Boy Advance",
+    "brand": "Activision",
+    "purchasePrice": "3,00€",
+    "condition": "used",
+    "barcode": "5030917031977",
+    "language": "Español",
+    "folder": "shrek-super-slam-gba",
+    "category": "video-games"
+  },
+  {
+    "id": "super-mario-3d-all-stars-sealed-switch",
+    "name": "Super Mario 3D All Stars (Sealed)",
+    "franchise": "Super Mario",
+	"Platform" : "Nintendo Switch",
+    "brand": "Nintendo",
+    "purchasePrice": "54,90€",
+    "condition": "new",
+    "barcode": "045496426705",
+    "language": "Español",
+    "folder": "super-mario-3d-all-stars-sealed-switch",
+    "category": "video-games"
+  },
+  {
+    "id": "super-mario-3d-all-stars-switch",
+    "name": "Super Mario 3D All Stars",
+    "franchise": "Super Mario",
+	"Platform" : "Nintendo Switch",
+    "brand": "Nintendo",
+    "purchasePrice": "54,90€",
+    "condition": "new",
+    "barcode": "045496426705",
+    "language": "Español",
+    "folder": "super-mario-3d-all-stars-switch",
     "category": "video-games"
   }
 ]
