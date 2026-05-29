@@ -4,7 +4,8 @@ export async function loadCollection() {
     'data/books.json',
 	'data/toys.json',
 	'data/card-box.json',
-	'data/card-collection.json'
+	'data/card-collection.json',
+	'data/video-games.json'
   ]
 
   const results = await Promise.all(

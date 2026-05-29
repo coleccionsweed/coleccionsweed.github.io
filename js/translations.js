@@ -6,7 +6,8 @@ export const diccionario = {
   "books": "Libros",
   "toys": "Juguetes",
   "card-box": "Cajas de cartas/cromos",
-  "card-collection": "Colecciones de cartas/cromos"
+  "card-collection": "Colecciones de cartas/cromos",
+  "video-games": "Videojuegos"
 };
 
 // Función helper para traducir de forma segura (si no existe, devuelve la palabra original)

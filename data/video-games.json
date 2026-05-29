@@ -1,0 +1,15 @@
+[
+  {
+    "id": "buzz-concurso-de-bolsillo",
+    "name": "Buzz! Concurso de bolsillo",
+    "franchise": "Buzz!",
+	"Platform" : "PSP",
+    "brand": "Sony Computer Entertainment",
+    "purchasePrice": "0,00€",
+    "condition": "used",
+    "barcode": "711719972952",
+    "language": "Español",
+    "folder": "buzz-concurso-de-bolsillo",
+    "category": "video-games"
+  }
+]
