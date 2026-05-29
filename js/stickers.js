@@ -7,14 +7,16 @@ const albumConfigs = {
     },
     "el-retorno-del-rey-coleccion-completa": { 
         maxNum: 226, 
-        // Generación automática de "r1" a "r22"
         extra: Array.from({ length: 22 }, (_, i) => `r${i + 1}`) 
     },
 };
 
 export function renderStickers(containerId, folderId) {
     const config = albumConfigs[folderId];
-    if (!config) return;
+    if (!config) {
+        console.error(`Configuración no encontrada para el ID: ${folderId}`);
+        return;
+    }
 
     const container = document.getElementById(containerId);
     container.innerHTML = "";
@@ -22,15 +24,15 @@ export function renderStickers(containerId, folderId) {
     const grid = document.createElement('div');
     grid.className = 'stickers-grid';
 
-    // 1. Generar cromos numéricos (del 1 al maxNum)
+    // 1. Generar cromos numéricos (1 a maxNum)
     for (let i = 1; i <= config.maxNum; i++) {
-        // La ruta asume: assets/ID_CARPETA/cromos/N.jpg
-        createSticker(grid, `assets/${folderId}/cromos/${i}.jpg`);
+        // La ruta ahora es: images/ID/cromos/N.jpg
+        createSticker(grid, `images/${folderId}/cromos/${i}.jpg`);
     }
 
     // 2. Generar cromos extra
     config.extra.forEach(ext => {
-        createSticker(grid, `assets/${folderId}/cromos/${ext}.jpg`);
+        createSticker(grid, `images/${folderId}/cromos/${ext}.jpg`);
     });
 
     container.appendChild(grid);
@@ -44,7 +46,7 @@ function createSticker(parent, src) {
     img.src = src;
     img.loading = "lazy";
     
-    // Si la imagen no existe, eliminamos el contenedor
+    // Si no encuentra el archivo (404), eliminamos el cromo
     img.onerror = () => item.remove(); 
     
     item.onclick = () => openModal(src);
