@@ -10,5 +10,44 @@
     "language": "Inglés",
     "folder": "animales-fantasticos-los-secretos-de-dumbledore-coleccion-completa",
     "category": "card-collection"
+  },
+  {
+    "id": "el-retorno-del-rey-coleccion-completa",
+    "name": "El Retorno del Rey - Colección completa",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Merlin Stickers",
+    "purchasePrice": "84,00€",
+    "condition": "new",
+    "barcode": "5018819903127",
+    "language": "Español",
+    "folder": "el-retorno-del-rey-coleccion-completa",
+    "category": "card-collection",
+	"notes" : "Ver todos los cromos en: https://coleccionsweed.github.io/coleccionesPanini"
+  },
+  {
+    "id": "la-comunidad-del-anillo-coleccion-completa",
+    "name": "La Comunidad del Anillo - Colección completa",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Merlin Stickers",
+    "purchasePrice": "84,00€",
+    "condition": "new",
+    "barcode": "5018819900461",
+    "language": "Español",
+    "folder": "la-comunidad-del-anillo-coleccion-completa",
+    "category": "card-collection",
+	"notes" : "Ver todos los cromos en: https://coleccionsweed.github.io/coleccionesPanini"
+  },
+  {
+    "id": "las-dos-torres-coleccion-completa",
+    "name": "Las Dos Torres - Colección completa",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Merlin Stickers",
+    "purchasePrice": "84,00€",
+    "condition": "new",
+    "barcode": "5018819902595",
+    "language": "Español",
+    "folder": "las-dos-torres-coleccion-completa",
+    "category": "card-collection",
+	"notes" : "Ver todos los cromos en: https://coleccionsweed.github.io/coleccionesPanini"
   }
 ]
