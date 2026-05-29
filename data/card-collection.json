@@ -22,7 +22,7 @@
     "language": "Español",
     "folder": "el-retorno-del-rey-coleccion-completa",
     "category": "card-collection",
-	"notes" : "Ver todos los cromos en: https://coleccionsweed.github.io/coleccionesPanini"
+	"notes" : "Ver todos los cromos en: <a>https://coleccionsweed.github.io/coleccionesPanini</a>"
   },
   {
     "id": "la-comunidad-del-anillo-coleccion-completa",
@@ -35,7 +35,7 @@
     "language": "Español",
     "folder": "la-comunidad-del-anillo-coleccion-completa",
     "category": "card-collection",
-	"notes" : "Ver todos los cromos en: https://coleccionsweed.github.io/coleccionesPanini"
+	"notes" : "Ver todos los cromos en: <a>https://coleccionsweed.github.io/coleccionesPanini</a>"
   },
   {
     "id": "las-dos-torres-coleccion-completa",
@@ -48,6 +48,6 @@
     "language": "Español",
     "folder": "las-dos-torres-coleccion-completa",
     "category": "card-collection",
-	"notes" : "Ver todos los cromos en: https://coleccionsweed.github.io/coleccionesPanini"
+	"notes" : "Ver todos los cromos en: <a>https://coleccionsweed.github.io/coleccionesPanini</a>"
   }
 ]
