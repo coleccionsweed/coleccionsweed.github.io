@@ -27,12 +27,12 @@ export function renderStickers(containerId, folderId) {
     // 1. Generar cromos numéricos (1 a maxNum)
     for (let i = 1; i <= config.maxNum; i++) {
         // La ruta ahora es: images/ID/cromos/N.jpg
-        createSticker(grid, `images/${folderId}/cromos/${i}.jpg`);
+        createSticker(grid, `images/card-collection/${folderId}/cromos/${i}.jpg`);
     }
 
     // 2. Generar cromos extra
     config.extra.forEach(ext => {
-        createSticker(grid, `images/${folderId}/cromos/${ext}.jpg`);
+        createSticker(grid, `images/card-collection/${folderId}/cromos/${ext}.jpg`);
     });
 
     container.appendChild(grid);
