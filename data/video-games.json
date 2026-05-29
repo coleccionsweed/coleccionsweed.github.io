@@ -50,5 +50,31 @@
     "language": "Español",
     "folder": "las-aventuras-de-aragorn-wii",
     "category": "video-games"
+  },
+  {
+    "id": "el-retorno-del-rey-gamecube",
+    "name": "El Retorno del Rey",
+    "franchise": "El Señor de los Anillos",
+	"Platform" : "Nintendo Gamecube",
+    "brand": "EA Games",
+    "purchasePrice": "20,30€",
+    "condition": "used",
+    "barcode": "5030934035125",
+    "language": "Español",
+    "folder": "el-retorno-del-rey-gamecube",
+    "category": "video-games"
+  },
+  {
+    "id": "la-comunidad-del-anillo-pc",
+    "name": "La Comunidad del Anillo",
+    "franchise": "El Señor de los Anillos",
+	"Platform" : "PC",
+    "brand": "Black Label Games",
+    "purchasePrice": "12,90€",
+    "condition": "used",
+    "barcode": "3348542162020",
+    "language": "Español",
+    "folder": "la-comunidad-del-anillo-pc",
+    "category": "video-games"
   }
 ]
