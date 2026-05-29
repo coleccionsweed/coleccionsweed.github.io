@@ -115,4 +115,14 @@ export async function renderDetail(item) {
       imgElement.src = images[index];
     });
   }
+  
+  if (item.category === 'card-collection') {
+        const wrapper = document.createElement('div');
+        wrapper.id = 'stickers-container';
+        wrapper.innerHTML = '<h3>Cromos de la colección</h3>';
+        document.getElementById('collectionGrid').appendChild(wrapper);
+        
+        // Pasamos el ID del folder tal como está en tu JSON
+        renderStickers('stickers-container', item.folder);
+  }
 }
