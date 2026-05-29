@@ -362,5 +362,29 @@
     "language": "Español",
     "folder": "super-mario-galaxy-2-wii",
     "category": "video-games"
+  },
+  {
+    "id": "triiviial-wii",
+    "name": "Triiviial",
+	"Platform" : "Nintendo Wii",
+    "brand": "EA Games",
+    "purchasePrice": "5,00€",
+    "condition": "used",
+    "barcode": "5030934060653",
+    "language": "Español",
+    "folder": "triiviial-wii",
+    "category": "video-games"
+  },
+  {
+    "id": "wii-fit-wii",
+    "name": "Wii Fit",
+	"Platform" : "Nintendo Wii",
+    "brand": "Nintendo",
+    "purchasePrice": "5,00€",
+    "condition": "used",
+    "barcode": "045496365431",
+    "language": "Español",
+    "folder": "wii-fit-wii",
+    "category": "video-games"
   }
 ]
