@@ -89,5 +89,18 @@
     "language": "Español",
     "folder": "las-dos-torres-ps2",
     "category": "video-games"
+  },
+  {
+    "id": "f1-04-platinum-ps2",
+    "name": "F1 04 (Platinum)",
+    "franchise": "F1",
+	"Platform" : "PlayStation 2",
+    "brand": "Sony Computer Entertainment",
+    "purchasePrice": "4,90€",
+    "condition": "used",
+    "barcode": "711719637752",
+    "language": "Español",
+    "folder": "f1-04-platinum-ps2",
+    "category": "video-games"
   }
 ]
