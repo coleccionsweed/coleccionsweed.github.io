@@ -12,6 +12,13 @@ const albumConfigs = {
     "el-retorno-del-rey-coleccion-completa": { 
         maxNum: 226, 
         extra: Array.from({ length: 22 }, (_, i) => `r${i + 1}`) 
+    },
+    "animales-fantasticos-los-secretos-de-dumbledore-coleccion-completa": { 
+        maxNum: 120, 
+		extra: [
+			...Array.from({ length: 30 }, (_, i) => `c${i + 1}`), 
+			"le1"
+		]
     }
 };
 
