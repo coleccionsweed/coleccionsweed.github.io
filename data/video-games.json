@@ -1,6 +1,6 @@
 [
   {
-    "id": "buzz-concurso-de-bolsillo",
+    "id": "buzz-concurso-de-bolsillo-psp",
     "name": "Buzz! Concurso de bolsillo",
     "franchise": "Buzz!",
 	"Platform" : "PSP",
@@ -9,11 +9,11 @@
     "condition": "used",
     "barcode": "711719972952",
     "language": "Español",
-    "folder": "buzz-concurso-de-bolsillo",
+    "folder": "buzz-concurso-de-bolsillo-psp",
     "category": "video-games"
   },
   {
-    "id": "disney-classic-games-collection",
+    "id": "disney-classic-games-collection-switch",
     "name": "Disney Classic Games Collection",
     "franchise": "Disney",
 	"Platform" : "Nintendo Switch",
@@ -22,7 +22,33 @@
     "condition": "used",
     "barcode": "5060760884727",
     "language": "Español",
-    "folder": "disney-classic-games-collection",
+    "folder": "disney-classic-games-collection-switch",
+    "category": "video-games"
+  },
+  {
+    "id": "el-hobbit-pc",
+    "name": "El Hobbit",
+    "franchise": "El Señor de los Anillos",
+	"Platform" : "PC",
+    "brand": "Sierra Entertainment",
+    "purchasePrice": "13,90€",
+    "condition": "used",
+    "barcode": "3348542177116",
+    "language": "Español",
+    "folder": "el-hobbit-pc",
+    "category": "video-games"
+  },
+  {
+    "id": "las-aventuras-de-aragorn-wii",
+    "name": "Las Aventuras de Aragorn",
+    "franchise": "El Señor de los Anillos",
+	"Platform" : "Nintendo Wii",
+    "brand": "Warner Bros. Games",
+    "purchasePrice": "10,18€",
+    "condition": "used",
+    "barcode": "5051893027761",
+    "language": "Español",
+    "folder": "las-aventuras-de-aragorn-wii",
     "category": "video-games"
   }
 ]
