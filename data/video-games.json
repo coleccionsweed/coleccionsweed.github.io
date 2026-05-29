@@ -128,5 +128,44 @@
     "language": "Español",
     "folder": "harry-potter-la-coleccion-pc",
     "category": "video-games"
+  },
+  {
+    "id": "harry-potter-quidditch-copa-del-mundo-pc",
+    "name": "Harry Potter Quidditch - Copa del mundo",
+    "franchise": "Harry Potter",
+	"Platform" : "PC",
+    "brand": "EA Games",
+    "purchasePrice": "15,18€",
+    "condition": "used",
+    "barcode": "8414185051191",
+    "language": "Español",
+    "folder": "harry-potter-quidditch-copa-del-mundo-pc",
+    "category": "video-games"
+  },
+  {
+    "id": "harry-potter-y-el-misterio-del-principe-wii",
+    "name": "Harry Potter y el misterio del príncipe",
+    "franchise": "Harry Potter",
+	"Platform" : "Nintendo Wii",
+    "brand": "EA Games",
+    "purchasePrice": "12,50€",
+    "condition": "used",
+    "barcode": "5030934067027",
+    "language": "Español",
+    "folder": "harry-potter-y-el-misterio-del-principe-wii",
+    "category": "video-games"
+  },
+  {
+    "id": "harry-potter-y-la-camara-secreta-pc",
+    "name": "Harry Potter y la cámara secreta",
+    "franchise": "Harry Potter",
+	"Platform" : "PC",
+    "brand": "EA Games",
+    "purchasePrice": "14,90€",
+    "condition": "used",
+    "barcode": "8414185050996",
+    "language": "Español",
+    "folder": "harry-potter-y-la-camara-secreta-pc",
+    "category": "video-games"
   }
 ]
