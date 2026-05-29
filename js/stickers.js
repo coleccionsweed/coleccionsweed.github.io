@@ -6,7 +6,12 @@ const albumConfigs = {
         folder: "cromos", 
         maxNum: 265, 
         extra: ["a", "b", "c", "d", "e", "f", "g", "h", "j", "k", "l", "m", "n", "p"] 
-    }
+    },
+	"el-retorno-del-rey-coleccion-completa": { 
+        folder: "cromos", 
+        maxNum: 226, 
+        extra: ["r1", "r2"] 
+    },
 };
 
 export function renderStickers(containerId, folderId) {
