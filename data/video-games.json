@@ -193,5 +193,31 @@
     "language": "Español",
     "folder": "las-cronicas-de-narnia-el-leon-la-bruja-y-el-armario-gba",
     "category": "video-games"
+  },
+  {
+    "id": "the-legend-of-zelda-breath-of-the-wild-sealed-switch",
+    "name": "The Legend of Zelda - Breath of the Wild (Sealed)",
+    "franchise": "The Legend of Zelda",
+	"Platform" : "Nintendo Switch",
+    "brand": "Nintendo",
+    "purchasePrice": "55,99€",
+    "condition": "new",
+    "barcode": "045496420079",
+    "language": "Español",
+    "folder": "the-legend-of-zelda-breath-of-the-wild-sealed-switch",
+    "category": "video-games"
+  },
+  {
+    "id": "the-legend-of-zelda-tears-of-the-kingdom-sealed-switch",
+    "name": "The Legend of Zelda - Tears of the Kingdom (Sealed)",
+    "franchise": "The Legend of Zelda",
+	"Platform" : "Nintendo Switch",
+    "brand": "Nintendo",
+    "purchasePrice": "59,90€",
+    "condition": "new",
+    "barcode": "045496478773",
+    "language": "Español",
+    "folder": "the-legend-of-zelda-tears-of-the-kingdom-sealed-switch",
+    "category": "video-games"
   }
 ]
