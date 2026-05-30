@@ -2,6 +2,7 @@ import { loadCollection } from './dataLoader.js'
 import { renderItems } from './renderer.js'
 import { setupFilters } from './filters.js'
 import { renderDetail } from './detail.js'
+import { renderStats } from './stats.js'
 
 let allItems = []
 let itemsAMostrar = []        
@@ -19,6 +20,7 @@ async function init() {
     itemsAMostrar = filteredItems 
     if (!window.location.hash) {
       renderItems(filteredItems)
+      renderStats(filteredItems)
     }
   })
 
@@ -31,11 +33,13 @@ function handleRoute() {
   const grid = document.getElementById('collectionGrid')
   const filters = document.getElementById('filters')
   const counter = document.getElementById('items-counter') 
+  const statsSection = document.getElementById('stats')
 
   // Vista Lista
   if (!id) {
     if (filters) filters.style.display = ''; 
     if (counter) counter.style.display = '';
+    if (statsSection) statsSection.style.display = '';
     
     grid.style.display = ''; 
     grid.style.opacity = '1'; 
@@ -43,6 +47,7 @@ function handleRoute() {
     grid.className = 'collection-grid';
     
     renderItems(itemsAMostrar);
+    renderStats(itemsAMostrar);
 
     setTimeout(() => {
       window.scrollTo(0, posicionScrollGuardada);
@@ -56,9 +61,9 @@ function handleRoute() {
   if (item) {
     posicionScrollGuardada = window.scrollY;
 
-    // Ocultamos elementos: el navegador los ignora y el CSS colapsa el espacio
     if (filters) filters.style.display = 'none';
     if (counter) counter.style.display = 'none';
+    if (statsSection) statsSection.style.display = 'none';
 
     grid.style.height = grid.offsetHeight + 'px'; 
     grid.style.opacity = '0';
@@ -73,13 +78,14 @@ function handleRoute() {
     });
     
   } else {
-    // Reset de seguridad
     if (filters) filters.style.display = '';
     if (counter) counter.style.display = '';
+    if (statsSection) statsSection.style.display = '';
     grid.style.display = '';
     grid.style.opacity = '1';
     grid.className = 'collection-grid';
     renderItems(itemsAMostrar);
+    renderStats(itemsAMostrar);
   }
 }
 
