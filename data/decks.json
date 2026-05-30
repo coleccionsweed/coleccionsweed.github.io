@@ -9,5 +9,38 @@
     "language": "Español",
     "folder": "orslok-safari-mazo-de-estructura",
     "category": "decks"
+  },
+  {
+    "id": "dario-kerchak-mazo-de-estructura",
+    "name": "Dario Kerchak - Mazo de estructura",
+    "franchise": "Yu-internet-Oh!",
+    "brand": "Yu-internet-Oh!",
+    "purchasePrice": "20,00€",
+    "condition": "new",
+    "language": "Español",
+    "folder": "dario-kerchak-mazo-de-estructura",
+    "category": "decks"
+  },
+  {
+    "id": "ksio-esta-cogido-mazo-de-estructura",
+    "name": "Ksio está cogido - Mazo de estructura",
+    "franchise": "Yu-internet-Oh!",
+    "brand": "Yu-internet-Oh!",
+    "purchasePrice": "20,00€",
+    "condition": "new",
+    "language": "Español",
+    "folder": "ksio-esta-cogido-mazo-de-estructura",
+    "category": "decks"
+  },
+  {
+    "id": "padre-cheeto-mazo-de-estructura",
+    "name": "Padre Cheeto - Mazo de estructura",
+    "franchise": "Yu-internet-Oh!",
+    "brand": "Yu-internet-Oh!",
+    "purchasePrice": "20,00€",
+    "condition": "new",
+    "language": "Español",
+    "folder": "padre-cheeto-mazo-de-estructura",
+    "category": "decks"
   }
 ]

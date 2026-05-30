@@ -41,48 +41,6 @@ const collectibles = [ {
     "Collection" : "The Lord of the Rings - Tales of Middle-Earth"
   }
 }, {
-  "name" : "Dario Kerchak - Mazo de estructura",
-  "franchise" : "Yu-internet-Oh!",
-  "type" : "Card Pack",
-  "brand" : "Yu-internet-Oh!",
-  "purchasePrice" : "20,00€",
-  "condition" : "new",
-  "barcode" : "",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Yu-internet-Oh!"
-  }
-}, {
-  "name" : "Ksio está cogido - Mazo de estructura",
-  "franchise" : "Yu-internet-Oh!",
-  "type" : "Card Pack",
-  "brand" : "Yu-internet-Oh!",
-  "purchasePrice" : "20,00€",
-  "condition" : "new",
-  "barcode" : "",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Yu-internet-Oh!"
-  }
-},  {
-  "name" : "Padre Cheeto - Mazo de estructura",
-  "franchise" : "Yu-internet-Oh!",
-  "type" : "Card Pack",
-  "brand" : "Yu-internet-Oh!",
-  "purchasePrice" : "20,00€",
-  "condition" : "new",
-  "barcode" : "",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Yu-internet-Oh!"
-  }
-}, {
   "name" : "Atlantis - Juego de naipes interactivo",
   "franchise" : "Atlantis",
   "type" : "Card Pack",
