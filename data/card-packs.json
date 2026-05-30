@@ -72,7 +72,6 @@
     "purchasePrice": "3,30€",
     "condition": "new",
     "barcode": "8018190014730",
-    "quantity": 1,
     "language": "Español",
     "folder": "agumon-sticker-pack",
     "category": "card-packs"
@@ -85,9 +84,20 @@
     "purchasePrice": "2,70€",
     "condition": "new",
     "barcode": "080557401338",
-    "quantity": 1,
     "language": "Español",
     "folder": "aladdin-sticker-pack",
-    "category": "aladdin-sticker-pack"
+    "category": "card-packs"
+  },
+  {
+    "id": "asterix-sticker-pack",
+    "name": "Astérix",
+    "franchise": "Astérix",
+    "brand": "Panini",
+    "purchasePrice": "3,70€",
+    "condition": "new",
+    "quantity": 1,
+    "language": "Español",
+    "folder": "asterix-sticker-pack",
+    "category": "card-packs"
   }
 ]

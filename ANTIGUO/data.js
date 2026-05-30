@@ -1,32 +1,4 @@
-const collectibles = [ {
-  "name" : "Aladdin",
-  "franchise" : "Aladdin",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "2,70€",
-  "condition" : "new",
-  "barcode" : "080557401338",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Aladdin"
-  }
-}, {
-  "name" : "Astérix",
-  "franchise" : "Astérix",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "3,70€",
-  "condition" : "new",
-  "barcode" : "",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Astérix"
-  }
-}, {
+const collectibles = [  {
   "name" : "Atlantis",
   "franchise" : "Atlantis",
   "type" : "Sticker Pack",
