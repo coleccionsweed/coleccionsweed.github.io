@@ -1,60 +1,4 @@
-const collectibles = [    {
-  "name" : "Harry Potter y el misterio del príncipe",
-  "franchise" : "Harry Potter",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "3,46€",
-  "condition" : "new",
-  "barcode" : "7897653510832",
-  "quantity" : 2,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Harry Potter y el misterio del príncipe"
-  }
-},  {
-  "name" : "Harry Potter y el prisionero de Azkaban",
-  "franchise" : "Harry Potter",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "1,65€",
-  "condition" : "new",
-  "barcode" : "8018190024074",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Harry Potter y el prisionero de Azkaban"
-  }
-}, {
-  "name" : "Harry Potter y la cámara secreta",
-  "franchise" : "Harry Potter",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "1,00€",
-  "condition" : "new",
-  "barcode" : "8018190020533",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Harry Potter y la cámara secreta"
-  }
-}, {
-  "name" : "Harry Potter y la cámara secreta - Cartoons",
-  "franchise" : "Harry Potter",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "2,98€",
-  "condition" : "new",
-  "barcode" : "8018190022056",
-  "quantity" : 1,
-  "language" : "Inglés",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Harry Potter y la cámara secreta - Cartoons"
-  }
-}, {
+const collectibles = [  {
   "name" : "Harry Potter y la orden del fénix - Cho Chang",
   "franchise" : "Harry Potter",
   "type" : "Sticker Pack",
@@ -137,48 +81,6 @@ const collectibles = [    {
   "notes" : "",
   "extraAttributes" : {
     "Collection" : "Harry Potter y la orden del fénix"
-  }
-}, {
-  "name" : "Harry Potter y la piedra filosofal",
-  "franchise" : "Harry Potter",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "2,68€",
-  "condition" : "new",
-  "barcode" : "8018190017939",
-  "quantity" : 3,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Harry Potter y la piedra filosofal"
-  }
-}, {
-  "name" : "Harry Potter y la piedra filosofal - Brillante",
-  "franchise" : "Harry Potter",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "2,70€",
-  "condition" : "new",
-  "barcode" : "8018190017939",
-  "quantity" : 2,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Harry Potter y la piedra filosofal"
-  }
-}, {
-  "name" : "Harry Potter y la piedra filosofal - Cartoons",
-  "franchise" : "Harry Potter",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "2,98€",
-  "condition" : "new",
-  "barcode" : "8018190017144",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Harry Potter y la piedra filosofal - Cartoons"
   }
 }, {
   "name" : "Harry Potter y las reliquias de la muerte - Parte 1",
