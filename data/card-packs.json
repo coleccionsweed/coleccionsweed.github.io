@@ -405,5 +405,53 @@
     "language": "Español",
     "folder": "harry-potter-y-el-caliz-de-fuego-harry-potter-sticker-pack",
     "category": "card-packs"
+  },
+  {
+    "id": "harry-potter-y-el-caliz-de-fuego-cedric-diggory-fleur-delacour-y-viktor-krum-sticker-pack",
+    "name": "Harry Potter y el cáliz de fuego - Cedric Diggory, Fleur Delacour y Viktor Krum",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "1,17€",
+    "condition": "new",
+    "barcode": "8018190026436",
+    "language": "Español",
+    "folder": "harry-potter-y-el-caliz-de-fuego-cedric-diggory-fleur-delacour-y-viktor-krum-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "harry-potter-y-el-caliz-de-fuego-huevo-sticker-pack",
+    "name": "Harry Potter y el cáliz de fuego - Huevo",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "1,17€",
+    "condition": "new",
+    "barcode": "8018190026436",
+    "language": "Español",
+    "folder": "harry-potter-y-el-caliz-de-fuego-huevo-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "harry-potter-y-el-caliz-de-fuego-ron-y-hermione-sticker-pack",
+    "name": "Harry Potter y el cáliz de fuego - Ron y Hermione",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "1,17€",
+    "condition": "new",
+    "barcode": "8018190026436",
+    "language": "Español",
+    "folder": "harry-potter-y-el-caliz-de-fuego-ron-y-hermione-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "harry-potter-y-el-caliz-de-fuego-sirena-sticker-pack",
+    "name": "Harry Potter y el cáliz de fuego - Sirena",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "1,17€",
+    "condition": "new",
+    "barcode": "8018190026436",
+    "language": "Español",
+    "folder": "harry-potter-y-el-caliz-de-fuego-sirena-sticker-pack",
+    "category": "card-packs"
   }
 ]
