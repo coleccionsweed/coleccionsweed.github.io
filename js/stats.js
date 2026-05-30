@@ -1,7 +1,7 @@
 // js/stats.js
 import { loadCollection } from './dataLoader.js';
 
-let charts = { categories: null, condition: null };
+let charts = { categories: null };
 
 function parsePrice(priceStr) {
   if (!priceStr) return 0;
@@ -29,9 +29,7 @@ export async function initStatsPage() {
   let totalQuantity = 0;
 
   const categoriesMap = {};
-  const conditionsMap = {};
   const franchisesMap = {};
-  const brandsMap = {};
 
   rawItems.forEach(item => {
     const qty = parseInt(item.quantity) || 1;
@@ -44,15 +42,8 @@ export async function initStatsPage() {
     const cat = item.category || 'Sin Categoría';
     categoriesMap[cat] = (categoriesMap[cat] || 0) + qty;
 
-    const cond = item.condition ? item.condition.toUpperCase() : 'DESCONOCIDO';
-    conditionsMap[cond] = (conditionsMap[cond] || 0) + qty;
-
     const fran = item.franchise || 'Sin Franquicia';
     franchisesMap[fran] = (franchisesMap[fran] || 0) + itemTotalValue;
-
-    if (item.brand) {
-      brandsMap[item.brand] = (brandsMap[item.brand] || 0) + qty;
-    }
   });
 
   // 3. Inyección del diseño HTML del Dashboard
@@ -86,22 +77,9 @@ export async function initStatsPage() {
           </div>
         </div>
 
-        <div class="info-card" style="display: flex; flex-direction: column; align-items: center; background: #141822; padding: 24px; border-radius: 20px;">
-          <h4 style="font-size: 15px; font-weight: 700; color: #fff; width: 100%; text-align: left; margin-bottom: 24px; text-transform: uppercase;">📊 Conservación de Ejemplares</h4>
-          <div style="width: 100%; height: 280px;">
-            <canvas id="chartCondition"></canvas>
-          </div>
-        </div>
-      </div>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 32px;">
         <div class="info-card" style="background: #141822; padding: 24px; border-radius: 20px;">
           <h4 style="font-size: 15px; font-weight: 700; color: #10b981; margin-bottom: 16px; text-transform: uppercase;">🏆 Top 5 Franquicias Líderes (Valor)</h4>
           <div id="topFranchisesTable"></div>
-        </div>
-        <div class="info-card" style="background: #141822; padding: 24px; border-radius: 20px;">
-          <h4 style="font-size: 15px; font-weight: 700; color: #f59e0b; margin-bottom: 16px; text-transform: uppercase;">🏷️ Top Marcas / Fabricantes</h4>
-          <div id="topBrandsTable"></div>
         </div>
       </div>
     </div>
@@ -130,42 +108,10 @@ export async function initStatsPage() {
     });
   }
 
-  const ctxCond = document.getElementById('chartCondition');
-  if (ctxCond) {
-    if (charts.condition) charts.condition.destroy();
-    charts.condition = new Chart(ctxCond, {
-      type: 'bar',
-      data: {
-        labels: Object.keys(conditionsMap),
-        datasets: [{
-          data: Object.values(conditionsMap),
-          backgroundColor: 'rgba(99, 102, 241, 0.85)',
-          borderRadius: 8,
-          hoverBackgroundColor: '#6366f1'
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          x: { ticks: { color: '#9aa3b2' }, grid: { display: false } },
-          y: { ticks: { color: '#9aa3b2' }, grid: { color: 'rgba(255,255,255,0.05)' } }
-        },
-        plugins: { legend: { display: false } }
-      }
-    });
-  }
-
   const topFranchises = Object.entries(franchisesMap).sort((a, b) => b[1] - a[1]).slice(0, 5);
   document.getElementById('topFranchisesTable').innerHTML = renderPremiumTable(
     ['Franquicia', 'Valor Acumulado'],
     topFranchises.map(([n, v]) => [n, v.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })])
-  );
-
-  const topBrands = Object.entries(brandsMap).sort((a, b) => b[1] - a[1]).slice(0, 5);
-  document.getElementById('topBrandsTable').innerHTML = renderPremiumTable(
-    ['Marca', 'Cantidad'],
-    topBrands.map(([n, q]) => [n, `${q} uds`])
   );
 }
 
