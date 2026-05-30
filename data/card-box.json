@@ -34,5 +34,17 @@
     "language": "Español",
     "folder": "harry-potter-y-la-piedra-filosofal-caja-de-cromos",
     "category": "card-box"
+  },
+  {
+    "id": "megaevolucion-fuegos-fantasmales-caja-de-entrenador-elite",
+    "name": "Megaevolución - Fuegos Fantasmales - Caja de entrenador élite",
+    "franchise": "Pokémon",
+    "brand": "Pokémon",
+    "purchasePrice": "53,00€",
+    "condition": "new",
+    "barcode": "0196214124851",
+    "language": "Español",
+    "folder": "megaevolucion-fuegos-fantasmales-caja-de-entrenador-elite",
+    "category": "card-box"
   }
 ]
