@@ -109,5 +109,38 @@
     "language": "Turco",
     "folder": "animales-fantasticos-los-secretos-de-dumbledore-gellert-grindelwald-y-albus-dumbledore",
     "category": "card-packs"
+  },
+  {
+    "id": "animales-fantasticos-los-secretos-de-dumbledore-newt-scamander-y-albus-dumbledore",
+    "name": "Animales Fantásticos - Los Secretos de Dumbledore - Newt Scamander y Albus Dumbledore",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "1,00€",
+    "condition": "new",
+    "language": "Portugués",
+    "folder": "animales-fantasticos-los-secretos-de-dumbledore-newt-scamander-y-albus-dumbledore",
+    "category": "card-packs"
+  },
+  {
+    "id": "animales-fantasticos-los-secretos-de-dumbledore-niffler",
+    "name": "Animales Fantásticos - Los Secretos de Dumbledore - Niffler",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "1,00€",
+    "condition": "new",
+    "language": "Inglés",
+    "folder": "animales-fantasticos-los-secretos-de-dumbledore-niffler",
+    "category": "card-packs"
+  },
+  {
+    "id": "animales-fantasticos-los-secretos-de-dumbledore-queenie-goldstein-y-jacob-kowalski",
+    "name": "Animales Fantásticos - Los Secretos de Dumbledore - Queenie Goldstein y Jacob Kowalski",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "1,00€",
+    "condition": "new",
+    "language": "Italiano",
+    "folder": "animales-fantasticos-los-secretos-de-dumbledore-queenie-goldstein-y-jacob-kowalski",
+    "category": "card-packs"
   }
 ]
