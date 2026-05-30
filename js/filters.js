@@ -1,3 +1,4 @@
+// js/filters.js
 import { t } from './translations.js';
 
 export function setupFilters(items, onChange) {
@@ -77,16 +78,17 @@ export function setupFilters(items, onChange) {
       );
     });
 
-    // 2. Ordenación
+    // 2. Ordenación (Corregido: Si no hay valor o es name-asc, ordena A-Z)
     const order = sortOrder.value;
-    if (order === 'name-asc') {
-      result.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
-    } else if (order === 'name-desc') {
+    if (order === 'name-desc') {
       result.sort((a, b) => (b.name || '').localeCompare(a.name || ''));
     } else if (order === 'price-asc') {
       result.sort((a, b) => parsePrice(a.purchasePrice) - parsePrice(b.purchasePrice));
     } else if (order === 'price-desc') {
       result.sort((a, b) => parsePrice(b.purchasePrice) - parsePrice(a.purchasePrice));
+    } else {
+      // Por defecto (cuando está vacío "Ordenar por..." o se selecciona "name-asc") ordena de la A a la Z
+      result.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
     }
 
     itemsFiltradosYOrdenados = result;
@@ -105,6 +107,6 @@ export function setupFilters(items, onChange) {
   sortOrder.onchange = apply;
   search.oninput = apply;
   
-  // Ejecución inicial para que al entrar ya se vea el estado correcto
+  // Ejecución inicial para que al entrar ya se vea el estado correcto y ordenado de la A-Z
   apply();
 }
