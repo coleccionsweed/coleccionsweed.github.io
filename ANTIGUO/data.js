@@ -1,32 +1,4 @@
-const collectibles = [   {
-  "name" : "Caillou",
-  "franchise" : "Caillou",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "0,75€",
-  "condition" : "new",
-  "barcode" : "8018190032444",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Caillou"
-  }
-}, {
-  "name" : "Chicken Little",
-  "franchise" : "Chicken Little",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "0,47€",
-  "condition" : "new",
-  "barcode" : "8018190026351",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Chicken Little"
-  }
-},  {
+const collectibles = [    {
   "name" : "Gabumon",
   "franchise" : "Digimon",
   "type" : "Sticker Pack",
@@ -96,49 +68,7 @@ const collectibles = [   {
   "extraAttributes" : {
     "Collection" : ""
   }
-},  {
-  "name" : "Dinosaurs",
-  "franchise" : "Dinosaurs",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "0,47€",
-  "condition" : "new",
-  "barcode" : "080557402045",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Dinosaurs"
-  }
-}, {
-  "name" : "Disney Universe",
-  "franchise" : "Disney",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "0,47€",
-  "condition" : "new",
-  "barcode" : "8018190050646",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Disney Universe"
-  }
-}, {
-  "name" : "E.T",
-  "franchise" : "E.T.",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "2,40€",
-  "condition" : "new",
-  "barcode" : "",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "E.T."
-  }
-}, {
+},   {
   "name" : "La ruta hacia El Dorado",
   "franchise" : "La ruta hacia El Dorado",
   "type" : "Sticker Pack",

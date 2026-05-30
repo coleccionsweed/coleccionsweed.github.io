@@ -190,5 +190,64 @@
     "language": "Español",
     "folder": "buscando-a-dory-sticker-pack",
     "category": "card-packs"
+  },
+  {
+    "id": "caillou-sticker-pack",
+    "name": "Caillou",
+    "franchise": "Caillou",
+    "brand": "Panini",
+    "purchasePrice": "0,75€",
+    "condition": "new",
+    "barcode": "8018190032444",
+    "language": "Español",
+    "folder": "caillou-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "chicken-little-sticker-pack",
+    "name": "Chicken Little",
+    "franchise": "Chicken Little",
+    "brand": "Panini",
+    "purchasePrice": "0,47€",
+    "condition": "new",
+    "barcode": "8018190026351",
+    "language": "Español",
+    "folder": "chicken-little-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "dinosaurs-sticker-pack",
+    "name": "Dinosaurs",
+    "franchise": "Dinosaurs",
+    "brand": "Panini",
+    "purchasePrice": "0,47€",
+    "condition": "new",
+    "barcode": "080557402045",
+    "language": "Español",
+    "folder": "dinosaurs-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "disney-universe-sticker-pack",
+    "name": "Disney Universe",
+    "franchise": "Disney",
+    "brand": "Panini",
+    "purchasePrice": "0,47€",
+    "condition": "new",
+    "barcode": "8018190050646",
+    "language": "Español",
+    "folder": "disney-universe-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "e.t.-sticker-pack",
+    "name": "E.T.",
+    "franchise": "E.T.",
+    "brand": "Panini",
+    "purchasePrice": "2,40€",
+    "condition": "new",
+    "language": "Español",
+    "folder": "e.t.-sticker-pack",
+    "category": "card-packs"
   }
 ]
