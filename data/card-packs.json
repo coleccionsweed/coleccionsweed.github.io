@@ -63,5 +63,31 @@
     "language": "Inglés",
     "folder": "el-jorobado-de-notre-dame-sticker-pack",
     "category": "card-packs"
+  },
+  {
+    "id": "agumon-sticker-pack",
+    "name": "Agumon",
+    "franchise": "Digimon",
+    "brand": "Panini",
+    "purchasePrice": "3,30€",
+    "condition": "new",
+    "barcode": "8018190014730",
+    "quantity": 1,
+    "language": "Español",
+    "folder": "agumon-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "aladdin-sticker-pack",
+    "name": "Aladdin",
+    "franchise": "Digimon",
+    "brand": "Panini",
+    "purchasePrice": "2,70€",
+    "condition": "new",
+    "barcode": "080557401338",
+    "quantity": 1,
+    "language": "Español",
+    "folder": "aladdin-sticker-pack",
+    "category": "aladdin-sticker-pack"
   }
 ]

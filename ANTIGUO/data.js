@@ -96,21 +96,7 @@ const collectibles = [ {
   "extraAttributes" : {
     "Collection" : "Chicken Little"
   }
-}, {
-  "name" : "Agumon",
-  "franchise" : "Digimon",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "3,30€",
-  "condition" : "new",
-  "barcode" : "8018190014730",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Digimon"
-  }
-}, {
+},  {
   "name" : "Gabumon",
   "franchise" : "Digimon",
   "type" : "Sticker Pack",
