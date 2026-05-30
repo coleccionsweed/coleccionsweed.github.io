@@ -1,6 +1,4 @@
 // js/stats.js
-import { loadCollection } from './dataLoader.js'; // <-- Carga directa de los JSONs
-
 let charts = { categories: null, condition: null };
 
 function parsePrice(priceStr) {
@@ -9,33 +7,14 @@ function parsePrice(priceStr) {
   return parseFloat(clean) || 0;
 }
 
-// Hacemos la función ASÍNCRONA (async) para poder descargar todo el inventario de golpe
-export async function initStatsPage() {
-  // Cambiar visualización activa en los textos de navegación premium
+export function initStatsPage(allItems) {
   const navG = document.getElementById('navGallery');
   const navS = document.getElementById('navStats');
   if (navG) navG.style.color = '#6b7280';
   if (navS) navS.style.color = '#ffffff';
 
-  // 1. RENDERIZAR ESQUELETO DE CARGA (Loading...)
-  const statsContainer = document.getElementById('statsView');
-  if (!statsContainer) return;
-  statsContainer.innerHTML = `
-    <div class="detail-container" style="text-align: center; padding: 100px 0;">
-      <h2 style="color: #fff; font-size: 24px; animation: pulse 1.5s infinite;">📊 Procesando base de datos completa...</h2>
-      <p style="color: #6b7280; margin-top: 10px;">Analizando archivos JSON globales en segundo plano de forma aislada.</p>
-    </div>
-  `;
-
-  // 2. DESCARGA PURA E INDEPENDIENTE DESDE EL ORIGEN (Ignora el scroll de la galería)
-  const rawData = await loadCollection();
-  
-  // Clonamos el array profundamente para asegurar que ningún otro script (scroll/filtros) lo contamine
-  const cleanItems = JSON.parse(JSON.stringify(rawData));
-
-  // 3. EXTRACCIÓN DE MÉTRICAS SOBRE EL 100% DE LOS DATOS CRUDOS
   let totalValue = 0;
-  let totalItems = cleanItems.length; // <-- ¡Aquí estará la cifra real total (ej. 1500, 3000, etc.)!
+  let totalItems = allItems.length; 
   let totalQuantity = 0;
 
   const categoriesMap = {};
@@ -43,7 +22,7 @@ export async function initStatsPage() {
   const franchisesMap = {};
   const brandsMap = {};
 
-  cleanItems.forEach(item => {
+  allItems.forEach(item => {
     const qty = parseInt(item.quantity) || 1;
     const price = parsePrice(item.purchasePrice);
     const itemTotalValue = price * qty;
@@ -65,12 +44,14 @@ export async function initStatsPage() {
     }
   });
 
-  // 4. INYECTAR PANEL FINAL CON DATOS REALES
+  const statsContainer = document.getElementById('statsView');
+  if (!statsContainer) return;
+  
   statsContainer.innerHTML = `
     <div class="detail-container">
       <div class="detail-header" style="margin-bottom: 32px;">
         <h2 style="font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 4px;">Estadísticas Globales</h2>
-        <p style="color: #6b7280; font-size: 14px;">Métricas puras e independientes de la visualización de la galería.</p>
+        <p style="color: #6b7280; font-size: 14px;">Métricas del catálogo completo de tu ecosistema.</p>
       </div>
 
       <div class="info-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 32px;">
@@ -90,7 +71,7 @@ export async function initStatsPage() {
 
       <div class="detail" style="gap: 32px; margin-bottom: 32px;">
         <div class="info-card" style="display: flex; flex-direction: column; align-items: center; min-height: 400px; justify-content: center;">
-          <h4 style="font-size: 16px; font-weight: 700; color: #fff; width: 100%; text-align: left; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.5px;">🍩 Unidades por Categoría (Rosco)</h4>
+          <h4 style="font-size: 16px; font-weight: 700; color: #fff; width: 100%; text-align: left; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.5px;">🍩 Unidades por Categoría</h4>
           <div style="width: 100%; max-width: 280px; height: 280px; position: relative;">
             <canvas id="chartCategories"></canvas>
           </div>
@@ -117,7 +98,6 @@ export async function initStatsPage() {
     </div>
   `;
 
-  // 5. RE-RENDERIZADO SEGURO DE CHART.JS
   const ctxCat = document.getElementById('chartCategories');
   if (ctxCat) {
     if (charts.categories) charts.categories.destroy();
@@ -135,9 +115,7 @@ export async function initStatsPage() {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: {
-          legend: { position: 'bottom', labels: { color: '#9aa3b2', font: { size: 11 } } }
-        }
+        plugins: { legend: { position: 'bottom', labels: { color: '#9aa3b2', font: { size: 11 } } } }
       }
     });
   }
@@ -168,7 +146,6 @@ export async function initStatsPage() {
     });
   }
 
-  // 6. RANKINGS
   const topFranchises = Object.entries(franchisesMap).sort((a, b) => b[1] - a[1]).slice(0, 5);
   document.getElementById('topFranchisesTable').innerHTML = renderPremiumTable(
     ['Franquicia', 'Valor Acumulado'],

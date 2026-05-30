@@ -64,6 +64,7 @@ export function setupFilters(items, onChange) {
   };
 
   // --- Lógica principal de filtrado y ordenación ---
+  // --- Función central de filtrado y ordenación ---
   function apply() {
     limiteActual = 20; 
 
@@ -93,10 +94,11 @@ export function setupFilters(items, onChange) {
     const primeraTanda = itemsFiltradosYOrdenados.slice(0, limiteActual);
 
     // 3. Actualizar contador usando el total absoluto
-    actualizarContador(primeraTanda.length, totalAbsoluto);
+    actualizarContador(itemsFiltradosYOrdenados.length, totalAbsoluto);
 
-    // 4. Enviar resultados al renderizador
-    onChange(primeraTanda);
+    // CORRECCIÓN AQUÍ: Pasamos 'result' (la lista completa filtrada) al callback,
+    // NO 'primeraTanda', para que las estadísticas tengan acceso a TODO el JSON.
+    onChange(result); 
   }
 
   // --- Listeners ---

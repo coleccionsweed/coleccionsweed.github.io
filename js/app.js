@@ -13,23 +13,38 @@ async function init() {
     window.history.scrollRestoration = 'manual';
   }
 
-  // 1. Cargamos el 100% de los datos de todos los JSONs en memoria inmediatamente
+  // 1. Cargamos el 100% de la colección desde los JSONs
   allItems = await loadCollection()
   itemsAMostrar = allItems 
 
+  // 2. Configuramos filtros recibiendo la lista completa
   setupFilters(allItems, (filteredItems) => {
-    itemsAMostrar = filteredItems 
+    itemsAMostrar = filteredItems // Mantiene la lista completa filtrada en memoria
     
-    // Si el usuario está en la página de estadísticas y filtra, se recalcula todo al instante
     if (window.location.hash === '#stats') {
       initStatsPage(itemsAMostrar);
     } else if (!window.location.hash) {
-      renderItems(filteredItems)
+      // Para la galería visual, solo pintamos los primeros 20 (Lazy loading/Scroll de tu web)
+      renderItems(filteredItems.slice(0, 20))
     }
   })
 
   handleRoute()
   window.addEventListener('hashchange', handleRoute)
+
+  // 3. Listener para tu Scroll Infinito original:
+  // Cuando el usuario baje al revés de la página, filters.js se encargará de renderizar más.
+  window.addEventListener('scroll', () => {
+    if (window.location.hash) return; // Si no estamos en la galería principal, no hacemos nada
+    
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+    if (scrollTop + clientHeight >= scrollHeight - 300) {
+      // Dejamos que el scroll perezoso siga funcionando de forma nativa en tu interfaz
+      if (typeof window.cargarMasItems === 'function') {
+        window.cargarMasItems();
+      }
+    }
+  });
 }
 
 function handleRoute() {
@@ -42,7 +57,7 @@ function handleRoute() {
   const sidebar = document.getElementById('filtersContainer')
 
   // ==========================================
-  // VISTA DE ESTADÍSTICAS GLOBAL (#stats) dentro de handleRoute()
+  // VISTA DE ESTADÍSTICAS GLOBAL (#stats)
   // ==========================================
   if (hash === 'stats') {
     if (galleryView) galleryView.style.display = 'none';
@@ -51,10 +66,10 @@ function handleRoute() {
     if (counter) counter.style.display = 'none';
     
     if (statsView) statsView.style.display = 'block';
-    if (filters) filters.style.display = 'none'; // Oculta selectores de cabecera
+    if (filters) filters.style.display = ''; // Permitimos ver los filtros arriba si quieres
 
-    // LLAMADA LIMPIA: Sin pasarle variables locales de app.js, se autoabastece sola
-    initStatsPage(); 
+    // ¡BRUTAL! Ahora "itemsAMostrar" contiene el 100% de los elementos reales del JSON
+    initStatsPage(itemsAMostrar);
     return;
   }
 
@@ -81,7 +96,8 @@ function handleRoute() {
       grid.className = 'collection-grid';
     }
     
-    renderItems(itemsAMostrar);
+    // Al volver a la galería, pintamos solo la tanda inicial de 20 para no saturar el DOM
+    renderItems(itemsAMostrar.slice(0, 20));
 
     setTimeout(() => {
       window.scrollTo(0, posicionScrollGuardada);
@@ -128,7 +144,7 @@ function handleRoute() {
       grid.style.opacity = '1';
       grid.className = 'collection-grid';
     }
-    renderItems(itemsAMostrar);
+    renderItems(itemsAMostrar.slice(0, 20));
   }
 }
 
