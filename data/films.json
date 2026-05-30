@@ -1,6 +1,6 @@
 [
   {
-    "id": "el-senor-de-los-anillos-la-trilogia",
+    "id": "el-senor-de-los-anillos-la-trilogia-blu-ray",
     "name": "El Señor de los Anillos - La trilogía",
     "franchise": "El Señor de los Anillos",
 	"Platform" : "Blu-ray 4K ULTRA HD",
@@ -9,7 +9,69 @@
     "condition": "used",
     "barcode": "8717418578688",
     "language": "Español",
-    "folder": "el-senor-de-los-anillos-la-trilogia",
+    "folder": "el-senor-de-los-anillos-la-trilogia-blu-ray",
+    "category": "films"
+  },
+  {
+    "id": "hancock-umd",
+    "name": "Hancock",
+	"Platform" : "UMD",
+    "brand": "Sony Pictures",
+    "purchasePrice": "0,00€",
+    "condition": "used",
+    "barcode": "8414533055475",
+    "language": "Español",
+    "folder": "hancock-umd",
+    "category": "films"
+  },
+  {
+    "id": "la-comunidad-del-anillo-digibook-blu-ray",
+    "name": "La Comunidad del Anillo - Digibook",
+	"franchise" : "El Señor de los Anillos",
+	"Platform" : "Blu-ray",
+    "brand": "New Line Cinema",
+    "purchasePrice": "5,47€",
+    "condition": "used",
+    "language": "Español",
+    "folder": "la-comunidad-del-anillo-digibook-blu-ray",
+    "category": "films"
+  },
+  {
+    "id": "las-dos-torres-version-extendida-dvd",
+    "name": "Las Dos Torres (Versión extendida)",
+	"franchise" : "El Señor de los Anillos",
+	"Platform" : "DVD",
+    "brand": "New Line Cinema",
+    "purchasePrice": "50,00€",
+    "condition": "new",
+	"barcode" : "8414533020992",
+    "language": "Español",
+    "folder": "las-dos-torres-version-extendida-dvd",
+    "category": "films"
+  },
+  {
+    "id": "la-desolacion-de-smaug-version-extendida-blu-ray",
+    "name": "La Desolación de Smaug (Versión extendida)",
+	"franchise" : "El Señor de los Anillos",
+	"Platform" : "Blu-ray",
+    "brand": "Warner Bros. Pictures",
+    "purchasePrice": "3,98€",
+    "condition": "new",
+	"barcode" : "5051893184945",
+    "language": "Español",
+    "folder": "la-desolacion-de-smaug-version-extendida-blu-ray",
+    "category": "films"
+  },
+  {
+    "id": "robots-umd",
+    "name": "Robots",
+	"Platform" : "UMD",
+    "brand": "20th Century Studios",
+    "purchasePrice": "1,00€",
+    "condition": "used",
+    "barcode": "8420266924322",
+    "language": "Español",
+    "folder": "robots-umd",
     "category": "films"
   }
 ]

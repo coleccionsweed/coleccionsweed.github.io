@@ -124,77 +124,7 @@ const collectibles = [ {
   "extraAttributes" : {
     "Collection" : ""
   }
-},   {
-  "name" : "La Comunidad del Anillo - Digibook",
-  "franchise" : "El Señor de los Anillos",
-  "type" : "Film",
-  "brand" : "New Line Cinema",
-  "purchasePrice" : "5,47€",
-  "condition" : "used",
-  "barcode" : "",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Platform" : "Blu-ray"
-  }
-}, {
-  "name" : "Las Dos Torres (Versión extendida)",
-  "franchise" : "El Señor de los Anillos",
-  "type" : "Film",
-  "brand" : "New Line Cinema",
-  "purchasePrice" : "50,00€",
-  "condition" : "new",
-  "barcode" : "8414533020992",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Platform" : "DVD"
-  }
-}, {
-  "name" : "La Desolación de Smaug (Versión extendida)",
-  "franchise" : "El Señor de los Anillos",
-  "type" : "Film",
-  "brand" : "Warner Bros. Pictures",
-  "purchasePrice" : "3,98€",
-  "condition" : "new",
-  "barcode" : "5051893184945",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Platform" : "Blu-ray"
-  }
-}, {
-  "name" : "Hancock",
-  "franchise" : "Sin franquicia",
-  "type" : "Film",
-  "brand" : "Sony Pictures",
-  "purchasePrice" : "0,00€",
-  "condition" : "used",
-  "barcode" : "8414533055475",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Platform" : "UMD"
-  }
-}, {
-  "name" : "Robots",
-  "franchise" : "Robots",
-  "type" : "Film",
-  "brand" : "20th Century Studios",
-  "purchasePrice" : "1,00€",
-  "condition" : "used",
-  "barcode" : "8420266924322",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Platform" : "UMD"
-  }
-},    {
+},     {
   "name" : "Astérix",
   "franchise" : "Astérix",
   "type" : "Sticker Pack",
