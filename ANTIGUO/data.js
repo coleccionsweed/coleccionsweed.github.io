@@ -1,46 +1,4 @@
-const collectibles = [     {
-  "name" : "La ruta hacia El Dorado",
-  "franchise" : "La ruta hacia El Dorado",
-  "type" : "Sticker Pack",
-  "brand" : "Diamond",
-  "purchasePrice" : "3,65€",
-  "condition" : "new",
-  "barcode" : "8020672001749",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "La ruta hacia El Dorado"
-  }
-},  {
-  "name" : "La Comunidad del Anillo",
-  "franchise" : "El Señor de los Anillos",
-  "type" : "Sticker Pack",
-  "brand" : "Merlin Stickers",
-  "purchasePrice" : "11,35€",
-  "condition" : "new",
-  "barcode" : "5018819900447",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "La Comunidad del Anillo"
-  }
-}, {
-  "name" : "Las Dos Torres",
-  "franchise" : "El Señor de los Anillos",
-  "type" : "Sticker Pack",
-  "brand" : "Merlin Stickers",
-  "purchasePrice" : "0,00€",
-  "condition" : "new",
-  "barcode" : "5018819902571",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Las Dos Torres"
-  }
-}, {
+const collectibles = [      {
   "name" : "Harry Potter - Agenda Stickers",
   "franchise" : "Harry Potter",
   "type" : "Sticker Pack",

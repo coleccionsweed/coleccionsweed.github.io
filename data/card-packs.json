@@ -321,5 +321,41 @@
     "language": "Español",
     "folder": "tentomon-sticker-pack",
     "category": "card-packs"
+  },
+  {
+    "id": "la-ruta-hacia-el-dorado-sticker-pack",
+    "name": "La ruta hacia El Dorado",
+    "franchise": "La ruta hacia El Dorado",
+    "brand": "Diamond",
+    "purchasePrice": "3,65€",
+    "condition": "new",
+    "barcode": "8020672001749",
+    "language": "Español",
+    "folder": "la-ruta-hacia-el-dorado-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "la-comunidad-del-anillo-sticker-pack",
+    "name": "La Comunidad del Anillo",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Merlin Stickers",
+    "purchasePrice": "11,35€",
+    "condition": "new",
+    "barcode": "5018819900447",
+    "language": "Inglés",
+    "folder": "la-comunidad-del-anillo-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "las-dos-torres-sticker-pack",
+    "name": "Las Dos Torres",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Merlin Stickers",
+    "purchasePrice": "0,00€",
+    "condition": "new",
+    "barcode": "5018819902571",
+    "language": "Inglés",
+    "folder": "las-dos-torres-sticker-pack",
+    "category": "card-packs"
   }
 ]
