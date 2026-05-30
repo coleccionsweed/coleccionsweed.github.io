@@ -9,15 +9,13 @@ function parsePrice(priceStr) {
 }
 
 export function initStatsPage(allItems) {
-  // 1. Alternamos las secciones según tu flujo de SPA
-  document.getElementById('galleryView').style.display = 'none';
-  document.getElementById('statsView').style.display = 'block';
-
   // Cambiar visualización activa en los textos de navegación premium
-  document.getElementById('navGallery').style.color = '#9ca3af';
-  document.getElementById('navStats').style.color = '#ffffff';
+  const navG = document.getElementById('navGallery');
+  const navS = document.getElementById('navStats');
+  if (navG) navG.style.color = '#6b7280';
+  if (navS) navS.style.color = '#ffffff';
 
-  // 2. Extracción de métricas
+  // 1. Extracción de métricas
   let totalValue = 0;
   let totalItems = allItems.length;
   let totalQuantity = 0;
@@ -49,28 +47,29 @@ export function initStatsPage(allItems) {
     }
   });
 
-  // 3. Renderizar Estructura Maquetada con las Clases de tu main.css (.info-card)
+  // 2. Renderizar Estructura Maquetada con las Clases de tu main.css
   const statsContainer = document.getElementById('statsView');
+  if (!statsContainer) return;
   
   statsContainer.innerHTML = `
     <div class="detail-container">
       <div class="detail-header" style="margin-bottom: 32px;">
-        <h2 style="font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 4px;">Estadísticas del Ecosistema</h2>
-        <p style="color: #6b7280; font-size: 14px;">Métricas en tiempo real basadas en tu inventario activo.</p>
+        <h2 style="font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 4px;">Estadísticas Globales</h2>
+        <p style="color: #6b7280; font-size: 14px;">Métricas calculadas en tiempo real a partir del inventario cargado.</p>
       </div>
 
       <div class="info-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 32px;">
         <div style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
-          <span style="font-size: 11px; color: #6b7280; font-weight: 700; tracking-letter: 1px;">INVERSIÓN TOTAL ESTIMADA</span>
-          <b style="font-size: 28px; color: #10b981; font-weight: 700; margin-top: 8px;">${totalValue.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}</b>
+          <span style="font-size: 11px; color: #6b7280; font-weight: 700; letter-spacing: 1px;">VALOR TOTAL ESTIMADO</span>
+          <b style="font-size: 28px; color: #10b981; font-weight: 700; margin-top: 8px; display: block;">${totalValue.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}</b>
         </div>
         <div style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
-          <span style="font-size: 11px; color: #6b7280; font-weight: 700; tracking-letter: 1px;">VARIEDAD DE MODELOS ÚNICOS</span>
-          <b style="font-size: 28px; color: #ffffff; font-weight: 700; margin-top: 8px;">${totalItems} <span style="font-size: 14px; color: #6b7280; font-weight: 400;">ítems</span></b>
+          <span style="font-size: 11px; color: #6b7280; font-weight: 700; letter-spacing: 1px;">MODELOS COMPILADOS</span>
+          <b style="font-size: 28px; color: #ffffff; font-weight: 700; margin-top: 8px; display: block;">${totalItems} <span style="font-size: 14px; color: #6b7280; font-weight: 400;">ítems</span></b>
         </div>
         <div style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
-          <span style="font-size: 11px; color: #6b7280; font-weight: 700; tracking-letter: 1px;">UNIDADES TOTALES EN STOCK</span>
-          <b style="font-size: 28px; color: #f59e0b; font-weight: 700; margin-top: 8px;">${totalQuantity} <span style="font-size: 14px; color: #6b7280; font-weight: 400;">uds</span></b>
+          <span style="font-size: 11px; color: #6b7280; font-weight: 700; letter-spacing: 1px;">CANTIDAD TOTAL EN STOCK</span>
+          <b style="font-size: 28px; color: #f59e0b; font-weight: 700; margin-top: 8px; display: block;">${totalQuantity} <span style="font-size: 14px; color: #6b7280; font-weight: 400;">uds</span></b>
         </div>
       </div>
 
@@ -122,7 +121,7 @@ export function initStatsPage(allItems) {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-          legend: { position: 'bottom', labels: { color: '#9aa3b2', font: { size: 11, family: 'inherit' } } }
+          legend: { position: 'bottom', labels: { color: '#9aa3b2', font: { size: 11 } } }
         }
       }
     });
@@ -169,7 +168,7 @@ export function initStatsPage(allItems) {
 }
 
 function renderPremiumTable(headers, rows) {
-  if (rows.length === 0) return `<p style="color:#6b7280; font-style:italic; font-size:14px; margin-top:8px;">No hay datos en esta categoría.</p>`;
+  if (rows.length === 0) return `<p style="color:#6b7280; font-style:italic; font-size:14px; margin-top:8px;">No hay datos suficientes.</p>`;
   return `
     <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; color: #e2e8f0; margin-top: 8px;">
       <thead>

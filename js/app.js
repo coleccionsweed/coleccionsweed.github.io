@@ -2,7 +2,7 @@ import { loadCollection } from './dataLoader.js'
 import { renderItems } from './renderer.js'
 import { setupFilters } from './filters.js'
 import { renderDetail } from './detail.js'
-import { initStatsPage } from './stats.js' // <-- IMPORTAMOS EL NUEVO MÓDULO
+import { initStatsPage } from './stats.js' // Importamos el nuevo módulo analítico
 
 let allItems = []
 let itemsAMostrar = []        
@@ -18,20 +18,17 @@ async function init() {
 
   setupFilters(allItems, (filteredItems) => {
     itemsAMostrar = filteredItems 
-    // Solo renderiza ítems si estamos en la vista de lista normal
-    if (!window.location.hash || window.location.hash === '#stats') {
-      if (window.location.hash === '#stats') {
-        initStatsPage(itemsAMostrar); // Si filtras desde la vista stats, se actualiza en vivo
-      } else {
-        renderItems(filteredItems)
-      }
+    // Si estamos en la página de estadísticas, se actualizan en tiempo real al filtrar
+    if (window.location.hash === '#stats') {
+      initStatsPage(itemsAMostrar);
+    } else if (!window.location.hash) {
+      renderItems(filteredItems)
     }
   })
 
   handleRoute()
   window.addEventListener('hashchange', handleRoute)
 }
-
 
 function handleRoute() {
   const hash = window.location.hash.replace('#', '')
@@ -46,19 +43,15 @@ function handleRoute() {
   // VISTA DE ESTADÍSTICAS GLOBAL (#stats)
   // ==========================================
   if (hash === 'stats') {
-    // Apagamos los contenedores de galería de forma radical para que no pisen el espacio en el main
-    if (grid) grid.style.display = 'none';
-    if (counter) counter.style.display = 'none';
-    if (sidebar) sidebar.style.display = 'none';
+    // Ocultamos de forma radical la vista de galería para que no pise espacio
     if (galleryView) galleryView.style.display = 'none';
+    if (sidebar) sidebar.style.display = 'none';
     
-    // Desplegamos el nuevo dashboard
-    if (statsView) {
-      statsView.style.display = 'block';
-    }
-    
-    if (filters) filters.style.display = ''; 
+    // Mostramos el contenedor de estadísticas
+    if (statsView) statsView.style.display = 'block';
+    if (filters) filters.style.display = ''; // Mantenemos el buscador de arriba visible
 
+    // Pintamos las estadísticas pasándole el estado actual de los filtros
     initStatsPage(itemsAMostrar);
     return;
   }
@@ -74,8 +67,11 @@ function handleRoute() {
     if (statsView) statsView.style.display = 'none';
     if (galleryView) galleryView.style.display = 'block';
     
-    document.getElementById('navGallery').style.color = '#ffffff';
-    document.getElementById('navStats').style.color = '#9ca3af';
+    // Actualizamos el menú visual de la cabecera
+    const navG = document.getElementById('navGallery');
+    const navS = document.getElementById('navStats');
+    if (navG) navG.style.color = '#ffffff';
+    if (navS) navS.style.color = '#6b7280';
 
     if (grid) {
       grid.style.display = ''; 
