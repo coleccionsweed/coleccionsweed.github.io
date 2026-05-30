@@ -839,5 +839,77 @@
     "language": "Español",
     "folder": "la-liga-F-22-23-sticker-pack",
     "category": "card-packs"
+  },
+  {
+    "id": "lightyear-sticker-pack",
+    "name": "Lightyear",
+    "franchise": "Toy Story",
+    "brand": "Panini",
+    "purchasePrice": "1,00€",
+    "condition": "new",
+	"barcode" : "8018190032192",
+    "language": "Italiano",
+    "folder": "lightyear-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "los-cachorros-sticker-pack",
+    "name": "Los Cachorros",
+    "franchise": "Los Cachorros",
+    "brand": "Panini",
+    "purchasePrice": "0,47€",
+    "condition": "new",
+	"barcode" : "8018190043297",
+    "language": "Español",
+    "folder": "los-cachorros-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "los-increibles-sticker-pack",
+    "name": "Los Increíbles",
+    "franchise": "Los Increíbles",
+    "brand": "Panini",
+    "purchasePrice": "0,47€",
+    "condition": "new",
+	"barcode" : "8018190024821",
+    "language": "Español",
+    "folder": "los-increibles-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "los-telenecos-sticker-pack",
+    "name": "Los Teleñecos",
+    "franchise": "Los Teleñecos",
+    "brand": "Panini",
+    "purchasePrice": "0,47€",
+    "condition": "new",
+	"barcode" : "8018190000481",
+    "language": "Español",
+    "folder": "los-telenecos-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "masked-rider-sticker-pack",
+    "name": "Masked Rider",
+    "franchise": "Masked Rider",
+    "brand": "Panini",
+    "purchasePrice": "0,47€",
+    "condition": "new",
+	"barcode" : "8018190005646",
+    "language": "Español",
+    "folder": "masked-rider-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "mulan-sticker-pack",
+    "name": "Mulán",
+    "franchise": "Mulán",
+    "brand": "Panini",
+    "purchasePrice": "2,70€",
+    "condition": "new",
+	"barcode" : "8018190009729",
+    "language": "Español",
+    "folder": "mulan-sticker-pack",
+    "category": "card-packs"
   }
 ]
