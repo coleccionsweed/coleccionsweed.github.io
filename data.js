@@ -12,21 +12,7 @@ const collectibles = [ {
   "extraAttributes" : {
     "Collection" : "Aladdin"
   }
-},   {
-  "name" : "Draft Pack The Lord of the Rings - Tales of Middle-Earth",
-  "franchise" : "El Señor de los Anillos",
-  "type" : "Card Pack",
-  "brand" : "Magic",
-  "purchasePrice" : "19,00€",
-  "condition" : "new",
-  "barcode" : "195166204956",
-  "quantity" : 1,
-  "language" : "Inglés",
-  "notes" : "Contiene 3 sobres.",
-  "extraAttributes" : {
-    "Collection" : "The Lord of the Rings - Tales of Middle-Earth"
-  }
-},   {
+}, {
   "name" : "Astérix",
   "franchise" : "Astérix",
   "type" : "Sticker Pack",
