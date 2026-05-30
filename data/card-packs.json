@@ -12,5 +12,33 @@
     "folder": "collector-booster-the-lord-of-the-rings-tales-of-middle-earth",
     "category": "card-packs",
 	"notes" : "Contiene 15 cartas."
+  },
+  {
+    "id": "set-booster-the-lord-of-the-rings-tales-of-middle-earth",
+    "name": "Set Booster The Lord of the Rings - Tales of Middle-Earth",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Magic",
+    "purchasePrice": "9,00€",
+    "condition": "new",
+    "barcode": "195166205236",
+    "quantity": 1,
+    "language": "Inglés",
+    "folder": "set-booster-the-lord-of-the-rings-tales-of-middle-earth",
+    "category": "card-packs",
+	"notes" : "Contiene 12 cartas."
+  },
+  {
+    "id": "harry-potter-y-el-prisionero-de-azkaban-card-pack",
+    "name": "Harry Potter y el prisionero de Azkaban (Sobre de cartas)",
+    "franchise": "Harry Potter",
+    "brand": "Cards Inc.",
+    "purchasePrice": "3,00€",
+    "condition": "new",
+    "barcode": "5060029850395",
+    "quantity": 1,
+    "language": "Inglés",
+    "folder": "harry-potter-y-el-prisionero-de-azkaban-card-pack",
+    "category": "card-packs",
+	"notes" : "Contiene 6 cartas."
   }
 ]

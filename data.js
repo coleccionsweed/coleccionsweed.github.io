@@ -26,21 +26,7 @@ const collectibles = [ {
   "extraAttributes" : {
     "Collection" : "The Lord of the Rings - Tales of Middle-Earth"
   }
-}, {
-  "name" : "Set Booster The Lord of the Rings - Tales of Middle-Earth",
-  "franchise" : "El Señor de los Anillos",
-  "type" : "Card Pack",
-  "brand" : "Magic",
-  "purchasePrice" : "9,00€",
-  "condition" : "new",
-  "barcode" : "195166205236",
-  "quantity" : 1,
-  "language" : "Inglés",
-  "notes" : "Contiene 12 cartas.",
-  "extraAttributes" : {
-    "Collection" : "The Lord of the Rings - Tales of Middle-Earth"
-  }
-}, {
+},  {
   "name" : "Atlantis - Juego de naipes interactivo",
   "franchise" : "Atlantis",
   "type" : "Card Pack",
