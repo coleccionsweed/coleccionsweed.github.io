@@ -637,5 +637,63 @@
     "language": "Inglés",
     "folder": "harry-potter-y-la-orden-del-fenix-voldemort-sticker-pack",
     "category": "card-packs"
+  },
+  {
+    "id": "heidi-sticker-pack",
+    "name": "Heidi",
+    "franchise": "Heidi",
+    "brand": "Panini",
+    "purchasePrice": "1,50€",
+    "condition": "new",
+    "barcode": "8018190023787",
+    "language": "Español",
+    "folder": "heidi-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "hercules-sticker-pack",
+    "name": "Hércules",
+    "franchise": "Hércules",
+    "brand": "Panini",
+    "purchasePrice": "1,90€",
+    "condition": "new",
+    "barcode": "8018190006698",
+    "language": "Español",
+    "folder": "hercules-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "la-liga-94-95-sticker-pack",
+    "name": "La Liga 94-95",
+    "franchise": "La Liga",
+    "brand": "Panini",
+    "purchasePrice": "2,17€",
+    "condition": "new",
+    "language": "Español",
+    "folder": "la-liga-94-95-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "la-liga-95-96-sticker-pack",
+    "name": "La Liga 95-96",
+    "franchise": "La Liga",
+    "brand": "Panini",
+    "purchasePrice": "2,17€",
+    "condition": "new",
+    "language": "Español",
+    "folder": "la-liga-95-96-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "la-liga-96-97-sticker-pack",
+    "name": "La Liga 96-97",
+    "franchise": "La Liga",
+    "brand": "Panini",
+    "purchasePrice": "2,17€",
+    "condition": "new",
+	"barcode" : "8424248210014",
+    "language": "Español",
+    "folder": "la-liga-96-97-sticker-pack",
+    "category": "card-packs"
   }
 ]

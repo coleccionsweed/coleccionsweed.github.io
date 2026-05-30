@@ -1,32 +1,4 @@
 const collectibles = [    {
-  "name" : "Heidi",
-  "franchise" : "Heidi",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "1,50€",
-  "condition" : "new",
-  "barcode" : "8018190023787",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Heidi"
-  }
-}, {
-  "name" : "Hércules",
-  "franchise" : "Hércules",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "1,90€",
-  "condition" : "new",
-  "barcode" : "8018190006698",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Hércules"
-  }
-}, {
   "name" : "High School Musical 2",
   "franchise" : "High School Musical",
   "type" : "Sticker Pack",
@@ -40,49 +12,7 @@ const collectibles = [    {
   "extraAttributes" : {
     "Collection" : "High School Musical 2"
   }
-}, {
-  "name" : "La Liga 94-95",
-  "franchise" : "La Liga",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "2,17€",
-  "condition" : "new",
-  "barcode" : "",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "La Liga 94-95"
-  }
-}, {
-  "name" : "La Liga 95-96",
-  "franchise" : "La Liga",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "2,17€",
-  "condition" : "new",
-  "barcode" : "",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "La Liga 95-96"
-  }
-}, {
-  "name" : "La Liga 96-97",
-  "franchise" : "La Liga",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "2,17€",
-  "condition" : "new",
-  "barcode" : "8424248210014",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "La Liga 96-97"
-  }
-}, {
+},  {
   "name" : "La Liga 07-08",
   "franchise" : "La Liga",
   "type" : "Sticker Pack",
