@@ -6,7 +6,9 @@ export async function loadCollection() {
 	'data/card-box.json',
 	'data/card-collection.json',
 	'data/video-games.json',
-	'data/films.json'
+	'data/films.json',
+	'data/card-packs.json',
+	'data/decks.json'
   ]
 
   const results = await Promise.all(

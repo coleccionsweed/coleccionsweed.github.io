@@ -12,21 +12,7 @@ const collectibles = [ {
   "extraAttributes" : {
     "Collection" : "Aladdin"
   }
-},  {
-  "name" : "Collector Booster The Lord of the Rings - Tales of Middle-Earth",
-  "franchise" : "El Señor de los Anillos",
-  "type" : "Card Pack",
-  "brand" : "Magic",
-  "purchasePrice" : "41,07€",
-  "condition" : "new",
-  "barcode" : "195166205250",
-  "quantity" : 1,
-  "language" : "Inglés",
-  "notes" : "Contiene 15 cartas.",
-  "extraAttributes" : {
-    "Collection" : "The Lord of the Rings - Tales of Middle-Earth"
-  }
-}, {
+},   {
   "name" : "Draft Pack The Lord of the Rings - Tales of Middle-Earth",
   "franchise" : "El Señor de los Anillos",
   "type" : "Card Pack",
@@ -82,21 +68,7 @@ const collectibles = [ {
   "extraAttributes" : {
     "Collection" : "Yu-internet-Oh!"
   }
-}, {
-  "name" : "Orslok Safari - Mazo de estructura",
-  "franchise" : "Yu-internet-Oh!",
-  "type" : "Card Pack",
-  "brand" : "Yu-internet-Oh!",
-  "purchasePrice" : "20,00€",
-  "condition" : "new",
-  "barcode" : "",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Yu-internet-Oh!"
-  }
-}, {
+},  {
   "name" : "Padre Cheeto - Mazo de estructura",
   "franchise" : "Yu-internet-Oh!",
   "type" : "Card Pack",

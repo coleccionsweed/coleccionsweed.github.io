@@ -8,7 +8,9 @@ export const diccionario = {
   "card-box": "Cajas de cartas/cromos",
   "card-collection": "Colecciones de cartas/cromos",
   "video-games": "Videojuegos",
-  "films": "Películas"
+  "films": "Películas",
+  "card-packs": "Sobres de cartas/cromos",
+  "decks": "Mazos"
 };
 
 // Función helper para traducir de forma segura (si no existe, devuelve la palabra original)
