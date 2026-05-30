@@ -3,20 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Colección Sweed</title>
+  <title>Colección Sweed - Galería</title>
   <link rel="stylesheet" href="styles/main.css">
-  
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
   <header class="topbar">
     <div style="display: flex; align-items: center; gap: 30px;">
-      <h1 style="margin: 0;"><a href="#" style="color: inherit; text-decoration: none;">Colección Sweed</a></h1>
+      <h1 style="margin: 0;"><a href="index.html" style="color: inherit; text-decoration: none;">Colección Sweed</a></h1>
       
       <nav class="nav-links" style="display: flex; gap: 20px;">
-        <a href="#" id="navGallery" style="color: #ffffff; font-weight: 700; text-decoration: none; font-size: 15px; transition: color 0.2s;">🖼️ Galería</a>
-        <a href="#stats" id="navStats" style="color: #6b7280; font-weight: 700; text-decoration: none; font-size: 15px; transition: color 0.2s;">📊 Estadísticas</a>
+        <a href="index.html" id="navGallery" style="color: #ffffff; font-weight: 700; text-decoration: none; font-size: 15px; transition: color 0.2s;">🖼️ Galería</a>
+        <a href="stats.html" id="navStats" style="color: #6b7280; font-weight: 700; text-decoration: none; font-size: 15px; transition: color 0.2s;">📊 Estadísticas</a>
       </nav>
     </div>
 
@@ -29,7 +27,7 @@
         <option value="name-asc">Nombre (A-Z)</option>
         <option value="name-desc">Nombre (Z-A)</option>
         <option value="price-asc">Precio (Menor a Mayor)</option>
-        <option value="price-desc">Precio (Mayor a Menor)</option>
+        <option value="price-desc">Precio (Mayor a Minor)</option>
       </select>
 
       <input id="search" placeholder="Buscar...">
@@ -40,12 +38,9 @@
 
   <main>
     <section id="galleryView">
-      <section class="stats" id="stats"></section>
       <section class="collection-grid" id="collectionGrid"></section>
       <div id="items-counter" class="items-counter"></div>
     </section>
-
-    <section id="statsView" style="display: none; width: 100%;"></section>
   </main>
 
   <div class="modal hidden" id="modal"></div>
