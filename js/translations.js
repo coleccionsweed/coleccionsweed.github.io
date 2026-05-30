@@ -10,7 +10,8 @@ export const diccionario = {
   "video-games": "Videojuegos",
   "films": "Películas",
   "card-packs": "Sobres de cartas/cromos",
-  "decks": "Mazos"
+  "decks": "Mazos",
+  "board-games": "Juegos de mesa"
 };
 
 // Función helper para traducir de forma segura (si no existe, devuelve la palabra original)

@@ -1,0 +1,14 @@
+[
+  {
+    "id": "atlantis-juego-de-naipes-interactivo",
+    "name": "Atlantis - Juego de naipes interactivo",
+    "franchise": "Atlantis",
+    "brand": "Fournier",
+    "purchasePrice": "9,75€",
+    "condition": "new",
+	"barcode" : "8420707267261",
+    "language": "Español",
+    "folder": "atlantis-juego-de-naipes-interactivo",
+    "category": "decks"
+  }
+]

@@ -8,7 +8,8 @@ export async function loadCollection() {
 	'data/video-games.json',
 	'data/films.json',
 	'data/card-packs.json',
-	'data/decks.json'
+	'data/decks.json',
+	'data/board-games.json'
   ]
 
   const results = await Promise.all(

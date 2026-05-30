@@ -26,21 +26,7 @@ const collectibles = [ {
   "extraAttributes" : {
     "Collection" : "The Lord of the Rings - Tales of Middle-Earth"
   }
-},  {
-  "name" : "Atlantis - Juego de naipes interactivo",
-  "franchise" : "Atlantis",
-  "type" : "Card Pack",
-  "brand" : "Fournier",
-  "purchasePrice" : "9,75€",
-  "condition" : "new",
-  "barcode" : "8420707267261",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : ""
-  }
-},     {
+},   {
   "name" : "Astérix",
   "franchise" : "Astérix",
   "type" : "Sticker Pack",
@@ -293,20 +279,6 @@ const collectibles = [ {
     "Collection" : "El Jorobado de Notre Dame"
   }
 }, {
-  "name" : "El Jorobado de Notre Dame",
-  "franchise" : "El Jorobado de Notre Dame",
-  "type" : "Card Pack",
-  "brand" : "SkyBox",
-  "purchasePrice" : "2,70€",
-  "condition" : "new",
-  "barcode" : "041199623014",
-  "quantity" : 1,
-  "language" : "Inglés",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "El Jorobado de Notre Dame"
-  }
-}, {
   "name" : "El Rey León",
   "franchise" : "El Rey León",
   "type" : "Sticker Pack",
@@ -474,21 +446,7 @@ const collectibles = [ {
   "extraAttributes" : {
     "Collection" : "Harry Potter y el misterio del príncipe"
   }
-}, {
-  "name" : "Harry Potter y el prisionero de Azkaban",
-  "franchise" : "Harry Potter",
-  "type" : "Card Pack",
-  "brand" : "Cards Inc.",
-  "purchasePrice" : "3,00€",
-  "condition" : "new",
-  "barcode" : "5060029850395",
-  "quantity" : 1,
-  "language" : "Inglés",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Harry Potter y el prisionero de Azkaban"
-  }
-}, {
+},  {
   "name" : "Harry Potter y el prisionero de Azkaban",
   "franchise" : "Harry Potter",
   "type" : "Sticker Pack",

@@ -40,5 +40,19 @@
     "folder": "harry-potter-y-el-prisionero-de-azkaban-card-pack",
     "category": "card-packs",
 	"notes" : "Contiene 6 cartas."
+  },
+  {
+    "id": "el-jorobado-de-notre-dame-card-pack",
+    "name": "El Jorobado de Notre Dame (Sobre de cartas)",
+    "franchise": "El Jorobado de Notre Dame",
+    "brand": "SkyBox",
+    "purchasePrice": "2,70€",
+    "condition": "new",
+    "barcode": "041199623014",
+    "quantity": 1,
+    "language": "Inglés",
+    "folder": "el-jorobado-de-notre-dame-card-pack",
+    "category": "card-packs",
+	"notes" : "Contiene 11 cartas."
   }
 ]

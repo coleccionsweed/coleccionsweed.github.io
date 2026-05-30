@@ -46,5 +46,17 @@
     "language": "Español",
     "folder": "megaevolucion-fuegos-fantasmales-caja-de-entrenador-elite",
     "category": "card-box"
+  },
+  {
+    "id": "draft-pack-the-lord-of-the-rings-tales-of-middle-earth",
+    "name": "Draft Pack The Lord of the Rings - Tales of Middle-Earth",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Magic",
+    "purchasePrice": "19,00€",
+    "condition": "new",
+    "barcode": "195166204956",
+    "language": "Inglés",
+    "folder": "draft-pack-the-lord-of-the-rings-tales-of-middle-earth",
+    "category": "card-box"
   }
 ]
