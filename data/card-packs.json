@@ -911,5 +911,53 @@
     "language": "Español",
     "folder": "mulan-sticker-pack",
     "category": "card-packs"
+  },
+  {
+    "id": "nintendo-sticker-pack",
+    "name": "Nintendo",
+    "franchise": "Super Mario",
+    "brand": "Merlin Stickers",
+    "purchasePrice": "4,00€",
+    "condition": "new",
+	"barcode" : "5018819000338",
+    "language": "Inglés",
+    "folder": "nintendo-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "pokemon-sticker-pack",
+    "name": "Pokémon",
+    "franchise": "Pokémon",
+    "brand": "Merlin Stickers",
+    "purchasePrice": "4,41€",
+    "condition": "new",
+	"barcode" : "4345129701008",
+    "language": "Inglés",
+    "folder": "pokemon-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "pokemon-series-2-sticker-pack",
+    "name": "Pokémon Series 2",
+    "franchise": "Pokémon",
+    "brand": "Merlin Stickers",
+    "purchasePrice": "4,17€",
+    "condition": "new",
+	"barcode" : "5018819901727",
+    "language": "Inglés",
+    "folder": "pokemon-series-2-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "pokemon-tattoos-sticker-pack",
+    "name": "Pokémon Tattoos",
+    "franchise": "Pokémon",
+    "brand": "Merlin Stickers",
+    "purchasePrice": "2,70€",
+    "condition": "new",
+	"barcode" : "5018819901345",
+    "language": "Inglés",
+    "folder": "pokemon-tattoos-sticker-pack",
+    "category": "card-packs"
   }
 ]
