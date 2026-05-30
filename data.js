@@ -251,20 +251,6 @@ const collectibles = [ {
     "Collection" : "La ruta hacia El Dorado"
   }
 }, {
-  "name" : "El Jorobado de Notre Dame",
-  "franchise" : "El Jorobado de Notre Dame",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "1,90€",
-  "condition" : "new",
-  "barcode" : "041199623519",
-  "quantity" : 4,
-  "language" : "Inglés",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "El Jorobado de Notre Dame"
-  }
-}, {
   "name" : "El Rey León",
   "franchise" : "El Rey León",
   "type" : "Sticker Pack",

@@ -42,26 +42,19 @@ function handleRoute() {
   const sidebar = document.getElementById('filtersContainer')
 
   // ==========================================
-  // VISTA DE ESTADÍSTICAS GLOBAL (#stats)
+  // VISTA DE ESTADÍSTICAS GLOBAL (#stats) dentro de handleRoute()
   // ==========================================
   if (hash === 'stats') {
-    // Apagamos radicalmente la vista de la galería para que no estorbe
     if (galleryView) galleryView.style.display = 'none';
     if (sidebar) sidebar.style.display = 'none';
     if (grid) grid.style.display = 'none';
     if (counter) counter.style.display = 'none';
     
-    // Desplegamos el nuevo dashboard
-    if (statsView) {
-      statsView.style.display = 'block';
-    }
-    
-    // Ocultamos los filtros de la cabecera en la sección de estadísticas
-    // para que no haya confusiones con lo que se está mostrando
-    if (filters) filters.style.display = 'none'; 
+    if (statsView) statsView.style.display = 'block';
+    if (filters) filters.style.display = 'none'; // Oculta selectores de cabecera
 
-    // SOLUCIÓN AQUÍ: Pasamos "allItems" que garantiza el 100% absoluto de los JSONs cargados de golpe
-    initStatsPage(allItems);
+    // LLAMADA LIMPIA: Sin pasarle variables locales de app.js, se autoabastece sola
+    initStatsPage(); 
     return;
   }
 
