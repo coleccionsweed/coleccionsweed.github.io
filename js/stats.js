@@ -1,197 +1,97 @@
 // js/stats.js
-import { loadCollection } from './dataLoader.js';
 
-let charts = { categories: null, condition: null };
+let myChart = null; // Guardará la instancia del gráfico para poder destruirlo/recrearlo al filtrar
 
+// Función auxiliar para convertir "25,00€" en un número operable
 function parsePrice(priceStr) {
   if (!priceStr) return 0;
+  // Quita el símbolo de euro, espacios, puntos de miles y cambia la coma por punto
   let clean = priceStr.replace('€', '').replace(/\s/g, '').replace('.', '').replace(',', '.');
   return parseFloat(clean) || 0;
 }
 
-export async function initStatsPage() {
-  const navG = document.getElementById('navGallery');
-  const navS = document.getElementById('navStats');
-  if (navG) navG.style.color = '#6b7280';
-  if (navS) navS.style.color = '#ffffff';
-
-  const statsContainer = document.getElementById('statsView');
+export function renderStats(items) {
+  const statsContainer = document.getElementById('stats');
   if (!statsContainer) return;
 
-  // 1. Mostramos una pantalla de carga premium mientras procesa el JSON total
-  statsContainer.innerHTML = `
-    <div class="detail-container" style="text-align: center; padding: 100px 0;">
-      <h2 style="color: #fff; font-size: 22px;">📊 Cargando base de datos global...</h2>
-      <p style="color: #6b7280; margin-top: 10px; font-size: 14px;">Analizando archivos del servidor de forma independiente.</p>
-    </div>
-  `;
-
-  // 2. Traemos la lista maestra directamente desde el origen de datos (100% real de los archivos)
-  const rawItems = await loadCollection();
-
+  // 1. Calcular totales basados en los ítems que se están mostrando (reacciona a los filtros)
   let totalValue = 0;
-  let totalItems = rawItems.length; // Aquí se reflejará el número masivo real de ítems
+  let totalItems = items.length;
   let totalQuantity = 0;
+  const typeCounts = {};
 
-  const categoriesMap = {};
-  const conditionsMap = {};
-  const franchisesMap = {};
-  const brandsMap = {};
-
-  rawItems.forEach(item => {
+  items.forEach(item => {
     const qty = parseInt(item.quantity) || 1;
-    const price = parsePrice(item.purchasePrice);
-    const itemTotalValue = price * qty;
-
     totalQuantity += qty;
-    totalValue += itemTotalValue;
+    totalValue += (parsePrice(item.purchasePrice) * qty);
 
-    const cat = item.category || 'Sin Categoría';
-    categoriesMap[cat] = (categoriesMap[cat] || 0) + qty;
-
-    const cond = item.condition ? item.condition.toUpperCase() : 'DESCONOCIDO';
-    conditionsMap[cond] = (conditionsMap[cond] || 0) + qty;
-
-    const fran = item.franchise || 'Sin Franquicia';
-    franchisesMap[fran] = (franchisesMap[fran] || 0) + itemTotalValue;
-
-    if (item.brand) {
-      brandsMap[item.brand] = (brandsMap[item.brand] || 0) + qty;
-    }
+    // Agrupar por tipo para la tarta (si no tiene 'type', usamos 'Otros')
+    const type = item.type || 'Otros';
+    typeCounts[type] = (typeCounts[type] || 0) + qty;
   });
 
-  // 3. Pintamos el Dashboard final con las métricas calculadas
+  // 2. Inyectar la estructura de las estadísticas (Contadores + Canvas para el gráfico)
   statsContainer.innerHTML = `
-    <div class="detail-container">
-      <div class="detail-header" style="margin-bottom: 32px;">
-        <h2 style="font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 4px;">Estadísticas Globales</h2>
-        <p style="color: #6b7280; font-size: 14px;">Métricas completas calculadas directamente desde el almacenamiento JSON.</p>
-      </div>
-
-      <div class="info-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 32px;">
-        <div style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
-          <span style="font-size: 11px; color: #6b7280; font-weight: 700; letter-spacing: 1px;">VALOR TOTAL ESTIMADO</span>
-          <b style="font-size: 28px; color: #10b981; font-weight: 700; margin-top: 8px; display: block;">${totalValue.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}</b>
+    <div class="stats-dashboard" style="display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 30px; background: #1f2937; padding: 20px; rounded-width: 12px; border-radius: 12px; color: #fff;">
+      
+      <div class="stats-cards" style="flex: 1; min-width: 250px; display: flex; flex-col: column; gap: 15px; justify-content: center;">
+        <div class="stat-card">
+          <p style="color: #9ca3af; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; margin: 0;">Valor Total</p>
+          <p style="color: #34d399; font-size: 2rem; font-weight: 900; margin: 5px 0 0 0;">${totalValue.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}</p>
         </div>
-        <div style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
-          <span style="font-size: 11px; color: #6b7280; font-weight: 700; letter-spacing: 1px;">MODELOS COMPILADOS TOTALES</span>
-          <b style="font-size: 28px; color: #ffffff; font-weight: 700; margin-top: 8px; display: block;">${totalItems} <span style="font-size: 14px; color: #6b7280; font-weight: 400;">ítems</span></b>
+        <div class="stat-card">
+          <p style="color: #9ca3af; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; margin: 0;">Artículos Distintos</p>
+          <p style="color: #818cf8; font-size: 2rem; font-weight: 900; margin: 5px 0 0 0;">${totalItems}</p>
         </div>
-        <div style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
-          <span style="font-size: 11px; color: #6b7280; font-weight: 700; letter-spacing: 1px;">CANTIDAD TOTAL EN STOCK</span>
-          <b style="font-size: 28px; color: #f59e0b; font-weight: 700; margin-top: 8px; display: block;">${totalQuantity} <span style="font-size: 14px; color: #6b7280; font-weight: 400;">uds</span></b>
+        <div class="stat-card">
+          <p style="color: #9ca3af; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; margin: 0;">Cantidad Total Unidades</p>
+          <p style="color: #fbbf24; font-size: 2rem; font-weight: 900; margin: 5px 0 0 0;">${totalQuantity}</p>
         </div>
       </div>
 
-      <div class="detail" style="gap: 32px; margin-bottom: 32px;">
-        <div class="info-card" style="display: flex; flex-direction: column; align-items: center; min-height: 400px; justify-content: center;">
-          <h4 style="font-size: 16px; font-weight: 700; color: #fff; width: 100%; text-align: left; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.5px;">🍩 Unidades por Categoría</h4>
-          <div style="width: 100%; max-width: 280px; height: 280px; position: relative;">
-            <canvas id="chartCategories"></canvas>
-          </div>
-        </div>
-
-        <div class="info-card" style="display: flex; flex-direction: column; align-items: center; min-height: 400px;">
-          <h4 style="font-size: 16px; font-weight: 700; color: #fff; width: 100%; text-align: left; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.5px;">📊 Conservación de Ejemplares</h4>
-          <div style="width: 100%; height: 280px;">
-            <canvas id="chartCondition"></canvas>
-          </div>
-        </div>
+      <div class="stats-chart-container" style="flex: 1; min-width: 250px; display: flex; justify-content: center; align-items: center; max-height: 220px;">
+        <canvas id="typesChart"></canvas>
       </div>
 
-      <div class="detail" style="gap: 32px;">
-        <div class="info-card">
-          <h4 style="font-size: 16px; font-weight: 700; color: #10b981; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px;">🏆 Top 5 Franquicias Líderes (Valor)</h4>
-          <div id="topFranchisesTable"></div>
-        </div>
-        <div class="info-card">
-          <h4 style="font-size: 16px; font-weight: 700; color: #f59e0b; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px;">🏷️ Top Marcas / Fabricantes</h4>
-          <div id="topBrandsTable"></div>
-        </div>
-      </div>
     </div>
   `;
 
-  // 4. Inicialización segura de Chart.js
-  const ctxCat = document.getElementById('chartCategories');
-  if (ctxCat) {
-    if (charts.categories) charts.categories.destroy();
-    charts.categories = new Chart(ctxCat, {
-      type: 'doughnut',
-      data: {
-        labels: Object.keys(categoriesMap),
-        datasets: [{
-          data: Object.values(categoriesMap),
-          backgroundColor: ['#6366f1', '#10b981', '#f59e0b', '#ef4444', '#ec4899', '#06b6d4', '#a855f7'],
-          borderWidth: 2,
-          borderColor: '#11141c'
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: { legend: { position: 'bottom', labels: { color: '#9aa3b2', font: { size: 11 } } } }
-      }
-    });
+  // 3. Renderizar el gráfico de tarta con Chart.js
+  const ctx = document.getElementById('typesChart');
+  if (!ctx) return;
+
+  if (myChart) {
+    myChart.destroy(); // Destruimos el gráfico anterior para evitar bugs al pasar el cursor por encima
   }
 
-  const ctxCond = document.getElementById('chartCondition');
-  if (ctxCond) {
-    if (charts.condition) charts.condition.destroy();
-    charts.condition = new Chart(ctxCond, {
-      type: 'bar',
-      data: {
-        labels: Object.keys(conditionsMap),
-        datasets: [{
-          data: Object.values(conditionsMap),
-          backgroundColor: 'rgba(99, 102, 241, 0.85)',
-          borderRadius: 8,
-          hoverBackgroundColor: '#6366f1'
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          x: { ticks: { color: '#9aa3b2' }, grid: { display: false } },
-          y: { ticks: { color: '#9aa3b2' }, grid: { color: 'rgba(255,255,255,0.05)' } }
-        },
-        plugins: { legend: { display: false } }
+  const labels = Object.keys(typeCounts);
+  const dataValues = Object.values(typeCounts);
+
+  myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: labels,
+      datasets: [{
+        data: dataValues,
+        backgroundColor: [
+          '#6366f1', '#10b981', '#f59e0b', '#ef4444', '#ec4899', '#06b6d4', '#a855f7'
+        ],
+        borderWidth: 2,
+        borderColor: '#1f2937'
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'right',
+          labels: {
+            color: '#f3f4f6',
+            font: { size: 12, weight: 'bold' }
+          }
+        }
       }
-    });
-  }
-
-  const topFranchises = Object.entries(franchisesMap).sort((a, b) => b[1] - a[1]).slice(0, 5);
-  document.getElementById('topFranchisesTable').innerHTML = renderPremiumTable(
-    ['Franquicia', 'Valor Acumulado'],
-    topFranchises.map(([n, v]) => [n, v.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })])
-  );
-
-  const topBrands = Object.entries(brandsMap).sort((a, b) => b[1] - a[1]).slice(0, 5);
-  document.getElementById('topBrandsTable').innerHTML = renderPremiumTable(
-    ['Marca', 'Cantidad'],
-    topBrands.map(([n, q]) => [n, `${q} uds`])
-  );
-}
-
-function renderPremiumTable(headers, rows) {
-  if (rows.length === 0) return `<p style="color:#6b7280; font-style:italic; font-size:14px; margin-top:8px;">No hay datos suficientes.</p>`;
-  return `
-    <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; color: #e2e8f0; margin-top: 8px;">
-      <thead>
-        <tr style="border-bottom: 1px solid rgba(255,255,255,0.08); color: #6b7280;">
-          <th style="padding: 8px 0; font-weight: 600;">${headers[0]}</th>
-          <th style="padding: 8px 0; text-align: right; font-weight: 600;">${headers[1]}</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${rows.map(([c1, c2]) => `
-          <tr style="border-bottom: 1px solid rgba(255,255,255,0.03);">
-            <td style="padding: 10px 0; color: #fff; font-weight: 500;">${c1}</td>
-            <td style="padding: 10px 0; text-align: right; font-weight: 700; color: #aeb6c4;">${c2}</td>
-          </tr>
-        `).join('')}
-      </tbody>
-    </table>
-  `;
+    }
+  });
 }

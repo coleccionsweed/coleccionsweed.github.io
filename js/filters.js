@@ -14,7 +14,7 @@ export function setupFilters(items, onChange) {
   let itemsFiltradosYOrdenados = [];
   let limiteActual = 20; 
 
-  // --- Inicialización de los selectores ---\r
+  // --- Inicialización de los selectores ---
   const categories = [...new Set(items.map(i => i.category))]
     .filter(Boolean)
     .sort((a, b) => t(a).localeCompare(t(b)));
@@ -32,17 +32,38 @@ export function setupFilters(items, onChange) {
   // --- Funciones auxiliares ---
   function parsePrice(priceStr) {
     if (!priceStr) return 0;
-    let clean = priceStr.replace('€', '').replace(/\s/g, '').replace('.', '').replace(',', '.');
-    return parseFloat(clean) || 0;
+    const clean = priceStr.replace('€', '').replace(',', '.').trim();
+    const parsed = parseFloat(clean);
+    return isNaN(parsed) ? 0 : parsed;
   }
 
-  function actualizarContador(mostrados, total) {
-    if (counterContainer) {
-      counterContainer.textContent = `${mostrados} / ${total}`;
+  function actualizarContador(mostrados, totalGeneral) {
+    if (!counterContainer) return;
+    
+    if (mostrados === 0) {
+      counterContainer.textContent = "No se encontraron objetos";
+    } else {
+      // Muestra: "Mostrando X de Y objetos"
+      counterContainer.textContent = `Mostrando ${mostrados} de ${totalGeneral} objetos`;
     }
   }
 
-  // --- Función central de filtrado y ordenación ---
+  // --- Lógica de Scroll Infinito ---
+  window.onscroll = () => {
+    if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 100) {
+      if (limiteActual < itemsFiltradosYOrdenados.length) {
+        limiteActual += 20; 
+        
+        const porciones = itemsFiltradosYOrdenados.slice(0, limiteActual);
+        onChange(porciones);
+
+        // Actualizamos el contador con los nuevos cargados vs el total de la base de datos
+        actualizarContador(porciones.length, totalAbsoluto);
+      }
+    }
+  };
+
+  // --- Lógica principal de filtrado y ordenación ---
   function apply() {
     limiteActual = 20; 
 
@@ -72,26 +93,18 @@ export function setupFilters(items, onChange) {
     const primeraTanda = itemsFiltradosYOrdenados.slice(0, limiteActual);
 
     // 3. Actualizar contador usando el total absoluto
-    actualizarContador(itemsFiltradosYOrdenados.length, totalAbsoluto);
+    actualizarContador(primeraTanda.length, totalAbsoluto);
 
-    onChange(primeraTanda); 
+    // 4. Enviar resultados al renderizador
+    onChange(primeraTanda);
   }
 
-  // --- Carga infinita al hacer scroll al fondo (Manejador global asignado por filters.js) ---
-  window.cargarMasItems = function() {
-    if (limiteActual >= itemsFiltradosYOrdenados.length) return; 
-
-    limiteActual += 20; 
-    const nuevaTanda = itemsFiltradosYOrdenados.slice(0, limiteActual);
-    onChange(nuevaTanda); 
-  };
-
-  // --- Listeners de eventos ---
-  category.addEventListener('change', apply);
-  franchise.addEventListener('change', apply);
-  sortOrder.addEventListener('change', apply);
-  search.addEventListener('input', apply);
-
-  // Ejecución inicial para pintar la primera tanda al cargar la web
+  // --- Listeners ---
+  category.onchange = apply;
+  franchise.onchange = apply;
+  sortOrder.onchange = apply;
+  search.oninput = apply;
+  
+  // Ejecución inicial para que al entrar ya se vea el estado correcto
   apply();
 }
