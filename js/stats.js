@@ -30,7 +30,8 @@ export async function initStatsPage() {
   let totalQuantity = 0;
 
   const categoriesMap = {};
-  const franchisesMap = {};
+  const franchisesValueMap = {};    // Para el top por valor monetario
+  const franchisesQuantityMap = {}; // Para el top por número de unidades
 
   rawItems.forEach(item => {
     const qty = parseInt(item.quantity) || 1;
@@ -44,23 +45,25 @@ export async function initStatsPage() {
     categoriesMap[cat] = (categoriesMap[cat] || 0) + qty;
 
     const fran = item.franchise || 'Sin Franquicia';
-    franchisesMap[fran] = (franchisesMap[fran] || 0) + itemTotalValue;
+    franchisesValueMap[fran] = (franchisesValueMap[fran] || 0) + itemTotalValue;
+    franchisesQuantityMap[fran] = (franchisesQuantityMap[fran] || 0) + qty;
   });
 
-  // 3. Inyección del diseño HTML del Dashboard
+  // 3. Inyección del diseño HTML del Dashboard con el nuevo bloque de estadísticas
   statsContainer.innerHTML = `
     <div class="detail-container">
       <div class="detail-header" style="margin-bottom: 32px;">
         <h2 style="font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 4px;">Estadísticas Globales</h2>
+        <p style="color: #6b7280; font-size: 14px;">Métricas completas calculadas directamente desde el almacenamiento JSON.</p>
       </div>
 
       <div class="info-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 32px;">
         <div style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
-          <span style="font-size: 11px; color: #6b7280; font-weight: 700; letter-spacing: 1px;">TOTAL GASTADO</span>
+          <span style="font-size: 11px; color: #6b7280; font-weight: 700; letter-spacing: 1px;">VALOR TOTAL ESTIMADO</span>
           <b style="font-size: 28px; color: #10b981; font-weight: 700; margin-top: 8px; display: block;">${totalValue.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}</b>
         </div>
         <div style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
-          <span style="font-size: 11px; color: #6b7280; font-weight: 700; letter-spacing: 1px;">OBJETOS DIFERENTES</span>
+          <span style="font-size: 11px; color: #6b7280; font-weight: 700; letter-spacing: 1px;">MODELOS COMPILADOS TOTALES</span>
           <b style="font-size: 28px; color: #ffffff; font-weight: 700; margin-top: 8px; display: block;">${totalItems} <span style="font-size: 14px; color: #6b7280; font-weight: 400;">ítems</span></b>
         </div>
         <div style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
@@ -77,9 +80,16 @@ export async function initStatsPage() {
           </div>
         </div>
 
-        <div class="info-card" style="background: #141822; padding: 24px; border-radius: 20px;">
-          <h4 style="font-size: 15px; font-weight: 700; color: #10b981; margin-bottom: 16px; text-transform: uppercase;">🏆 Top 5 Franquicias Líderes (Valor)</h4>
-          <div id="topFranchisesTable"></div>
+        <div style="display: flex; flex-direction: column; gap: 32px;">
+          <div class="info-card" style="background: #141822; padding: 24px; border-radius: 20px;">
+            <h4 style="font-size: 15px; font-weight: 700; color: #10b981; margin-bottom: 16px; text-transform: uppercase;">🏆 Top 5 Franquicias Líderes (Valor)</h4>
+            <div id="topFranchisesTable"></div>
+          </div>
+
+          <div class="info-card" style="background: #141822; padding: 24px; border-radius: 20px;">
+            <h4 style="font-size: 15px; font-weight: 700; color: #f59e0b; margin-bottom: 16px; text-transform: uppercase;">📦 Top 5 Franquicias Líderes (Unidades)</h4>
+            <div id="topFranchisesQtyTable"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -88,7 +98,6 @@ export async function initStatsPage() {
   // 4. Inicialización segura de los gráficos con Chart.js
   const ctxCat = document.getElementById('chartCategories');
   if (ctxCat) {
-    // Extraemos las claves en bruto ('books', 'toys', etc.) y mapeamos cada una a través de la función t()
     const rawCategories = Object.keys(categoriesMap);
     const translatedLabels = rawCategories.map(catKey => t(catKey));
 
@@ -96,7 +105,7 @@ export async function initStatsPage() {
     charts.categories = new Chart(ctxCat, {
       type: 'doughnut',
       data: {
-        labels: translatedLabels, // <-- Pasamos la lista de textos ya traducidos
+        labels: translatedLabels,
         datasets: [{
           data: Object.values(categoriesMap),
           backgroundColor: ['#6366f1', '#10b981', '#f59e0b', '#ef4444', '#ec4899', '#06b6d4', '#a855f7'],
@@ -120,10 +129,18 @@ export async function initStatsPage() {
     });
   }
 
-  const topFranchises = Object.entries(franchisesMap).sort((a, b) => b[1] - a[1]).slice(0, 5);
+  // Generar Tabla de Top Franquicias por Valor
+  const topFranchisesValue = Object.entries(franchisesValueMap).sort((a, b) => b[1] - a[1]).slice(0, 5);
   document.getElementById('topFranchisesTable').innerHTML = renderPremiumTable(
     ['Franquicia', 'Valor Acumulado'],
-    topFranchises.map(([n, v]) => [n, v.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })])
+    topFranchisesValue.map(([n, v]) => [n, v.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })])
+  );
+
+  // Generar Tabla de Top Franquicias por Unidades
+  const topFranchisesQty = Object.entries(franchisesQuantityMap).sort((a, b) => b[1] - a[1]).slice(0, 5);
+  document.getElementById('topFranchisesQtyTable').innerHTML = renderPremiumTable(
+    ['Franquicia', 'Total Unidades'],
+    topFranchisesQty.map(([n, q]) => [n, `${q.toLocaleString('es-ES')} uds`])
   );
 }
 
