@@ -79,7 +79,7 @@
   {
     "id": "aladdin-sticker-pack",
     "name": "Aladdin",
-    "franchise": "Digimon",
+    "franchise": "Aladdin",
     "brand": "Panini",
     "purchasePrice": "2,70€",
     "condition": "new",
@@ -356,6 +356,30 @@
     "barcode": "5018819902571",
     "language": "Inglés",
     "folder": "las-dos-torres-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "harry-potter-agenda-stickers-sticker-pack",
+    "name": "Harry Potter - Agenda Stickers",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "4,70€",
+    "condition": "new",
+    "barcode": "8018190025071",
+    "language": "Español",
+    "folder": "harry-potter-agenda-stickers-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "harry-potter-album-stickers-sticker-pack",
+    "name": "Harry Potter - Album Stickers",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "0,80€",
+    "condition": "new",
+    "barcode": "8018190004229",
+    "language": "Español",
+    "folder": "harry-potter-album-stickers-sticker-pack",
     "category": "card-packs"
   }
 ]

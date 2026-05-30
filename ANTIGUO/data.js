@@ -1,18 +1,4 @@
 const collectibles = [      {
-  "name" : "Harry Potter - Agenda Stickers",
-  "franchise" : "Harry Potter",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "4,70€",
-  "condition" : "new",
-  "barcode" : "8018190025071",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Harry Potter - Agenda Stickers"
-  }
-}, {
   "name" : "Harry Potter - Album Stickers",
   "franchise" : "Harry Potter",
   "type" : "Sticker Pack",
