@@ -1,6 +1,5 @@
 // js/stats.js
 
-// Almacén para las instancias de Chart.js y evitar duplicados pesados
 let charts = { categories: null, condition: null };
 
 function parsePrice(priceStr) {
@@ -10,15 +9,15 @@ function parsePrice(priceStr) {
 }
 
 export function initStatsPage(allItems) {
-  // 1. Mostrar/Ocultar los contenedores principales de la SPA
+  // 1. Alternamos las secciones según tu flujo de SPA
   document.getElementById('galleryView').style.display = 'none';
   document.getElementById('statsView').style.display = 'block';
 
-  // Cambiar estilo activo en los enlaces de navegación de la cabecera
+  // Cambiar visualización activa en los textos de navegación premium
   document.getElementById('navGallery').style.color = '#9ca3af';
-  document.getElementById('navStats').style.color = '#fff';
+  document.getElementById('navStats').style.color = '#ffffff';
 
-  // 2. Procesamiento de Métricas Avanzadas
+  // 2. Extracción de métricas
   let totalValue = 0;
   let totalItems = allItems.length;
   let totalQuantity = 0;
@@ -36,112 +35,154 @@ export function initStatsPage(allItems) {
     totalQuantity += qty;
     totalValue += itemTotalValue;
 
-    // Agrupación por Categoría (Type)
     const cat = item.type || 'Sin Categoría';
     categoriesMap[cat] = (categoriesMap[cat] || 0) + qty;
 
-    // Agrupación por Estado (Condition)
     const cond = item.condition ? item.condition.toUpperCase() : 'DESCONOCIDO';
     conditionsMap[cond] = (conditionsMap[cond] || 0) + qty;
 
-    // Agrupación por Franquicia para valor económico
     const fran = item.franchise || 'Sin Franquicia';
     franchisesMap[fran] = (franchisesMap[fran] || 0) + itemTotalValue;
 
-    // Agrupación por Marcas
     if (item.brand) {
       brandsMap[item.brand] = (brandsMap[item.brand] || 0) + qty;
     }
   });
 
-  // 3. Pintar Tarjetas Numéricas
-  document.getElementById('statTotalValue').innerText = totalValue.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' });
-  document.getElementById('statTotalItems').innerText = totalItems;
-  document.getElementById('statTotalQuantity').innerText = totalQuantity;
+  // 3. Renderizar Estructura Maquetada con las Clases de tu main.css (.info-card)
+  const statsContainer = document.getElementById('statsView');
+  
+  statsContainer.innerHTML = `
+    <div class="detail-container">
+      <div class="detail-header" style="margin-bottom: 32px;">
+        <h2 style="font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 4px;">Estadísticas del Ecosistema</h2>
+        <p style="color: #6b7280; font-size: 14px;">Métricas en tiempo real basadas en tu inventario activo.</p>
+      </div>
 
-  // 4. GENERAR GRÁFICO DE ROSCO (Doughnut) - CATEGORÍAS
-  if (charts.categories) charts.categories.destroy();
-  charts.categories = new Chart(document.getElementById('chartCategories'), {
-    type: 'doughnut',
-    data: {
-      labels: Object.keys(categoriesMap),
-      datasets: [{
-        data: Object.values(categoriesMap),
-        backgroundColor: ['#6366f1', '#10b981', '#f59e0b', '#ef4444', '#ec4899', '#06b6d4', '#a855f7', '#3b82f6'],
-        borderWidth: 3,
-        borderColor: '#1f2937'
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { position: 'bottom', labels: { color: '#e5e7eb', font: { size: 12 } } }
-      }
-    }
-  });
+      <div class="info-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 32px;">
+        <div style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
+          <span style="font-size: 11px; color: #6b7280; font-weight: 700; tracking-letter: 1px;">INVERSIÓN TOTAL ESTIMADA</span>
+          <b style="font-size: 28px; color: #10b981; font-weight: 700; margin-top: 8px;">${totalValue.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}</b>
+        </div>
+        <div style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
+          <span style="font-size: 11px; color: #6b7280; font-weight: 700; tracking-letter: 1px;">VARIEDAD DE MODELOS ÚNICOS</span>
+          <b style="font-size: 28px; color: #ffffff; font-weight: 700; margin-top: 8px;">${totalItems} <span style="font-size: 14px; color: #6b7280; font-weight: 400;">ítems</span></b>
+        </div>
+        <div style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
+          <span style="font-size: 11px; color: #6b7280; font-weight: 700; tracking-letter: 1px;">UNIDADES TOTALES EN STOCK</span>
+          <b style="font-size: 28px; color: #f59e0b; font-weight: 700; margin-top: 8px;">${totalQuantity} <span style="font-size: 14px; color: #6b7280; font-weight: 400;">uds</span></b>
+        </div>
+      </div>
 
-  // 5. GENERAR GRÁFICO DE BARRAS - ESTADOS
-  if (charts.condition) charts.condition.destroy();
-  charts.condition = new Chart(document.getElementById('chartCondition'), {
-    type: 'bar',
-    data: {
-      labels: Object.keys(conditionsMap),
-      datasets: [{
-        label: 'Unidades',
-        data: Object.values(conditionsMap),
-        backgroundColor: '#3b82f6',
-        borderRadius: 6
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        x: { ticks: { color: '#e5e7eb' }, grid: { display: false } },
-        y: { ticks: { color: '#e5e7eb' }, grid: { color: '#374151' } }
+      <div class="detail" style="gap: 32px; margin-bottom: 32px;">
+        <div class="info-card" style="display: flex; flex-direction: column; align-items: center; min-height: 400px; justify-content: center;">
+          <h4 style="font-size: 16px; font-weight: 700; color: #fff; width: 100%; text-align: left; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.5px;">🍩 Unidades por Categoría</h4>
+          <div style="width: 100%; max-width: 280px; height: 280px; position: relative;">
+            <canvas id="chartCategories"></canvas>
+          </div>
+        </div>
+
+        <div class="info-card" style="display: flex; flex-direction: column; align-items: center; min-height: 400px;">
+          <h4 style="font-size: 16px; font-weight: 700; color: #fff; width: 100%; text-align: left; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.5px;">📊 Conservación de Ejemplares</h4>
+          <div style="width: 100%; height: 280px;">
+            <canvas id="chartCondition"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail" style="gap: 32px;">
+        <div class="info-card">
+          <h4 style="font-size: 16px; font-weight: 700; color: #10b981; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px;">🏆 Top 5 Franquicias Líderes (Valor)</h4>
+          <div id="topFranchisesTable"></div>
+        </div>
+        <div class="info-card">
+          <h4 style="font-size: 16px; font-weight: 700; color: #f59e0b; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px;">🏷️ Top Marcas / Fabricantes</h4>
+          <div id="topBrandsTable"></div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // 4. Inyección de Gráficos de Chart.js
+  const ctxCat = document.getElementById('chartCategories');
+  if (ctxCat) {
+    if (charts.categories) charts.categories.destroy();
+    charts.categories = new Chart(ctxCat, {
+      type: 'doughnut',
+      data: {
+        labels: Object.keys(categoriesMap),
+        datasets: [{
+          data: Object.values(categoriesMap),
+          backgroundColor: ['#6366f1', '#10b981', '#f59e0b', '#ef4444', '#ec4899', '#06b6d4', '#a855f7'],
+          borderWidth: 2,
+          borderColor: '#11141c'
+        }]
       },
-      plugins: { legend: { display: false } }
-    }
-  });
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'bottom', labels: { color: '#9aa3b2', font: { size: 11, family: 'inherit' } } }
+        }
+      }
+    });
+  }
 
-  // 6. GENERAR TABLA TOP 5 FRANQUICIAS
-  const topFranchises = Object.entries(franchisesMap)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 5);
+  const ctxCond = document.getElementById('chartCondition');
+  if (ctxCond) {
+    if (charts.condition) charts.condition.destroy();
+    charts.condition = new Chart(ctxCond, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(conditionsMap),
+        datasets: [{
+          data: Object.values(conditionsMap),
+          backgroundColor: 'rgba(99, 102, 241, 0.85)',
+          borderRadius: 8,
+          hoverBackgroundColor: '#6366f1'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          x: { ticks: { color: '#9aa3b2' }, grid: { display: false } },
+          y: { ticks: { color: '#9aa3b2' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+        },
+        plugins: { legend: { display: false } }
+      }
+    });
+  }
 
-  document.getElementById('topFranchisesTable').innerHTML = createStatsTable(
-    ['Franquicia', 'Inversión Est.'],
-    topFranchises.map(([name, val]) => [name, val.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })])
+  // 5. Inyección de Tablas Premium
+  const topFranchises = Object.entries(franchisesMap).sort((a, b) => b[1] - a[1]).slice(0, 5);
+  document.getElementById('topFranchisesTable').innerHTML = renderPremiumTable(
+    ['Franquicia', 'Valor Acumulado'],
+    topFranchises.map(([n, v]) => [n, v.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })])
   );
 
-  // 7. GENERAR TABLA TOP MARCAS
-  const topBrands = Object.entries(brandsMap)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 5);
-
-  document.getElementById('topBrandsTable').innerHTML = createStatsTable(
-    ['Marca / Fabricante', 'Cantidad'],
-    topBrands.map(([name, qty]) => [name, `${qty} uds`])
+  const topBrands = Object.entries(brandsMap).sort((a, b) => b[1] - a[1]).slice(0, 5);
+  document.getElementById('topBrandsTable').innerHTML = renderPremiumTable(
+    ['Marca', 'Cantidad'],
+    topBrands.map(([n, q]) => [n, `${q} uds`])
   );
 }
 
-// Función auxiliar para construir tablas limpias con inline CSS oscuro
-function createStatsTable(headers, rows) {
-  if (rows.length === 0) return `<p style="color:#9ca3af; font-style:italic;">No hay datos suficientes.</p>`;
+function renderPremiumTable(headers, rows) {
+  if (rows.length === 0) return `<p style="color:#6b7280; font-style:italic; font-size:14px; margin-top:8px;">No hay datos en esta categoría.</p>`;
   return `
-    <table style="width: 100%; border-collapse: collapse; text-align: left; color: #e5e7eb; font-size: 0.95rem;">
+    <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; color: #e2e8f0; margin-top: 8px;">
       <thead>
-        <tr style="border-b: 2px solid #374151; color: #9ca3af;">
-          <th style="padding: 10px 5px;">${headers[0]}</th>
-          <th style="padding: 10px 5px; text-align: right;">${headers[1]}</th>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.08); color: #6b7280;">
+          <th style="padding: 8px 0; font-weight: 600;">${headers[0]}</th>
+          <th style="padding: 8px 0; text-align: right; font-weight: 600;">${headers[1]}</th>
         </tr>
       </thead>
       <tbody>
-        ${rows.map(([col1, col2]) => `
-          <tr style="border-b: 1px solid #374151;">
-            <td style="padding: 12px 5px; font-weight: 500;">${col1}</td>
-            <td style="padding: 12px 5px; text-align: right; font-weight: bold; color: #a5b4fc;">${col2}</td>
+        ${rows.map(([c1, c2]) => `
+          <tr style="border-bottom: 1px solid rgba(255,255,255,0.03);">
+            <td style="padding: 10px 0; color: #fff; font-weight: 500;">${c1}</td>
+            <td style="padding: 10px 0; text-align: right; font-weight: 700; color: #aeb6c4;">${c2}</td>
           </tr>
         `).join('')}
       </tbody>
