@@ -95,9 +95,19 @@
     "brand": "Panini",
     "purchasePrice": "3,70€",
     "condition": "new",
-    "quantity": 1,
     "language": "Español",
     "folder": "asterix-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "animales-fantasticos-los-secretos-de-dumbledore-gellert-grindelwald-y-albus-dumbledore",
+    "name": "Animales Fantásticos - Los Secretos de Dumbledore - Gellert Grindelwald y Albus Dumbledore",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "1,00€",
+    "condition": "new",
+    "language": "Turco",
+    "folder": "animales-fantasticos-los-secretos-de-dumbledore-gellert-grindelwald-y-albus-dumbledore",
     "category": "card-packs"
   }
 ]
