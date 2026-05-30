@@ -5,15 +5,17 @@ function parsePrice(priceStr) {
 }
 
 export function initStatsPage(allItems) {
+  // Cambiar visualización activa en los textos de navegación premium
   const navG = document.getElementById('navGallery');
   const navS = document.getElementById('navStats');
   if (navG) navG.style.color = '#6b7280';
   if (navS) navS.style.color = '#ffffff';
 
+  // Aquí realizamos las operaciones matemáticas directamente sobre el array multidimensional en memoria
   let totalValue = 0;
   let totalItems = allItems.length;
   let totalQuantity = 0;
-
+  
   const franchisesMap = {};
 
   allItems.forEach(item => {

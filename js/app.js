@@ -2,7 +2,7 @@ import { loadCollection } from './dataLoader.js'
 import { renderItems } from './renderer.js'
 import { setupFilters } from './filters.js'
 import { renderDetail } from './detail.js'
-import { initStatsPage } from './stats.js' // Importamos el nuevo módulo analítico
+import { initStatsPage } from './stats.js' 
 
 let allItems = []
 let itemsAMostrar = []        
@@ -13,12 +13,14 @@ async function init() {
     window.history.scrollRestoration = 'manual';
   }
 
+  // 1. Cargamos el 100% de los datos de todos los JSONs en memoria inmediatamente
   allItems = await loadCollection()
   itemsAMostrar = allItems 
 
   setupFilters(allItems, (filteredItems) => {
     itemsAMostrar = filteredItems 
-    // Si estamos en la página de estadísticas, se actualizan en tiempo real al filtrar
+    
+    // Si el usuario está en la página de estadísticas y filtra, se recalcula todo al instante
     if (window.location.hash === '#stats') {
       initStatsPage(itemsAMostrar);
     } else if (!window.location.hash) {
@@ -43,15 +45,14 @@ function handleRoute() {
   // VISTA DE ESTADÍSTICAS GLOBAL (#stats)
   // ==========================================
   if (hash === 'stats') {
-    // Ocultamos de forma radical la vista de galería para que no pise espacio
+    // Apagamos radicalmente la vista de la galería para que el scroll de esta no afecte
     if (galleryView) galleryView.style.display = 'none';
     if (sidebar) sidebar.style.display = 'none';
     
-    // Mostramos el contenedor de estadísticas
     if (statsView) statsView.style.display = 'block';
-    if (filters) filters.style.display = ''; // Mantenemos el buscador de arriba visible
+    if (filters) filters.style.display = ''; 
 
-    // Pintamos las estadísticas pasándole el estado actual de los filtros
+    // CRUCIAL: Pasamos "itemsAMostrar" que contiene la totalidad de los datos cargados del JSON
     initStatsPage(itemsAMostrar);
     return;
   }
@@ -67,7 +68,6 @@ function handleRoute() {
     if (statsView) statsView.style.display = 'none';
     if (galleryView) galleryView.style.display = 'block';
     
-    // Actualizamos el menú visual de la cabecera
     const navG = document.getElementById('navGallery');
     const navS = document.getElementById('navStats');
     if (navG) navG.style.color = '#ffffff';
