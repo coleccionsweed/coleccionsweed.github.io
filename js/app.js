@@ -45,15 +45,23 @@ function handleRoute() {
   // VISTA DE ESTADÍSTICAS GLOBAL (#stats)
   // ==========================================
   if (hash === 'stats') {
-    // Apagamos radicalmente la vista de la galería para que el scroll de esta no afecte
+    // Apagamos radicalmente la vista de la galería para que no estorbe
     if (galleryView) galleryView.style.display = 'none';
     if (sidebar) sidebar.style.display = 'none';
+    if (grid) grid.style.display = 'none';
+    if (counter) counter.style.display = 'none';
     
-    if (statsView) statsView.style.display = 'block';
-    if (filters) filters.style.display = ''; 
+    // Desplegamos el nuevo dashboard
+    if (statsView) {
+      statsView.style.display = 'block';
+    }
+    
+    // Ocultamos los filtros de la cabecera en la sección de estadísticas
+    // para que no haya confusiones con lo que se está mostrando
+    if (filters) filters.style.display = 'none'; 
 
-    // CRUCIAL: Pasamos "itemsAMostrar" que contiene la totalidad de los datos cargados del JSON
-    initStatsPage(itemsAMostrar);
+    // SOLUCIÓN AQUÍ: Pasamos "allItems" que garantiza el 100% absoluto de los JSONs cargados de golpe
+    initStatsPage(allItems);
     return;
   }
 

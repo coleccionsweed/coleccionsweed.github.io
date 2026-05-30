@@ -7,7 +7,6 @@
     "purchasePrice": "41,07€",
     "condition": "new",
     "barcode": "195166205250",
-    "quantity": 1,
     "language": "Inglés",
     "folder": "collector-booster-the-lord-of-the-rings-tales-of-middle-earth",
     "category": "card-packs",
@@ -21,7 +20,6 @@
     "purchasePrice": "9,00€",
     "condition": "new",
     "barcode": "195166205236",
-    "quantity": 1,
     "language": "Inglés",
     "folder": "set-booster-the-lord-of-the-rings-tales-of-middle-earth",
     "category": "card-packs",
@@ -35,7 +33,6 @@
     "purchasePrice": "3,00€",
     "condition": "new",
     "barcode": "5060029850395",
-    "quantity": 1,
     "language": "Inglés",
     "folder": "harry-potter-y-el-prisionero-de-azkaban-card-pack",
     "category": "card-packs",
@@ -49,10 +46,22 @@
     "purchasePrice": "2,70€",
     "condition": "new",
     "barcode": "041199623014",
-    "quantity": 1,
     "language": "Inglés",
     "folder": "el-jorobado-de-notre-dame-card-pack",
     "category": "card-packs",
 	"notes" : "Contiene 11 cartas."
+  },
+  {
+    "id": "el-jorobado-de-notre-dame-sticker-pack",
+    "name": "El Jorobado de Notre Dame (Sobre de cromos)",
+    "franchise": "El Jorobado de Notre Dame",
+    "brand": "Panini",
+    "purchasePrice": "1,90€",
+    "condition": "new",
+    "barcode": "041199623519",
+    "quantity": 4,
+    "language": "Inglés",
+    "folder": "el-jorobado-de-notre-dame-sticker-pack",
+    "category": "card-packs"
   }
 ]
