@@ -1,18 +1,4 @@
 const collectibles = [    {
-  "name" : "High School Musical 2",
-  "franchise" : "High School Musical",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "0,47€",
-  "condition" : "new",
-  "barcode" : "8018190032222",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "High School Musical 2"
-  }
-},  {
   "name" : "La Liga 07-08",
   "franchise" : "La Liga",
   "type" : "Sticker Pack",
