@@ -68,49 +68,7 @@ const collectibles = [  {
   "extraAttributes" : {
     "Collection" : "Harry Potter y la orden del fénix"
   }
-}, {
-  "name" : "Harry Potter y la orden del fénix - Sirius Black, Nymphadora Tonks, Alastor Moody y Kingsley Shacklebolt",
-  "franchise" : "Harry Potter",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "2,73€",
-  "condition" : "new",
-  "barcode" : "8018190030228",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Harry Potter y la orden del fénix"
-  }
-}, {
-  "name" : "Harry Potter y las reliquias de la muerte - Parte 1",
-  "franchise" : "Harry Potter",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "2,70€",
-  "condition" : "new",
-  "barcode" : "8018190041521",
-  "quantity" : 1,
-  "language" : "Italiano",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Harry Potter y las reliquias de la muerte - Parte 1"
-  }
-}, {
-  "name" : "Harry Potter y las reliquias de la muerte - Parte 2",
-  "franchise" : "Harry Potter",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "3,46€",
-  "condition" : "new",
-  "barcode" : "7897653515004",
-  "quantity" : 2,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Harry Potter y las reliquias de la muerte - Parte 2"
-  }
-}, {
+},  {
   "name" : "Heidi",
   "franchise" : "Heidi",
   "type" : "Sticker Pack",
