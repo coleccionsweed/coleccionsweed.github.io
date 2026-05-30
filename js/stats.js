@@ -1,5 +1,6 @@
 // js/stats.js
 import { loadCollection } from './dataLoader.js';
+import { t } from './translations.js';
 
 let charts = { categories: null };
 
@@ -88,11 +89,15 @@ export async function initStatsPage() {
   // 4. Inicialización segura de los gráficos con Chart.js
   const ctxCat = document.getElementById('chartCategories');
   if (ctxCat) {
+    // Extraemos las claves en bruto ('books', 'toys', etc.) y mapeamos cada una a través de la función t()
+    const rawCategories = Object.keys(categoriesMap);
+    const translatedLabels = rawCategories.map(catKey => t(catKey));
+
     if (charts.categories) charts.categories.destroy();
     charts.categories = new Chart(ctxCat, {
       type: 'doughnut',
       data: {
-        labels: Object.keys(categoriesMap),
+        labels: translatedLabels, // <-- Pasamos la lista de textos ya traducidos
         datasets: [{
           data: Object.values(categoriesMap),
           backgroundColor: ['#6366f1', '#10b981', '#f59e0b', '#ef4444', '#ec4899', '#06b6d4', '#a855f7'],
@@ -103,7 +108,15 @@ export async function initStatsPage() {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: { legend: { position: 'bottom', labels: { color: '#9aa3b2', font: { size: 11 } } } }
+        plugins: { 
+          legend: { 
+            position: 'bottom', 
+            labels: { 
+              color: '#9aa3b2', 
+              font: { size: 11 } 
+            } 
+          } 
+        }
       }
     });
   }
