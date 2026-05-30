@@ -7,44 +7,19 @@ import { initStatsPage } from './stats.js'
 let allItems = []
 let itemsAMostrar = []        
 let posicionScrollGuardada = 0 
+let filtersInitialized = false // Evita duplicar listeners de filtros al cambiar de sección
 
 async function init() {
   if ('scrollRestoration' in window.history) {
     window.history.scrollRestoration = 'manual';
   }
 
-  // 1. Cargamos el 100% de la colección desde los JSONs
+  // Cargamos los datos maestros iniciales
   allItems = await loadCollection()
   itemsAMostrar = allItems 
 
-  // 2. Configuramos filtros recibiendo la lista completa
-  setupFilters(allItems, (filteredItems) => {
-    itemsAMostrar = filteredItems // Mantiene la lista completa filtrada en memoria
-    
-    if (window.location.hash === '#stats') {
-      initStatsPage(itemsAMostrar);
-    } else if (!window.location.hash) {
-      // Para la galería visual, solo pintamos los primeros 20 (Lazy loading/Scroll de tu web)
-      renderItems(filteredItems.slice(0, 20))
-    }
-  })
-
   handleRoute()
   window.addEventListener('hashchange', handleRoute)
-
-  // 3. Listener para tu Scroll Infinito original:
-  // Cuando el usuario baje al revés de la página, filters.js se encargará de renderizar más.
-  window.addEventListener('scroll', () => {
-    if (window.location.hash) return; // Si no estamos en la galería principal, no hacemos nada
-    
-    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-    if (scrollTop + clientHeight >= scrollHeight - 300) {
-      // Dejamos que el scroll perezoso siga funcionando de forma nativa en tu interfaz
-      if (typeof window.cargarMasItems === 'function') {
-        window.cargarMasItems();
-      }
-    }
-  });
 }
 
 function handleRoute() {
@@ -56,30 +31,33 @@ function handleRoute() {
   const statsView = document.getElementById('statsView')
   const sidebar = document.getElementById('filtersContainer')
 
-  // ==========================================
-  // VISTA DE ESTADÍSTICAS GLOBAL (#stats)
-  // ==========================================
+  // ==========================================================
+  // VISTA NUEVA: ESTADÍSTICAS COMO URL TOTALMENTE AISLADA (#stats)
+  // ==========================================================
   if (hash === 'stats') {
+    // 1. Apagamos drásticamente todo lo relacionado con la galería visual
     if (galleryView) galleryView.style.display = 'none';
     if (sidebar) sidebar.style.display = 'none';
     if (grid) grid.style.display = 'none';
     if (counter) counter.style.display = 'none';
-    
-    if (statsView) statsView.style.display = 'block';
-    if (filters) filters.style.display = ''; // Permitimos ver los filtros arriba si quieres
+    if (filters) filters.style.display = 'none'; // Ocultamos barra de búsqueda superior en estadísticas
 
-    // ¡BRUTAL! Ahora "itemsAMostrar" contiene el 100% de los elementos reales del JSON
-    initStatsPage(itemsAMostrar);
+    // 2. Encendemos el contenedor de estadísticas
+    if (statsView) statsView.style.display = 'block';
+
+    // 3. Ejecutamos la carga limpia y autónoma de estadísticas
+    initStatsPage();
     return;
   }
 
-  // ==========================================
-  // VISTA LISTA PRINCIPAL (GALERÍA ORIGINAL)
-  // ==========================================
+  // ==========================================================
+  // VISTA ORIGINAL: LISTA PRINCIPAL (GALERÍA ORIGINAL)
+  // ==========================================================
   if (!hash) {
     if (filters) filters.style.display = ''; 
     if (counter) counter.style.display = '';
     if (sidebar) sidebar.style.display = ''; 
+    if (grid) grid.style.display = '';
     
     if (statsView) statsView.style.display = 'none';
     if (galleryView) galleryView.style.display = 'block';
@@ -90,14 +68,22 @@ function handleRoute() {
     if (navS) navS.style.color = '#6b7280';
 
     if (grid) {
-      grid.style.display = ''; 
+      grid.className = 'collection-grid';
       grid.style.opacity = '1'; 
       grid.style.height = 'auto';
-      grid.className = 'collection-grid';
     }
     
-    // Al volver a la galería, pintamos solo la tanda inicial de 20 para no saturar el DOM
-    renderItems(itemsAMostrar.slice(0, 20));
+    // Inicializamos o reconectamos los filtros originales de la galería
+    if (!filtersInitialized) {
+      setupFilters(allItems, (filteredItems) => {
+        itemsAMostrar = filteredItems;
+        renderItems(filteredItems);
+      });
+      filtersInitialized = true;
+    } else {
+      // Si ya estaban inicializados, simplemente repintamos lo que corresponda
+      renderItems(itemsAMostrar);
+    }
 
     setTimeout(() => {
       window.scrollTo(0, posicionScrollGuardada);
@@ -105,9 +91,9 @@ function handleRoute() {
     return;
   }
 
-  // ==========================================
-  // VISTA DETALLE DE UN ITEM
-  // ==========================================
+  // ==========================================================
+  // VISTA: DETALLE DE UN ITEM (Mantiene tu bonita animación)
+  // ==========================================================
   const item = allItems.find(i => i.id === hash);
 
   if (item) {
@@ -134,6 +120,7 @@ function handleRoute() {
     }
     
   } else {
+    // Fallback por si el hash no corresponde a nada conocido
     if (filters) filters.style.display = '';
     if (counter) counter.style.display = '';
     if (sidebar) sidebar.style.display = '';
@@ -144,7 +131,7 @@ function handleRoute() {
       grid.style.opacity = '1';
       grid.className = 'collection-grid';
     }
-    renderItems(itemsAMostrar.slice(0, 20));
+    renderItems(itemsAMostrar);
   }
 }
 

@@ -1,4 +1,6 @@
 // js/stats.js
+import { loadCollection } from './dataLoader.js';
+
 let charts = { categories: null, condition: null };
 
 function parsePrice(priceStr) {
@@ -7,14 +9,28 @@ function parsePrice(priceStr) {
   return parseFloat(clean) || 0;
 }
 
-export function initStatsPage(allItems) {
+export async function initStatsPage() {
   const navG = document.getElementById('navGallery');
   const navS = document.getElementById('navStats');
   if (navG) navG.style.color = '#6b7280';
   if (navS) navS.style.color = '#ffffff';
 
+  const statsContainer = document.getElementById('statsView');
+  if (!statsContainer) return;
+
+  // 1. Mostramos una pantalla de carga premium mientras procesa el JSON total
+  statsContainer.innerHTML = `
+    <div class="detail-container" style="text-align: center; padding: 100px 0;">
+      <h2 style="color: #fff; font-size: 22px;">📊 Cargando base de datos global...</h2>
+      <p style="color: #6b7280; margin-top: 10px; font-size: 14px;">Analizando archivos del servidor de forma independiente.</p>
+    </div>
+  `;
+
+  // 2. Traemos la lista maestra directamente desde el origen de datos (100% real de los archivos)
+  const rawItems = await loadCollection();
+
   let totalValue = 0;
-  let totalItems = allItems.length; 
+  let totalItems = rawItems.length; // Aquí se reflejará el número masivo real de ítems
   let totalQuantity = 0;
 
   const categoriesMap = {};
@@ -22,7 +38,7 @@ export function initStatsPage(allItems) {
   const franchisesMap = {};
   const brandsMap = {};
 
-  allItems.forEach(item => {
+  rawItems.forEach(item => {
     const qty = parseInt(item.quantity) || 1;
     const price = parsePrice(item.purchasePrice);
     const itemTotalValue = price * qty;
@@ -30,7 +46,7 @@ export function initStatsPage(allItems) {
     totalQuantity += qty;
     totalValue += itemTotalValue;
 
-    const cat = item.type || 'Sin Categoría';
+    const cat = item.category || 'Sin Categoría';
     categoriesMap[cat] = (categoriesMap[cat] || 0) + qty;
 
     const cond = item.condition ? item.condition.toUpperCase() : 'DESCONOCIDO';
@@ -44,14 +60,12 @@ export function initStatsPage(allItems) {
     }
   });
 
-  const statsContainer = document.getElementById('statsView');
-  if (!statsContainer) return;
-  
+  // 3. Pintamos el Dashboard final con las métricas calculadas
   statsContainer.innerHTML = `
     <div class="detail-container">
       <div class="detail-header" style="margin-bottom: 32px;">
         <h2 style="font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 4px;">Estadísticas Globales</h2>
-        <p style="color: #6b7280; font-size: 14px;">Métricas del catálogo completo de tu ecosistema.</p>
+        <p style="color: #6b7280; font-size: 14px;">Métricas completas calculadas directamente desde el almacenamiento JSON.</p>
       </div>
 
       <div class="info-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 32px;">
@@ -98,6 +112,7 @@ export function initStatsPage(allItems) {
     </div>
   `;
 
+  // 4. Inicialización segura de Chart.js
   const ctxCat = document.getElementById('chartCategories');
   if (ctxCat) {
     if (charts.categories) charts.categories.destroy();
