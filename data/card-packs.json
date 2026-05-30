@@ -142,5 +142,17 @@
     "language": "Italiano",
     "folder": "animales-fantasticos-los-secretos-de-dumbledore-queenie-goldstein-y-jacob-kowalski",
     "category": "card-packs"
+  },
+  {
+    "id": "atlantis-sticker-pack",
+    "name": "Atlantis",
+    "franchise": "Atlantis",
+    "brand": "Panini",
+    "purchasePrice": "1,17€",
+    "condition": "new",
+    "barcode": "8018190017250",
+    "language": "Alemán",
+    "folder": "atlantis-sticker-pack",
+    "category": "card-packs"
   }
 ]
