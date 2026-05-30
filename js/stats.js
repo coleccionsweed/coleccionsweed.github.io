@@ -49,45 +49,45 @@ export async function initStatsPage() {
     franchisesQuantityMap[fran] = (franchisesQuantityMap[fran] || 0) + qty;
   });
 
-  // 3. Inyección del diseño HTML del Dashboard (Estructura corregida para PC)
+  // 3. Inyección del diseño HTML del Dashboard (Maquetación dinámica Móvil/PC de alto rendimiento)
   statsContainer.innerHTML = `
-    <div class="detail-container">
+    <div class="detail-container" style="width: 100%; max-width: 100%; overflow-x: hidden;">
       <div class="detail-header" style="margin-bottom: 32px;">
         <h2 style="font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 4px;">Estadísticas Globales</h2>
       </div>
 
-      <div class="info-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 32px;">
+      <div class="info-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin-bottom: 32px; width: 100%;">
         <div style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
           <span style="font-size: 11px; color: #6b7280; font-weight: 700; letter-spacing: 1px;">TOTAL GASTADO</span>
-          <b style="font-size: 28px; color: #10b981; font-weight: 700; margin-top: 8px; display: block;">${totalValue.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}</b>
+          <b style="font-size: 26px; color: #10b981; font-weight: 700; margin-top: 8px; display: block;">${totalValue.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}</b>
         </div>
         <div style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
-          <span style="font-size: 11px; color: #6b7280; font-weight: 700; letter-spacing: 1px;">CANTIDAD DIFERENTES</span>
-          <b style="font-size: 28px; color: #ffffff; font-weight: 700; margin-top: 8px; display: block;">${totalItems} <span style="font-size: 14px; color: #6b7280; font-weight: 400;">ítems</span></b>
+          <span style="font-size: 11px; color: #6b7280; font-weight: 700; letter-spacing: 1px;">TOTAL DIFERENTES</span>
+          <b style="font-size: 26px; color: #ffffff; font-weight: 700; margin-top: 8px; display: block;">${totalItems} <span style="font-size: 14px; color: #6b7280; font-weight: 400;">ítems</span></b>
         </div>
         <div style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
-          <span style="font-size: 11px; color: #6b7280; font-weight: 700; letter-spacing: 1px;">CANTIDAD TOTAL EN STOCK</span>
-          <b style="font-size: 28px; color: #f59e0b; font-weight: 700; margin-top: 8px; display: block;">${totalQuantity} <span style="font-size: 14px; color: #6b7280; font-weight: 400;">uds</span></b>
+          <span style="font-size: 11px; color: #6b7280; font-weight: 700; letter-spacing: 1px;">TOTAL EN STOCK</span>
+          <b style="font-size: 26px; color: #f59e0b; font-weight: 700; margin-top: 8px; display: block;">${totalQuantity} <span style="font-size: 14px; color: #6b7280; font-weight: 400;">uds</span></b>
         </div>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 32px; align-items: start;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 450px), 1fr)); gap: 32px; align-items: start; width: 100%;">
         
-        <div class="info-card" style="display: flex; flex-direction: column; align-items: center; background: #141822; padding: 32px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.02);">
-          <h4 style="font-size: 15px; font-weight: 700; color: #fff; width: 100%; text-align: left; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.5px;">🍩 Unidades por Categoría</h4>
-          <div style="width: 100%; max-width: 360px; height: 360px; position: relative; margin: 0 auto;">
+        <div class="info-card" style="display: flex; flex-direction: column; align-items: center; background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.02); width: 100%; box-sizing: border-box;">
+          <h4 style="font-size: 14px; font-weight: 700; color: #fff; width: 100%; text-align: left; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.5px;">🍩 Unidades por Categoría</h4>
+          <div style="width: 100%; max-width: 340px; aspect-ratio: 1 / 1; position: relative; margin: 0 auto;">
             <canvas id="chartCategories"></canvas>
           </div>
         </div>
 
-        <div style="display: flex; flex-direction: column; gap: 32px;">
-          <div class="info-card" style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.02);">
-            <h4 style="font-size: 15px; font-weight: 700; color: #10b981; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px;">🏆 Top 5 Franquicias Líderes (Valor)</h4>
+        <div style="display: flex; flex-direction: column; gap: 32px; width: 100%;">
+          <div class="info-card" style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.02); width: 100%; box-sizing: border-box; overflow-x: auto;">
+            <h4 style="font-size: 14px; font-weight: 700; color: #10b981; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px;">🏆 Top 5 Franquicias Líderes (Valor)</h4>
             <div id="topFranchisesTable"></div>
           </div>
 
-          <div class="info-card" style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.02);">
-            <h4 style="font-size: 15px; font-weight: 700; color: #f59e0b; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px;">📦 Top 5 Franquicias Líderes (Unidades)</h4>
+          <div class="info-card" style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.02); width: 100%; box-sizing: border-box; overflow-x: auto;">
+            <h4 style="font-size: 14px; font-weight: 700; color: #f59e0b; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px;">📦 Top 5 Franquicias Líderes (Unidades)</h4>
             <div id="topFranchisesQtyTable"></div>
           </div>
         </div>
@@ -111,7 +111,7 @@ export async function initStatsPage() {
           data: Object.values(categoriesMap),
           backgroundColor: ['#6366f1', '#10b981', '#f59e0b', '#ef4444', '#ec4899', '#06b6d4', '#a855f7'],
           borderWidth: 3,
-          borderColor: '#141822' // Del mismo color del fondo de la tarjeta para dar efecto "separado"
+          borderColor: '#141822'
         }]
       },
       options: {
@@ -122,8 +122,8 @@ export async function initStatsPage() {
             position: 'bottom', 
             labels: { 
               color: '#9aa3b2', 
-              padding: 20,
-              font: { size: 12, family: 'system-ui' } 
+              padding: 16,
+              font: { size: 11, family: 'system-ui' } 
             } 
           } 
         }
@@ -159,8 +159,8 @@ function renderPremiumTable(headers, rows) {
       <tbody>
         ${rows.map(([c1, c2]) => `
           <tr style="border-bottom: 1px solid rgba(255,255,255,0.03);">
-            <td style="padding: 10px 0; color: #fff; font-weight: 500;">${c1}</td>
-            <td style="padding: 10px 0; text-align: right; font-weight: 700; color: #aeb6c4;">${c2}</td>
+            <td style="padding: 10px 0; color: #fff; font-weight: 500; white-space: nowrap; max-width: 180px; overflow: hidden; text-overflow: ellipsis;">${c1}</td>
+            <td style="padding: 10px 0; text-align: right; font-weight: 700; color: #aeb6c4; white-space: nowrap;">${c2}</td>
           </tr>
         `).join('')}
       </tbody>
