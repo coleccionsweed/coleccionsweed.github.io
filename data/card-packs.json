@@ -249,5 +249,77 @@
     "language": "Español",
     "folder": "e.t.-sticker-pack",
     "category": "card-packs"
+  },
+  {
+    "id": "el-rey-leon-sticker-pack",
+    "name": "El Rey León",
+    "franchise": "El Rey León",
+    "brand": "Panini",
+    "purchasePrice": "3,00€",
+    "condition": "new",
+	"barcode" : "080557402533",
+    "language": "Francés",
+    "folder": "el-rey-leon-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "gabumon-sticker-pack",
+    "name": "Gabumon",
+    "franchise": "Digimon",
+    "brand": "Panini",
+    "purchasePrice": "3,30€",
+    "condition": "new",
+    "barcode": "8018190014730",
+    "language": "Español",
+    "folder": "gabumon-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "gomamon-sticker-pack",
+    "name": "Gomamon",
+    "franchise": "Digimon",
+    "brand": "Panini",
+    "purchasePrice": "3,30€",
+    "condition": "new",
+    "barcode": "8018190014730",
+    "language": "Español",
+    "folder": "gomamon-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "palmon-sticker-pack",
+    "name": "Palmon",
+    "franchise": "Digimon",
+    "brand": "Panini",
+    "purchasePrice": "3,30€",
+    "condition": "new",
+    "barcode": "8018190014730",
+    "language": "Español",
+    "folder": "palmon-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "patamon-sticker-pack",
+    "name": "Patamon",
+    "franchise": "Digimon",
+    "brand": "Panini",
+    "purchasePrice": "3,30€",
+    "condition": "new",
+    "barcode": "8018190014730",
+    "language": "Español",
+    "folder": "patamon-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "tentomon-sticker-pack",
+    "name": "Tentomon",
+    "franchise": "Digimon",
+    "brand": "Panini",
+    "purchasePrice": "3,30€",
+    "condition": "new",
+    "barcode": "8018190014730",
+    "language": "Español",
+    "folder": "tentomon-sticker-pack",
+    "category": "card-packs"
   }
 ]

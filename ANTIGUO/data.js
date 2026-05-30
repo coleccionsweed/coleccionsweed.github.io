@@ -1,74 +1,4 @@
-const collectibles = [    {
-  "name" : "Gabumon",
-  "franchise" : "Digimon",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "3,30€",
-  "condition" : "new",
-  "barcode" : "8018190014730",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Digimon"
-  }
-}, {
-  "name" : "Gomamon",
-  "franchise" : "Digimon",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "3,30€",
-  "condition" : "new",
-  "barcode" : "8018190014730",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Digimon"
-  }
-}, {
-  "name" : "Palmon",
-  "franchise" : "Digimon",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "3,30€",
-  "condition" : "new",
-  "barcode" : "8018190014730",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Digimon"
-  }
-}, {
-  "name" : "Patamon",
-  "franchise" : "Digimon",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "3,30€",
-  "condition" : "new",
-  "barcode" : "8018190014730",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Digimon"
-  }
-}, {
-  "name" : "Tentomon",
-  "franchise" : "Digimon",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "3,30€",
-  "condition" : "new",
-  "barcode" : "8018190014730",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : ""
-  }
-},   {
+const collectibles = [     {
   "name" : "La ruta hacia El Dorado",
   "franchise" : "La ruta hacia El Dorado",
   "type" : "Sticker Pack",
@@ -82,21 +12,7 @@ const collectibles = [    {
   "extraAttributes" : {
     "Collection" : "La ruta hacia El Dorado"
   }
-}, {
-  "name" : "El Rey León",
-  "franchise" : "El Rey León",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "3,00€",
-  "condition" : "new",
-  "barcode" : "080557402533",
-  "quantity" : 1,
-  "language" : "Francés",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "El Rey León"
-  }
-}, {
+},  {
   "name" : "La Comunidad del Anillo",
   "franchise" : "El Señor de los Anillos",
   "type" : "Sticker Pack",
