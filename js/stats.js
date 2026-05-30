@@ -52,16 +52,15 @@ export async function initStatsPage() {
     <div class="detail-container">
       <div class="detail-header" style="margin-bottom: 32px;">
         <h2 style="font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 4px;">Estadísticas Globales</h2>
-        <p style="color: #6b7280; font-size: 14px;">Métricas completas calculadas directamente desde el almacenamiento JSON.</p>
       </div>
 
       <div class="info-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 32px;">
         <div style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
-          <span style="font-size: 11px; color: #6b7280; font-weight: 700; letter-spacing: 1px;">VALOR TOTAL ESTIMADO</span>
+          <span style="font-size: 11px; color: #6b7280; font-weight: 700; letter-spacing: 1px;">TOTAL GASTADO</span>
           <b style="font-size: 28px; color: #10b981; font-weight: 700; margin-top: 8px; display: block;">${totalValue.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}</b>
         </div>
         <div style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
-          <span style="font-size: 11px; color: #6b7280; font-weight: 700; letter-spacing: 1px;">MODELOS COMPILADOS TOTALES</span>
+          <span style="font-size: 11px; color: #6b7280; font-weight: 700; letter-spacing: 1px;">OBJETOS DIFERENTES</span>
           <b style="font-size: 28px; color: #ffffff; font-weight: 700; margin-top: 8px; display: block;">${totalItems} <span style="font-size: 14px; color: #6b7280; font-weight: 400;">ítems</span></b>
         </div>
         <div style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
