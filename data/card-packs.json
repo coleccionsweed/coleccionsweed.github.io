@@ -381,5 +381,29 @@
     "language": "Español",
     "folder": "harry-potter-album-stickers-sticker-pack",
     "category": "card-packs"
+  },
+  {
+    "id": "harry-potter-y-el-caliz-de-fuego-dragon-sticker-pack",
+    "name": "Harry Potter y el cáliz de fuego - Dragón",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "1,17€",
+    "condition": "new",
+    "barcode": "8018190026436",
+    "language": "Español",
+    "folder": "harry-potter-y-el-caliz-de-fuego-dragon-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "harry-potter-y-el-caliz-de-fuego-harry-potter-sticker-pack",
+    "name": "Harry Potter y el cáliz de fuego - Harry Potter",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "1,17€",
+    "condition": "new",
+    "barcode": "8018190026436",
+    "language": "Español",
+    "folder": "harry-potter-y-el-caliz-de-fuego-harry-potter-sticker-pack",
+    "category": "card-packs"
   }
 ]

@@ -1,46 +1,4 @@
-const collectibles = [      {
-  "name" : "Harry Potter - Album Stickers",
-  "franchise" : "Harry Potter",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "0,80€",
-  "condition" : "new",
-  "barcode" : "8018190004229",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Harry Potter - Album Stickers"
-  }
-}, {
-  "name" : "Harry Potter y el cáliz de fuego - Dragón",
-  "franchise" : "Harry Potter",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "1,17€",
-  "condition" : "new",
-  "barcode" : "8018190026436",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Harry Potter y el cáliz de fuego"
-  }
-}, {
-  "name" : "Harry Potter y el cáliz de fuego - Harry Potter",
-  "franchise" : "Harry Potter",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "1,17€",
-  "condition" : "new",
-  "barcode" : "8018190026436",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Harry Potter y el cáliz de fuego"
-  }
-}, {
+const collectibles = [    {
   "name" : "Harry Potter y el cáliz de fuego - Huevo",
   "franchise" : "Harry Potter",
   "type" : "Sticker Pack",
