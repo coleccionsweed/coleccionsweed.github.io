@@ -30,8 +30,8 @@ export async function initStatsPage() {
   let totalQuantity = 0;
 
   const categoriesMap = {};
-  const franchisesValueMap = {};    // Para el top por valor monetario
-  const franchisesQuantityMap = {}; // Para el top por número de unidades
+  const franchisesValueMap = {};    
+  const franchisesQuantityMap = {}; 
 
   rawItems.forEach(item => {
     const qty = parseInt(item.quantity) || 1;
@@ -49,21 +49,20 @@ export async function initStatsPage() {
     franchisesQuantityMap[fran] = (franchisesQuantityMap[fran] || 0) + qty;
   });
 
-  // 3. Inyección del diseño HTML del Dashboard con el nuevo bloque de estadísticas
+  // 3. Inyección del diseño HTML del Dashboard (Estructura corregida para PC)
   statsContainer.innerHTML = `
     <div class="detail-container">
       <div class="detail-header" style="margin-bottom: 32px;">
         <h2 style="font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 4px;">Estadísticas Globales</h2>
-        <p style="color: #6b7280; font-size: 14px;">Métricas completas calculadas directamente desde el almacenamiento JSON.</p>
       </div>
 
       <div class="info-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 32px;">
         <div style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
-          <span style="font-size: 11px; color: #6b7280; font-weight: 700; letter-spacing: 1px;">VALOR TOTAL ESTIMADO</span>
+          <span style="font-size: 11px; color: #6b7280; font-weight: 700; letter-spacing: 1px;">TOTAL GASTADO</span>
           <b style="font-size: 28px; color: #10b981; font-weight: 700; margin-top: 8px; display: block;">${totalValue.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}</b>
         </div>
         <div style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
-          <span style="font-size: 11px; color: #6b7280; font-weight: 700; letter-spacing: 1px;">MODELOS COMPILADOS TOTALES</span>
+          <span style="font-size: 11px; color: #6b7280; font-weight: 700; letter-spacing: 1px;">CANTIDAD DIFERENTES</span>
           <b style="font-size: 28px; color: #ffffff; font-weight: 700; margin-top: 8px; display: block;">${totalItems} <span style="font-size: 14px; color: #6b7280; font-weight: 400;">ítems</span></b>
         </div>
         <div style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
@@ -72,25 +71,27 @@ export async function initStatsPage() {
         </div>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 32px; margin-bottom: 32px;">
-        <div class="info-card" style="display: flex; flex-direction: column; align-items: center; background: #141822; padding: 24px; border-radius: 20px;">
-          <h4 style="font-size: 15px; font-weight: 700; color: #fff; width: 100%; text-align: left; margin-bottom: 24px; text-transform: uppercase;">🍩 Unidades por Categoría</h4>
-          <div style="width: 100%; max-width: 280px; height: 280px;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 32px; align-items: start;">
+        
+        <div class="info-card" style="display: flex; flex-direction: column; align-items: center; background: #141822; padding: 32px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.02);">
+          <h4 style="font-size: 15px; font-weight: 700; color: #fff; width: 100%; text-align: left; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.5px;">🍩 Unidades por Categoría</h4>
+          <div style="width: 100%; max-width: 360px; height: 360px; position: relative; margin: 0 auto;">
             <canvas id="chartCategories"></canvas>
           </div>
         </div>
 
         <div style="display: flex; flex-direction: column; gap: 32px;">
-          <div class="info-card" style="background: #141822; padding: 24px; border-radius: 20px;">
-            <h4 style="font-size: 15px; font-weight: 700; color: #10b981; margin-bottom: 16px; text-transform: uppercase;">🏆 Top 5 Franquicias Líderes (Valor)</h4>
+          <div class="info-card" style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.02);">
+            <h4 style="font-size: 15px; font-weight: 700; color: #10b981; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px;">🏆 Top 5 Franquicias Líderes (Valor)</h4>
             <div id="topFranchisesTable"></div>
           </div>
 
-          <div class="info-card" style="background: #141822; padding: 24px; border-radius: 20px;">
-            <h4 style="font-size: 15px; font-weight: 700; color: #f59e0b; margin-bottom: 16px; text-transform: uppercase;">📦 Top 5 Franquicias Líderes (Unidades)</h4>
+          <div class="info-card" style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.02);">
+            <h4 style="font-size: 15px; font-weight: 700; color: #f59e0b; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px;">📦 Top 5 Franquicias Líderes (Unidades)</h4>
             <div id="topFranchisesQtyTable"></div>
           </div>
         </div>
+
       </div>
     </div>
   `;
@@ -109,8 +110,8 @@ export async function initStatsPage() {
         datasets: [{
           data: Object.values(categoriesMap),
           backgroundColor: ['#6366f1', '#10b981', '#f59e0b', '#ef4444', '#ec4899', '#06b6d4', '#a855f7'],
-          borderWidth: 2,
-          borderColor: '#11141c'
+          borderWidth: 3,
+          borderColor: '#141822' // Del mismo color del fondo de la tarjeta para dar efecto "separado"
         }]
       },
       options: {
@@ -121,7 +122,8 @@ export async function initStatsPage() {
             position: 'bottom', 
             labels: { 
               color: '#9aa3b2', 
-              font: { size: 11 } 
+              padding: 20,
+              font: { size: 12, family: 'system-ui' } 
             } 
           } 
         }
