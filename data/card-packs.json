@@ -154,5 +154,41 @@
     "language": "Alemán",
     "folder": "atlantis-sticker-pack",
     "category": "card-packs"
+  },
+  {
+    "id": "bakugan-sticker-pack",
+    "name": "Bakugan",
+    "franchise": "Bakugan",
+    "brand": "Panini",
+    "purchasePrice": "0,47€",
+    "condition": "new",
+    "barcode": "8018190036701",
+    "language": "Español",
+    "folder": "bakugan-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "baby-looney-tunes-sticker-pack",
+    "name": "Baby Looney Tunes",
+    "franchise": "Looney Tunes",
+    "brand": "Panini",
+    "purchasePrice": "0,47€",
+    "condition": "new",
+    "barcode": "8018190033519",
+    "language": "Español",
+    "folder": "baby-looney-tunes-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "buscando-a-dory-sticker-pack",
+    "name": "Buscando a Dory",
+    "franchise": "Buscando a Nemo",
+    "brand": "Panini",
+    "purchasePrice": "0,75€",
+    "condition": "new",
+    "barcode": "8018190074970",
+    "language": "Español",
+    "folder": "buscando-a-dory-sticker-pack",
+    "category": "card-packs"
   }
 ]

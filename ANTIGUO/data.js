@@ -1,46 +1,4 @@
-const collectibles = [  {
-  "name" : "Atlantis",
-  "franchise" : "Atlantis",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "1,17€",
-  "condition" : "new",
-  "barcode" : "8018190017250",
-  "quantity" : 1,
-  "language" : "Alemán",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Atlantis"
-  }
-}, {
-  "name" : "Bakugan",
-  "franchise" : "Bakugan",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "0,47€",
-  "condition" : "new",
-  "barcode" : "8018190036701",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Bakugan"
-  }
-}, {
-  "name" : "Buscando a Dory",
-  "franchise" : "Buscando a Nemo",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "0,75€",
-  "condition" : "new",
-  "barcode" : "8018190074970",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Buscando a Dory"
-  }
-}, {
+const collectibles = [   {
   "name" : "Caillou",
   "franchise" : "Caillou",
   "type" : "Sticker Pack",
@@ -138,21 +96,7 @@ const collectibles = [  {
   "extraAttributes" : {
     "Collection" : ""
   }
-}, {
-  "name" : "Baby Looney Tunes",
-  "franchise" : "Looney Tunes",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "0,47€",
-  "condition" : "new",
-  "barcode" : "8018190033519",
-  "quantity" : 1,
-  "language" : "Español",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "Baby Looney Tunes"
-  }
-}, {
+},  {
   "name" : "Dinosaurs",
   "franchise" : "Dinosaurs",
   "type" : "Sticker Pack",
