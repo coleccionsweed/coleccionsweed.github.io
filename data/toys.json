@@ -535,5 +535,17 @@
     "language": "Inglés",
     "folder": "troll-armado-las-dos-torres",
     "category": "toys"
+  },
+  {
+    "id": "pokemon-game-music-collection-game-boy-jukebox",
+    "name": "Pokémon - Game Music Collection: GAME BOY Jukebox",
+    "franchise": "Pokémon",
+    "brand": "Pokémon",
+    "purchasePrice": "69,23€",
+    "condition": "new",
+    "barcode": "196215179942",
+    "language": "Inglés",
+    "folder": "pokemon-game-music-collection-game-boy-jukebox",
+    "category": "toys"
   }
 ]
