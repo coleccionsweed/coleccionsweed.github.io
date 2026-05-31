@@ -85,5 +85,18 @@
     "language": "Español",
     "folder": "2026-fifa-world-cup-caja-de-cromos",
     "category": "card-box"
+  },
+  {
+    "id": "2008-2009-champions-league-caja-de-cromos",
+    "name": "2008-2009 Champions League - Caja de cromos",
+    "franchise": "Champions League",
+    "brand": "Panini",
+    "purchasePrice": "40,52€",
+	"year": "2008",
+    "condition": "new",
+    "barcode": "8018190034028",
+    "language": "Español",
+    "folder": "2008-2009-champions-league-caja-de-cromos",
+    "category": "card-box"
   }
 ]
