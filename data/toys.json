@@ -587,5 +587,18 @@
 	"language": "Español",
     "folder": "yoshi-mario-galaxy",
     "category": "toys"
+  },
+  {
+    "id": "lionel-messi-football-highlights",
+    "name": "Lionel Messi - Football Highlights",
+    "franchise": "World Cup",
+    "brand": "Lego",
+    "purchasePrice": "29,43€",
+	"year": "2026",
+    "condition": "new",
+	"barcode": "5702018069516",
+	"language": "Español",
+    "folder": "lionel-messi-football-highlights",
+    "category": "toys"
   }
 ]
