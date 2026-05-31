@@ -541,6 +541,7 @@
     "franchise": "El Señor de los Anillos",
     "brand": "Toy Biz",
     "purchasePrice": "55,00€",
+	"year": "2004",
     "condition": "new",
     "barcode": "035112713418",
     "language": "Inglés",
@@ -919,6 +920,19 @@
 	"barcode": "0885561160147",
 	"language" : "Inglés",
     "folder": "legolas-y-tauriel-el-hobbit",
+    "category": "toys"
+  },
+  {
+    "id": "gandalf-the-white-figures-of-fandom",
+    "name": "Gandalf the White - Figures of Fandom",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Weta Workshop",
+    "purchasePrice": "0,00€",
+	"year": "2022",
+    "condition": "used",
+	"barcode": "9420024731246",
+	"language" : "Inglés",
+    "folder": "gandalf-the-white-figures-of-fandom",
     "category": "toys"
   }
 ]
