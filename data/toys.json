@@ -227,6 +227,7 @@
     "franchise": "Harry Potter",
     "brand": "Mattel",
     "purchasePrice": "35,00€",
+	"year": "2001",
     "condition": "new",
 	"barcode": "074299474040",
 	"language" : "Español",
@@ -600,6 +601,19 @@
 	"barcode": "5702018069516",
 	"language": "Español",
     "folder": "lionel-messi-football-highlights",
+    "category": "toys"
+  },
+  {
+    "id": "donkey-kong-mario-kart",
+    "name": "Donkey Kong - Mario Kart",
+    "franchise": "Super Mario",
+    "brand": "Hot Wheels",
+    "purchasePrice": "0,00€",
+	"year": "2020",
+    "condition": "new",
+	"barcode": "887961811520",
+	"language": "Español",
+    "folder": "donkey-kong-mario-kart",
     "category": "toys"
   }
 ]
