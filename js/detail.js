@@ -38,7 +38,7 @@ export async function renderDetail(item) {
   // =======================================================
   const clavesAIgnorar = ['id', 'name', 'franchise', 'folder', 'category', 'tags', 'notes'];
   const diccionarioEtiquetas = {
-    type: 'Tipo', brand: 'Marca', condition: 'Estado', language: 'Idioma', purchasePrice: 'Precio', quantity: 'Cantidad', barcode: 'Cód. Barras', author: 'Autor'
+    type: 'Tipo', brand: 'Marca', condition: 'Estado', language: 'Idioma', purchasePrice: 'Precio', quantity: 'Cantidad', barcode: 'Cód. Barras', author: 'Autor', anio: 'Año'
   };
 
   function obtenerEtiquetaLegible(clave) {
