@@ -73,5 +73,19 @@
     "language": "Español",
     "folder": "robots-umd",
     "category": "films"
+  },
+  {
+    "id": "harry-potter-y-la-camara-secreta-vhs",
+    "name": "Harry Potter y la cámara secreta",
+	"franchise" : "Harry Potter",
+	"Platform" : "VHS",
+    "brand": "Warner Bros. Pictures",
+    "purchasePrice": "9,48€",
+	"year": "2002",
+    "condition": "new",
+	"barcode" : "8414927222797",
+    "language": "Español",
+    "folder": "harry-potter-y-la-camara-secreta-vhs",
+    "category": "films"
   }
 ]
