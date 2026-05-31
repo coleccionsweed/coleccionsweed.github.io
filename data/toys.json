@@ -133,6 +133,7 @@
     "franchise": "Pokémon",
     "brand": "Tomy",
     "purchasePrice": "30,44€",
+	"year": "2001",
     "condition": "new",
 	"barcode": "4904810526346",
 	"language" : "Japonés",
@@ -641,6 +642,32 @@
 	"barcode": "887961811520",
 	"language": "Inglés",
     "folder": "james-p-sullivan",
+    "category": "toys"
+  },
+  {
+    "id": "buzz-lightyear",
+    "name": "Buzz Lightyear",
+    "franchise": "Toy Story",
+    "brand": "Disney",
+    "purchasePrice": "39,99€",
+	"year": "2020",
+    "condition": "used",
+	"barcode": "461010120117",
+	"language": "Español",
+    "folder": "buzz-lightyear",
+    "category": "toys"
+  },
+  {
+    "id": "entei-select",
+    "name": "Entei",
+    "franchise": "Pokémon",
+    "brand": "Jazwares",
+    "purchasePrice": "30,03€",
+	"year": "2024",
+    "condition": "new",
+	"barcode": "191726483625",
+	"language" : "Español",
+    "folder": "entei-select",
     "category": "toys"
   }
 ]
