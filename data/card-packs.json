@@ -1176,5 +1176,41 @@
     "language": "Alemán",
     "folder": "wall·e-sticker-pack",
     "category": "card-packs"
+  },
+  {
+    "id": "west-sticker-pack",
+    "name": "West",
+    "franchise": "West",
+    "brand": "Panini",
+    "purchasePrice": "0,47€",
+    "condition": "new",
+	"barcode" : "080557401178",
+    "language": "Español",
+    "folder": "west-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "yo-kai-watch-sticker-pack",
+    "name": "Yo-kai Watch",
+    "franchise": "Yo-kai Watch",
+    "brand": "Panini",
+    "purchasePrice": "0,47€",
+    "condition": "new",
+	"barcode" : "8018190075076",
+    "language": "Español",
+    "folder": "yo-kai-watch-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "yu-gi-oh!-sticker-pack",
+    "name": "Yu-Gi-Oh!",
+    "franchise": "Yu-Gi-Oh!",
+    "brand": "Panini",
+    "purchasePrice": "2,40€",
+    "condition": "new",
+	"barcode" : "8018190022209",
+    "language": "Español",
+    "folder": "yu-gi-oh!-sticker-pack",
+    "category": "card-packs"
   }
 ]
