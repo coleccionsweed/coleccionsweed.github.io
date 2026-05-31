@@ -547,5 +547,17 @@
     "language": "Inglés",
     "folder": "pokemon-game-music-collection-game-boy-jukebox",
     "category": "toys"
+  },
+  {
+    "id": "febo-poseable",
+    "name": "Febo",
+    "franchise": "El Jorobado de Notre Dame",
+    "brand": "Mattel",
+    "purchasePrice": "55,20€",
+    "condition": "new",
+	"barcode": "074299153129",
+	"language": "Español",
+    "folder": "febo-poseable",
+    "category": "toys"
   }
 ]
