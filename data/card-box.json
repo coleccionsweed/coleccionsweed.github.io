@@ -59,5 +59,18 @@
     "language": "Inglés",
     "folder": "draft-pack-the-lord-of-the-rings-tales-of-middle-earth",
     "category": "card-box"
+  },
+  {
+    "id": "pack-de-2-sobres-y-1-figura-el-jorobado-de-notre-dame",
+    "name": "Pack de 2 sobres y 1 figura - El Jorobado de Notre Dame",
+    "franchise": "El Jorobado de Notre Dame",
+    "brand": "Panini",
+    "purchasePrice": "5,00€",
+	"year": "1996",
+    "condition": "new",
+    "barcode": "8018190004274",
+    "language": "Español",
+    "folder": "pack-de-2-sobres-y-1-figura-el-jorobado-de-notre-dame",
+    "category": "card-box"
   }
 ]
