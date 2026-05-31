@@ -145,6 +145,7 @@
     "franchise": "El Jorobado de Notre Dame",
     "brand": "applause",
     "purchasePrice": "10,69€",
+	"year": "1995",
     "condition": "used",
     "folder": "esmeralda",
     "category": "toys"
@@ -342,6 +343,7 @@
     "franchise": "Digimon",
     "brand": "Digimon",
     "purchasePrice": "29,90€",
+	"year": "2001",
     "condition": "new",
 	"barcode": "6932136821317",
 	"language": "Inglés",
@@ -622,10 +624,23 @@
     "franchise": "Tarzán",
     "brand": "applause",
     "purchasePrice": "0,00€",
-	"year": "2020",
+	"year": "1999",
     "condition": "used",
 	"language": "Español",
     "folder": "tarzan-jane-terk-y-tantor",
+    "category": "toys"
+  },
+  {
+    "id": "james-p-sullivan",
+    "name": "James P. Sullivan",
+    "franchise": "Monstruos S.A.",
+    "brand": "Hasbro",
+    "purchasePrice": "0,00€",
+	"year": "2001",
+    "condition": "new",
+	"barcode": "887961811520",
+	"language": "Inglés",
+    "folder": "james-p-sullivan",
     "category": "toys"
   }
 ]
