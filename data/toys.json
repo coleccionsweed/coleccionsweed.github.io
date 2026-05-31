@@ -669,5 +669,31 @@
 	"language" : "Español",
     "folder": "entei-select",
     "category": "toys"
+  },
+  {
+    "id": "legolas-deluxe-action-figure-with-sauron-parts",
+    "name": "Legolas - Deluxe Action Figure with Sauron parts",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Diamond Select Toys",
+    "purchasePrice": "29,00€",
+	"year": "2024",
+    "condition": "new",
+    "barcode": "699788838570",
+    "language": "Inglés",
+    "folder": "legolas-deluxe-action-figure-with-sauron-parts",
+    "category": "toys"
+  },
+  {
+    "id": "aragorn-deluxe-action-figure-with-sauron-parts",
+    "name": "Aragorn - Deluxe Action Figure with Sauron parts",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Diamond Select Toys",
+    "purchasePrice": "20,96€",
+	"year": "2023",
+    "condition": "new",
+    "barcode": "699788839669",
+    "language": "Inglés",
+    "folder": "aragorn-deluxe-action-figure-with-sauron-parts",
+    "category": "toys"
   }
 ]
