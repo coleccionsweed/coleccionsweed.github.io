@@ -1,0 +1,58 @@
+[
+  {
+    "id": "lionel-messi-2022-fifa-world-cup-qatar-extra-sticker-gold",
+    "name": "Lionel Messi - 2022 FIFA World Cup Qatar - Extra Sticker - Gold",
+	"grade": "6",
+    "franchise": "World Cup",
+    "brand": "Panini",
+    "purchasePrice": "125,77€",
+	"year": "2022",
+    "condition": "new",
+    "barcode": "97758780",
+    "language": "Inglés",
+    "folder": "lionel-messi-2022-fifa-world-cup-qatar-extra-sticker-gold",
+    "category": "graded-cards"
+  },
+  {
+    "id": "lionel-messi-2022-fifa-world-cup-qatar-extra-sticker-silver",
+    "name": "Lionel Messi - 2022 FIFA World Cup Qatar - Extra Sticker - Silver",
+	"grade": "6",
+    "franchise": "World Cup",
+    "brand": "Panini",
+    "purchasePrice": "83,84€",
+	"year": "2022",
+    "condition": "new",
+    "barcode": "97758774",
+    "language": "Inglés",
+    "folder": "lionel-messi-2022-fifa-world-cup-qatar-extra-sticker-silver",
+    "category": "graded-cards"
+  },
+  {
+    "id": "lionel-messi-2022-fifa-world-cup-qatar-extra-sticker-bronze",
+    "name": "Lionel Messi - 2022 FIFA World Cup Qatar - Extra Sticker - Bronze",
+	"grade": "6",
+    "franchise": "World Cup",
+    "brand": "Panini",
+    "purchasePrice": "41,92€",
+	"year": "2022",
+    "condition": "new",
+    "barcode": "97758778",
+    "language": "Inglés",
+    "folder": "lionel-messi-2022-fifa-world-cup-qatar-extra-sticker-bronze",
+    "category": "graded-cards"
+  },
+  {
+    "id": "lamine-yamal-la-liga-23-24-19-bis",
+    "name": "Lamine Yamal - La Liga 23-24 - 19 BIS",
+	"grade": "6",
+    "franchise": "La Liga",
+    "brand": "Panini",
+    "purchasePrice": "85,60€",
+	"year": "2023",
+    "condition": "new",
+    "barcode": "141290910",
+    "language": "Español",
+    "folder": "lamine-yamal-la-liga-23-24-19-bis",
+    "category": "graded-cards"
+  }
+]

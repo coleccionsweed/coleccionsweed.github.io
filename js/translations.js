@@ -11,7 +11,8 @@ export const diccionario = {
   "films": "Películas",
   "card-packs": "Sobres de cartas/cromos",
   "decks": "Mazos",
-  "board-games": "Juegos de mesa"
+  "board-games": "Juegos de mesa",
+  "graded-cards": "Cartas graduadas"
 };
 
 // Función helper para traducir de forma segura (si no existe, devuelve la palabra original)
