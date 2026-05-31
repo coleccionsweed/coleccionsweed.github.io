@@ -1,18 +1,4 @@
-const collectibles = [   {
-  "name" : "WALL·E",
-  "franchise" : "WALL·E",
-  "type" : "Sticker Pack",
-  "brand" : "Panini",
-  "purchasePrice" : "1,17€",
-  "condition" : "new",
-  "barcode" : "8018190032963",
-  "quantity" : 1,
-  "language" : "Alemán",
-  "notes" : "",
-  "extraAttributes" : {
-    "Collection" : "WALL·E"
-  }
-}, {
+const collectibles = [    {
   "name" : "West",
   "franchise" : "West",
   "type" : "Sticker Pack",

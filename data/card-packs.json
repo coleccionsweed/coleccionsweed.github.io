@@ -1152,5 +1152,29 @@
     "language": "Español",
     "folder": "toy-story-4-sticker-pack",
     "category": "card-packs"
+  },
+  {
+    "id": "tweenies-sticker-pack",
+    "name": "Tweenies",
+    "franchise": "Tweenies",
+    "brand": "Panini",
+    "purchasePrice": "2,00€",
+    "condition": "new",
+	"barcode" : "8018190016727",
+    "language": "Español",
+    "folder": "tweenies-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "wall·e-sticker-pack",
+    "name": "WALL·E",
+    "franchise": "WALL·E",
+    "brand": "Panini",
+    "purchasePrice": "1,17€",
+    "condition": "new",
+	"barcode" : "8018190032963",
+    "language": "Alemán",
+    "folder": "wall·e-sticker-pack",
+    "category": "card-packs"
   }
 ]
