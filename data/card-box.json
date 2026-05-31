@@ -72,5 +72,18 @@
     "language": "Español",
     "folder": "pack-de-2-sobres-y-1-figura-el-jorobado-de-notre-dame",
     "category": "card-box"
+  },
+  {
+    "id": "2026-fifa-world-cup-caja-de-cromos",
+    "name": "2026 FIFA World Cup - Caja de cromos",
+    "franchise": "World Cup",
+    "brand": "Panini",
+    "purchasePrice": "75,00€",
+	"year": "2026",
+    "condition": "new",
+    "barcode": "8051708031133",
+    "language": "Español",
+    "folder": "2026-fifa-world-cup-caja-de-cromos",
+    "category": "card-box"
   }
 ]
