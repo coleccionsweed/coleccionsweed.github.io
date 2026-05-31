@@ -1069,5 +1069,31 @@
 	"language": "Español",
     "folder": "wendy-disney-heroes",
     "category": "toys"
+  },
+  {
+    "id": "el-rubius-virtual-hero",
+    "name": "El Rubius - Virtual Hero",
+    "franchise": "El Rubius",
+    "brand": "Comansi",
+    "purchasePrice": "0,00€",
+	"year": "2016",
+    "condition": "new",
+	"barcode": "8412906990774",
+	"language": "Español",
+    "folder": "el-rubius-virtual-hero",
+    "category": "toys"
+  },
+  {
+    "id": "la-comunidad-del-anillo-burger-king",
+    "name": "La Comunidad del Anillo - Burger King",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Burger King",
+    "purchasePrice": "35,44€",
+	"year": "2001",
+    "condition": "used",
+	"language": "Español",
+    "folder": "la-comunidad-del-anillo-burger-king",
+    "category": "toys",
+	"notes": "Faltan las tarjetas."
   }
 ]
