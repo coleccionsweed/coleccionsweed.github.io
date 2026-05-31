@@ -577,7 +577,7 @@
   },
   {
     "id": "yoshi-mario-galaxy",
-    "name": "Yasmin",
+    "name": "Yoshi",
     "franchise": "Super Mario",
     "brand": "Nintendo",
     "purchasePrice": "5,95€",
@@ -586,6 +586,6 @@
 	"barcode": "192995432758",
 	"language": "Español",
     "folder": "yoshi-mario-galaxy",
-    "category": "yoshi-mario-galaxy"
+    "category": "toys"
   }
 ]
