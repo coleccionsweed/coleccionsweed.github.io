@@ -615,5 +615,17 @@
 	"language": "Español",
     "folder": "donkey-kong-mario-kart",
     "category": "toys"
+  },
+  {
+    "id": "tarzan-jane-terk-y-tantor",
+    "name": "Tarzán, Jane, Terk y Tantor",
+    "franchise": "Tarzán",
+    "brand": "applause",
+    "purchasePrice": "0,00€",
+	"year": "2020",
+    "condition": "used",
+	"language": "Español",
+    "folder": "tarzan-jane-terk-y-tantor",
+    "category": "toys"
   }
 ]
