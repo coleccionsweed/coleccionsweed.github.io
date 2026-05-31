@@ -542,6 +542,7 @@
     "franchise": "Pokémon",
     "brand": "Pokémon",
     "purchasePrice": "69,23€",
+	"year": "2026",
     "condition": "new",
     "barcode": "196215179942",
     "language": "Inglés",
@@ -554,10 +555,24 @@
     "franchise": "El Jorobado de Notre Dame",
     "brand": "Mattel",
     "purchasePrice": "55,20€",
+	"year": "1995",
     "condition": "new",
 	"barcode": "074299153129",
 	"language": "Español",
     "folder": "febo-poseable",
+    "category": "toys"
+  },
+  {
+    "id": "yasmin",
+    "name": "Yasmin",
+    "franchise": "Bratz",
+    "brand": "MGA Entertainment",
+    "purchasePrice": "55,20€",
+	"year": "2025",
+    "condition": "new",
+	"barcode": "0035051544821",
+	"language": "Español",
+    "folder": "yasmin",
     "category": "toys"
   }
 ]
