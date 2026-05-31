@@ -1058,6 +1058,18 @@
     "category": "card-packs"
   },
   {
+    "id": "pack-de-1-sobre-y-1-figura-tarzan",
+    "name": "Pack de 1 sobre y 1 figura - Tarzán",
+    "franchise": "Tarzán",
+    "brand": "Panini",
+    "purchasePrice": "4,00€",
+    "condition": "new",
+	"quantity" : 4,
+    "language": "Español",
+    "folder": "pack-de-1-sobre-y-1-figura-tarzan",
+    "category": "card-packs"
+  },
+  {
     "id": "the-amazing-spider-man-sticker-pack",
     "name": "The Amazing Spider-Man",
     "franchise": "Spider-Man",

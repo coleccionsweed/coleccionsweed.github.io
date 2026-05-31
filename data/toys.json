@@ -1095,5 +1095,41 @@
     "folder": "la-comunidad-del-anillo-burger-king",
     "category": "toys",
 	"notes": "Faltan las tarjetas."
+  },
+  {
+    "id": "kerchak",
+    "name": "Kerchak",
+    "franchise": "Tarzán",
+    "brand": "Panini",
+    "purchasePrice": "3€",
+	"year": "1999",
+    "condition": "new",
+	"language": "Español",
+    "folder": "kerchak",
+    "category": "toys"
+  },
+  {
+    "id": "coleccion-imanes-buscando-a-nemo",
+    "name": "Colección imanes Buscando a Nemo",
+    "franchise": "Buscando a Nemo",
+    "brand": "Panini",
+    "purchasePrice": "63,74€",
+	"year": "2003",
+    "condition": "new",
+	"language": "Español",
+    "folder": "coleccion-imanes-buscando-a-nemo",
+    "category": "toys"
+  },
+  {
+    "id": "quick-chat",
+    "name": "Quick Chat",
+    "brand": "Hot Wheels",
+    "purchasePrice": "3,00€",
+	"year": "2025",
+    "condition": "new",
+	"barcode": "074299057854",
+	"language": "Español",
+    "folder": "quick-chat",
+    "category": "toys"
   }
 ]
