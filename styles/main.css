@@ -369,14 +369,29 @@ main {
 
   /* 4. Galería */
   .collection-grid {
-    grid-template-columns: 1fr !important;
-    gap: 16px !important;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 130px), 1fr)) !important;
+    gap: 12px !important;
   }
   
   /* 5. Ajustes de detalle para que no haya huecos */
   .detail {
     grid-template-columns: 1fr !important; 
     gap: 24px !important;
+  }
+  
+  /* Ajustes extra opcionales para las tarjetas compactas en móvil */
+  .card-image {
+    height: 160px !important;
+  }
+  .card-content {
+    padding: 10px !important;
+  }
+  .card-title {
+    font-size: 15px !important;
+  }
+  .card-subtitle {
+    font-size: 12px !important;
+    margin-top: 2px !important;
   }
 }
 
