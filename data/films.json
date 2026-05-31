@@ -43,6 +43,7 @@
 	"Platform" : "DVD",
     "brand": "New Line Cinema",
     "purchasePrice": "50,00€",
+	"year": "2003",
     "condition": "new",
 	"barcode" : "8414533020992",
     "language": "Español",

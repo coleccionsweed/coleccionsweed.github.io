@@ -870,5 +870,55 @@
 	"language" : "Español",
     "folder": "eomer-el-retorno-del-rey",
     "category": "toys"
+  },
+  {
+    "id": "soldado-orco-plomo",
+    "name": "Soldado orco",
+    "franchise": "El Señor de los Anillos",
+    "brand": "New Line Productions",
+    "purchasePrice": "8,00€",
+	"year": "2004",
+    "condition": "new",
+	"language" : "Español",
+    "folder": "soldado-orco-plomo",
+    "category": "toys"
+  },
+  {
+    "id": "glamdring-miniature",
+    "name": "Glamdring miniature",
+    "franchise": "El Señor de los Anillos",
+    "brand": "United Cutlery",
+    "purchasePrice": "20,00€",
+	"year": "2003",
+    "condition": "used",
+	"language" : "Inglés",
+    "folder": "glamdring-miniature",
+    "category": "toys"
+  },
+  {
+    "id": "bilbo-bolson-y-gollum-el-hobbit",
+    "name": "Bilbo Bolsón y Gollum - El Hobbit",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Bridge Direct",
+    "purchasePrice": "5,00€",
+	"year": "2012",
+    "condition": "new",
+	"barcode": "0885561160116",
+	"language" : "Inglés",
+    "folder": "bilbo-bolson-y-gollum-el-hobbit",
+    "category": "toys"
+  },
+  {
+    "id": "legolas-y-tauriel-el-hobbit",
+    "name": "Legolas y Tauriel - El Hobbit",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Bridge Direct",
+    "purchasePrice": "5,00€",
+	"year": "2012",
+    "condition": "new",
+	"barcode": "0885561160147",
+	"language" : "Inglés",
+    "folder": "legolas-y-tauriel-el-hobbit",
+    "category": "toys"
   }
 ]
