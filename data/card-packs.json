@@ -1056,5 +1056,101 @@
     "language": "Español",
     "folder": "tarzan-sticker-pack",
     "category": "card-packs"
+  },
+  {
+    "id": "the-amazing-spider-man-sticker-pack",
+    "name": "The Amazing Spider-Man",
+    "franchise": "Spider-Man",
+    "brand": "Panini",
+    "purchasePrice": "0,47€",
+    "condition": "new",
+	"barcode" : "8018190048773",
+    "language": "Español",
+    "folder": "the-amazing-spider-man-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "the-garfield-show-sticker-pack",
+    "name": "The Garfield Show",
+    "franchise": "Garfield",
+    "brand": "Panini",
+    "purchasePrice": "0,47€",
+    "condition": "new",
+	"barcode" : "8018190045376",
+    "language": "Español",
+    "folder": "the-garfield-show-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "tom-y-jerry-sticker-pack",
+    "name": "Tom y Jerry",
+    "franchise": "Tom y Jerry",
+    "brand": "Panini",
+    "purchasePrice": "0,47€",
+    "condition": "new",
+	"barcode" : "8018190028386",
+    "language": "Español",
+    "folder": "tom-y-jerry-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "teenage-mutant-ninja-turtles-sticker-pack",
+    "name": "Teenage Mutant Ninja Turtles",
+    "franchise": "Tortugas Ninja",
+    "brand": "Panini",
+    "purchasePrice": "0,47€",
+    "condition": "new",
+	"barcode" : "8018190054149",
+    "language": "Español",
+    "folder": "teenage-mutant-ninja-turtles-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "toy-story-sticker-pack",
+    "name": "Toy Story",
+    "franchise": "Toy Story",
+    "brand": "Panini",
+    "purchasePrice": "1,90€",
+    "condition": "new",
+	"barcode" : "8018190003383",
+    "language": "Español",
+    "folder": "toy-story-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "toy-story-2-sticker-pack",
+    "name": "Toy Story 2",
+    "franchise": "Toy Story",
+    "brand": "Panini",
+    "purchasePrice": "3,70€",
+    "condition": "new",
+	"barcode" : "8018190013290",
+    "language": "Español",
+    "folder": "toy-story-2-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "toy-story-3-sticker-pack",
+    "name": "Toy Story 3",
+    "franchise": "Toy Story",
+    "brand": "Panini",
+    "purchasePrice": "3,00€",
+    "condition": "new",
+	"barcode" : "8018190040012",
+    "language": "Español",
+    "folder": "toy-story-3-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "toy-story-4-sticker-pack",
+    "name": "Toy Story 4",
+    "franchise": "Toy Story",
+    "brand": "Panini",
+    "purchasePrice": "0,80€",
+    "condition": "new",
+	"barcode" : "8018190097375",
+    "language": "Español",
+    "folder": "toy-story-4-sticker-pack",
+    "category": "card-packs"
   }
 ]
