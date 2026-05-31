@@ -959,5 +959,102 @@
     "language": "Inglés",
     "folder": "pokemon-tattoos-sticker-pack",
     "category": "card-packs"
+  },
+  {
+    "id": "rebelde-sticker-pack",
+    "name": "Rebelde",
+    "franchise": "Rebelde",
+    "brand": "Panini",
+    "purchasePrice": "1,25€",
+    "condition": "new",
+	"barcode" : "8018190026207",
+    "language": "Español",
+    "folder": "rebelde-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "robots-sticker-pack",
+    "name": "Robots",
+    "franchise": "Robots",
+    "brand": "Panini",
+    "purchasePrice": "1,17€",
+    "condition": "new",
+	"barcode" : "8018190025460",
+    "language": "Español",
+    "folder": "robots-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "roger-rabbit-sticker-pack",
+    "name": "Roger Rabbit",
+    "franchise": "Roger Rabbit",
+    "brand": "Panini",
+    "purchasePrice": "4,70€",
+    "condition": "new",
+	"barcode" : "08055718827701",
+    "language": "Inglés",
+    "folder": "roger-rabbit-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "rompe-ralph-sticker-pack",
+    "name": "Rompe Ralph",
+    "franchise": "Rompe Ralph",
+    "brand": "Panini",
+    "purchasePrice": "0,47€",
+    "condition": "new",
+	"barcode" : "8018190052046",
+    "language": "Francés",
+    "folder": "rompe-ralph-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "rugrats-sticker-pack",
+    "name": "Rugrats",
+    "franchise": "Rugrats",
+    "brand": "Panini",
+    "purchasePrice": "3,00€",
+    "condition": "new",
+	"barcode" : "8018190012484",
+    "language": "Español",
+    "folder": "rugrats-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "spirou-sticker-pack",
+    "name": "Spirou",
+    "franchise": "Spirou",
+    "brand": "Panini",
+    "purchasePrice": "0,47€",
+    "condition": "new",
+	"barcode" : "8018190000924",
+    "language": "Español",
+    "folder": "spirou-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "tarta-de-fresa-sticker-pack",
+    "name": "Tarta de Fresa",
+    "franchise": "Tarta de Fresa",
+    "brand": "Panini",
+    "purchasePrice": "0,47€",
+    "condition": "new",
+	"barcode" : "8018190054101",
+    "language": "Inglés",
+    "folder": "tarta-de-fresa-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "tarzan-sticker-pack",
+    "name": "Tarzán",
+    "franchise": "Tarzán",
+    "brand": "Panini",
+    "purchasePrice": "1,90€",
+    "condition": "new",
+	"barcode" : "8018190012040",
+	"quantity" : 2,
+    "language": "Español",
+    "folder": "tarzan-sticker-pack",
+    "category": "card-packs"
   }
 ]
