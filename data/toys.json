@@ -734,5 +734,31 @@
     "language": "Inglés",
     "folder": "uruk-hai-orc-deluxe-action-figure-with-sauron-parts",
     "category": "toys"
+  },
+  {
+    "id": "gandalf-the-grey-limited-edition",
+    "name": "Gandalf the Grey - Limited Edition",
+    "franchise": "El Señor de los Anillos",
+    "brand": "McFarlane Toys",
+    "purchasePrice": "27,99€",
+	"year": "2023",
+    "condition": "new",
+    "barcode": "0787926140071",
+    "language": "Inglés",
+    "folder": "gandalf-the-grey-limited-edition",
+    "category": "toys"
+  },
+  {
+    "id": "aragorn-limited-edition",
+    "name": "Aragorn - Limited Edition",
+    "franchise": "El Señor de los Anillos",
+    "brand": "McFarlane Toys",
+    "purchasePrice": "33,26€",
+	"year": "2023",
+    "condition": "new",
+    "barcode": "3181860636077",
+    "language": "Inglés",
+    "folder": "aragorn-limited-edition",
+    "category": "toys"
   }
 ]
