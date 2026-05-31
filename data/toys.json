@@ -1017,5 +1017,57 @@
 	"language": "Español",
     "folder": "dobby-76421",
     "category": "toys"
+  },
+  {
+    "id": "clayton-disney-heroes",
+    "name": "Clayton - Disney Heroes",
+    "franchise": "Tarzán",
+    "brand": "Famosa",
+    "purchasePrice": "12,28€",
+	"year": "2005",
+    "condition": "used",
+	"barcode": "8410779230447",
+	"language": "Español",
+    "folder": "clayton-disney-heroes",
+    "category": "toys"
+  },
+  {
+    "id": "tarzan-disney-heroes",
+    "name": "Tarzán - Disney Heroes",
+    "franchise": "Tarzán",
+    "brand": "Famosa",
+    "purchasePrice": "10,00€",
+	"year": "2007",
+    "condition": "new",
+	"barcode": "8410779245649",
+	"language": "Español",
+    "folder": "tarzan-disney-heroes",
+    "category": "toys"
+  },
+  {
+    "id": "peter-pan-disney-heroes",
+    "name": "Peter Pan - Disney Heroes",
+    "franchise": "Peter Pan",
+    "brand": "Famosa",
+    "purchasePrice": "12,49€",
+	"year": "2004",
+    "condition": "new",
+	"barcode": "8410779221872",
+	"language": "Español",
+    "folder": "peter-pan-disney-heroes",
+    "category": "toys"
+  },
+  {
+    "id": "wendy-disney-heroes",
+    "name": "Wendy - Disney Heroes",
+    "franchise": "Peter Pan",
+    "brand": "Famosa",
+    "purchasePrice": "12,49€",
+	"year": "2004",
+    "condition": "new",
+	"barcode": "8410779221872",
+	"language": "Español",
+    "folder": "wendy-disney-heroes",
+    "category": "toys"
   }
 ]
