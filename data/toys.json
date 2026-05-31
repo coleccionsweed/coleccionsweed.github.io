@@ -695,5 +695,44 @@
     "language": "Inglés",
     "folder": "aragorn-deluxe-action-figure-with-sauron-parts",
     "category": "toys"
+  },
+  {
+    "id": "gimli-deluxe-action-figure-with-sauron-parts",
+    "name": "Gimli - Deluxe Action Figure with Sauron parts",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Diamond Select Toys",
+    "purchasePrice": "30,91€",
+	"year": "2023",
+    "condition": "new",
+    "barcode": "699788839065",
+    "language": "Inglés",
+    "folder": "gimli-deluxe-action-figure-with-sauron-parts",
+    "category": "toys"
+  },
+  {
+    "id": "frodo-deluxe-action-figure-with-sauron-parts",
+    "name": "Frodo - Deluxe Action Figure with Sauron parts",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Diamond Select Toys",
+    "purchasePrice": "35,00€",
+	"year": "2024",
+    "condition": "new",
+    "barcode": "699788839010",
+    "language": "Inglés",
+    "folder": "frodo-deluxe-action-figure-with-sauron-parts",
+    "category": "toys"
+  },
+  {
+    "id": "uruk-hai-orc-deluxe-action-figure-with-sauron-parts",
+    "name": "Uruk-Hai Orc - Deluxe Action Figure with Sauron parts",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Diamond Select Toys",
+    "purchasePrice": "35,00€",
+	"year": "2024",
+    "condition": "new",
+    "barcode": "699788840863",
+    "language": "Inglés",
+    "folder": "uruk-hai-orc-deluxe-action-figure-with-sauron-parts",
+    "category": "toys"
   }
 ]
