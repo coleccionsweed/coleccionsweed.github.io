@@ -1286,5 +1286,83 @@
 	"language": "Español",
     "folder": "la-comunidad-del-anillo-minifiguras",
     "category": "toys"
+  },
+  {
+    "id": "blister-figuras-el-jorobado-de-notre-dame",
+    "name": "Blister figuras - El Jorobado de Notre Dame",
+    "franchise": "El Jorobado de Notre Dame",
+    "brand": "RBA",
+    "purchasePrice": "26,70€",
+	"year": "1996",
+    "condition": "new",
+	"barcode": "848002199797",
+	"language": "Español",
+    "folder": "blister-figuras-el-jorobado-de-notre-dame",
+    "category": "toys"
+  },
+  {
+    "id": "tantor-disney-heroes",
+    "name": "Tantor - Disney Heroes",
+    "franchise": "Tarzán",
+    "brand": "Famosa",
+    "purchasePrice": "20,00€",
+	"year": "2007",
+    "condition": "new",
+	"barcode": "8410779245670",
+	"language": "Español",
+    "folder": "tantor-disney-heroes",
+    "category": "toys"
+  },
+  {
+    "id": "filoctetes-nesso-disney-heroes",
+    "name": "Filoctetes y Nesso - Disney Heroes",
+    "franchise": "Hércules",
+    "brand": "Famosa",
+    "purchasePrice": "9,60€",
+	"year": "2004",
+    "condition": "new",
+	"barcode": "8410779803924",
+	"language": "Español",
+    "folder": "tantor-disney-heroes",
+    "category": "toys"
+  },
+  {
+    "id": "messi-figura-argentina",
+    "name": "Messi - Argentina",
+    "franchise": "World Cup",
+    "brand": "Banbotoys",
+    "purchasePrice": "22,95€",
+	"year": "2023",
+    "condition": "new",
+	"barcode": "8436624380389",
+	"language": "Español",
+    "folder": "messi-figura-argentina",
+    "category": "toys"
+  },
+  {
+    "id": "lamine-yamal-figura-barcelona",
+    "name": "Lamine Yamal - Barça",
+    "franchise": "Barça",
+    "brand": "Banbotoys",
+    "purchasePrice": "22,95€",
+	"year": "2025",
+    "condition": "new",
+	"barcode": "8436624380228",
+	"language": "Español",
+    "folder": "lamine-yamal-figura-barcelona",
+    "category": "toys"
+  },
+  {
+    "id": "rana-de-chocolate",
+    "name": "Rana de chocolate",
+    "franchise": "Harry Potter",
+    "brand": "The Noble Collection",
+    "purchasePrice": "22,31€",
+	"year": "2018",
+    "condition": "new",
+	"barcode": "X0013C5PBL",
+	"language" : "Inglés",
+    "folder": "hagrid-coleccion-mini-magicos",
+    "category": "toys"
   }
 ]
