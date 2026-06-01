@@ -1401,7 +1401,7 @@
     "condition": "new",
     "barcode": "8051708011333",
     "language": "Español",
-    "folder": "bluey-sticker-pack",
+    "folder": "stitch-sticker-pack",
     "category": "card-packs"
   },
   {
@@ -1420,20 +1420,7 @@
   {
     "id": "stumble-guys-card-pack",
     "name": "Stumble Guys",
-    "franchise": "Stamble Guys",
-    "brand": "Panini",
-    "purchasePrice": "1,00€",
-	"year": "2023",
-    "condition": "new",
-    "barcode": "8051708007565",
-    "language": "Español",
-    "folder": "stumble-guys-card-pack",
-    "category": "card-packs"
-  },
-  {
-    "id": "stumble-guys-card-pack",
-    "name": "Stumble Guys",
-    "franchise": "Stamble Guys",
+    "franchise": "Stumble Guys",
     "brand": "Panini",
     "purchasePrice": "1,00€",
 	"year": "2023",
