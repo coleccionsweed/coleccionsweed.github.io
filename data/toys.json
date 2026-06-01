@@ -1133,5 +1133,18 @@
 	"language": "Español",
     "folder": "quick-chat",
     "category": "toys"
+  },
+  {
+    "id": "coleccion-tricks-la-liga",
+    "name": "Colección Tricks La Liga",
+    "franchise": "La Liga",
+    "brand": "Grefusa",
+    "purchasePrice": "105,65€",
+	"year": "2004",
+    "condition": "used",
+	"language": "Español",
+    "folder": "coleccion-tricks-la-liga",
+    "category": "toys",
+	"notes": "Harte Nº99 falta. Webo Nº153 roto. Nano Nº87 mejorable."
   }
 ]
