@@ -11,5 +11,18 @@
     "language": "Español",
     "folder": "atlantis-juego-de-naipes-interactivo",
     "category": "board-games"
+  },
+  {
+    "id": "una-fiesta-inesperada-el-hobbit",
+    "name": "Una fiesta inesperada - El Hobbit",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Weta Workshop",
+    "purchasePrice": "20,00€",
+	"year": "2022",
+    "condition": "new",
+	"barcode" : "9420024736555",
+    "language": "Español",
+    "folder": "una-fiesta-inesperada-el-hobbit",
+    "category": "board-games"
   }
 ]

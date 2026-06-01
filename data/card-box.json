@@ -99,5 +99,31 @@
     "language": "Español",
     "folder": "2008-2009-champions-league-caja-de-cromos",
     "category": "card-box"
+  },
+  {
+    "id": "harry-potter-y-la-piedra-filosofal-caja-de-cartas",
+    "name": "Harry Potter y la piedra filosofal - Caja de cartas",
+    "franchise": "Harry Potter",
+    "brand": "Wizards of the Coast",
+    "purchasePrice": "33,67€",
+	"year": "2001",
+    "condition": "new",
+    "barcode": "076930884041",
+    "language": "Inglés",
+    "folder": "harry-potter-y-la-piedra-filosofal-caja-de-cartas",
+    "category": "card-box"
+  },
+  {
+    "id": "harry-potter-y-la-piedra-filosofal-20-aniversario-caja-de-cartas",
+    "name": "Harry Potter y la piedra filosofal - 20 aniversario - Caja de cartas",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "29,90€",
+	"year": "2021",
+    "condition": "used",
+    "barcode": "8018190026870",
+    "language": "Inglés",
+    "folder": "harry-potter-y-la-piedra-filosofal-20-aniversario-caja-de-cartas",
+    "category": "card-box"
   }
 ]

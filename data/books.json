@@ -297,5 +297,45 @@
     "folder": "harry-potter-y-el-caliz-de-fuego-ilustrado",
     "category": "books",
 	"author": "J.K. Rowling"
+  },
+  {
+    "id": "programacion-competitiva-I",
+    "name": "Programación competitiva (I)",
+    "brand": "OJB",
+    "purchasePrice": "0,00€",
+	"year": "2021",
+    "condition": "used",
+    "barcode": "9788412238013",
+    "language": "Español",
+    "folder": "programacion-competitiva-I",
+    "category": "books",
+	"author": "Halim - Halim - Effendy"
+  },
+  {
+    "id": "programacion-competitiva-II",
+    "name": "Programación competitiva (II)",
+    "brand": "OJB",
+    "purchasePrice": "0,00€",
+	"year": "2021",
+    "condition": "used",
+    "barcode": "9788412238020",
+    "language": "Español",
+    "folder": "programacion-competitiva-II",
+    "category": "books",
+	"author": "Halim - Halim - Effendy"
+  },
+  {
+    "id": "harry-potter-y-la-piedra-filosofal-desplegable-de-lujo",
+    "name": "Harry Potter y la piedra filosofal - Desplegable de lujo",
+    "franchise": "Harry Potter",
+    "brand": "Círculo de lectores",
+    "purchasePrice": "15,38€",
+	"year": "2001",
+    "condition": "used",
+    "barcode": "9788422693246",
+    "language": "Español",
+    "folder": "harry-potter-y-la-piedra-filosofal-desplegable-de-lujo",
+    "category": "books",
+	"author": "Jill Daniels - Rodger Smith"
   }
 ]
