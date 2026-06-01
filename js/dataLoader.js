@@ -11,7 +11,8 @@ export async function loadCollection() {
 	'data/decks.json',
 	'data/board-games.json',
 	'data/graded-cards.json',
-	'data/consoles.json'
+	'data/consoles.json',
+	'data/memorabilia.json'
   ]
 
   const results = await Promise.all(

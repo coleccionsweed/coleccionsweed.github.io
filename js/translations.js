@@ -13,7 +13,8 @@ export const diccionario = {
   "decks": "Mazos",
   "board-games": "Juegos de mesa",
   "graded-cards": "Cartas graduadas",
-  "consoles": "Consolas"
+  "consoles": "Consolas",
+  "memorabilia": "Memorabilia"
 };
 
 // Función helper para traducir de forma segura (si no existe, devuelve la palabra original)
