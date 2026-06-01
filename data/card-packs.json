@@ -1442,5 +1442,19 @@
     "language": "Neerlandés",
     "folder": "lol-surprise-card-pack",
     "category": "card-packs"
+  },
+  {
+    "id": "lego-harry-potter-multi-pack",
+    "name": "Lego Harry Potter - Multipack",
+    "franchise": "Harry Potter",
+    "brand": "Blue Ocean",
+    "purchasePrice": "4,99€",
+	"year": "2022",
+    "condition": "new",
+    "barcode": "414344240599901",
+    "language": "Español",
+    "folder": "lego-harry-potter-multi-pack",
+    "category": "card-packs",
+	"notes" : "Contiene 5 sobres y 2 cartas doradas de edición limitada."
   }
 ]
