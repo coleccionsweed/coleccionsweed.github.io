@@ -337,5 +337,18 @@
     "folder": "harry-potter-y-la-piedra-filosofal-desplegable-de-lujo",
     "category": "books",
 	"author": "Jill Daniels - Rodger Smith"
+  },
+  {
+    "id": "la-guerra-de-los-rohirrim-album-oficial-de-la-pelicula",
+    "name": "La Guerra de los Rohirrim - Álbum oficial de la película",
+    "franchise": "El Señor de los Anillos",
+    "brand": "minotauro",
+    "purchasePrice": "0,00€",
+    "condition": "used",
+    "barcode": "9788445018439",
+    "language": "Español",
+    "folder": "la-guerra-de-los-rohirrim-album-oficial-de-la-pelicula",
+    "category": "books",
+	"author": "Chris Smith"
   }
 ]

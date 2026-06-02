@@ -113,5 +113,31 @@
     "language": "Español",
     "folder": "hanabi",
     "category": "board-games"
+  },
+  {
+    "id": "risk-el-senior-de-los-anillos-extension-de-gondor-y-mordor",
+    "name": "Risk - El Señor de los Anillos - Extensión de Gondor y Mordor",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Hasbro",
+    "purchasePrice": "0,00€",
+	"year": "2003",
+    "condition": "used",
+	"barcode" : "5023117731914",
+    "language": "Español",
+    "folder": "risk-el-senior-de-los-anillos-extension-de-gondor-y-mordor",
+    "category": "board-games"
+  },
+  {
+    "id": "risk-el-senior-de-los-anillos",
+    "name": "Risk - El Señor de los Anillos",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Hasbro",
+    "purchasePrice": "0,00€",
+	"year": "2002",
+    "condition": "used",
+	"barcode" : "5023117642906",
+    "language": "Español",
+    "folder": "risk-el-senior-de-los-anillos",
+    "category": "board-games"
   }
 ]
