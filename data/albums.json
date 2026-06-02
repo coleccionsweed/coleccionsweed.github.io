@@ -1,16 +1,15 @@
 [
-  {
-    "id": "lionel-messi-2022-fifa-world-cup-qatar-extra-sticker-gold",
-    "name": "Lionel Messi - 2022 FIFA World Cup Qatar - Extra Sticker - Gold",
-	"grade": "6",
+{
+    "id": "2026-fifa-world-cup-album-vacio",
+    "name": "2026 FIFA World Cup - Álbum vacío",
     "franchise": "World Cup",
     "brand": "Panini",
-    "purchasePrice": "125,77€",
-	"year": "2022",
+    "purchasePrice": "5,00€",
+	"year": "2026",
     "condition": "new",
-    "barcode": "97758780",
-    "language": "Inglés",
-    "folder": "lionel-messi-2022-fifa-world-cup-qatar-extra-sticker-gold",
+    "barcode": "8051708029437",
+    "language": "Español",
+    "folder": "2026-fifa-world-cup-album-vacio",
     "category": "albums"
   }
 ]

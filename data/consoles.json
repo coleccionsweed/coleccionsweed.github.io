@@ -11,5 +11,31 @@
     "language": "Español",
     "folder": "wii",
     "category": "consoles"
+  },
+  {
+    "id": "nintendo-switch-2",
+    "name": "Nintendo Switch 2",
+    "franchise": "Nintendo",
+    "brand": "Nintendo",
+    "purchasePrice": "469,00€",
+	"year": "2025",
+    "condition": "used",
+    "barcode": "045496321444",
+    "language": "Español",
+    "folder": "nintendo-switch-2",
+    "category": "consoles"
+  },
+  {
+    "id": "oculus-quest-2",
+    "name": "Oculus Quest 2",
+    "franchise": "Facebook",
+    "brand": "Facebook",
+    "purchasePrice": "349,00€",
+	"year": "2020",
+    "condition": "used",
+    "barcode": "0815820022701",
+    "language": "Español",
+    "folder": "oculus-quest-2",
+    "category": "consoles"
   }
 ]

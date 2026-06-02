@@ -386,5 +386,19 @@
     "language": "Español",
     "folder": "wii-fit-wii",
     "category": "video-games"
+  },
+  {
+    "id": "mario-kart-live-home-circuit",
+    "name": "Mario Kart Live Home Circuit",
+    "franchise": "Super Mario",
+	"Platform" : "Nintendo Switch",
+    "brand": "Nintendo",
+    "purchasePrice": "89,99€",
+	"year": "2020",
+    "condition": "new",
+    "barcode": "045496426262",
+    "language": "Español",
+    "folder": "mario-kart-live-home-circuit",
+    "category": "video-games"
   }
 ]

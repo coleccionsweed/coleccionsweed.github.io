@@ -37,5 +37,81 @@
     "language": "Inglés",
     "folder": "british-nonces",
     "category": "board-games"
+  },
+  {
+    "id": "la-baraja-del-mundial",
+    "name": "La baraja del mundial",
+    "franchise": "World Cup",
+    "brand": "interviú",
+    "purchasePrice": "0,00€",
+	"year": "2006",
+    "condition": "used",
+	"barcode" : "9973613482017",
+    "language": "Español",
+    "folder": "la-baraja-del-mundial",
+    "category": "board-games"
+  },
+  {
+    "id": "atlantis-juego-de-naipes-interactivo-usado",
+    "name": "Atlantis - Juego de naipes interactivo",
+    "franchise": "Atlantis",
+    "brand": "Fournier",
+    "purchasePrice": "0,00€",
+	"year": "2001",
+    "condition": "used",
+	"barcode" : "8420707267261",
+    "language": "Español",
+    "folder": "atlantis-juego-de-naipes-interactivo-usado",
+    "category": "board-games"
+  },
+  {
+    "id": "el-jorobado-de-notre-dame-forma-parejas",
+    "name": "El Jorobado de Notre Dame - Forma parejas",
+    "franchise": "El Jorobado de Notre Dame",
+    "brand": "Fournier",
+    "purchasePrice": "5,00€",
+	"year": "1996",
+    "condition": "used",
+	"barcode" : "8420707078782",
+    "language": "Español",
+    "folder": "el-jorobado-de-notre-dame-forma-parejas",
+    "category": "board-games"
+  },
+  {
+    "id": "el-jorobado-de-notre-dame-forma-parejas",
+    "name": "El Jorobado de Notre Dame - Forma parejas",
+    "franchise": "El Jorobado de Notre Dame",
+    "brand": "Fournier",
+    "purchasePrice": "5,00€",
+	"year": "1996",
+    "condition": "used",
+	"barcode" : "8420707078782",
+    "language": "Español",
+    "folder": "el-jorobado-de-notre-dame-forma-parejas",
+    "category": "board-games"
+  },
+  {
+    "id": "quiz-el-senior-de-los-anillos",
+    "name": "Quiz - El Señor de los Anillos",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Top Trumps",
+    "purchasePrice": "14,99€",
+	"year": "2021",
+    "condition": "used",
+    "language": "Español",
+    "folder": "quiz-el-senior-de-los-anillos",
+    "category": "board-games"
+  },
+  {
+    "id": "hanabi",
+    "name": "Hanabi",
+    "brand": "Cocktail Games",
+    "purchasePrice": "10,00€",
+	"year": "2013",
+    "condition": "used",
+	"barcode" : "8435407630642",
+    "language": "Español",
+    "folder": "hanabi",
+    "category": "board-games"
   }
 ]

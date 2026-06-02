@@ -42,5 +42,18 @@
     "language": "Español",
     "folder": "padre-cheeto-mazo-de-estructura",
     "category": "decks"
+  },
+  {
+    "id": "las-dos-torres-mazo-aragorn",
+    "name": "Las Dos Torres - Mazo Aragorn",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Decipher",
+    "purchasePrice": "3,00€",
+	"year": "2002",
+    "condition": "used",
+    "barcode": "9781582367262",
+    "language": "Español",
+    "folder": "las-dos-torres-mazo-aragorn",
+    "category": "decks"
   }
 ]
