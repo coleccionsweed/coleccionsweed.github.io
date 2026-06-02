@@ -139,5 +139,17 @@
     "language": "Español",
     "folder": "risk-el-senior-de-los-anillos",
     "category": "board-games"
+  },
+  {
+    "id": "top-trumps-prisionero-azkaban-caliz-fuego",
+    "name": "Top Trumps - El prisionero de Azkaban y el cáliz de fuego",
+    "franchise": "Harry Potter",
+    "brand": "Top Trumps",
+    "purchasePrice": "0,00€",
+	"year": "2021",
+    "condition": "used",
+	"language" : "Español",
+    "folder": "top-trumps-prisionero-azkaban-caliz-fuego",
+    "category": "toys"
   }
 ]
