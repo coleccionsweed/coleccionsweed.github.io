@@ -24,5 +24,18 @@
     "language": "Español",
     "folder": "una-fiesta-inesperada-el-hobbit",
     "category": "board-games"
+  },
+  {
+    "id": "british-nonces",
+    "name": "British Nonces",
+    "franchise": "Meaty Trumps",
+    "brand": "Brown Jewel",
+    "purchasePrice": "0,00€",
+	"year": "2014",
+    "condition": "used",
+	"barcode" : "0632930284641",
+    "language": "Inglés",
+    "folder": "british-nonces",
+    "category": "board-games"
   }
 ]

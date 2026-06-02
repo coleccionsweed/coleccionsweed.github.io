@@ -14,7 +14,9 @@ export const diccionario = {
   "board-games": "Juegos de mesa",
   "graded-cards": "Cartas graduadas",
   "consoles": "Consolas",
-  "memorabilia": "Memorabilia"
+  "memorabilia": "Memorabilia",
+  "calendars": "Calendarios",
+  "albums": "Álbumes"
 };
 
 // Función helper para traducir de forma segura (si no existe, devuelve la palabra original)
