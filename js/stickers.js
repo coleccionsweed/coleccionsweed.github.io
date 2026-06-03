@@ -11,7 +11,7 @@ const albumConfigs = {
     },
     "el-retorno-del-rey-coleccion-completa": { 
         maxNum: 226, 
-        extra: Array.from({ length: 22 }, (_, i) => `r${i + 1}`) 
+        extra: Array.from({ length: 22 }, (_, i) => `r${i + 1}`)
     },
     "animales-fantasticos-y-donde-encontrarlos-coleccion-completa": { 
         maxNum: 240
@@ -22,8 +22,16 @@ const albumConfigs = {
     "animales-fantasticos-los-secretos-de-dumbledore-coleccion-completa": { 
         maxNum: 120, 
 		extra: [
-			...Array.from({ length: 30 }, (_, i) => `c${i + 1}`), 
+			...Array.from({ length: 30 }, (_, i) => `c${i + 1}`),
 			"le1"
+		]
+    },
+    "harry-potter-manual-de-cromos-para-magos-y-brujas-coleccion-completa": { 
+        maxNum: 180, 
+		extra: [
+			...Array.from({ length: 12 }, (_, i) => `y${i + 1}`),
+			...Array.from({ length: 11 }, (_, i) => `le${i + 1}`),
+			...Array.from({ length: 12 }, (_, i) => `xxl-le${i + 1}`)
 		]
     }
 };
