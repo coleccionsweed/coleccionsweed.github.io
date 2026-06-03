@@ -95,5 +95,18 @@
     "folder": "harry-potter-manual-de-cromos-para-magos-y-brujas-coleccion-completa",
     "category": "card-collection",
 	"notes" : "La colección está compuesta por 215 cromos."
+  },
+  {
+    "id": "2022-fifa-world-cup-coleccion-completa",
+    "name": "2022 FIFA World Cup - Colección completa",
+    "franchise": "World Cup",
+    "brand": "Panini",
+    "purchasePrice": "200,00€",
+	"year": "2022",
+    "condition": "new",
+    "language": "Español",
+    "folder": "2022-fifa-world-cup-coleccion-completa",
+    "category": "card-collection",
+	"notes" : "La colección está compuesta por 757 cromos."
   }
 ]

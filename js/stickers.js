@@ -33,6 +33,52 @@ const albumConfigs = {
 			...Array.from({ length: 11 }, (_, i) => `le${i + 1}`),
 			...Array.from({ length: 12 }, (_, i) => `xxl-le${i + 1}`)
 		]
+    },
+    "2022-fifa-world-cup-coleccion-completa": { 
+        maxNum: 0, 
+		extra: [
+			"00",
+			...Array.from({ length: 18 }, (_, i) => `fwc${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `qat${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `ecu${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `sen${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `ned${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `eng${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `irn${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `usa${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `wal${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `arg${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `ksa${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `mex${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `pol${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `fra${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `aus${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `den${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `tun${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `esp${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `crc${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `ger${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `jpn${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `bel${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `can${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `mar${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `cro${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `bra${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `srb${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `sui${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `cmr${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `por${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `gha${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `uru${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `kor${i + 1}`),
+			...Array.from({ length: 11 }, (_, i) => `fwc${i + 19}`),
+			...Array.from({ length: 8 }, (_, i) => `esp-j${i + 1}`),
+			"qat15x", "ecu6x", "sen5x", "sen9x", "sen10x", "ned4x", "ned12x", "ned15x", "ned17x", "ned20x", "irn11x", "usa4x", "usa7x", "usa17x", "arg12x", "ksa20x", "mex12x", "mex16x", "pol9x", 
+			"pol10x", "pol11x", "pol12x", "pol14x", "fra4x", "fra7x", "fra11x", "fra12x", "fra15x", "fra20x", "aus7x", "aus9x", "aus13x", "aus20x", "den9x", "tun4x", "tun9x", "crc4x", "crc5x", 
+			"crc13x", "ger6x", "ger18x", "ger20x", "jpn6x", "jpn11x", "jpn16x", "jpn20x", "bel7x", "can4x", "can6x", "mar7x", "mar8x", "mar12x", "mar14x", "mar16x", "mar18x", "mar19x", "mar20x", 
+			"cro5x", "cro17x", "bra11x", "sui7x", "sui16x", "cmr8x", "cmr9x", "cmr13x", "cmr17x", "por6x", "por14x", "por15x", "por19x", "por20x", "gha3x", "gha4x", "gha9x", "gha10x", "gha11x", 
+			"gha15x", "gha16x", "kor10x", "ls-b"
+		]
     }
 };
 
