@@ -1,0 +1,14 @@
+[
+  {
+    "id": "sauron-the-lidless-eye",
+    "name": "Sauron, the Lidless Eye",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Wizards of the Coast",
+    "purchasePrice": "20,00€",
+	"year": "2023",
+    "condition": "used",
+    "language": "Inglés",
+    "folder": "sauron-the-lidless-eye",
+    "category": "cards"
+  }
+]

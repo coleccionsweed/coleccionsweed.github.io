@@ -14,7 +14,8 @@ export async function loadCollection() {
 	'data/consoles.json',
 	'data/memorabilia.json',
 	'data/calendars.json',
-	'data/albums.json'
+	'data/albums.json',
+	'data/cards.json'
   ]
 
   const results = await Promise.all(

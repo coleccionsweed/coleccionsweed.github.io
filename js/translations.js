@@ -16,7 +16,8 @@ export const diccionario = {
   "consoles": "Consolas",
   "memorabilia": "Memorabilia",
   "calendars": "Calendarios",
-  "albums": "Álbumes"
+  "albums": "Álbumes",
+  "cards": "Cartas"
 };
 
 // Función helper para traducir de forma segura (si no existe, devuelve la palabra original)

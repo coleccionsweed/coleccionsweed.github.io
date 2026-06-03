@@ -68,6 +68,7 @@
     "franchise": "Barça",
     "brand": "Barça",
     "purchasePrice": "0,00€",
+	"year": "2023",
     "condition": "used",
 	"barcode": "8435039121464",
     "folder": "camp-nou",
@@ -1363,6 +1364,79 @@
 	"barcode": "X0013C5PBL",
 	"language" : "Inglés",
     "folder": "hagrid-coleccion-mini-magicos",
+    "category": "toys"
+  },
+  {
+    "id": "pikachu-minifigura",
+    "name": "Pikachu - Minifigura",
+    "franchise": "Pokémon",
+    "brand": "Jazwares",
+    "purchasePrice": "6,50€",
+	"year": "2022",
+    "condition": "used",
+    "language": "Español",
+    "folder": "pikachu-minifigura",
+    "category": "toys"
+  },
+  {
+    "id": "chikorita-minifigura",
+    "name": "Chikorita - Minifigura",
+    "franchise": "Pokémon",
+    "brand": "Jazwares",
+    "purchasePrice": "6,50€",
+	"year": "2022",
+    "condition": "used",
+    "language": "Español",
+    "folder": "chikorita-minifigura",
+    "category": "toys"
+  },
+  {
+    "id": "mario-pisapapeles",
+    "name": "Mario - Pisapapeles",
+    "franchise": "Super Mario",
+    "brand": "Sanei",
+    "purchasePrice": "0,00€",
+	"year": "2015",
+    "condition": "used",
+	"language": "Español",
+    "folder": "mario-pisapapeles",
+    "category": "toys"
+  },
+  {
+    "id": "lechonk-goma",
+    "name": "Lechonk - Goma",
+    "franchise": "Pokémon",
+    "brand": "The Pokémon Company",
+    "purchasePrice": "3,00€",
+	"year": "2023",
+    "condition": "used",
+    "language": "Español",
+    "folder": "lechonk-goma",
+    "category": "toys"
+  },
+  {
+    "id": "mario-pez",
+    "name": "Mario - Pez",
+    "franchise": "Super Mario",
+    "brand": "Pez",
+    "purchasePrice": "2,50€",
+	"year": "2026",
+    "condition": "used",
+	"language": "Español",
+    "folder": "mario-pez",
+    "category": "toys"
+  },
+  {
+    "id": "scooby-doo-mystery-mates",
+    "name": "Scooby-Doo - Mystery Mates",
+    "franchise": "Scooby-Doo",
+    "brand": "Giochi Preciosi",
+    "purchasePrice": "4,99€",
+	"year": "2011",
+    "condition": "new",
+	"barcode": "5029736034375",
+	"language": "Español",
+    "folder": "scooby-doo-mystery-mates",
     "category": "toys"
   }
 ]
