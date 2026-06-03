@@ -82,5 +82,18 @@
     "folder": "animales-fantasticos-y-donde-encontrarlos-coleccion-completa",
     "category": "card-collection",
 	"notes" : "La colección está compuesta por 240 cromos."
+  },
+  {
+    "id": "harry-potter-manual-de-cromos-para-magos-y-brujas-coleccion-completa",
+    "name": "Harry Potter - Manual de cromos para magos y brujas - Colección completa",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "34,62€",
+	"year": "2021",
+    "condition": "new",
+    "language": "Español",
+    "folder": "harry-potter-manual-de-cromos-para-magos-y-brujas-coleccion-completa",
+    "category": "card-collection",
+	"notes" : "La colección está compuesta por 215 cromos."
   }
 ]

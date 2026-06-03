@@ -13,12 +13,11 @@ const albumConfigs = {
         maxNum: 226, 
         extra: Array.from({ length: 22 }, (_, i) => `r${i + 1}`) 
     },
-    "animales-fantasticos-los-secretos-de-dumbledore-coleccion-completa": { 
-        maxNum: 120, 
-		extra: [
-			...Array.from({ length: 30 }, (_, i) => `c${i + 1}`), 
-			"le1"
-		]
+    "animales-fantasticos-y-donde-encontrarlos-coleccion-completa": { 
+        maxNum: 240
+    },
+	"animales-fantasticos-los-crimenes-de-grindelwald-coleccion-completa": { 
+        maxNum: 204
     },
     "animales-fantasticos-los-secretos-de-dumbledore-coleccion-completa": { 
         maxNum: 120, 

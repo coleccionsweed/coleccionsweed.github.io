@@ -77,6 +77,7 @@
 	<option value="afde">Anímales fantásticos y donde encontrarlos</option>
 	<option value="afcg">Anímales fantásticos: Los crímenes de Grindelwald</option>
 	<option value="afsd">Anímales fantásticos: Los secretos de Dumbledore</option>
+	<option value="hpma">Harry Potter magos y brujas</option>
   </select>
 </div>
 
@@ -259,6 +260,12 @@
       numImages = 120;
 	  numAlbum = 7439;
 	  mas = ["c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10", "c11", "c12", "c13", "c14", "c15", "c16", "c17", "c18", "c19", "c20", "c21", "c22", "c23", "c24", "c25", "c26", "c27", "c28", "c29", "c30", "le1"];
+    }else if (config === "hpma") {
+      numImages = 180;
+	  numAlbum = 6628;
+	  for (var i = 1; i <= 12; i++)mas.push("Y" + i);
+	  for (var i = 1; i <= 11; i++)mas.push("LE" + i);
+	  for (var i = 1; i <= 12; i++)mas.push("XXL-LE" + i);
     }
 	
     document.getElementById('imageGrid').innerHTML = "";
