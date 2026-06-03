@@ -19,6 +19,13 @@ const albumConfigs = {
 			...Array.from({ length: 30 }, (_, i) => `c${i + 1}`), 
 			"le1"
 		]
+    },
+    "animales-fantasticos-los-secretos-de-dumbledore-coleccion-completa": { 
+        maxNum: 120, 
+		extra: [
+			...Array.from({ length: 30 }, (_, i) => `c${i + 1}`), 
+			"le1"
+		]
     }
 };
 
