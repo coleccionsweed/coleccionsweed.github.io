@@ -1577,11 +1577,24 @@
     "franchise": "El libro de la selva",
     "brand": "Panini",
     "purchasePrice": "3,00€",
-	"year": "1995",
+	"year": "1979",
     "condition": "new",
 	"barcode": "08055740217",
     "language": "Inglés",
     "folder": "el-libro-de-la-selva-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "el-emperador-y-sus-locuras-sticker-pack",
+    "name": "El emperador y sus locuras",
+    "franchise": "El emperador y sus locuras",
+    "brand": "Panini",
+    "purchasePrice": "3,00€",
+	"year": "2001",
+    "condition": "new",
+	"barcode": "8018190016451",
+    "language": "Francés",
+    "folder": "el-emperador-y-sus-locuras-sticker-pack",
     "category": "card-packs"
   }
 ]
