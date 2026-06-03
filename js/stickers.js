@@ -56,7 +56,7 @@ export function renderStickers(containerId, folderId) {
     }
 
     // 2. Generar cromos extra
-    config.extra.forEach(ext => {
+    config.extra?.forEach(ext => {
         createSticker(grid, `images/card-collection/${folderId}/cromos/${ext}.jpg`);
     });
 
