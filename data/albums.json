@@ -51,7 +51,7 @@
   },
   {
     "id": "harry-potter-y-la-camara-secreta-album-incompleto",
-    "name": "Harry Potter y la cámara secreta - Álbum completo",
+    "name": "Harry Potter y la cámara secreta - Álbum incompleto",
     "franchise": "Harry Potter",
     "brand": "Panini",
     "purchasePrice": "0,00€",
@@ -64,7 +64,7 @@
   },
   {
     "id": "harry-potter-y-el-prisionero-de-azkaban-album-incompleto",
-    "name": "Harry Potter y el prisionero de Azkaban - Álbum completo",
+    "name": "Harry Potter y el prisionero de Azkaban - Álbum incompleto",
     "franchise": "Harry Potter",
     "brand": "Panini",
     "purchasePrice": "0,00€",
@@ -75,5 +75,19 @@
     "folder": "harry-potter-y-el-prisionero-de-azkaban-album-incompleto",
     "category": "albums",
 	"notes" : "Faltantes: 1, 8, 15, 18, 21, 35, 36, 44, 52, 56, 57, 58, 67, 75, 79, 80, 82, 88, 95, 97, 102, 106, 110, 111, 123, 124, 140, 142, 150, 165, 167, 168, 171, 174, 176, 178, 179, 181, 184, 190, 192, 198, 204, 219, 220, 228, 235"
+  },
+  {
+    "id": "harry-potter-y-el-caliz-de-fuego-album-incompleto",
+    "name": "Harry Potter y el cáliz de fuego - Álbum incompleto",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "0,00€",
+	"year": "2005",
+    "condition": "used",
+	"barcode": "9788427862715",
+    "language": "Español",
+    "folder": "harry-potter-y-el-caliz-de-fuego-album-incompleto",
+    "category": "albums",
+	"notes" : "Faltantes: 21, 23, 39, 57, 61, 103, 121, 137, 164, 165, 177, 179, 185, 191, 199, 206, 211, 212, 218, 220, 221, 225, 226, 230, 232"
   }
 ]
