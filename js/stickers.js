@@ -132,6 +132,9 @@ const albumConfigs = {
 			"a", "b", "c", "d", "e", "f",
 			...Array.from({ length: 54 }, (_, i) => `h${i + 1}`)
 		]
+    },
+    "harry-potter-y-la-piedra-filosofal-coleccion-completa": { 
+        maxNum: 216
     }
 };
 
