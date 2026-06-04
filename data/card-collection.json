@@ -206,5 +206,19 @@
     "folder": "harry-potter-y-el-caliz-de-fuego-coleccion-completa",
     "category": "card-collection",
 	"notes" : "La colección está compuesta por 246 cromos."
+  },
+  {
+    "id": "harry-potter-y-el-prisionero-de-azkaban-coleccion-completa",
+    "name": "Harry Potter y el prisionero de Azkaban - Colección completa",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "34,62€",
+	"year": "2004",
+    "condition": "new",
+    "barcode": "9788427862470",
+    "language": "Español",
+    "folder": "harry-potter-y-el-prisionero-de-azkaban-coleccion-completa",
+    "category": "card-collection",
+	"notes" : "La colección está compuesta por 252 cromos."
   }
 ]

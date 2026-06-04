@@ -117,6 +117,12 @@ const albumConfigs = {
     "harry-potter-y-el-caliz-de-fuego-coleccion-completa": { 
         maxNum: 234,
 		"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"
+    },
+    "harry-potter-y-el-prisionero-de-azkaban-coleccion-completa": { 
+        maxNum: 240,
+		extra: [
+			...Array.from({ length: 12 }, (_, i) => `h${i + 1}`)
+		]
     }
 };
 
