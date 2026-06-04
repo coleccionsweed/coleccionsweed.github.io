@@ -366,5 +366,18 @@
     "folder": "tarzan-coleccion-completa-sin-album",
     "category": "card-collection",
 	"notes" : "La colección está compuesta por 238 cromos."
+  },
+  {
+    "id": "mulan-coleccion-incompleta",
+    "name": "Mulán - Colección incompleta",
+    "franchise": "Mulán",
+    "brand": "Panini",
+    "purchasePrice": "50,00€",
+	"year": "1998",
+    "condition": "new",
+    "language": "Español",
+    "folder": "mulan-coleccion-incompleta",
+    "category": "card-collection",
+	"notes" : "La colección está compuesta por 232 cromos."
   }
 ]
