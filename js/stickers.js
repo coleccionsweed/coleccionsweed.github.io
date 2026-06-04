@@ -144,6 +144,12 @@ const albumConfigs = {
 		extra: [
 			...Array.from({ length: 12 }, (_, i) => `h${i + 1}`)
 		]
+    },
+    "harry-potter-bienvenidos-a-hogwarts-coleccion-completa": { 
+        maxNum: 216,
+		extra: [
+			"el4"
+		]
     }
 };
 
