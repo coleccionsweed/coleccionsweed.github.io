@@ -174,6 +174,9 @@ const albumConfigs = {
 		extra: [
 			"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r"
 		]
+    },
+    "mulan-coleccion-incompleta": { 
+        maxNum: 232
     }
 };
 
