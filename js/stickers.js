@@ -188,8 +188,8 @@ const albumConfigs = {
     "one-piece-25-aniversario-coleccion-incompleta": { 
         maxNum: 200,
 		extra: [
-			...Array.from({ length: 150 }, (_, i) => `${i + 1}P`),
-			...Array.from({ length: 10 }, (_, i) => `LE${i + 1}`)
+			...Array.from({ length: 150 }, (_, i) => `${i + 1}p`),
+			...Array.from({ length: 10 }, (_, i) => `le${i + 1}`)
 		]
     }
 };
