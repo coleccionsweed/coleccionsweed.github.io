@@ -444,5 +444,18 @@
     "folder": "la-liga-06-07-coleccion-completa",
     "category": "card-collection",
 	"notes" : "Compartida. La colección está compuesta por 546 cromos. 98% de cromos escaneados."
+  },
+  {
+    "id": "la-liga-07-08-coleccion-completa",
+    "name": "La Liga 07-08",
+    "franchise": "La Liga",
+    "brand": "Panini",
+    "purchasePrice": "69,24€",
+	"year": "2007",
+    "condition": "new",
+    "language": "Español",
+    "folder": "la-liga-07-08-coleccion-completa",
+    "category": "card-collection",
+	"notes" : "Compartida. La colección está compuesta por 576 cromos."
   }
 ]
