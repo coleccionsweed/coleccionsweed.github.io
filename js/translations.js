@@ -17,7 +17,8 @@ export const diccionario = {
   "memorabilia": "Memorabilia",
   "calendars": "Calendarios",
   "albums": "Álbumes",
-  "cards": "Cartas"
+  "cards": "Cartas",
+  "stamps": "Sellos"
 };
 
 // Función helper para traducir de forma segura (si no existe, devuelve la palabra original)
