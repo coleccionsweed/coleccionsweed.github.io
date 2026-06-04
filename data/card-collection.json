@@ -299,5 +299,18 @@
     "folder": "monstruos-s-a-coleccion-completa",
     "category": "card-collection",
 	"notes" : "La colección está compuesta por 198 cromos."
+  },
+  {
+    "id": "harry-potter-carrefour-coleccion-completa",
+    "name": "Harry Potter - Carrefour - Colección completa",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "34,62€",
+	"year": "2020",
+    "condition": "new",
+    "language": "Español",
+    "folder": "harry-potter-carrefour-coleccion-completa",
+    "category": "card-collection",
+	"notes" : "La colección está compuesta por 90 cartas."
   }
 ]
