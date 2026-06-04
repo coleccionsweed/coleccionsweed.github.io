@@ -32,7 +32,7 @@
     "brand": "Panini",
     "purchasePrice": "0,00€",
 	"year": "2001",
-    "condition": "new",
+    "condition": "used",
     "language": "Español",
     "folder": "harry-potter-y-la-piedra-filosofal-album-completo",
     "category": "albums"
@@ -44,9 +44,36 @@
     "brand": "Panini",
     "purchasePrice": "0,00€",
 	"year": "2001",
-    "condition": "new",
+    "condition": "used",
     "language": "Español",
     "folder": "harry-potter-y-la-piedra-filosofal-cartoons-album-completo",
     "category": "albums"
+  },
+  {
+    "id": "harry-potter-y-la-camara-secreta-album-incompleto",
+    "name": "Harry Potter y la cámara secreta - Álbum completo",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "0,00€",
+	"year": "2002",
+    "condition": "used",
+    "language": "Español",
+    "folder": "harry-potter-y-la-camara-secreta-album-incompleto",
+    "category": "albums",
+	"notes" : "Faltantes: 17, 71, 87, 129, 143, 149, 152, 186, 223, 224, 229, 231, 239, 240, H6, H7, H46, H50, H53"
+  },
+  {
+    "id": "harry-potter-y-el-prisionero-de-azkaban-album-incompleto",
+    "name": "Harry Potter y el prisionero de Azkaban - Álbum completo",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "0,00€",
+	"year": "2004",
+    "condition": "used",
+	"barcode": "9788427862470",
+    "language": "Español",
+    "folder": "harry-potter-y-el-prisionero-de-azkaban-album-incompleto",
+    "category": "albums",
+	"notes" : "Faltantes: 1, 8, 15, 18, 21, 35, 36, 44, 52, 56, 57, 58, 67, 75, 79, 80, 82, 88, 95, 97, 102, 106, 110, 111, 123, 124, 140, 142, 150, 165, 167, 168, 171, 174, 176, 178, 179, 181, 184, 190, 192, 198, 204, 219, 220, 228, 235"
   }
 ]
