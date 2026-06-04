@@ -340,5 +340,18 @@
     "folder": "asterix-album-de-viajes-coleccion-completa",
     "category": "card-collection",
 	"notes" : "La colección está compuesta por 194 cromos. 85% de cromos escaneados."
+  },
+  {
+    "id": "toy-story-2-coleccion-completa",
+    "name": "Toy Story 2 - Colección completa",
+    "franchise": "Toy Story",
+    "brand": "Panini",
+    "purchasePrice": "44,00€",
+	"year": "2000",
+    "condition": "new",
+    "language": "Español",
+    "folder": "toy-story-2-coleccion-completa",
+    "category": "card-collection",
+	"notes" : "La colección está compuesta por 218 cromos. 90% de cromos escaneados."
   }
 ]
