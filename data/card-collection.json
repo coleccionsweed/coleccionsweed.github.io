@@ -149,6 +149,20 @@
     "language": "Alemán",
     "folder": "harry-potter-y-las-reliquias-de-la-muerte-parte-2-coleccion-completa",
     "category": "card-collection",
-	"notes" : "La colección está compuesta por 216 cromos."
+	"notes" : "La colección está compuesta por 228 cromos."
+  },
+  {
+    "id": "harry-potter-y-las-reliquias-de-la-muerte-parte-1-coleccion-completa",
+    "name": "Harry Potter y las reliquias de la muerte - Parte 1",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "34,62€",
+	"year": "2010",
+    "condition": "new",
+    "barcode": "8018190041507",
+    "language": "Español",
+    "folder": "harry-potter-y-las-reliquias-de-la-muerte-parte-1-coleccion-completa",
+    "category": "card-collection",
+	"notes" : "La colección está compuesta por 240 cromos."
   }
 ]

@@ -98,6 +98,12 @@ const albumConfigs = {
 		extra: [
 			...Array.from({ length: 34 }, (_, i) => `x${i + 1}`)
 		]
+    },
+    "harry-potter-y-las-reliquias-de-la-muerte-parte-1-coleccion-completa": { 
+        maxNum: 228, 
+		extra: [
+			...Array.from({ length: 12 }, (_, i) => `x${i + 1}`)
+		]
     }
 };
 
