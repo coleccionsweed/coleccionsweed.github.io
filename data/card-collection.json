@@ -122,5 +122,19 @@
     "folder": "de-las-peliculas-de-harry-potter-coleccion-completa",
     "category": "card-collection",
 	"notes" : "La colección está compuesta por 274 cromos."
+  },
+  {
+    "id": "el-magico-mundo-de-harry-potter-coleccion-completa",
+    "name": "El mágico mundo de Harry Potter - Colección completa",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "34,62€",
+	"year": "2008",
+    "condition": "new",
+	"barcode": "8018190034769",
+    "language": "Español",
+    "folder": "el-magico-mundo-de-harry-potter-coleccion-completa",
+    "category": "card-collection",
+	"notes" : "La colección está compuesta por 216 cromos."
   }
 ]

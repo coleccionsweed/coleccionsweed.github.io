@@ -78,7 +78,6 @@
 	<option value="afcg">Anímales fantásticos: Los crímenes de Grindelwald</option>
 	<option value="afsd">Anímales fantásticos: Los secretos de Dumbledore</option>
 	<option value="hpma">Harry Potter magos y brujas</option>
-	<option value="hpff">De las películas de Harry Potter</option>
   </select>
 </div>
 
@@ -267,11 +266,6 @@
 	  for (var i = 1; i <= 12; i++)mas.push("y" + i);
 	  for (var i = 1; i <= 11; i++)mas.push("le" + i);
 	  for (var i = 1; i <= 12; i++)mas.push("xxl-le" + i);
-    }else if (config === "hpff") {
-      numImages = 216;
-	  numAlbum = 4906;
-	  for (var i = 1; i <= 50; i++)mas.push("c" + i);
-	  for (var i = 1; i <= 8; i++)mas.push("le" + i);
     }
 	
     document.getElementById('imageGrid').innerHTML = "";

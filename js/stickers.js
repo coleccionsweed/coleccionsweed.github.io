@@ -86,6 +86,12 @@ const albumConfigs = {
 			...Array.from({ length: 50 }, (_, i) => `c${i + 1}`),
 			...Array.from({ length: 8 }, (_, i) => `le${i + 1}`)
 		]
+    },
+    "el-magico-mundo-de-harry-potter-coleccion-completa": { 
+        maxNum: 204, 
+		extra: [
+			...Array.from({ length: 12 }, (_, i) => `x${i + 1}`)
+		]
     }
 };
 
