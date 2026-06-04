@@ -275,7 +275,7 @@
   },
   {
     "id": "harry-potter-bienvenidos-a-hogwarts-coleccion-completa",
-    "name": "Harry Potter - Bienvenidos a Hogwarts",
+    "name": "Harry Potter - Bienvenidos a Hogwarts - Colección completa",
     "franchise": "Harry Potter",
     "brand": "Panini",
     "purchasePrice": "80,00€",
@@ -285,5 +285,19 @@
     "folder": "harry-potter-bienvenidos-a-hogwarts-coleccion-completa",
     "category": "card-collection",
 	"notes" : "La colección está compuesta por 217 cartas."
+  },
+  {
+    "id": "monstruos-s-a-coleccion-completa",
+    "name": "Monstruos S.A. - Colección completa",
+    "franchise": "Monstruos S.A.",
+    "brand": "Panini",
+    "purchasePrice": "42,00€",
+	"year": "2002",
+    "condition": "new",
+	"barcode": "4195810301402",
+	"language": "Alemán",
+    "folder": "monstruos-s-a-coleccion-completa",
+    "category": "card-collection",
+	"notes" : "La colección está compuesta por 198 cromos."
   }
 ]
