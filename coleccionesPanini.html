@@ -84,6 +84,7 @@
 	<option value="afcg">Anímales fantásticos: Los crímenes de Grindelwald</option>
 	<option value="afsd">Anímales fantásticos: Los secretos de Dumbledore</option>
 	<option value="hpma">Harry Potter magos y brujas</option>
+	<option value="hplego">Harry Potter Lego</option>
   </select>
 </div>
 
@@ -281,6 +282,10 @@
 	  for (var i = 1; i <= 12; i++)mas.push("y" + i);
 	  for (var i = 1; i <= 11; i++)mas.push("le" + i);
 	  for (var i = 1; i <= 12; i++)mas.push("xxl-le" + i);
+    }else if (config === "hplego") {
+      numImages = 225;
+	  numAlbum = 8322;
+	  mas = ["c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10", "c11", "c12", "c13", "c14", "c15", "c16", "c17", "c18", "c19", "c20", "c21", "c22", "c23", "c24", "c25", "c26", "c27", "c28", "c29", "c30", "c31", "c32", "c33", "c34", "c35", "c36", "c37", "c38", "c39", "c40", "c41", "c42", "c43", "c44", "c45", "c1g", "c2g", "c3g", "c4g", "c5g", "c6g", "c7g", "c8g", "c9g", "c10g", "c11g", "c12g", "c13g", "c14g", "c15g", "c16g", "c17g", "c18g", "c19g", "c20g", "c21g", "c22g", "c23g", "c24g", "c25g", "c26g", "c27g", "c28g", "c29g", "c30g", "c31g", "c32g", "c33g", "c34g", "c35g", "c36g", "c37g", "c38g", "c39g", "c40g", "c41g", "c42g", "c43g", "c44g", "c45g"];
     }
 	
     document.getElementById('imageGrid').innerHTML = "";

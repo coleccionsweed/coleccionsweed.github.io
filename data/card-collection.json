@@ -379,5 +379,18 @@
     "folder": "mulan-coleccion-incompleta",
     "category": "card-collection",
 	"notes" : "La colección está compuesta por 232 cromos. Faltantes: 22, 32, 40, 51, 54, 80, 95, 97, 107, 114, 124, 156, 163, 177, 189, 190, 198 y 224"
+  },
+  {
+    "id": "harry-Potter-lego-coleccion-incompleta",
+    "name": "Harry Potter - Lego - Colección incompleta",
+    "franchise": "Harry Potter",
+    "brand": "Blue Ocean",
+    "purchasePrice": "30,00€",
+	"year": "2022",
+    "condition": "new",
+    "language": "Español",
+    "folder": "harry-Potter-lego-coleccion-incompleta",
+    "category": "card-collection",
+	"notes" : "La colección está compuesta por 315 cromos."
   }
 ]
