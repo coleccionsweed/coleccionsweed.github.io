@@ -138,6 +138,12 @@ const albumConfigs = {
     },
     "harry-potter-y-la-piedra-filosofal-cartoons-coleccion-completa": { 
         maxNum: 144
+    },
+    "harry-potter-y-la-camara-secreta-cartoons-coleccion-completa-pegada": { 
+        maxNum: 144,
+		extra: [
+			...Array.from({ length: 12 }, (_, i) => `h${i + 1}`)
+		]
     }
 };
 
