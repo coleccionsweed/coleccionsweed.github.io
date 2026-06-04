@@ -246,5 +246,18 @@
     "folder": "harry-potter-y-la-piedra-filosofal-coleccion-completa",
     "category": "card-collection",
 	"notes" : "La colección está compuesta por 216 cromos."
+  },
+  {
+    "id": "harry-potter-y-la-piedra-filosofal-cartoons-coleccion-completa",
+    "name": "Harry Potter y la piedra filosofal - Cartoons - Colección completa",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "34,62€",
+	"year": "2001",
+    "condition": "new",
+    "language": "Español",
+    "folder": "harry-potter-y-la-piedra-filosofal-cartoons-coleccion-completa",
+    "category": "card-collection",
+	"notes" : "La colección está compuesta por 144 cromos."
   }
 ]

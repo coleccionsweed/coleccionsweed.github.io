@@ -135,6 +135,9 @@ const albumConfigs = {
     },
     "harry-potter-y-la-piedra-filosofal-coleccion-completa": { 
         maxNum: 216
+    },
+    "harry-potter-y-la-piedra-filosofal-cartoons-coleccion-completa": { 
+        maxNum: 144
     }
 };
 
