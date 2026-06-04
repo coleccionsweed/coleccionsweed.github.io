@@ -405,5 +405,18 @@
     "folder": "one-piece-25-aniversario-coleccion-incompleta",
     "category": "card-collection",
 	"notes" : "La colección está compuesta por 367 cartas. 97% de cartas escaneados. Faltan muchos."
+  },
+  {
+    "id": "la-liga-04-05-coleccion-incompleta",
+    "name": "La Liga 04-05",
+    "franchise": "La Liga",
+    "brand": "Panini",
+    "purchasePrice": "71,00€",
+	"year": "2004",
+    "condition": "new",
+    "language": "Español",
+    "folder": "la-liga-04-05-coleccion-incompleta",
+    "category": "card-packs",
+	"notes" : "Compartida. La colección está compuesta por 542 cromos. 0% de cartas escaneados. Faltantes: Messi"
   }
 ]
