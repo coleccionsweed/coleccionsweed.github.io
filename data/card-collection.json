@@ -392,5 +392,18 @@
     "folder": "harry-Potter-lego-coleccion-incompleta",
     "category": "card-collection",
 	"notes" : "La colección está compuesta por 315 cromos. Faltantes: 1, 3, 7, 11, 15, 16, 18, 20, 22, 32, 35, 36, 37, 40, 41, 42, 43, 47, 49, 50, 53, 54, 56, 57, 67, 69, 72, 76, 78, 86, 93, 94, 96, 98, 101, 102, 108, 111, 112, 113, 115, 119, 124, 126, 128, 131, 132, 134, 135, 136, 137, 142, 143, 149, 151, 152, 156, 158, 160, 163, 167, 176, 181, 185, 188, 189, 194, 197, 202, 205, 206, 209, 210, 212, 214, 215, 217, 221, C1, C2, C3, C9, C12, C14, C16, C17, C18, C21, C22, C24, C25, C32, C33, C34, C35, C36, C37, C40, C43, C44, C1G, C2G, C3G, C4G, C5G, C6G, C7G, C8G, C9G, C10G, C11G, C12G, C13G, C15G, C16G, C19G, C20G, C21G, C22G, C23G, C24G, C25G, C26G, C27G, C28G, C29G, C32G, C34G, C35G, C36G, C37G, C38G, C39G, C40G, C41G, C42G, C43G, C44G, C45G"
+  },
+  {
+    "id": "one-piece-25-aniversario-coleccion-incompleta",
+    "name": "One Piece 25º Aniversario - Colección incompleta",
+    "franchise": "One Piece",
+    "brand": "Panini",
+    "purchasePrice": "30,00€",
+	"year": "2024",
+    "condition": "new",
+    "language": "Español",
+    "folder": "one-piece-25-aniversario-coleccion-incompleta",
+    "category": "card-collection",
+	"notes" : "La colección está compuesta por 367 cartas. 97% de cromos escaneados. Faltantes: 1, 2, 4, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 23, 24, 25, 26"
   }
 ]
