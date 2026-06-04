@@ -1513,5 +1513,17 @@
 	"language" : "Español",
     "folder": "peluche-ron-weasley",
     "category": "toys"
+  },
+  {
+    "id": "henry-j-waternoose-iii",
+    "name": "Henry J. Waternoose III",
+    "franchise": "Monstruos S.A.",
+    "brand": "Hasbro",
+    "purchasePrice": "30,00€",
+	"year": "2001",
+    "condition": "new",
+	"language": "Inglés",
+    "folder": "henry-j-waternoose-iii",
+    "category": "toys"
   }
 ]

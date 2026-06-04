@@ -55,5 +55,18 @@
     "language": "Español",
     "folder": "las-dos-torres-mazo-aragorn",
     "category": "decks"
+  },
+  {
+    "id": "kit-de-inicio-el-senior-de-los-anillos",
+    "name": "Kit de inicio - El Señor de los Anillos",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Wizards of the Coast",
+    "purchasePrice": "27,00€",
+	"year": "2023",
+    "condition": "used",
+    "barcode": "5010994191610",
+    "language": "Español",
+    "folder": "kit-de-inicio-el-senior-de-los-anillos",
+    "category": "decks"
   }
 ]
