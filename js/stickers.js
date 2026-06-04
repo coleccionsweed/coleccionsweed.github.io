@@ -174,6 +174,12 @@ const albumConfigs = {
 		extra: [
 			"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r"
 		]
+    },
+    "harry-potter-agenda-stickers-coleccion-completa": { 
+        maxNum: 192,
+		extra: [
+			"a", "b", "c", "d", "e", "f", "g", "h", "i", "l", "m", "n", "o", "p", "q", "r"
+		]
     }
 };
 

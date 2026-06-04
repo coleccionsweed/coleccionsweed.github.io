@@ -366,5 +366,18 @@
     "folder": "tarzan-coleccion-completa-sin-album",
     "category": "card-collection",
 	"notes" : "La colección está compuesta por 238 cromos."
+  },
+  {
+    "id": "harry-potter-agenda-stickers-coleccion-completa",
+    "name": "Harry Potter - Agenda Stickers - Colección completa",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "28,12€",
+	"year": "2004",
+    "condition": "new",
+    "language": "Español",
+    "folder": "harry-potter-agenda-stickers-coleccion-completa",
+    "category": "card-collection",
+	"notes" : "La colección está compuesta por 208 cromos."
   }
 ]
