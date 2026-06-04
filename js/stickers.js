@@ -194,6 +194,9 @@ const albumConfigs = {
     },
     "la-liga-05-06-coleccion-completa": { 
         maxNum: 525
+    },
+    "la-liga-06-07-coleccion-completa": { 
+        maxNum: 648
     }
 };
 
