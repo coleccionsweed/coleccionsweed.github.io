@@ -308,9 +308,23 @@
     "purchasePrice": "34,62€",
 	"year": "2020",
     "condition": "new",
+    "barcode": "5054903826880",
     "language": "Español",
     "folder": "harry-potter-carrefour-coleccion-completa",
     "category": "card-collection",
 	"notes" : "La colección está compuesta por 90 cartas."
+  },
+  {
+    "id": "el-jorobado-de-notre-dame-coleccion-completa",
+    "name": "El Jorobado de Notre Dame - Colección completa",
+    "franchise": "El Jorobado de Notre Dame",
+    "brand": "Panini",
+    "purchasePrice": "70,00€",
+	"year": "1996",
+    "condition": "new",
+    "language": "Español",
+    "folder": "el-jorobado-de-notre-dame-coleccion-completa",
+    "category": "card-collection",
+	"notes" : "La colección está compuesta por 242 cromos."
   }
 ]
