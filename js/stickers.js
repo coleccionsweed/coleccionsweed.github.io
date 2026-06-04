@@ -116,7 +116,9 @@ const albumConfigs = {
     },
     "harry-potter-y-el-caliz-de-fuego-coleccion-completa": { 
         maxNum: 234,
-		"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"
+		extra: [
+			"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"
+		]
     },
     "harry-potter-y-el-prisionero-de-azkaban-coleccion-completa": { 
         maxNum: 240,
@@ -126,8 +128,8 @@ const albumConfigs = {
     },
     "harry-potter-y-la-camara-secreta-coleccion-completa": { 
         maxNum: 240,
-		"a", "b", "c", "d", "e", "f",
 		extra: [
+			"a", "b", "c", "d", "e", "f",
 			...Array.from({ length: 54 }, (_, i) => `h${i + 1}`)
 		]
     }

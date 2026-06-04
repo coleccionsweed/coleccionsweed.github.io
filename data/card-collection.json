@@ -233,5 +233,18 @@
     "folder": "harry-potter-y-la-camara-secreta-coleccion-completa",
     "category": "card-collection",
 	"notes" : "La colección está compuesta por 300 cromos."
+  },
+  {
+    "id": "harry-potter-y-la-piedra-filosofal-coleccion-completa",
+    "name": "Harry Potter y la piedra filosofal - Colección completa",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "34,62€",
+	"year": "2001",
+    "condition": "new",
+    "language": "Español",
+    "folder": "harry-potter-y-la-piedra-filosofal-coleccion-completa",
+    "category": "card-collection",
+	"notes" : "La colección está compuesta por 216 cromos."
   }
 ]
