@@ -192,5 +192,19 @@
     "folder": "harry-potter-y-la-orden-del-fenix-coleccion-completa",
     "category": "card-collection",
 	"notes" : "La colección está compuesta por 288 cromos."
+  },
+  {
+    "id": "harry-potter-y-el-caliz-de-fuego-coleccion-completa",
+    "name": "Harry Potter y el cáliz de fuego - Colección completa",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "34,62€",
+	"year": "2005",
+    "condition": "new",
+    "barcode": "9788427862715",
+    "language": "Español",
+    "folder": "harry-potter-y-el-caliz-de-fuego-coleccion-completa",
+    "category": "card-collection",
+	"notes" : "La colección está compuesta por 246 cromos."
   }
 ]

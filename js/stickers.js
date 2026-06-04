@@ -113,6 +113,10 @@ const albumConfigs = {
 		extra: [
 			...Array.from({ length: 12 }, (_, i) => `s${i + 1}`)
 		]
+    },
+    "harry-potter-y-el-caliz-de-fuego-coleccion-completa": { 
+        maxNum: 234,
+		"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"
     }
 };
 
