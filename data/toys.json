@@ -1501,5 +1501,17 @@
 	"language" : "Español",
     "folder": "peluche-harry-potter",
     "category": "toys"
+  },
+  {
+    "id": "peluche-ron-weasley",
+    "name": "Peluche Ron Weasley",
+    "franchise": "Harry Potter",
+    "brand": "Trudi",
+    "purchasePrice": "11,69€",
+	"year": "2001",
+    "condition": "used",
+	"language" : "Español",
+    "folder": "peluche-ron-weasley",
+    "category": "toys"
   }
 ]
