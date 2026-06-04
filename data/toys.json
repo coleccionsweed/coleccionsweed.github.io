@@ -1438,5 +1438,68 @@
 	"language": "Español",
     "folder": "scooby-doo-mystery-mates",
     "category": "toys"
+  },
+  {
+    "id": "sauce-boxeador",
+    "name": "Sauce boxeador",
+    "franchise": "Harry Potter",
+    "brand": "Mattel",
+    "purchasePrice": "16,18€",
+	"year": "2002",
+    "condition": "used",
+	"barcode": "074299434686",
+    "folder": "sauce-boxeador",
+    "category": "toys"
+  },
+  {
+    "id": "flores-de-cerezo-40725",
+    "name": "Flores de cerezo - 40725",
+    "brand": "Lego",
+    "purchasePrice": "20,45€",
+	"year": "2024",
+    "condition": "used",
+	"barcode": "5702017596976",
+	"language": "Español",
+    "folder": "flores-de-cerezo-40725",
+    "category": "toys"
+  },
+  {
+    "id": "centauro-puzle-harry-potter",
+    "name": "Centauro - Puzle - Harry Potter",
+    "franchise": "Harry Potter",
+    "brand": "Mattel",
+    "purchasePrice": "6,69€",
+	"year": "2001",
+    "condition": "used",
+	"barcode": "074299427619",
+	"language" : "Español",
+    "folder": "centauro-puzle-harry-potter",
+    "category": "toys"
+  },
+  {
+    "id": "hagrid-puzle-harry-potter",
+    "name": "Hagrid - Puzle - Harry Potter",
+    "franchise": "Harry Potter",
+    "brand": "Mattel",
+    "purchasePrice": "6,69€",
+	"year": "2001",
+    "condition": "used",
+	"barcode": "074299427619",
+	"language" : "Español",
+    "folder": "hagrid-puzle-harry-potter",
+    "category": "toys"
+  },
+  {
+    "id": "peluche-harry-potter",
+    "name": "Peluche Harry Potter",
+    "franchise": "Harry Potter",
+    "brand": "Trudi",
+    "purchasePrice": "11,69€",
+	"year": "2001",
+    "condition": "new",
+	"barcode": "8006529750022",
+	"language" : "Español",
+    "folder": "peluche-harry-potter",
+    "category": "toys"
   }
 ]
