@@ -353,5 +353,18 @@
     "folder": "toy-story-2-coleccion-completa",
     "category": "card-collection",
 	"notes" : "La colección está compuesta por 218 cromos. 90% de cromos escaneados."
+  },
+  {
+    "id": "tarzan-coleccion-completa-sin-album",
+    "name": "Tarzán - Colección completa sin álbum",
+    "franchise": "Tarzán",
+    "brand": "Panini",
+    "purchasePrice": "47,80€",
+	"year": "1999",
+    "condition": "new",
+    "language": "Español",
+    "folder": "tarzan-coleccion-completa-sin-album",
+    "category": "card-collection",
+	"notes" : "La colección está compuesta por 238 cromos."
   }
 ]
