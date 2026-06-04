@@ -533,10 +533,25 @@
 	"Platform" : "Nintendo Switch",
     "brand": "Activision",
     "purchasePrice": "26,99€",
+	"year": "2018",
     "condition": "used",
     "barcode": "5030917236761",
     "language": "Español",
     "folder": "crash-bandicoot-n-sane-trilogy-switch",
+    "category": "video-games"
+  },
+  {
+    "id": "ice-age-una-aventura-de-bellotas",
+    "name": "Ice Age - Una aventura de bellotas",
+    "franchise": "Ice Age",
+	"Platform" : "Nintendo Switch",
+    "brand": "Outright Games",
+    "purchasePrice": "26,99€",
+	"year": "2019",
+    "condition": "used",
+    "barcode": "5060528030946",
+    "language": "Español",
+    "folder": "ice-age-una-aventura-de-bellotas",
     "category": "video-games"
   }
 ]
