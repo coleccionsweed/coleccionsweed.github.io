@@ -338,6 +338,7 @@
     "franchise": "La ruta hacia El Dorado",
     "brand": "Diamond",
     "purchasePrice": "3,65€",
+	"year": "2000",
     "condition": "new",
     "barcode": "8020672001749",
     "language": "Español",
@@ -1510,7 +1511,7 @@
   {
     "id": "blancanieves-y-los-siete-enanitos-sticker-pack",
     "name": "Blancanieves y los siete enanitos",
-    "franchise": "El Jorobado de Notre Dame",
+    "franchise": "Blancanieves y los siete enanitos",
     "brand": "Panini",
     "purchasePrice": "3,00€",
 	"year": "2001",

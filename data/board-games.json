@@ -78,19 +78,6 @@
     "category": "board-games"
   },
   {
-    "id": "el-jorobado-de-notre-dame-forma-parejas",
-    "name": "El Jorobado de Notre Dame - Forma parejas",
-    "franchise": "El Jorobado de Notre Dame",
-    "brand": "Fournier",
-    "purchasePrice": "5,00€",
-	"year": "1996",
-    "condition": "used",
-	"barcode" : "8420707078782",
-    "language": "Español",
-    "folder": "el-jorobado-de-notre-dame-forma-parejas",
-    "category": "board-games"
-  },
-  {
     "id": "quiz-el-senior-de-los-anillos",
     "name": "Quiz - El Señor de los Anillos",
     "franchise": "El Señor de los Anillos",
