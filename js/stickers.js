@@ -191,6 +191,9 @@ const albumConfigs = {
 			...Array.from({ length: 150 }, (_, i) => `${i + 1}p`),
 			...Array.from({ length: 10 }, (_, i) => `le${i + 1}`)
 		]
+    },
+    "la-liga-05-06-coleccion-completa": { 
+        maxNum: 525
     }
 };
 

@@ -417,6 +417,19 @@
     "language": "Español",
     "folder": "la-liga-04-05-coleccion-incompleta",
     "category": "card-packs",
-	"notes" : "Compartida. La colección está compuesta por 542 cromos. 0% de cartas escaneados. Faltantes: Messi"
+	"notes" : "Compartida. La colección está compuesta por 542 cromos. 0% de cromos escaneados. Faltantes: Messi"
+  },
+  {
+    "id": "la-liga-05-06-coleccion-completa",
+    "name": "La Liga 05-06",
+    "franchise": "La Liga",
+    "brand": "Panini",
+    "purchasePrice": "71,00€",
+	"year": "2005",
+    "condition": "new",
+    "language": "Español",
+    "folder": "la-liga-05-06-coleccion-completa",
+    "category": "card-packs",
+	"notes" : "Compartida. La colección está compuesta por 525 cromos. pp% de cromos escaneados."
   }
 ]
