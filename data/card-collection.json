@@ -325,6 +325,20 @@
     "language": "Español",
     "folder": "el-jorobado-de-notre-dame-coleccion-completa",
     "category": "card-collection",
-	"notes" : "La colección está compuesta por 242 cromos."
+	"notes" : "La colección está compuesta por 242 cromos. 0% de cromos escaneados."
+  },
+  {
+    "id": "asterix-album-de-viajes-coleccion-completa",
+    "name": "Astérix - Álbum de viajes - Colección completa",
+    "franchise": "Astérix",
+    "brand": "Panini",
+    "purchasePrice": "50,00€",
+	"year": "2022",
+    "condition": "new",
+    "barcode": "8018190034363",
+    "language": "Español",
+    "folder": "asterix-album-de-viajes-coleccion-completa",
+    "category": "card-collection",
+	"notes" : "La colección está compuesta por 194 cromos. 85% de cromos escaneados."
   }
 ]

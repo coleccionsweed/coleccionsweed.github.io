@@ -159,6 +159,9 @@ const albumConfigs = {
     },
     "el-jorobado-de-notre-dame-coleccion-completa": { 
         maxNum: 232
+    },
+    "asterix-album-de-viajes-coleccion-completa": { 
+        maxNum: 164
     }
 };
 
