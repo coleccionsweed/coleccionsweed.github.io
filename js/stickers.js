@@ -79,6 +79,13 @@ const albumConfigs = {
 			"cro5x", "cro17x", "bra11x", "sui7x", "sui16x", "cmr8x", "cmr9x", "cmr13x", "cmr17x", "por6x", "por14x", "por15x", "por19x", "por20x", "gha3x", "gha4x", "gha9x", "gha10x", "gha11x", 
 			"gha15x", "gha16x", "kor10x", "ls-b"
 		]
+    },
+    "de-las-peliculas-de-harry-potter-coleccion-completa": { 
+        maxNum: 216, 
+		extra: [
+			...Array.from({ length: 50 }, (_, i) => `c${i + 1}`),
+			...Array.from({ length: 8 }, (_, i) => `le${i + 1}`)
+		]
     }
 };
 
