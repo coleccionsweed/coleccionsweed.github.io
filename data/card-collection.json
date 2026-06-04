@@ -136,5 +136,19 @@
     "folder": "el-magico-mundo-de-harry-potter-coleccion-completa",
     "category": "card-collection",
 	"notes" : "La colección está compuesta por 216 cromos."
+  },
+  {
+    "id": "harry-potter-y-las-reliquias-de-la-muerte-parte-2-coleccion-completa",
+    "name": "Harry Potter y las reliquias de la muerte - Parte 2",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "34,62€",
+	"year": "2011",
+    "condition": "new",
+    "barcode": "4191980101507",
+    "language": "Alemán",
+    "folder": "harry-potter-y-las-reliquias-de-la-muerte-parte-2-coleccion-completa",
+    "category": "card-collection",
+	"notes" : "La colección está compuesta por 216 cromos."
   }
 ]
