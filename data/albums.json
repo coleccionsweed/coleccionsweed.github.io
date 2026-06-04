@@ -24,5 +24,29 @@
     "language": "Español",
     "folder": "2025-club-world-cup-album-vacio",
     "category": "albums"
+  },
+  {
+    "id": "harry-potter-y-la-piedra-filosofal-album-completo",
+    "name": "Harry Potter y la piedra filosofal - Álbum completo",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "0,00€",
+	"year": "2001",
+    "condition": "new",
+    "language": "Español",
+    "folder": "harry-potter-y-la-piedra-filosofal-album-completo",
+    "category": "albums"
+  },
+  {
+    "id": "harry-potter-y-la-piedra-filosofal-cartoons-album-completo",
+    "name": "Harry Potter y la piedra filosofal - Cartoons - Álbum completo",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "0,00€",
+	"year": "2001",
+    "condition": "new",
+    "language": "Español",
+    "folder": "harry-potter-y-la-piedra-filosofal-cartoons-album-completo",
+    "category": "albums"
   }
 ]
