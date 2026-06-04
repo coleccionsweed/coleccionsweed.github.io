@@ -108,5 +108,19 @@
     "folder": "2022-fifa-world-cup-coleccion-completa",
     "category": "card-collection",
 	"notes" : "La colección está compuesta por 758 cromos."
+  },
+  {
+    "id": "de-las-peliculas-de-harry-potter-coleccion-completa",
+    "name": "De las películas de Harry Potter - Colección completa",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "34,62€",
+	"year": "2019",
+    "condition": "new",
+	"barcode": "8018190004243",
+    "language": "Español",
+    "folder": "de-las-peliculas-de-harry-potter-coleccion-completa",
+    "category": "card-collection",
+	"notes" : "La colección está compuesta por 274 cromos."
   }
 ]
