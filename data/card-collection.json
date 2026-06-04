@@ -139,7 +139,7 @@
   },
   {
     "id": "harry-potter-y-las-reliquias-de-la-muerte-parte-2-coleccion-completa",
-    "name": "Harry Potter y las reliquias de la muerte - Parte 2",
+    "name": "Harry Potter y las reliquias de la muerte - Parte 2 - Colección completa",
     "franchise": "Harry Potter",
     "brand": "Panini",
     "purchasePrice": "34,62€",
@@ -153,7 +153,7 @@
   },
   {
     "id": "harry-potter-y-las-reliquias-de-la-muerte-parte-1-coleccion-completa",
-    "name": "Harry Potter y las reliquias de la muerte - Parte 1",
+    "name": "Harry Potter y las reliquias de la muerte - Parte  - Colección completa",
     "franchise": "Harry Potter",
     "brand": "Panini",
     "purchasePrice": "34,62€",
@@ -164,5 +164,19 @@
     "folder": "harry-potter-y-las-reliquias-de-la-muerte-parte-1-coleccion-completa",
     "category": "card-collection",
 	"notes" : "La colección está compuesta por 240 cromos."
+  },
+  {
+    "id": "harry-potter-y-el-misterio-del-principe-coleccion-completa",
+    "name": "Harry Potter y el misterio del príncipe - Colección completa",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "34,62€",
+	"year": "2009",
+    "condition": "new",
+    "barcode": "8018190034103",
+    "language": "Español",
+    "folder": "harry-potter-y-el-misterio-del-principe-coleccion-completa",
+    "category": "card-collection",
+	"notes" : "La colección está compuesta por 360 cromos."
   }
 ]

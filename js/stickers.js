@@ -104,6 +104,9 @@ const albumConfigs = {
 		extra: [
 			...Array.from({ length: 12 }, (_, i) => `x${i + 1}`)
 		]
+    },
+    "harry-potter-y-el-misterio-del-principe-coleccion-completa": { 
+        maxNum: 360
     }
 };
 
