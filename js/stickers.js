@@ -200,6 +200,21 @@ const albumConfigs = {
     },
     "la-liga-07-08-coleccion-completa": { 
         maxNum: 691
+    },
+    "la-liga-08-09-coleccion-completa": { 
+        maxNum: 575,
+		extra: [
+			...Array.from({ length: 36 }, (_, i) => `mi-${i + 1}`)
+		]
+    },
+    "la-liga-09-10-coleccion-completa": { 
+        maxNum: 780,
+		extra: [
+			...Array.from({ length: 36 }, (_, i) => `mi-${i + 1}`)
+		]
+    },
+    "la-liga-10-11-coleccion-completa": { 
+        maxNum: 693
     }
 };
 
