@@ -525,5 +525,18 @@
     "language": "Español",
     "folder": "big-brain-academy-wii",
     "category": "video-games"
+  },
+  {
+    "id": "crash-bandicoot-n-sane-trilogy-switch",
+    "name": "Crash Bandicoot N. Sane Trilogy",
+    "franchise": "Crash Bandicoot",
+	"Platform" : "Nintendo Switch",
+    "brand": "Activision",
+    "purchasePrice": "26,99€",
+    "condition": "used",
+    "barcode": "5030917236761",
+    "language": "Español",
+    "folder": "crash-bandicoot-n-sane-trilogy-switch",
+    "category": "video-games"
   }
 ]
