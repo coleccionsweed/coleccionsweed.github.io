@@ -107,6 +107,12 @@ const albumConfigs = {
     },
     "harry-potter-y-el-misterio-del-principe-coleccion-completa": { 
         maxNum: 360
+    },
+    "harry-potter-y-la-orden-del-fenix-coleccion-completa": { 
+        maxNum: 276,
+		extra: [
+			...Array.from({ length: 12 }, (_, i) => `s${i + 1}`)
+		]
     }
 };
 

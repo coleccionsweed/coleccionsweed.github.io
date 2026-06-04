@@ -178,5 +178,19 @@
     "folder": "harry-potter-y-el-misterio-del-principe-coleccion-completa",
     "category": "card-collection",
 	"notes" : "La colección está compuesta por 360 cromos."
+  },
+  {
+    "id": "harry-potter-y-la-orden-del-fenix-coleccion-completa",
+    "name": "Harry Potter y la orden del fénix - Colección completa",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "34,62€",
+	"year": "2007",
+    "condition": "new",
+    "barcode": "8018190030204",
+    "language": "Español",
+    "folder": "harry-potter-y-la-orden-del-fenix-coleccion-completa",
+    "category": "card-collection",
+	"notes" : "La colección está compuesta por 288 cromos."
   }
 ]
