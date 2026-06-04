@@ -123,6 +123,13 @@ const albumConfigs = {
 		extra: [
 			...Array.from({ length: 12 }, (_, i) => `h${i + 1}`)
 		]
+    },
+    "harry-potter-y-la-camara-secreta-coleccion-completa": { 
+        maxNum: 240,
+		"a", "b", "c", "d", "e", "f",
+		extra: [
+			...Array.from({ length: 54 }, (_, i) => `h${i + 1}`)
+		]
     }
 };
 

@@ -220,5 +220,18 @@
     "folder": "harry-potter-y-el-prisionero-de-azkaban-coleccion-completa",
     "category": "card-collection",
 	"notes" : "La colección está compuesta por 252 cromos."
+  },
+  {
+    "id": "harry-potter-y-la-camara-secreta-coleccion-completa",
+    "name": "Harry Potter y la cámara secreta - Colección completa",
+    "franchise": "Harry Potter",
+    "brand": "Panini",
+    "purchasePrice": "34,62€",
+	"year": "2002",
+    "condition": "new",
+    "language": "Español",
+    "folder": "harry-potter-y-la-camara-secreta-coleccion-completa",
+    "category": "card-collection",
+	"notes" : "La colección está compuesta por 300 cromos."
   }
 ]
