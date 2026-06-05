@@ -776,5 +776,70 @@
     "language": "Español",
     "folder": "el-misterioso-viaje-de-layton-switch",
     "category": "video-games"
+  },
+  {
+    "id": "piratas-del-caribe-el-cofre-del-hombre-muerto-gba",
+    "name": "Piratas del Caribe: El cofre del hombre muerto",
+    "franchise": "Piratas del Caribe",
+	"Platform" : "Game Boy Advance",
+    "brand": "Buena Vista Games",
+    "purchasePrice": "0,00€",
+	"year": "2006",
+    "condition": "used",
+    "language": "Español",
+    "folder": "piratas-del-caribe-el-cofre-del-hombre-muerto-gba",
+    "category": "video-games"
+  },
+  {
+    "id": "el-senior-de-los-anillos-la-tercera-edad-gba",
+    "name": "El Señor de los Anillos: La Tercera Edad",
+    "franchise": "El Señor de los Anillos",
+	"Platform" : "Game Boy Advance",
+    "brand": "EA Games",
+    "purchasePrice": "0,00€",
+	"year": "2004",
+    "condition": "used",
+    "language": "Español",
+    "folder": "el-senior-de-los-anillos-la-tercera-edad-gba",
+    "category": "video-games"
+  },
+  {
+    "id": "top-spin-2-gba",
+    "name": "Top Spin 2",
+    "franchise": "Top Spin",
+	"Platform" : "Game Boy Advance",
+    "brand": "2K Sports",
+    "purchasePrice": "0,00€",
+	"year": "2006",
+    "condition": "used",
+    "language": "Español",
+    "folder": "top-spin-2-gba",
+    "category": "video-games"
+  },
+  {
+    "id": "mission-impossible-operation-surma-gba",
+    "name": "Mission: Impossible",
+    "franchise": "Top Spin",
+	"Platform" : "Game Boy Advance",
+    "brand": "Atari",
+    "purchasePrice": "0,00€",
+	"year": "2003",
+    "condition": "used",
+    "language": "Español",
+    "folder": "mission-impossible-operation-surma-gba",
+    "category": "video-games"
+  },
+  {
+    "id": "pokemon-rojo-gb",
+    "name": "Pokémon Rojo",
+    "franchise": "Pokémon",
+	"Platform" : "Game Boy",
+    "brand": "Nintendo",
+    "purchasePrice": "0,00€",
+	"year": "1996",
+    "condition": "used",
+    "language": "Español",
+    "folder": "pokemon-rojo-gb",
+    "category": "video-games"
   }
 ]
