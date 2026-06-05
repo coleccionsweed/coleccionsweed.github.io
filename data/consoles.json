@@ -37,5 +37,53 @@
     "language": "Español",
     "folder": "oculus-quest-2",
     "category": "consoles"
+  },
+  {
+    "id": "ds-lite",
+    "name": "Nintendo DS Lite",
+    "franchise": "Nintendo",
+    "brand": "Nintendo",
+    "purchasePrice": "0,00€",
+	"year": "2006",
+    "condition": "used",
+    "language": "Español",
+    "folder": "ds-lite",
+    "category": "consoles"
+  },
+  {
+    "id": "game-boy-advance",
+    "name": "Nintendo Game Boy Advance",
+    "franchise": "Nintendo",
+    "brand": "Nintendo",
+    "purchasePrice": "0,00€",
+	"year": "2001",
+    "condition": "used",
+    "language": "Español",
+    "folder": "game-boy-advance",
+    "category": "consoles"
+  },
+  {
+    "id": "game-boy-pocket",
+    "name": "Nintendo Game Boy Advance",
+    "franchise": "Nintendo",
+    "brand": "Nintendo",
+    "purchasePrice": "0,00€",
+	"year": "1996",
+    "condition": "used",
+    "language": "Español",
+    "folder": "game-boy-pocket",
+    "category": "consoles"
+  },
+  {
+    "id": "psp",
+    "name": "PSP",
+    "franchise": "PlayStation",
+    "brand": "Sony",
+    "purchasePrice": "0,00€",
+	"year": "2005",
+    "condition": "used",
+    "language": "Español",
+    "folder": "psp",
+    "category": "consoles"
   }
 ]
