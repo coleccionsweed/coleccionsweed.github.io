@@ -138,5 +138,44 @@
 	"language" : "Español",
     "folder": "top-trumps-prisionero-azkaban-caliz-fuego",
     "category": "board-games"
+  },
+  {
+    "id": "harry-potter-halloween-chapter-game",
+    "name": "Harry Potter - Halloween - Chapter Game",
+    "franchise": "Harry Potter",
+    "brand": "Mattel",
+    "purchasePrice": "19,00€",
+	"year": "2001",
+    "condition": "used",
+	"language" : "Italiano",
+    "folder": "harry-potter-halloween-chapter-game",
+    "category": "board-games",
+	"notes": "Falta la carta 3 del Troll y el dado"
+  },
+  {
+    "id": "harry-potter-quidditch-chapter-game",
+    "name": "Harry Potter - Quidditch - Chapter Game",
+    "franchise": "Harry Potter",
+    "brand": "Mattel",
+    "purchasePrice": "19,00€",
+	"year": "2001",
+    "condition": "used",
+	"language" : "Italiano",
+    "folder": "harry-potter-quidditch-chapter-game",
+    "category": "board-games",
+	"notes": "Falta la bludger."
+  },
+  {
+    "id": "harry-potter-halloween-chapter-game-sellado",
+    "name": "Harry Potter - Halloween - Chapter Game (Sellado)",
+    "franchise": "Harry Potter",
+    "brand": "Mattel",
+    "purchasePrice": "46,45€",
+	"year": "2001",
+    "condition": "new",
+	"language" : "Español",
+    "folder": "harry-potter-halloween-chapter-game-sellado",
+    "category": "board-games",
+	"notes": "Falta la carta 3 del Troll y el dado"
   }
 ]
