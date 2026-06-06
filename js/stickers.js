@@ -242,6 +242,18 @@ const albumConfigs = {
     },
     "la-liga-16-17-coleccion-completa": { 
         maxNum: 759
+    },
+    "la-liga-17-18-coleccion-completa": { 
+        maxNum: 769,
+		extra: [
+			...Array.from({ length: 42 }, (_, i) => `t${i + 1}`)
+		]
+    },
+    "la-liga-18-19-coleccion-completa": { 
+        maxNum: 856,
+		extra: [
+			...Array.from({ length: 42 }, (_, i) => `m${i + 1}`)
+		]
     }
 };
 
