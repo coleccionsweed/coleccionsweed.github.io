@@ -522,5 +522,18 @@
     "folder": "la-liga-12-13-coleccion-completa",
     "category": "card-collection",
 	"notes" : "Compartida. La colección está compuesta por 620 cromos."
+  },
+  {
+    "id": "la-liga-13-14-coleccion-completa",
+    "name": "La Liga 13-14",
+    "franchise": "La Liga",
+    "brand": "Panini",
+    "purchasePrice": "69,24€",
+	"year": "2013",
+    "condition": "new",
+    "language": "Español",
+    "folder": "la-liga-13-14-coleccion-completa",
+    "category": "card-collection",
+	"notes" : "Compartida. La colección está compuesta por 701 cromos."
   }
 ]
