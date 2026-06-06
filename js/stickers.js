@@ -254,6 +254,16 @@ const albumConfigs = {
 		extra: [
 			...Array.from({ length: 42 }, (_, i) => `m${i + 1}`)
 		]
+    },
+    "la-liga-19-20-coleccion-completa": { 
+        maxNum: 750,
+		extra: [
+			...Array.from({ length: 20 }, (_, i) => `b${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `e${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `i${i + 1}`),
+			...Array.from({ length: 20 }, (_, i) => `q${i + 1}`),
+			...Array.from({ length: 42 }, (_, i) => `t${i + 1}`)
+		]
     }
 };
 
