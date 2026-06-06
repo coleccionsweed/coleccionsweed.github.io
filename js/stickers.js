@@ -230,6 +230,12 @@ const albumConfigs = {
 		extra: [
 			...Array.from({ length: 42 }, (_, i) => `${i + 1}tr`)
 		]
+    },
+    "la-liga-14-15-coleccion-completa": { 
+        maxNum: 702,
+		extra: [
+			...Array.from({ length: 42 }, (_, i) => `tr${i + 1}`)
+		]
     }
 };
 
