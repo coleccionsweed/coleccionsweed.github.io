@@ -215,6 +215,15 @@ const albumConfigs = {
     },
     "la-liga-10-11-coleccion-completa": { 
         maxNum: 693
+    },
+    "la-liga-11-12-coleccion-completa": { 
+        maxNum: 691
+    },
+    "la-liga-12-13-coleccion-completa": { 
+        maxNum: 709,
+		extra: [
+			...Array.from({ length: 45 }, (_, i) => `${i + 1}tr`)
+		]
     }
 };
 
