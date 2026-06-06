@@ -678,5 +678,18 @@
     "folder": "la-liga-24-25-coleccion-completa",
     "category": "card-collection",
 	"notes" : "Compartida. La colección está compuesta por 752 cromos."
+  },
+  {
+    "id": "la-liga-25-26-coleccion-completa",
+    "name": "La Liga 25-26",
+    "franchise": "La Liga",
+    "brand": "Panini",
+    "purchasePrice": "50,00€",
+	"year": "2025",
+    "condition": "new",
+    "language": "Español",
+    "folder": "la-liga-25-26-coleccion-completa",
+    "category": "card-collection",
+	"notes" : "Compartida. La colección está compuesta por 780 cromos."
   }
 ]
