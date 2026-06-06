@@ -1342,8 +1342,8 @@
     "category": "card-packs"
   },
   {
-    "id": "one-piece-sticker-pack",
-    "name": "One Piece",
+    "id": "one-piece-el-nuevo-mundo-sticker-pack",
+    "name": "One Piece - El nuevo mundo",
     "franchise": "One Piece",
     "brand": "Panini",
     "purchasePrice": "1,00€",
@@ -1351,7 +1351,7 @@
     "condition": "new",
     "barcode": "8018190036381",
     "language": "Español",
-    "folder": "one-piece-sticker-pack",
+    "folder": "one-piece-el-nuevo-mundo-sticker-pack",
     "category": "card-packs"
   },
   {
