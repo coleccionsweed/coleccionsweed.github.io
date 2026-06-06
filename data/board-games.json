@@ -176,7 +176,19 @@
 	"barcode" : "074299429651",
 	"language" : "Español",
     "folder": "harry-potter-halloween-chapter-game-sellado",
-    "category": "board-games",
-	"notes": "Falta la carta 3 del Troll y el dado"
+    "category": "board-games"
+  },
+  {
+    "id": "party-co-original",
+    "name": "Party & Co - Original",
+    "franchise": "Party & Co",
+    "brand": "Diset",
+    "purchasePrice": "29,95€",
+	"year": "2020",
+    "condition": "new",
+	"barcode" : "8410446102015",
+	"language" : "Español",
+    "folder": "party-co-original",
+    "category": "board-games"
   }
 ]
