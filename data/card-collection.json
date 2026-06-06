@@ -496,5 +496,18 @@
     "folder": "la-liga-10-11-coleccion-completa",
     "category": "card-collection",
 	"notes" : "Compartida. La colección está compuesta por 571 cromos."
+  },
+  {
+    "id": "la-liga-11-12-coleccion-completa",
+    "name": "La Liga 11-12",
+    "franchise": "La Liga",
+    "brand": "Panini",
+    "purchasePrice": "69,24€",
+	"year": "2011",
+    "condition": "new",
+    "language": "Español",
+    "folder": "la-liga-11-12-coleccion-completa",
+    "category": "card-collection",
+	"notes" : "Compartida. La colección está compuesta por 577 cromos."
   }
 ]
