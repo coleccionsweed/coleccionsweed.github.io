@@ -239,6 +239,9 @@ const albumConfigs = {
     },
     "la-liga-15-16-coleccion-completa": { 
         maxNum: 732
+    },
+    "la-liga-16-17-coleccion-completa": { 
+        maxNum: 759
     }
 };
 

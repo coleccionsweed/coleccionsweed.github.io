@@ -561,5 +561,18 @@
     "folder": "la-liga-15-16-coleccion-completa",
     "category": "card-collection",
 	"notes" : "Compartida. La colección está compuesta por 583 cromos."
+  },
+  {
+    "id": "la-liga-16-17-coleccion-completa",
+    "name": "La Liga 16-17",
+    "franchise": "La Liga",
+    "brand": "Panini",
+    "purchasePrice": "69,24€",
+	"year": "2016",
+    "condition": "new",
+    "language": "Español",
+    "folder": "la-liga-16-17-coleccion-completa",
+    "category": "card-collection",
+	"notes" : "Compartida. La colección está compuesta por 558 cromos."
   }
 ]
