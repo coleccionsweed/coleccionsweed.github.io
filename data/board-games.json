@@ -190,5 +190,111 @@
 	"language" : "Español",
     "folder": "party-co-original",
     "category": "board-games"
+  },
+  {
+    "id": "harry-potter-playing-cards",
+    "name": "Harry Potter - Playing cards",
+    "franchise": "Harry Potter",
+    "brand": "Theory 11",
+    "purchasePrice": "0,00€",
+	"year": "2021",
+    "condition": "used",
+	"language" : "Inglés",
+    "folder": "harry-potter-playing-cards",
+    "category": "board-games"
+  },
+  {
+    "id": "o-mai-god",
+    "name": "O Mai God",
+    "brand": "ATM Gaming",
+    "purchasePrice": "30,00€",
+	"year": "2020",
+    "condition": "used",
+	"barcode" : "3770011991075",
+	"language" : "Español",
+    "folder": "o-mai-god",
+    "category": "board-games"
+  },
+  {
+    "id": "hive-pocket",
+    "name": "Hive pocket",
+    "brand": "Gen42 Games",
+    "purchasePrice": "22,50€",
+	"year": "2010",
+    "condition": "used",
+	"language" : "Español",
+    "folder": "hive-pocket",
+    "category": "board-games"
+  },
+  {
+    "id": "smart-10-viajes",
+    "name": "Smart 10 - Viajes",
+    "brand": "SD Games",
+    "purchasePrice": "13,95€",
+	"year": "2023",
+    "condition": "used",
+	"language" : "Español",
+    "folder": "smart-10-viajes",
+    "category": "board-games"
+  },
+  {
+    "id": "smart-10-paquete-de-ampliacion",
+    "name": "Smart 10 - Paquete de ampliación",
+    "brand": "SD Games",
+    "purchasePrice": "17,95€",
+	"year": "2023",
+    "condition": "used",
+	"language" : "Español",
+    "folder": "smart-10-paquete-de-ampliacion",
+    "category": "board-games"
+  },
+  {
+    "id": "coatl",
+    "name": "Coatl",
+    "brand": "Synapses Games",
+    "purchasePrice": "20,59€",
+	"year": "2020",
+    "condition": "used",
+	"barcode" : "8435407631878",
+	"language" : "Español",
+    "folder": "coatl",
+    "category": "board-games"
+  },
+  {
+    "id": "smart-10",
+    "name": "Smart 10",
+    "brand": "SD Games",
+    "purchasePrice": "25,00€",
+	"year": "2023",
+    "condition": "used",
+	"barcode" : "8435450249662",
+	"language" : "Español",
+    "folder": "smart-10",
+    "category": "board-games"
+  },
+  {
+    "id": "cluedo",
+    "name": "Cluedo",
+    "brand": "Hasbro",
+    "purchasePrice": "29,99€",
+	"year": "2020",
+    "condition": "used",
+	"barcode" : "5010993733170",
+	"language" : "Español",
+    "folder": "cluedo",
+    "category": "board-games"
+  },
+  {
+    "id": "vida-monstruos-sa",
+    "name": "Vida - Monstruos S.A.",
+	"franchise": "Monstruos S.A.",
+    "brand": "Hasbro",
+    "purchasePrice": "10,38€",
+	"year": "2001",
+    "condition": "used",
+	"barcode" : "5023117638671",
+	"language" : "Español",
+    "folder": "vida-monstruos-sa",
+    "category": "board-games"
   }
 ]
