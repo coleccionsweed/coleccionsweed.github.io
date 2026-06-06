@@ -626,5 +626,18 @@
     "folder": "la-liga-20-21-coleccion-completa",
     "category": "card-collection",
 	"notes" : "Compartida. La colección está compuesta por 683 cromos."
+  },
+  {
+    "id": "la-liga-21-22-coleccion-completa",
+    "name": "La Liga 21-22",
+    "franchise": "La Liga",
+    "brand": "Panini",
+    "purchasePrice": "69,24€",
+	"year": "2021",
+    "condition": "new",
+    "language": "Español",
+    "folder": "la-liga-21-22-coleccion-completa",
+    "category": "card-collection",
+	"notes" : "Compartida. La colección está compuesta por 771 cromos."
   }
 ]
