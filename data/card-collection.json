@@ -639,5 +639,18 @@
     "folder": "la-liga-21-22-coleccion-completa",
     "category": "card-collection",
 	"notes" : "Compartida. La colección está compuesta por 771 cromos."
+  },
+  {
+    "id": "la-liga-22-23-coleccion-completa",
+    "name": "La Liga 22-23",
+    "franchise": "La Liga",
+    "brand": "Panini",
+    "purchasePrice": "69,24€",
+	"year": "2022",
+    "condition": "new",
+    "language": "Español",
+    "folder": "la-liga-22-23-coleccion-completa",
+    "category": "card-collection",
+	"notes" : "Compartida. La colección está compuesta por 729 cromos. 99% de cromos escaneados."
   }
 ]
