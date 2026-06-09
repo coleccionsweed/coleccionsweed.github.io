@@ -1104,7 +1104,7 @@
     "purchasePrice": "35,44€",
 	"year": "2001",
     "condition": "used",
-	"language": "Español",
+	"language": "Inglés",
     "folder": "la-comunidad-del-anillo-burger-king",
     "category": "toys",
 	"notes": "Faltan las tarjetas."
@@ -1524,6 +1524,18 @@
     "condition": "new",
 	"language": "Inglés",
     "folder": "henry-j-waternoose-iii",
+    "category": "toys"
+  },
+  {
+    "id": "la-comunidad-del-anillo-burger-king-sellado",
+    "name": "La Comunidad del Anillo - Burger King (Sellado)",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Burger King",
+    "purchasePrice": "31,00€",
+	"year": "2001",
+    "condition": "new",
+	"language": "Inglés",
+    "folder": "la-comunidad-del-anillo-burger-king-sellado",
     "category": "toys"
   }
 ]
