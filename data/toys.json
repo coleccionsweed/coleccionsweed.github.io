@@ -1537,5 +1537,18 @@
 	"language": "Inglés",
     "folder": "la-comunidad-del-anillo-burger-king-sellado",
     "category": "toys"
+  },
+  {
+    "id": "estela-super-smash-bros.-collection",
+    "name": "Estela - Super Smash Bros. Collection",
+    "franchise": "Super Mario",
+    "brand": "Nintendo",
+    "purchasePrice": "14,99€",
+	"year": "2015",
+    "condition": "new",
+	"barcode": "045496452547",
+	"language": "Español",
+    "folder": "estela-super-smash-bros.-collection",
+    "category": "toys"
   }
 ]
