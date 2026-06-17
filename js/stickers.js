@@ -178,6 +178,9 @@ const albumConfigs = {
     "mulan-coleccion-incompleta": { 
         maxNum: 232
     },
+    "mulan-coleccion-completa": { 
+        maxNum: 232
+    },
     "harry-Potter-lego-coleccion-incompleta": { 
         maxNum: 225,
 		extra: [

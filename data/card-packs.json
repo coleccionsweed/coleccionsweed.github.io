@@ -1561,6 +1561,19 @@
     "category": "card-packs"
   },
   {
+    "id": "102-dalmatas-sticker-pack",
+    "name": "102 Dálmatas",
+    "franchise": "102 Dálmatas",
+    "brand": "Panini",
+    "purchasePrice": "4,06€",
+	"year": "2000",
+    "condition": "new",
+	"barcode": "8018190015669",
+    "language": "Francés",
+    "folder": "102-dalmatas-sticker-pack",
+    "category": "card-packs"
+  },
+  {
     "id": "pocahontas-sticker-pack",
     "name": "Pocahontas",
     "franchise": "Pocahontas",
@@ -1597,6 +1610,45 @@
 	"barcode": "8018190016451",
     "language": "Francés",
     "folder": "el-emperador-y-sus-locuras-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "monstruos-s-a-sticker-pack",
+    "name": "Monstruos S.A.",
+    "franchise": "Monstruos S.A.",
+    "brand": "Panini",
+    "purchasePrice": "2,43€",
+	"year": "2002",
+    "condition": "new",
+	"barcode": "8018190018127",
+    "language": "Francés",
+    "folder": "monstruos-s-a-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "barrio-sesamo-sticker-pack",
+    "name": "Barrio Sésamo",
+    "franchise": "Barrio Sésamo",
+    "brand": "Panini",
+    "purchasePrice": "6,50€",
+	"year": "2001",
+    "condition": "new",
+	"barcode": "8018190016819",
+    "language": "Alemán",
+    "folder": "barrio-sesamo-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "el-planeta-del-tesoro-sticker-pack",
+    "name": "El Planeta del Tesoro",
+    "franchise": "El Planeta del Tesoro",
+    "brand": "Panini",
+    "purchasePrice": "4,06€",
+	"year": "2003",
+    "condition": "new",
+	"barcode": "8018190020489",
+    "language": "Neerlandés",
+    "folder": "el-planeta-del-tesoro-sticker-pack",
     "category": "card-packs"
   }
 ]
