@@ -327,6 +327,13 @@ const albumConfigs = {
 			...Array.from({ length: 20 }, (_, i) => `q${i + 1}`),
 			...Array.from({ length: 20 }, (_, i) => `t${i + 1}`)
 		]
+    },
+    "buscando-a-nemo-completa-sin-album": { 
+        maxNum: 198,
+		extra: [
+			"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r",
+			...Array.from({ length: 10 }, (_, i) => `m${i + 1}`),
+		]
     }
 };
 
