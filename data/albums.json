@@ -133,7 +133,7 @@
 	"notes" : "Faltantes: 65, 91, 100, 105, 139, 170, 192, 205"
   },
   {
-    "id": "toy-story-5-album-vacío-4-sobres",
+    "id": "toy-story-5-album-vacio-4-sobres",
     "name": "Toy Story 5 - Álbum vacío + 4 sobres",
     "franchise": "Toy Story",
     "brand": "Disney",
@@ -142,7 +142,7 @@
     "condition": "new",
 	"barcode": "8424248927790",
 	"language" : "Español",
-    "folder": "toy-story-5-album-vacío-4-sobres",
+    "folder": "toy-story-5-album-vacio-4-sobres",
     "category": "albums"
   }
 ]
