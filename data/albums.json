@@ -131,5 +131,18 @@
     "folder": "el-retorno-del-rey-album-incompleto",
     "category": "albums",
 	"notes" : "Faltantes: 65, 91, 100, 105, 139, 170, 192, 205"
+  },
+  {
+    "id": "toy-story-5-album-vacío-4-sobres",
+    "name": "Toy Story 5 - Álbum vacío + 4 sobres",
+    "franchise": "Toy Story",
+    "brand": "Disney",
+    "purchasePrice": "4,00€",
+	"year": "2026",
+    "condition": "new",
+	"barcode": "8424248927790",
+	"language" : "Español",
+    "folder": "toy-story-5-album-vacío-4-sobres",
+    "category": "toys"
   }
 ]
