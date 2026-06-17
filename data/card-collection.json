@@ -704,5 +704,18 @@
     "folder": "la-liga-25-26-coleccion-completa",
     "category": "card-collection",
 	"notes" : "Compartida. La colección está compuesta por 780 cromos. 98% de cromos escaneados."
+  },
+  {
+    "id": "buscando-a-nemo-completa-sin-album",
+    "name": "Buscando a Nemo - Colección completa sin álbum",
+    "franchise": "Buscando a Nemo",
+    "brand": "Panini",
+    "purchasePrice": "56,82€",
+	"year": "2003",
+    "condition": "new",
+    "language": "Español",
+    "folder": "buscando-a-nemo-completa-sin-album",
+    "category": "card-collection",
+	"notes" : "La colección está compuesta por 226 cromos."
   }
 ]
