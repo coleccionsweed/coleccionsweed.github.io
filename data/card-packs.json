@@ -1650,5 +1650,31 @@
     "language": "Neerlandés",
     "folder": "el-planeta-del-tesoro-sticker-pack",
     "category": "card-packs"
+  },
+  {
+    "id": "toy-story-5-sticker-pack",
+    "name": "Toy Story 5",
+    "franchise": "Toy Story",
+    "brand": "Panini",
+    "purchasePrice": "0,00€",
+	"year": "2026",
+    "condition": "new",
+	"barcode" : "8051708035742",
+    "language": "Español",
+    "folder": "toy-story-5-sticker-pack",
+    "category": "card-packs"
+  },
+  {
+    "id": "super-mario-its-a-me-mario-sticker-pack",
+    "name": "Super Mario. It's-a me, Mario!",
+    "franchise": "Super Mario",
+    "brand": "Panini",
+    "purchasePrice": "0,00€",
+	"year": "2025",
+    "condition": "new",
+    "barcode": "8051708024784",
+    "language": "Español",
+    "folder": "super-mario-its-a-me-mario-sticker-pack",
+    "category": "card-packs"
   }
 ]
