@@ -841,5 +841,32 @@
     "language": "Español",
     "folder": "pokemon-rojo-gb",
     "category": "video-games"
+  },
+  {
+    "id": "assassins-creed-shadows-switch-2",
+    "name": "Assassin's Creed Shadows",
+    "franchise": "Assassin's Creed",
+	"Platform" : "Nintendo Switch 2",
+    "brand": "Ubisoft",
+    "purchasePrice": "35,99€",
+	"year": "2025",
+    "condition": "used",
+    "barcode": "",
+    "language": "Español",
+    "folder": "assassins-creed-shadows-switch-2",
+    "category": "video-games"
+  },
+  {
+    "id": "harry-potter-campeones-de-quidditch-deluxe-edition-switch",
+    "name": "Harry Potter: Campeones de Quidditch Deluxe Edition",
+    "franchise": "Harry Potter",
+	"Platform" : "Nintendo Switch",
+    "brand": "Warner Bros. Games",
+    "purchasePrice": "6,00€",
+    "condition": "new",
+    "barcode": "",
+    "language": "Español",
+    "folder": "harry-potter-campeones-de-quidditch-deluxe-edition-switch",
+    "category": "video-games"
   }
 ]
