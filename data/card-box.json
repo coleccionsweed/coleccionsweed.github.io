@@ -1,17 +1,5 @@
 [
   {
-    "id": "bundle-the-lord-of-the-rings-tales-of-middle-earth",
-    "name": "Bundle The Lord of the Rings - Tales of Middle-Earth",
-    "franchise": "El Señor de los Anillos",
-    "brand": "Magic",
-    "purchasePrice": "70,00€",
-    "condition": "new",
-    "barcode": "195166205175",
-    "language": "Inglés",
-    "folder": "bundle-the-lord-of-the-rings-tales-of-middle-earth",
-    "category": "card-box"
-  },
-  {
     "id": "el-retorno-del-rey-caja-de-cromos",
     "name": "El Retorno del Rey - Caja de cromos",
     "franchise": "El Señor de los Anillos",
