@@ -131,19 +131,23 @@ export async function initStatsPage() {
     });
   }
 
-  // Generar Tabla de Top Franquicias por Valor
-  const topFranchisesValue = Object.entries(franchisesValueMap).sort((a, b) => b[1] - a[1]).slice(0, 5);
-  document.getElementById('topFranchisesTable').innerHTML = renderPremiumTable(
-    ['Franquicia', 'Valor Acumulado'],
-    topFranchisesValue.map(([n, v]) => [n, v.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })])
-  );
+	// Generar Tabla de Top Franquicias por Valor
+	const topFranchisesValue = Object.entries(franchisesValueMap).sort((a, b) => b[1] - a[1]).slice(0, 5);
+	document.getElementById('topFranchisesTable').innerHTML = renderPremiumTable(
+	['Franquicia', 'Valor Acumulado'],
+	topFranchisesValue.map(([n, v]) => [n, v.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })])
+	);
 
-  // Generar Tabla de Top Franquicias por Unidades
-  const topFranchisesQty = Object.entries(franchisesQuantityMap).sort((a, b) => b[1] - a[1]).slice(0, 5);
-  document.getElementById('topFranchisesQtyTable').innerHTML = renderPremiumTable(
-    ['Franquicia', 'Total Unidades'],
-    topFranchisesQty.map(([n, q]) => [n, `${q.toLocaleString('es-ES')} uds`])
-  );
+	// Generar Tabla de Top Franquicias por Unidades
+	const topFranchisesQty = Object.entries(franchisesQuantityMap)
+	  .filter(([name]) => name !== 'Sin Franquicia')
+	  .sort((a, b) => b[1] - a[1])
+	  .slice(0, 5);
+
+	document.getElementById('topFranchisesQtyTable').innerHTML = renderPremiumTable(
+	  ['Franquicia', 'Total Unidades'],
+	  topFranchisesQty.map(([n, q]) => [n, `${q.toLocaleString('es-ES')} uds`])
+	);
 }
 
 function renderPremiumTable(headers, rows) {
