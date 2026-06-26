@@ -21,13 +21,13 @@ export async function renderAlbumFlip(containerId, item) {
     const imgFrente = paginas[p];
     const imgDorso = paginas[p + 1] || ''; 
     const hojaIndex = p / 2;
-    const zIndexInicial = totalHojas - hojaIndex;
-
-    // PRECARGA INICIAL: Dejamos visibles la portada (0) y la hoja de atrás (1) para que no haya huecos
-    const estiloInicial = hojaIndex <= 1 ? '' : 'display: none;';
+    
+    // Calculamos una separación milimétrica en el eje Z para crear el lomo 3D real
+    // Las hojas del fondo quedan ligeramente más atrás de forma nativa
+    const despZ = -hojaIndex * 0.2; 
 
     htmlHojas += `
-      <div class="album-page" style="z-index: ${zIndexInicial}; ${estiloInicial}" data-index="${hojaIndex}">
+      <div class="album-page" style="transform: translateZ(${despZ}px); --z-defecto: ${despZ}px; z-index: ${totalHojas - hojaIndex};" data-index="${hojaIndex}">
         <div class="page-front">
           <img src="${imgFrente}" loading="lazy" alt="Página ${p}">
         </div>
@@ -61,41 +61,15 @@ export async function renderAlbumFlip(containerId, item) {
 
       // === AVANZAR HOJA (Clic mitad derecha) ===
       if (xClick > mitadLibro && !hoja.classList.contains('flipped')) {
-        
-        // TRUCO DE ANTICIPACIÓN: Activamos YA la hoja subsiguiente (2 pasos más adelante)
-        // para que esté renderizada en el fondo plano ANTES de que termine el giro actual.
-        if (hojas[index + 1]) hojas[index + 1].style.display = '';
-        if (hojas[index + 2]) hojas[index + 2].style.display = '';
-
         hoja.classList.add('flipped');
-
-        setTimeout(() => {
-          hoja.style.zIndex = index + 1;
-          
-          // Limpieza selectiva: Ocultamos lo que ya quedó 2 páginas atrás para salvar la RAM
-          if (index - 2 >= 0) {
-            hojas[index - 2].style.display = 'none';
-          }
-        }, 350); 
+        // Al pasar a la izquierda, invertimos su z-index para que la siguiente quede arriba
+        hoja.style.zIndex = index + 1; 
       } 
-      
       // === RETROCEDER HOJA (Clic mitad izquierda) ===
       else if (xClick <= mitadLibro && hoja.classList.contains('flipped')) {
-        
-        // TRUCO DE ANTICIPACIÓN AL VOLVER: Activamos las hojas hacia atrás
-        if (hojas[index - 1]) hojas[index - 1].style.display = '';
-        if (hojas[index - 2]) hojas[index - 2].style.display = '';
-
         hoja.classList.remove('flipped');
-
-        setTimeout(() => {
-          hoja.style.zIndex = totalHojas - index;
-          
-          // Limpieza selectiva: Ocultamos lo que quedó muy a la derecha
-          if (hojas[index + 2]) {
-            hojas[index + 2].style.display = 'none';
-          }
-        }, 350);
+        // Al volver a la derecha, recupera su z-index de apilamiento inicial
+        hoja.style.zIndex = totalHojas - index;
       }
     });
   });

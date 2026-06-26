@@ -496,18 +496,18 @@ main {
   margin-bottom: 25px;
 }
 
-/* Contenedor central con perspectiva controlada */
+/* Perspectiva limpia ideal para hardware móvil */
 .book-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  perspective: 1800px; 
-  -webkit-perspective: 1800px;
+  perspective: 2000px; 
+  -webkit-perspective: 2000px;
   width: 100%;
   margin: 0 auto;
 }
 
-/* El Libro: Doble página fluida */
+/* El Libro */
 .book {
   position: relative;
   width: 100%; 
@@ -518,14 +518,14 @@ main {
   margin: 0 auto;
 }
 
-/* Cada Hoja: Se sitúa exactamente en la mitad derecha */
+/* Cada Hoja */
 .album-page {
   position: absolute;
   width: 50%;
   height: 100%;
   top: 0;
   right: 0; 
-  transform-origin: left center; /* El eje de giro es el lomo central */
+  transform-origin: left center;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
   transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
@@ -533,7 +533,7 @@ main {
   will-change: transform;
 }
 
-/* Estructura común estricta para ambas caras */
+/* Caras de la hoja: Forzamos el aislamiento 3D estricto de Webkit */
 .page-front, .page-back {
   position: absolute;
   width: 100%;
@@ -555,16 +555,16 @@ main {
   display: block;
 }
 
-/* Cara Frontal: Orientación natural */
+/* Cara Frontal: Adelantada 1px en su capa */
 .page-front {
-  transform: rotateY(0deg);
-  -webkit-transform: rotateY(0deg);
+  transform: rotateY(0deg) translateZ(1px);
+  -webkit-transform: rotateY(0deg) translateZ(1px);
 }
 
-/* Cara Trasera: Invertida 180 grados para que al girar se vea al derecho */
+/* Cara Trasera: Invertida y adelantada 1px hacia su propio frente */
 .page-back {
-  transform: rotateY(180deg);
-  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg) translateZ(1px);
+  -webkit-transform: rotateY(180deg) translateZ(1px);
   border-radius: 6px 0 0 6px;
 }
 
@@ -574,10 +574,10 @@ main {
   background: #1a1f2c;
 }
 
-/* Giro tridimensional completo */
+/* Cuando la hoja se voltea, combinamos el giro con su grosor de lomo variable (--z-defecto) */
 .album-page.flipped {
-  transform: rotateY(-180deg);
-  -webkit-transform: rotateY(-180deg);
+  transform: rotateY(-180deg) translateZ(var(--z-defecto));
+  -webkit-transform: rotateY(-180deg) translateZ(var(--z-defecto));
 }
 
 @media (max-width: 480px) {
