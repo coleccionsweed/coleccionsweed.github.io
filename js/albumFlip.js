@@ -6,15 +6,11 @@ export async function renderAlbumFlip(containerId, item) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
-  // Obtenemos el número total de páginas configuradas para este ID de carpeta
   const totalPaginas = albumEscaneadoConfigs[item.folder];
-
-  // Si este álbum no está configurado o tiene 0 páginas, salimos de inmediato sin pintar nada
   if (!totalPaginas || totalPaginas === 0) return;
 
-  // Generamos las rutas de las imágenes directamente usando el número conocido
   const paginas = [];
-  for (let i = 0; i <= totalPaginas; i++) {
+  for (let i = 0; i < totalPaginas; i++) {
     paginas.push(`images/${item.category}/${item.folder}/album/${i}.webp`);
   }
 
@@ -27,7 +23,7 @@ export async function renderAlbumFlip(containerId, item) {
     const hojaIndex = p / 2;
     const zIndexInicial = totalHojas - hojaIndex;
 
-    // Ahorro de GPU ante Zoom: al inicio solo se procesa la portada (hoja 0) y la hoja 1
+    // PRECARGA INICIAL: Dejamos visibles la portada (0) y la hoja de atrás (1) para que no haya huecos
     const estiloInicial = hojaIndex <= 1 ? '' : 'display: none;';
 
     htmlHojas += `
@@ -63,22 +59,42 @@ export async function renderAlbumFlip(containerId, item) {
       const xClick = e.clientX - rect.left; 
       const mitadLibro = rect.width / 2;
 
-      // AVANZAR HOJA (Clic mitad derecha)
+      // === AVANZAR HOJA (Clic mitad derecha) ===
       if (xClick > mitadLibro && !hoja.classList.contains('flipped')) {
+        
+        // TRUCO DE ANTICIPACIÓN: Activamos YA la hoja subsiguiente (2 pasos más adelante)
+        // para que esté renderizada en el fondo plano ANTES de que termine el giro actual.
         if (hojas[index + 1]) hojas[index + 1].style.display = '';
+        if (hojas[index + 2]) hojas[index + 2].style.display = '';
+
         hoja.classList.add('flipped');
+
         setTimeout(() => {
           hoja.style.zIndex = index + 1;
-          if (index - 1 >= 0) hojas[index - 1].style.display = 'none';
+          
+          // Limpieza selectiva: Ocultamos lo que ya quedó 2 páginas atrás para salvar la RAM
+          if (index - 2 >= 0) {
+            hojas[index - 2].style.display = 'none';
+          }
         }, 350); 
       } 
-      // RETROCEDER HOJA (Clic mitad izquierda)
+      
+      // === RETROCEDER HOJA (Clic mitad izquierda) ===
       else if (xClick <= mitadLibro && hoja.classList.contains('flipped')) {
+        
+        // TRUCO DE ANTICIPACIÓN AL VOLVER: Activamos las hojas hacia atrás
         if (hojas[index - 1]) hojas[index - 1].style.display = '';
+        if (hojas[index - 2]) hojas[index - 2].style.display = '';
+
         hoja.classList.remove('flipped');
+
         setTimeout(() => {
           hoja.style.zIndex = totalHojas - index;
-          if (hojas[index + 1]) hojas[index + 1].style.display = 'none';
+          
+          // Limpieza selectiva: Ocultamos lo que quedó muy a la derecha
+          if (hojas[index + 2]) {
+            hojas[index + 2].style.display = 'none';
+          }
         }, 350);
       }
     });
