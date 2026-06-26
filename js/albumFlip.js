@@ -48,7 +48,7 @@ export async function renderAlbumFlip(containerId, item) {
 
   container.innerHTML = `
     <div class="album-flip-section">
-      <h3 class="album-title-section">📖 Hojear Álbum Escaneado</h3>
+      <h3 class="album-title-section">Álbum Escaneado</h3>
       <p class="album-hint">Haz clic en las páginas para pasar la hoja</p>
       <div class="book-container">
         <div class="book" id="interactiveBook">
