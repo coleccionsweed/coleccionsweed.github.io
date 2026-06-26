@@ -83,10 +83,7 @@ export function setupFilters(items, onChange) {
           i.franchise,
           i.platform,
           i.brand,
-          i.year,
-          i.category,
-          i.language,
-          i.condition
+          i.year
         ];
 
         // Comprobamos si alguno de los campos existentes contiene el texto
