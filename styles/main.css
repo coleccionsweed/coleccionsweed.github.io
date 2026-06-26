@@ -474,81 +474,97 @@ main {
   border-radius: 10px; box-shadow: 0 0 20px rgba(255,255,255,0.1);
 }
 
-/* --- Efecto Realista de Álbum 3D (Page Flip) --- */
+/* --- Contenedor Global del Álbum Escaneado --- */
 .album-flip-section {
-  margin: 40px auto;
+  margin: 50px auto;
   text-align: center;
-  max-width: 900px;
-  padding: 0 20px;
+  max-width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 
 .album-title-section {
   color: #fff;
-  font-size: 20px;
+  font-size: 22px;
   margin-bottom: 5px;
 }
 
 .album-hint {
   color: #6b7280;
   font-size: 13px;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
 }
 
-/* Contenedor con perspectiva 3D */
+/* Base de la proporción del libro (Ancho de 1 página x Alto) */
+:root {
+  --book-w: 380px;
+  --book-h: 520px;
+}
+
+/* Contenedor centralizador que evita desbordamientos */
 .book-container {
-  perspective: 1500px;
   display: flex;
   justify-content: center;
   align-items: center;
+  perspective: 2000px; /* Mayor profundidad para mitigar parpadeos */
   padding: 20px 0;
+  width: 100%;
+  overflow: visible;
 }
 
-/* El libro ocupa la mitad del ancho extendido (visto desde el centro) */
+/* El libro centrado en su eje virtual */
 .book {
   position: relative;
-  width: 400px;
-  height: 550px;
-  transition: transform 0.5s;
-  transform-style: preserve-3d;
-  /* Desplaza el eje ligeramente a la derecha para simular el lomo abierto */
+  width: var(--book-w);
+  height: var(--book-h);
+  /* Compensa el ancho hacia la derecha para que el libro abierto quede perfectamente centrado */
   transform: translateX(25%); 
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
 }
 
-/* Cada hoja del álbum */
+/* Estructura de cada hoja */
 .album-page {
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  transform-origin: left center; /* Gira sobre el lomo izquierdo */
+  transform-origin: left center;
   transform-style: preserve-3d;
-  transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+  /* Transición fluida con aceleración por hardware */
+  transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
   cursor: pointer;
+  will-change: transform, z-index;
 }
 
-/* Caras de la hoja */
+/* Caras de la hoja: Forzamos el hardware con transformaciones independientes */
 .page-front, .page-back {
   position: absolute;
   width: 100%;
   height: 100%;
-  backface-visibility: hidden; /* Oculta la parte trasera mientras gira */
-  box-shadow: inset 3px 0 10px rgba(0,0,0,0.2), 5px 5px 15px rgba(0,0,0,0.3);
-  border-radius: 0 5px 5px 0;
-  overflow: hidden;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden; /* Soporte estricto para Safari iOS */
+  box-shadow: inset 4px 0 12px rgba(0,0,0,0.3), 5px 8px 18px rgba(0,0,0,0.4);
   background: #141822;
+  border-radius: 0 6px 6px 0;
+  overflow: hidden;
 }
 
+/* Evita que las imágenes parpadeen al redimensionar */
 .page-front img, .page-back img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: fill; /* O 'cover' según prefieras que se adapte el escaneo */
+  display: block;
 }
 
-/* La parte trasera de la hoja debe estar invertida por defecto */
+/* Dorso invertido */
 .page-back {
   transform: rotateY(180deg);
-  border-radius: 5px 0 0 5px;
+  border-radius: 6px 0 0 6px;
 }
 
 .page-empty {
@@ -557,15 +573,32 @@ main {
   background: #1a1f2c;
 }
 
-/* Clase desencadenada por JS para voltear la página */
+/* Estado volteado */
 .album-page.flipped {
   transform: rotateY(-180deg);
 }
 
-/* Responsivo para móviles */
-@media (max-width: 600px) {
-  .book {
-    width: 280px;
-    height: 390px;
+
+/* --- ADAPTACIÓN ULTRA-RESPONSIVA (MÓVILES) --- */
+@media (max-width: 900px) {
+  :root {
+    --book-w: 280px;
+    --book-h: 390px;
   }
+}
+
+@media (max-width: 650px) {
+  :root {
+    --book-w: 200px;
+    --book-h: 280px;
+  }
+}
+
+/* En pantallas muy pequeñas (móviles verticales pequeños) adaptamos el tamaño base */
+@media (max-width: 450px) {
+  :root {
+    --book-w: 150px;
+    --book-h: 215px;
+  }
+  .album-title-section { font-size: 18px; }
 }

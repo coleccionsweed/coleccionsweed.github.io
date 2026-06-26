@@ -62,23 +62,23 @@ export async function renderAlbumFlip(containerId, item) {
     </div>
   `;
 
-  // 4. Añadir lógica de interacción de volteo
+  // 4. Añadir lógica de interacción de volteo fluida
   const hojas = container.querySelectorAll('.album-page');
   hojas.forEach((hoja, index) => {
     hoja.addEventListener('click', (e) => {
-      // Si hacemos clic en la parte derecha de la hoja o está al derecho, va hacia adelante
+      
       if (!hoja.classList.contains('flipped')) {
         hoja.classList.add('flipped');
-        // Reajuste de z-index dinámico tras la animación para que no solape
+        // Reducimos el tiempo para que el z-index cambie justo en el cénit del giro (90 grados)
         setTimeout(() => {
           hoja.style.zIndex = index + 1;
-        }, 600);
+        }, 300); 
       } else {
-        // Si ya estaba volteada, vuelve atrás
         hoja.classList.remove('flipped');
         setTimeout(() => {
+          // Devuelve su jerarquía original al cerrarse
           hoja.style.zIndex = hojas.length - index + 1;
-        }, 600);
+        }, 300);
       }
     });
   });
