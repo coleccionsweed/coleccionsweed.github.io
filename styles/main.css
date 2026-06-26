@@ -496,99 +496,123 @@ main {
   margin-bottom: 25px;
 }
 
-/* Contenedor de perspectiva: Suavizado para evitar bloqueos de memoria */
+/* Contenedor plano y seguro */
 .book-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  perspective: 1500px; 
-  -webkit-perspective: 1500px;
   width: 100%;
   margin: 0 auto;
 }
 
-/* El Libro */
+/* El Libro: Mantiene la proporción de doble página perfectamente centrada */
 .book {
   position: relative;
   width: 100%; 
   max-width: 760px; 
-  aspect-ratio: 1.4 / 1; 
-  transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d;
+  aspect-ratio: 1.41 / 1; /* Proporción estándar de un álbum abierto */
   margin: 0 auto;
+  background: #141822;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  border-radius: 6px;
+  overflow: hidden;
 }
 
-/* Cada Hoja: Eliminado translateZ para liberar memoria de texturas */
+/* Cada Hoja: Ocupa la totalidad del libro (las dos páginas juntas) */
 .album-page {
-  position: absolute;
-  width: 50%;
-  height: 100%;
-  top: 0;
-  right: 0; 
-  transform-origin: left center;
-  transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d;
-  transition: transform 0.5s ease-in-out;
-  cursor: pointer;
-}
-
-/* Caras de la hoja: Forzamos la liberación de buffers ocultos */
-.page-front, .page-back {
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  box-shadow: inset 4px 0 10px rgba(0,0,0,0.2), 4px 5px 10px rgba(0,0,0,0.25);
-  background: #141822;
-  border-radius: 0 6px 6px 0;
-  overflow: hidden;
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease-in-out, visibility 0.4s;
+  pointer-events: none;
 }
 
-.page-front img, .page-back img {
+/* La hoja activa (la que se está viendo) se muestra */
+.album-page.active-page {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Contenedores de las caras izquierda y derecha */
+.page-left, .page-right {
+  width: 50%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Sombreado interno en el centro para simular el lomo del álbum */
+.page-left::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 15px;
+  height: 100%;
+  background: linear-gradient(to left, rgba(0,0,0,0.4), rgba(0,0,0,0));
+}
+
+.page-right::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15px;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0,0,0,0.4), rgba(0,0,0,0));
+}
+
+/* Ajustes limpios para las imágenes */
+.page-left img, .page-right img {
   width: 100%;
   height: 100%;
-  object-fit: fill; 
+  object-fit: fill;
   display: block;
 }
 
-/* Rotación simple sin empujes en Z */
-.page-front {
-  transform: rotateY(0deg);
-  -webkit-transform: rotateY(0deg);
-}
-
-.page-back {
-  transform: rotateY(180deg);
-  -webkit-transform: rotateY(180deg);
-  border-radius: 6px 0 0 6px;
-}
-
+/* Contenedor vacío por si el número de páginas es impar */
 .page-empty {
   width: 100%;
   height: 100%;
   background: #1a1f2c;
 }
 
-/* Estado volteado estándar */
-.album-page.flipped {
-  transform: rotateY(-180deg);
-  -webkit-transform: rotateY(-180deg);
+/* Controles de navegación manuales integrados para facilitar la lectura al hacer zoom */
+.album-nav-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 15px;
 }
 
-/* Ajustes para móviles: Evita el colapso al hacer zoom */
-@media (max-width: 768px) {
-  .book-container {
-    perspective: none; /* Desactivar profundidad 3D pura en móvil alivia la GPU */
-    -webkit-perspective: none;
-  }
-  .album-page {
-    /* En pantallas móviles se transforma en una animación plana de giro de cartas ultra fluida */
-    transform-style: flat;
-    -webkit-transform-style: flat;
-  }
+.album-btn {
+  background: #1e293b;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.album-btn:hover {
+  background: #334155;
+}
+
+.album-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
   .album-title-section { font-size: 18px; }
   .album-flip-section { padding: 0 10px; }
 }
