@@ -15,15 +15,19 @@ export async function renderAlbumFlip(containerId, item) {
   }
 
   let htmlHojas = '';
+  const totalHojas = Math.ceil(paginas.length / 2);
 
   for (let p = 0; p < paginas.length; p += 2) {
     const imgFrente = paginas[p];
     const imgDorso = paginas[p + 1] || ''; 
     const hojaIndex = p / 2;
 
-    // Pasamos el índice directamente al CSS mediante la variable --i
+    // Calculamos el orden matemático puro para CSS
+    const zNormal = totalHojas - hojaIndex;
+    const zFlipped = hojaIndex + 1;
+
     htmlHojas += `
-      <div class="album-page" style="--i: ${hojaIndex};">
+      <div class="album-page" style="--z-normal: ${zNormal}; --z-flipped: ${zFlipped};" data-index="${hojaIndex}">
         <div class="page-front">
           <img src="${imgFrente}" loading="lazy" alt="Página ${p}">
         </div>
@@ -53,11 +57,14 @@ export async function renderAlbumFlip(containerId, item) {
     hoja.addEventListener('click', (e) => {
       const rect = book.getBoundingClientRect();
       const xClick = e.clientX - rect.left; 
+      const mitadLibro = rect.width / 2;
 
-      // Clic derecha avanza, clic izquierda retrocede. Cero cálculos extra.
-      if (xClick > rect.width / 2 && !hoja.classList.contains('flipped')) {
+      // AVANZAR
+      if (xClick > mitadLibro && !hoja.classList.contains('flipped')) {
         hoja.classList.add('flipped');
-      } else if (xClick <= rect.width / 2 && hoja.classList.contains('flipped')) {
+      } 
+      // RETROCEDER
+      else if (xClick <= mitadLibro && hoja.classList.contains('flipped')) {
         hoja.classList.remove('flipped');
       }
     });

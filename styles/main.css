@@ -500,8 +500,8 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  perspective: 1800px; 
-  -webkit-perspective: 1800px;
+  perspective: 2000px; 
+  -webkit-perspective: 2000px;
   width: 100%;
   margin: 0 auto;
 }
@@ -516,9 +516,7 @@ main {
   margin: 0 auto;
 }
 
-/* CADA HOJA: Fíjate en el translateZ. 
-   Multiplica -0.6 píxeles por su número de hoja (--i). 
-   La hoja 0 está en 0px. La hoja 1 está en -0.6px (detrás). La hoja 2 en -1.2px. */
+/* LA MAGIA OCURRE AQUÍ */
 .album-page {
   position: absolute;
   width: 50%;
@@ -528,23 +526,18 @@ main {
   transform-origin: left center;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  
+  /* Cargamos la capa normal por defecto */
+  z-index: var(--z-normal);
+  
+  /* El transform dura 0.6s. El z-index cambia en 0s pero espera 0.3s a que la hoja esté a 90 grados */
+  transition: transform 0.6s ease-in-out, z-index 0s 0.3s;
   cursor: pointer;
-  will-change: transform;
-
-  transform: rotateY(0deg) translateZ(calc(-0.6px * var(--i)));
-  -webkit-transform: rotateY(0deg) translateZ(calc(-0.6px * var(--i)));
+  
+  /* Quita el fogonazo azul molesto al tocar en pantallas de móviles táctiles */
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* AL VOLTEAR: Al rotar -180 grados, el eje Z se invierte físicamente en el espacio.
-   ¡Por tanto, una traslación negativa se convierte en positiva hacia tus ojos!
-   La hoja 1 (+0.6px) se coloca de forma natural por encima de la portada (0px). */
-.album-page.flipped {
-  transform: rotateY(-180deg) translateZ(calc(-0.6px * var(--i)));
-  -webkit-transform: rotateY(-180deg) translateZ(calc(-0.6px * var(--i)));
-}
-
-/* CARAS: Ojo, PROHIBIDO poner overflow:hidden aquí, o Safari móvil parpadeará */
 .page-front, .page-back {
   position: absolute;
   width: 100%;
@@ -553,41 +546,40 @@ main {
   left: 0;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  box-shadow: inset 4px 0 10px rgba(0,0,0,0.25), 4px 6px 12px rgba(0,0,0,0.3);
   background: #141822;
-}
-
-/* El redondeo se lo aplicamos directamente al papel (la foto) */
-.page-front img {
-  width: 100%;
-  height: 100%;
-  object-fit: fill; 
-  display: block;
   border-radius: 0 6px 6px 0;
+  overflow: hidden;
+  
+  /* Forzamos a la GPU del móvil a crear una textura fija */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
-.page-back img {
+.page-front img, .page-back img {
   width: 100%;
   height: 100%;
   object-fit: fill; 
   display: block;
-  border-radius: 6px 0 0 6px;
-}
-
-.page-front {
-  transform: rotateY(0deg);
-  -webkit-transform: rotateY(0deg);
 }
 
 .page-back {
-  transform: rotateY(180deg);
-  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg) translateZ(0);
+  -webkit-transform: rotateY(180deg) translateZ(0);
+  border-radius: 6px 0 0 6px;
 }
 
 .page-empty {
   width: 100%;
   height: 100%;
   background: #1a1f2c;
-  border-radius: 6px 0 0 6px;
+}
+
+/* Al voltear, cambiamos el z-index de destino. CSS usará el temporizador de arriba para aplicarlo */
+.album-page.flipped {
+  transform: rotateY(-180deg);
+  -webkit-transform: rotateY(-180deg);
+  z-index: var(--z-flipped);
 }
 
 @media (max-width: 480px) {
