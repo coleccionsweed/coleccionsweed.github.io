@@ -496,120 +496,88 @@ main {
   margin-bottom: 25px;
 }
 
-/* Contenedor plano y seguro */
+/* Contenedor central con perspectiva controlada */
 .book-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  perspective: 1800px; 
+  -webkit-perspective: 1800px;
   width: 100%;
   margin: 0 auto;
 }
 
-/* El Libro: Mantiene la proporción de doble página perfectamente centrada */
+/* El Libro: Doble página fluida */
 .book {
   position: relative;
   width: 100%; 
   max-width: 760px; 
-  aspect-ratio: 1.41 / 1; /* Proporción estándar de un álbum abierto */
+  aspect-ratio: 1.41 / 1; 
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   margin: 0 auto;
-  background: #141822;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-  border-radius: 6px;
-  overflow: hidden;
 }
 
-/* Cada Hoja: Ocupa la totalidad del libro (las dos páginas juntas) */
+/* Cada Hoja: Se sitúa exactamente en la mitad derecha */
 .album-page {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  display: flex;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.4s ease-in-out, visibility 0.4s;
-  pointer-events: none;
-}
-
-/* La hoja activa (la que se está viendo) se muestra */
-.album-page.active-page {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
-/* Contenedores de las caras izquierda y derecha */
-.page-left, .page-right {
   width: 50%;
   height: 100%;
-  position: relative;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
-/* Sombreado interno en el centro para simular el lomo del álbum */
-.page-left::after {
-  content: '';
-  position: absolute;
   top: 0;
-  right: 0;
-  width: 15px;
-  height: 100%;
-  background: linear-gradient(to left, rgba(0,0,0,0.4), rgba(0,0,0,0));
+  right: 0; 
+  transform-origin: left center; /* El eje de giro es el lomo central */
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  cursor: pointer;
+  will-change: transform;
 }
 
-.page-right::after {
-  content: '';
+/* Estructura común estricta para ambas caras */
+.page-front, .page-back {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 15px;
-  height: 100%;
-  background: linear-gradient(to right, rgba(0,0,0,0.4), rgba(0,0,0,0));
-}
-
-/* Ajustes limpios para las imágenes */
-.page-left img, .page-right img {
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-shadow: inset 4px 0 10px rgba(0,0,0,0.25), 4px 6px 12px rgba(0,0,0,0.3);
+  background: #141822;
+  border-radius: 0 6px 6px 0;
+  overflow: hidden;
+}
+
+.page-front img, .page-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill; 
   display: block;
 }
 
-/* Contenedor vacío por si el número de páginas es impar */
+/* Cara Frontal: Orientación natural */
+.page-front {
+  transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
+}
+
+/* Cara Trasera: Invertida 180 grados para que al girar se vea al derecho */
+.page-back {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  border-radius: 6px 0 0 6px;
+}
+
 .page-empty {
   width: 100%;
   height: 100%;
   background: #1a1f2c;
 }
 
-/* Controles de navegación manuales integrados para facilitar la lectura al hacer zoom */
-.album-nav-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 15px;
-}
-
-.album-btn {
-  background: #1e293b;
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.1);
-  padding: 8px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background 0.2s;
-}
-
-.album-btn:hover {
-  background: #334155;
-}
-
-.album-btn:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
+/* Giro tridimensional completo */
+.album-page.flipped {
+  transform: rotateY(-180deg);
+  -webkit-transform: rotateY(-180deg);
 }
 
 @media (max-width: 480px) {

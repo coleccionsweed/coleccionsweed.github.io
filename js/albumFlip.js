@@ -26,114 +26,76 @@ export async function renderAlbumFlip(containerId, item) {
   if (paginas.length === 0) return;
 
   let htmlHojas = '';
-  let indiceHoja = 0;
+  const totalHojas = Math.ceil(paginas.length / 2);
 
-  // Página 0 es la Portada: Se muestra a la derecha, la izquierda se queda vacía
-  htmlHojas += `
-    <div class="album-page active-page" data-page="${indiceHoja}">
-      <div class="page-left"><div class="page-empty"></div></div>
-      <div class="page-right">
-        <img src="${paginas[0]}" loading="lazy" alt="Portada">
-      </div>
-    </div>
-  `;
-  indiceHoja++;
+  for (let p = 0; p < paginas.length; p += 2) {
+    const imgFrente = paginas[p];
+    const imgDorso = paginas[p + 1] || ''; 
+    const hojaIndex = p / 2;
+    const zIndexInicial = totalHojas - hojaIndex;
 
-  // Páginas interiores intermedias (Agrupadas de dos en dos de forma natural)
-  for (let p = 1; p < paginas.length; p += 2) {
-    const imgIzquierda = paginas[p];
-    const imgDerecha = paginas[p + 1] || ''; // Por si el número total es impar
+    // Aislamiento dinámico: al inicio solo se pinta la portada y la primera hoja para liberar ram
+    const estiloInicial = hojaIndex <= 1 ? '' : 'display: none;';
 
     htmlHojas += `
-      <div class="album-page" data-page="${indiceHoja}">
-        <div class="page-left">
-          <img src="${imgIzquierda}" loading="lazy" alt="Página ${p}">
+      <div class="album-page" style="z-index: ${zIndexInicial}; ${estiloInicial}" data-index="${hojaIndex}">
+        <div class="page-front">
+          <img src="${imgFrente}" loading="lazy" alt="Página ${p}">
         </div>
-        <div class="page-right">
-          ${imgDerecha ? `<img src="${imgDerecha}" loading="lazy" alt="Página ${p + 1}">` : '<div class="page-empty"></div>'}
+        <div class="page-back">
+          ${imgDorso ? `<img src="${imgDorso}" loading="lazy" alt="Página ${p + 1}">` : '<div class="page-empty"></div>'}
         </div>
       </div>
     `;
-    indiceHoja++;
   }
 
-  // Estructura final con botones de apoyo (muy cómodos si el usuario hace Zoom en el móvil)
   container.innerHTML = `
     <div class="album-flip-section">
       <h3 class="album-title-section">Álbum Escaneado</h3>
-      <p class="album-hint">Toca el álbum o usa los botones para pasar las páginas</p>
-      
+      <p class="album-hint">Toca el lado derecho para avanzar o el izquierdo para retroceder</p>
       <div class="book-container">
         <div class="book" id="interactiveBook">
           ${htmlHojas}
         </div>
       </div>
-
-      <div class="album-nav-buttons">
-        <button class="album-btn" id="albumPrevBtn" disabled>◀ Anterior</button>
-        <button class="album-btn" id="albumNextBtn">Siguiente ▶</button>
-      </div>
     </div>
   `;
 
-  // Lógica interactiva de cambio de página bidimensional fluida
+  const book = document.getElementById('interactiveBook');
   const hojas = container.querySelectorAll('.album-page');
-  const totalHojas = hojas.length;
-  let paginaActual = 0;
 
-  const prevBtn = document.getElementById('albumPrevBtn');
-  const nextBtn = document.getElementById('albumNextBtn');
-  const bookElement = document.getElementById('interactiveBook');
+  hojas.forEach((hoja, index) => {
+    hoja.addEventListener('click', (e) => {
+      const rect = book.getBoundingClientRect();
+      const xClick = e.clientX - rect.left; // Lugar del clic relativo al libro
+      const mitadLibro = rect.width / 2;
 
-  function actualizarVisibilidad() {
-    hojas.forEach((hoja, idx) => {
-      if (idx === paginaActual) {
-        hoja.classList.add('active-page');
-      } else {
-        hoja.classList.remove('active-page');
+      // AVANZAR HOJA (Clic en la mitad derecha y la hoja no está volteada)
+      if (xClick > mitadLibro && !hoja.classList.contains('flipped')) {
+        // Activamos la visibilidad de la siguiente hoja en cola antes de iniciar la animación
+        if (hojas[index + 1]) hojas[index + 1].style.display = '';
+
+        hoja.classList.add('flipped');
+
+        setTimeout(() => {
+          hoja.style.zIndex = index + 1;
+          // Ocultamos las hojas de atrás que ya no se ven para liberar memoria gráfica
+          if (index - 1 >= 0) hojas[index - 1].style.display = 'none';
+        }, 350); // Sincronizado en el cénit del giro vertical (90 grados)
+      } 
+      // RETROCEDER HOJA (Clic en la mitad izquierda y la hoja ya fue volteada)
+      else if (xClick <= mitadLibro && hoja.classList.contains('flipped')) {
+        // Activamos la hoja previa antes de que regrese
+        if (hojas[index - 1]) hojas[index - 1].style.display = '';
+
+        hoja.classList.remove('flipped');
+
+        setTimeout(() => {
+          hoja.style.zIndex = totalHojas - index;
+          // Ocultamos las hojas de la derecha que quedaron ocultas
+          if (hojas[index + 1]) hojas[index + 1].style.display = 'none';
+        }, 350);
       }
     });
-
-    // Control de estado de los botones
-    prevBtn.disabled = paginaActual === 0;
-    nextBtn.disabled = paginaActual === totalHojas - 1;
-  }
-
-  function avanzarPagina() {
-    if (paginaActual < totalHojas - 1) {
-      paginaActual++;
-      actualizarVisibilidad();
-    }
-  }
-
-  function retrocederPagina() {
-    if (paginaActual > 0) {
-      paginaActual--;
-      actualizarVisibilidad();
-    }
-  }
-
-  // Evento al hacer clic directamente sobre el cuerpo del álbum
-  bookElement.addEventListener('click', (e) => {
-    const rect = bookElement.getBoundingClientRect();
-    const xClick = e.clientX - rect.left; // Posición horizontal del toque
-
-    // Si toca en la mitad derecha avanza, si toca en la izquierda retrocede
-    if (xClick > rect.width / 2) {
-      avanzarPagina();
-    } else {
-      retrocederPagina();
-    }
-  });
-
-  // Eventos de los botones inferiores
-  prevBtn.addEventListener('click', (e) => {
-    e.stopPropagation(); // Evita el conflicto con el clic del libro
-    retrocederPagina();
-  });
-
-  nextBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    avanzarPagina();
   });
 }
