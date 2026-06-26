@@ -86,6 +86,10 @@ export function setupFilters(items, onChange) {
       result.sort((a, b) => parsePrice(a.purchasePrice) - parsePrice(b.purchasePrice));
     } else if (order === 'price-desc') {
       result.sort((a, b) => parsePrice(b.purchasePrice) - parsePrice(a.purchasePrice));
+    } else if (order === 'year-asc') {
+      result.sort((a, b) => parseInt(a.year || 0, 10) - parseInt(b.year || 0, 10));
+    } else if (order === 'year-desc') {
+      result.sort((a, b) => parseInt(b.year || 0, 10) - parseInt(a.year || 0, 10));
     } else {
       // Por defecto (cuando está vacío "Ordenar por..." o se selecciona "name-asc") ordena de la A a la Z
       result.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
