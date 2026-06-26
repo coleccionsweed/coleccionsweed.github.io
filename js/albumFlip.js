@@ -1,29 +1,22 @@
-// js/albumFlip.js
-
-function comprobarSiExisteImagen(src) {
-  return new Promise((resolve) => {
-    const img = new Image();
-    img.onload = () => resolve(true);  
-    img.onerror = () => resolve(false); 
-    img.src = src;
-  });
-}
+const albumEscaneadoConfigs = {
+  "la-liga-04-05-coleccion-incompleta": 53
+};
 
 export async function renderAlbumFlip(containerId, item) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
-  const paginas = [];
-  let i = 0;
-  while (true) {
-    const imgUrl = `images/${item.category}/${item.folder}/album/${i}.webp`;
-    const existe = await comprobarSiExisteImagen(imgUrl);
-    if (!existe) break;
-    paginas.push(imgUrl);
-    i++;
-  }
+  // Obtenemos el número total de páginas configuradas para este ID de carpeta
+  const totalPaginas = albumEscaneadoConfigs[item.folder];
 
-  if (paginas.length === 0) return;
+  // Si este álbum no está configurado o tiene 0 páginas, salimos de inmediato sin pintar nada
+  if (!totalPaginas || totalPaginas === 0) return;
+
+  // Generamos las rutas de las imágenes directamente usando el número conocido
+  const paginas = [];
+  for (let i = 0; i <= totalPaginas; i++) {
+    paginas.push(`images/${item.category}/${item.folder}/album/${i}.webp`);
+  }
 
   let htmlHojas = '';
   const totalHojas = Math.ceil(paginas.length / 2);
@@ -34,7 +27,7 @@ export async function renderAlbumFlip(containerId, item) {
     const hojaIndex = p / 2;
     const zIndexInicial = totalHojas - hojaIndex;
 
-    // Aislamiento dinámico: al inicio solo se pinta la portada y la primera hoja para liberar ram
+    // Ahorro de GPU ante Zoom: al inicio solo se procesa la portada (hoja 0) y la hoja 1
     const estiloInicial = hojaIndex <= 1 ? '' : 'display: none;';
 
     htmlHojas += `
@@ -67,32 +60,24 @@ export async function renderAlbumFlip(containerId, item) {
   hojas.forEach((hoja, index) => {
     hoja.addEventListener('click', (e) => {
       const rect = book.getBoundingClientRect();
-      const xClick = e.clientX - rect.left; // Lugar del clic relativo al libro
+      const xClick = e.clientX - rect.left; 
       const mitadLibro = rect.width / 2;
 
-      // AVANZAR HOJA (Clic en la mitad derecha y la hoja no está volteada)
+      // AVANZAR HOJA (Clic mitad derecha)
       if (xClick > mitadLibro && !hoja.classList.contains('flipped')) {
-        // Activamos la visibilidad de la siguiente hoja en cola antes de iniciar la animación
         if (hojas[index + 1]) hojas[index + 1].style.display = '';
-
         hoja.classList.add('flipped');
-
         setTimeout(() => {
           hoja.style.zIndex = index + 1;
-          // Ocultamos las hojas de atrás que ya no se ven para liberar memoria gráfica
           if (index - 1 >= 0) hojas[index - 1].style.display = 'none';
-        }, 350); // Sincronizado en el cénit del giro vertical (90 grados)
+        }, 350); 
       } 
-      // RETROCEDER HOJA (Clic en la mitad izquierda y la hoja ya fue volteada)
+      // RETROCEDER HOJA (Clic mitad izquierda)
       else if (xClick <= mitadLibro && hoja.classList.contains('flipped')) {
-        // Activamos la hoja previa antes de que regrese
         if (hojas[index - 1]) hojas[index - 1].style.display = '';
-
         hoja.classList.remove('flipped');
-
         setTimeout(() => {
           hoja.style.zIndex = totalHojas - index;
-          // Ocultamos las hojas de la derecha que quedaron ocultas
           if (hojas[index + 1]) hojas[index + 1].style.display = 'none';
         }, 350);
       }
