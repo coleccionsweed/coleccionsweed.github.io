@@ -62,20 +62,33 @@ export async function renderAlbumFlip(containerId, item) {
 
   const hojas = container.querySelectorAll('.album-page');
   hojas.forEach((hoja, index) => {
+    const front = hoja.querySelector('.page-front');
+    const back = hoja.querySelector('.page-back');
+
     hoja.addEventListener('click', () => {
       if (!hoja.classList.contains('flipped')) {
         hoja.classList.add('flipped');
-        // Al girar a la izquierda, reducimos su z-index para que la siguiente hoja quede encima
+        
+        // Anti-pestañeo móvil: A mitad del giro ocultamos la parte delantera y mostramos la trasera
         setTimeout(() => {
+          if (front) front.style.visibility = 'hidden';
+          if (back) back.style.visibility = 'visible';
           hoja.style.zIndex = index + 1;
-        }, 250); 
+        }, 300); // 300ms es la mitad exacta de la transición de 0.6s
+        
       } else {
         hoja.classList.remove('flipped');
-        // Al regresar a la derecha, reestablecemos su z-index original elevado
+        
+        // Anti-pestañeo móvil al volver atrás
         setTimeout(() => {
+          if (front) front.style.visibility = 'visible';
+          if (back) back.style.visibility = 'hidden';
           hoja.style.zIndex = hojas.length - index;
-        }, 250);
+        }, 300);
       }
     });
+    
+    // Configuración inicial de visibilidad para que no colisionen al cargar el álbum
+    if (back) back.style.visibility = 'hidden';
   });
 }
