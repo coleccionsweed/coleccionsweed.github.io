@@ -496,7 +496,7 @@ main {
   margin-bottom: 25px;
 }
 
-/* Perspectiva limpia ideal para hardware móvil */
+/* Perspectiva estable para móviles */
 .book-container {
   display: flex;
   justify-content: center;
@@ -518,7 +518,7 @@ main {
   margin: 0 auto;
 }
 
-/* Cada Hoja */
+/* Cada Hoja: Mantiene una transición limpia sin cortes */
 .album-page {
   position: absolute;
   width: 50%;
@@ -530,10 +530,9 @@ main {
   -webkit-transform-style: preserve-3d;
   transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
   cursor: pointer;
-  will-change: transform;
 }
 
-/* Caras de la hoja: Forzamos el aislamiento 3D estricto de Webkit */
+/* Ambas caras: Aisladas de manera estricta en la GPU */
 .page-front, .page-back {
   position: absolute;
   width: 100%;
@@ -555,13 +554,13 @@ main {
   display: block;
 }
 
-/* Cara Frontal: Adelantada 1px en su capa */
+/* Cara Frontal: Desfasada un milímetro adelante */
 .page-front {
   transform: rotateY(0deg) translateZ(1px);
   -webkit-transform: rotateY(0deg) translateZ(1px);
 }
 
-/* Cara Trasera: Invertida y adelantada 1px hacia su propio frente */
+/* Cara Trasera: Invertida y desfasada un milímetro adelante respecto a sí misma */
 .page-back {
   transform: rotateY(180deg) translateZ(1px);
   -webkit-transform: rotateY(180deg) translateZ(1px);
@@ -574,10 +573,11 @@ main {
   background: #1a1f2c;
 }
 
-/* Cuando la hoja se voltea, combinamos el giro con su grosor de lomo variable (--z-defecto) */
+/* AL VOLTEAR: Giramos la hoja a -180 grados y reajustamos sutilmente su posición 3D (--z-flipped) */
+/* Esto altera el orden visual automáticamente sin romper la renderización del navegador */
 .album-page.flipped {
-  transform: rotateY(-180deg) translateZ(var(--z-defecto));
-  -webkit-transform: rotateY(-180deg) translateZ(var(--z-defecto));
+  transform: rotateY(-180deg) translateZ(var(--z-flipped)) !important;
+  -webkit-transform: rotateY(-180deg) translateZ(var(--z-flipped)) !important;
 }
 
 @media (max-width: 480px) {

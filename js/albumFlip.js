@@ -21,13 +21,13 @@ export async function renderAlbumFlip(containerId, item) {
     const imgFrente = paginas[p];
     const imgDorso = paginas[p + 1] || ''; 
     const hojaIndex = p / 2;
-    
-    // Calculamos una separación milimétrica en el eje Z para crear el lomo 3D real
-    // Las hojas del fondo quedan ligeramente más atrás de forma nativa
-    const despZ = -hojaIndex * 0.2; 
+
+    // CREAMOS EL LOMO 3D REAL: Cada hoja sucesiva se apila micro-métricamente
+    // más abajo en el eje Z para que nunca colisionen entre sí al renderizar.
+    const posicionZInicial = -hojaIndex * 0.1;
 
     htmlHojas += `
-      <div class="album-page" style="transform: translateZ(${despZ}px); --z-defecto: ${despZ}px; z-index: ${totalHojas - hojaIndex};" data-index="${hojaIndex}">
+      <div class="album-page" style="transform: translateZ(${posicionZInicial}px); --z-inicial: ${posicionZInicial}px; --z-flipped: ${hojaIndex * 0.1}px;" data-index="${hojaIndex}">
         <div class="page-front">
           <img src="${imgFrente}" loading="lazy" alt="Página ${p}">
         </div>
@@ -53,23 +53,19 @@ export async function renderAlbumFlip(containerId, item) {
   const book = document.getElementById('interactiveBook');
   const hojas = container.querySelectorAll('.album-page');
 
-  hojas.forEach((hoja, index) => {
+  hojas.forEach((hoja) => {
     hoja.addEventListener('click', (e) => {
       const rect = book.getBoundingClientRect();
       const xClick = e.clientX - rect.left; 
       const mitadLibro = rect.width / 2;
 
-      // === AVANZAR HOJA (Clic mitad derecha) ===
+      // AVANZAR HOJA (Clic mitad derecha)
       if (xClick > mitadLibro && !hoja.classList.contains('flipped')) {
         hoja.classList.add('flipped');
-        // Al pasar a la izquierda, invertimos su z-index para que la siguiente quede arriba
-        hoja.style.zIndex = index + 1; 
       } 
-      // === RETROCEDER HOJA (Clic mitad izquierda) ===
+      // RETROCEDER HOJA (Clic mitad izquierda)
       else if (xClick <= mitadLibro && hoja.classList.contains('flipped')) {
         hoja.classList.remove('flipped');
-        // Al volver a la derecha, recupera su z-index de apilamiento inicial
-        hoja.style.zIndex = totalHojas - index;
       }
     });
   });
