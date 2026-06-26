@@ -496,7 +496,7 @@ main {
   margin-bottom: 25px;
 }
 
-/* Perspectiva estable para móviles */
+/* Contenedor con Perspectiva 3D Real */
 .book-container {
   display: flex;
   justify-content: center;
@@ -507,7 +507,7 @@ main {
   margin: 0 auto;
 }
 
-/* El Libro */
+/* El Cuerpo del Libro */
 .book {
   position: relative;
   width: 100%; 
@@ -518,7 +518,7 @@ main {
   margin: 0 auto;
 }
 
-/* Cada Hoja: Mantiene una transición limpia sin cortes */
+/* Cada Hoja: Transición suave y limpia original */
 .album-page {
   position: absolute;
   width: 50%;
@@ -528,11 +528,24 @@ main {
   transform-origin: left center;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.2s ease;
   cursor: pointer;
+  will-change: transform;
+  
+  /* Por defecto ocultamos la visibilidad para proteger el Zoom en móviles */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
-/* Ambas caras: Aisladas de manera estricta en la GPU */
+/* Solo las páginas visibles de forma activa se procesan en la GPU */
+.album-page.active-pair {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Caras de la hoja: Aislamiento estricto de buffers ocultos */
 .page-front, .page-back {
   position: absolute;
   width: 100%;
@@ -554,16 +567,16 @@ main {
   display: block;
 }
 
-/* Cara Frontal: Desfasada un milímetro adelante */
+/* Cara Frontal */
 .page-front {
-  transform: rotateY(0deg) translateZ(1px);
-  -webkit-transform: rotateY(0deg) translateZ(1px);
+  transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
 }
 
-/* Cara Trasera: Invertida y desfasada un milímetro adelante respecto a sí misma */
+/* Cara Trasera (Se invierte para verse derecha al girar) */
 .page-back {
-  transform: rotateY(180deg) translateZ(1px);
-  -webkit-transform: rotateY(180deg) translateZ(1px);
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
   border-radius: 6px 0 0 6px;
 }
 
@@ -573,11 +586,10 @@ main {
   background: #1a1f2c;
 }
 
-/* AL VOLTEAR: Giramos la hoja a -180 grados y reajustamos sutilmente su posición 3D (--z-flipped) */
-/* Esto altera el orden visual automáticamente sin romper la renderización del navegador */
+/* Animación de giro completo hacia la izquierda */
 .album-page.flipped {
-  transform: rotateY(-180deg) translateZ(var(--z-flipped)) !important;
-  -webkit-transform: rotateY(-180deg) translateZ(var(--z-flipped)) !important;
+  transform: rotateY(-180deg);
+  -webkit-transform: rotateY(-180deg);
 }
 
 @media (max-width: 480px) {
