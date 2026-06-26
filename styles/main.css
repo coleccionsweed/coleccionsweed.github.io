@@ -496,13 +496,13 @@ main {
   margin-bottom: 25px;
 }
 
-/* Contenedor de perspectiva */
+/* Contenedor de perspectiva con valores óptimos para móvil */
 .book-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  perspective: 2500px; 
-  -webkit-perspective: 2500px; /* Compatibilidad estricta móviles */
+  perspective: 2000px; 
+  -webkit-perspective: 2000px;
   width: 100%;
   margin: 0 auto;
 }
@@ -515,7 +515,6 @@ main {
   aspect-ratio: 1.4 / 1; 
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
-  transition: transform 0.5s ease;
   margin: 0 auto;
 }
 
@@ -529,15 +528,12 @@ main {
   transform-origin: left center;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
   cursor: pointer;
-  will-change: transform, z-index;
-  /* Evita parpadeos aislando la hoja en la GPU del móvil */
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
+  will-change: transform;
 }
 
-/* Caras de la hoja */
+/* Propiedades comunes estrictas para ambas caras */
 .page-front, .page-back {
   position: absolute;
   width: 100%;
@@ -545,14 +541,11 @@ main {
   top: 0;
   left: 0;
   backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+  -webkit-backface-visibility: hidden; /* Vital para iOS Safari */
   box-shadow: inset 4px 0 10px rgba(0,0,0,0.25), 4px 6px 12px rgba(0,0,0,0.3);
   background: #141822;
   border-radius: 0 6px 6px 0;
   overflow: hidden;
-  /* Evita el parpadeo de texturas en móviles */
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
 }
 
 .page-front img, .page-back img {
@@ -562,10 +555,16 @@ main {
   display: block;
 }
 
-/* El dorso (página izquierda) */
+/* Cara Frontal: Forzamos que se mantenga al frente del eje Z */
+.page-front {
+  transform: rotateY(0deg) translateZ(1px);
+  -webkit-transform: rotateY(0deg) translateZ(1px);
+}
+
+/* Cara Trasera: Rotada e invertida milimétricamente hacia atrás en el eje Z */
 .page-back {
-  transform: rotateY(180deg) translateZ(0.5px); /* Pequeño desfase decimal para evitar solapes 3D */
-  -webkit-transform: rotateY(180deg) translateZ(0.5px);
+  transform: rotateY(180deg) translateZ(1px);
+  -webkit-transform: rotateY(180deg) translateZ(1px);
   border-radius: 6px 0 0 6px;
 }
 
@@ -575,8 +574,10 @@ main {
   background: #1a1f2c;
 }
 
+/* Animación fluida de giro completo */
 .album-page.flipped {
-  transform: rotateY(-180deg) translateZ(0);
+  transform: rotateY(-180deg);
+  -webkit-transform: rotateY(-180deg);
 }
 
 @media (max-width: 480px) {
