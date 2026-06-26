@@ -10,7 +10,7 @@ export async function renderAlbumFlip(containerId, item) {
   if (!totalPaginas || totalPaginas === 0) return;
 
   const paginas = [];
-  for (let i = 0; i < totalPaginas; i++) {
+  for (let i = 0; i <= totalPaginas; i++) {
     paginas.push(`images/${item.category}/${item.folder}/album/${i}.webp`);
   }
 
