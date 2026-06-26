@@ -68,14 +68,35 @@ export function setupFilters(items, onChange) {
   function apply() {
     limiteActual = 20; 
 
-    // 1. Filtrado
+	// 1. Filtrado
     let result = items.filter(i => {
-      return (
-        (!category.value || i.category === category.value) &&
-        (!franchise.value || i.franchise === franchise.value) &&
-        (!search.value ||
-          i.name.toLowerCase().includes(search.value.toLowerCase()))
-      );
+      const searchTerm = search.value ? search.value.toLowerCase().trim() : '';
+      
+      const matchesCategory = !category.value || i.category === category.value;
+      const matchesFranchise = !franchise.value || i.franchise === franchise.value;
+      
+      let matchesSearch = true;
+      if (searchTerm) {
+        // Campos para buscar de forma segura
+        const fieldsToSearch = [
+          i.name,
+          i.franchise,
+          i.platform,
+          i.brand,
+          i.year,
+          i.category,
+          i.language,
+          i.condition
+        ];
+
+        // Comprobamos si alguno de los campos existentes contiene el texto
+        matchesSearch = fieldsToSearch.some(field => {
+          if (field === undefined || field === null) return false;
+          return field.toString().toLowerCase().includes(searchTerm);
+        });
+      }
+
+      return matchesCategory && matchesFranchise && matchesSearch;
     });
 
     // 2. Ordenación (Corregido: Si no hay valor o es name-asc, ordena A-Z)
