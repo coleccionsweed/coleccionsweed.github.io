@@ -496,13 +496,13 @@ main {
   margin-bottom: 25px;
 }
 
-/* Contenedor de perspectiva con valores óptimos para móvil */
+/* Contenedor de perspectiva: Suavizado para evitar bloqueos de memoria */
 .book-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  perspective: 2000px; 
-  -webkit-perspective: 2000px;
+  perspective: 1500px; 
+  -webkit-perspective: 1500px;
   width: 100%;
   margin: 0 auto;
 }
@@ -518,7 +518,7 @@ main {
   margin: 0 auto;
 }
 
-/* Cada Hoja */
+/* Cada Hoja: Eliminado translateZ para liberar memoria de texturas */
 .album-page {
   position: absolute;
   width: 50%;
@@ -528,12 +528,11 @@ main {
   transform-origin: left center;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
-  transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+  transition: transform 0.5s ease-in-out;
   cursor: pointer;
-  will-change: transform;
 }
 
-/* Propiedades comunes estrictas para ambas caras */
+/* Caras de la hoja: Forzamos la liberación de buffers ocultos */
 .page-front, .page-back {
   position: absolute;
   width: 100%;
@@ -541,8 +540,8 @@ main {
   top: 0;
   left: 0;
   backface-visibility: hidden;
-  -webkit-backface-visibility: hidden; /* Vital para iOS Safari */
-  box-shadow: inset 4px 0 10px rgba(0,0,0,0.25), 4px 6px 12px rgba(0,0,0,0.3);
+  -webkit-backface-visibility: hidden;
+  box-shadow: inset 4px 0 10px rgba(0,0,0,0.2), 4px 5px 10px rgba(0,0,0,0.25);
   background: #141822;
   border-radius: 0 6px 6px 0;
   overflow: hidden;
@@ -555,16 +554,15 @@ main {
   display: block;
 }
 
-/* Cara Frontal: Forzamos que se mantenga al frente del eje Z */
+/* Rotación simple sin empujes en Z */
 .page-front {
-  transform: rotateY(0deg) translateZ(1px);
-  -webkit-transform: rotateY(0deg) translateZ(1px);
+  transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
 }
 
-/* Cara Trasera: Rotada e invertida milimétricamente hacia atrás en el eje Z */
 .page-back {
-  transform: rotateY(180deg) translateZ(1px);
-  -webkit-transform: rotateY(180deg) translateZ(1px);
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
   border-radius: 6px 0 0 6px;
 }
 
@@ -574,13 +572,23 @@ main {
   background: #1a1f2c;
 }
 
-/* Animación fluida de giro completo */
+/* Estado volteado estándar */
 .album-page.flipped {
   transform: rotateY(-180deg);
   -webkit-transform: rotateY(-180deg);
 }
 
-@media (max-width: 480px) {
+/* Ajustes para móviles: Evita el colapso al hacer zoom */
+@media (max-width: 768px) {
+  .book-container {
+    perspective: none; /* Desactivar profundidad 3D pura en móvil alivia la GPU */
+    -webkit-perspective: none;
+  }
+  .album-page {
+    /* En pantallas móviles se transforma en una animación plana de giro de cartas ultra fluida */
+    transform-style: flat;
+    -webkit-transform-style: flat;
+  }
   .album-title-section { font-size: 18px; }
   .album-flip-section { padding: 0 10px; }
 }

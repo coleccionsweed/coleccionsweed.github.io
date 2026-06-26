@@ -34,8 +34,11 @@ export async function renderAlbumFlip(containerId, item) {
     const hojaIndex = p / 2;
     const zIndexInicial = totalHojas - hojaIndex;
 
+    // Solo la primera hoja (portada) empieza visible por completo para ahorrar memoria
+    const estiloVisibilidad = hojaIndex === 0 ? '' : 'visibility: hidden;';
+
     htmlHojas += `
-      <div class="album-page" style="z-index: ${zIndexInicial};" data-index="${hojaIndex}">
+      <div class="album-page" style="z-index: ${zIndexInicial}; ${estiloVisibilidad}" data-hoja="${hojaIndex}">
         <div class="page-front">
           <img src="${imgFrente}" loading="lazy" alt="Página ${p}">
         </div>
@@ -59,20 +62,40 @@ export async function renderAlbumFlip(containerId, item) {
   `;
 
   const hojas = container.querySelectorAll('.album-page');
+  
   hojas.forEach((hoja, index) => {
     hoja.addEventListener('click', () => {
+      
       if (!hoja.classList.contains('flipped')) {
         hoja.classList.add('flipped');
         
-        // Cambia el z-index de forma limpia al terminar la animación para no interrumpir el renderizado
+        // Hacemos visible la hoja que viene inmediatamente debajo antes de cambiar el z-index
+        if (hojas[index + 1]) {
+          hojas[index + 1].style.visibility = 'visible';
+        }
+
         setTimeout(() => {
           hoja.style.zIndex = index + 1;
+          // Ocultamos la que ya se pasó a la izquierda para liberar la memoria del móvil
+          if (index > 0 && hojas[index - 1]) {
+             hojas[index - 1].style.visibility = 'hidden';
+          }
         }, 500); 
+        
       } else {
         hoja.classList.remove('flipped');
         
+        // Al regresar, hacemos visible la hoja anterior del lote izquierdo
+        if (hojas[index - 1]) {
+          hojas[index - 1].style.visibility = 'visible';
+        }
+
         setTimeout(() => {
           hoja.style.zIndex = totalHojas - index;
+          // Ocultamos la que se guardó a la derecha para no saturar al hacer zoom
+          if (hojas[index + 1]) {
+            hojas[index + 1].style.visibility = 'hidden';
+          }
         }, 500);
       }
     });
