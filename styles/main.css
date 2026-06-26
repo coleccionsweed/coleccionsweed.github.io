@@ -476,10 +476,11 @@ main {
 
 /* --- Contenedor Global del Álbum Escaneado --- */
 .album-flip-section {
-  margin: 50px auto;
+  margin: 40px auto;
   text-align: center;
-  max-width: 100%;
-  padding: 0 10px;
+  width: 100%;
+  max-width: 800px; /* Ancho máximo del libro totalmente abierto (2 páginas) */
+  padding: 0 20px;
   box-sizing: border-box;
 }
 
@@ -492,53 +493,47 @@ main {
 .album-hint {
   color: #6b7280;
   font-size: 13px;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
-/* Base de la proporción del libro (Ancho de 1 página x Alto) */
-:root {
-  --book-w: 380px;
-  --book-h: 520px;
-}
-
-/* Contenedor centralizador que evita desbordamientos */
+/* Contenedor de perspectiva: Centrado absoluto en Flexbox */
 .book-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  perspective: 2000px; /* Mayor profundidad para mitigar parpadeos */
-  padding: 20px 0;
+  perspective: 2500px; /* Mayor profundidad para suavizar el renderizado 3D */
   width: 100%;
-  overflow: visible;
+  margin: 0 auto;
 }
 
-/* El libro centrado en su eje virtual */
+/* El Libro: Ahora es totalmente responsivo */
 .book {
   position: relative;
-  width: var(--book-w);
-  height: var(--book-h);
-  /* Compensa el ancho hacia la derecha para que el libro abierto quede perfectamente centrado */
-  transform: translateX(25%); 
+  /* El ancho base representa el libro ABIERTO (las dos páginas juntas) */
+  width: 100%; 
+  max-width: 760px; 
+  /* Usamos un ratio aspect-ratio estándar de un libro abierto (ej: 4:3 o similar) */
+  aspect-ratio: 1.4 / 1; 
   transform-style: preserve-3d;
   transition: transform 0.5s ease;
+  margin: 0 auto;
 }
 
-/* Estructura de cada hoja */
+/* Cada Hoja: Ocupa exactamente la MITAD DERECHA del libro */
 .album-page {
   position: absolute;
-  width: 100%;
+  width: 50%;
   height: 100%;
   top: 0;
-  left: 0;
-  transform-origin: left center;
+  right: 0; /* Por defecto se posicionan en la mitad derecha */
+  transform-origin: left center; /* El lomo del libro es el borde izquierdo */
   transform-style: preserve-3d;
-  /* Transición fluida con aceleración por hardware */
-  transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
   cursor: pointer;
   will-change: transform, z-index;
 }
 
-/* Caras de la hoja: Forzamos el hardware con transformaciones independientes */
+/* Caras de la hoja con aceleración gráfica forzada para evitar pestañeos */
 .page-front, .page-back {
   position: absolute;
   width: 100%;
@@ -546,22 +541,22 @@ main {
   top: 0;
   left: 0;
   backface-visibility: hidden;
-  -webkit-backface-visibility: hidden; /* Soporte estricto para Safari iOS */
-  box-shadow: inset 4px 0 12px rgba(0,0,0,0.3), 5px 8px 18px rgba(0,0,0,0.4);
+  -webkit-backface-visibility: hidden;
+  box-shadow: inset 4px 0 10px rgba(0,0,0,0.25), 4px 6px 12px rgba(0,0,0,0.3);
   background: #141822;
   border-radius: 0 6px 6px 0;
   overflow: hidden;
 }
 
-/* Evita que las imágenes parpadeen al redimensionar */
+/* Forzamos a la imagen a ocupar el 100% de la hoja de forma fluida */
 .page-front img, .page-back img {
   width: 100%;
   height: 100%;
-  object-fit: fill; /* O 'cover' según prefieras que se adapte el escaneo */
+  object-fit: fill; /* Cambia a 'cover' si tus escaneos están recortados de más */
   display: block;
 }
 
-/* Dorso invertido */
+/* El dorso (página de la izquierda al girar) */
 .page-back {
   transform: rotateY(180deg);
   border-radius: 6px 0 0 6px;
@@ -573,32 +568,13 @@ main {
   background: #1a1f2c;
 }
 
-/* Estado volteado */
+/* Cuando se pasa la página, rota hacia la izquierda ocupando la mitad izquierda */
 .album-page.flipped {
   transform: rotateY(-180deg);
 }
 
-
-/* --- ADAPTACIÓN ULTRA-RESPONSIVA (MÓVILES) --- */
-@media (max-width: 900px) {
-  :root {
-    --book-w: 280px;
-    --book-h: 390px;
-  }
-}
-
-@media (max-width: 650px) {
-  :root {
-    --book-w: 200px;
-    --book-h: 280px;
-  }
-}
-
-/* En pantallas muy pequeñas (móviles verticales pequeños) adaptamos el tamaño base */
-@media (max-width: 450px) {
-  :root {
-    --book-w: 150px;
-    --book-h: 215px;
-  }
+/* Ajustes menores para pantallas muy pequeñas */
+@media (max-width: 480px) {
   .album-title-section { font-size: 18px; }
+  .album-flip-section { padding: 0 10px; }
 }
