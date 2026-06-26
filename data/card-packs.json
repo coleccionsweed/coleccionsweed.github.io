@@ -1406,8 +1406,8 @@
     "category": "card-packs"
   },
   {
-    "id": "asterix-the-travel-album-sticker-pack",
-    "name": "Astérix - The travel album",
+    "id": "asterix-album-de-viajes-sticker-pack",
+    "name": "Astérix - Álbum de viajes",
     "franchise": "Astérix",
     "brand": "Panini",
     "purchasePrice": "1,00€",
@@ -1415,7 +1415,7 @@
     "condition": "Nuevo",
     "barcode": "8018190034370",
     "language": "Español",
-    "folder": "asterix-the-travel-album-sticker-pack",
+    "folder": "asterix-album-de-viajes-sticker-pack",
     "category": "card-packs"
   },
   {
