@@ -1,7 +1,6 @@
 const albumEscaneadoConfigs = {
   "la-liga-04-05-coleccion-incompleta": 53
 };
-
 export async function renderAlbumFlip(containerId, item) {
   const container = document.getElementById(containerId);
   if (!container) return;
@@ -21,12 +20,9 @@ export async function renderAlbumFlip(containerId, item) {
     const imgFrente = paginas[p];
     const imgDorso = paginas[p + 1] || ''; 
     const hojaIndex = p / 2;
-    
-    // Asignamos el orden natural de las capas
-    const zIndexInicial = totalHojas - hojaIndex;
 
     htmlHojas += `
-      <div class="album-page" style="z-index: ${zIndexInicial};" data-index="${hojaIndex}">
+      <div class="album-page" data-index="${hojaIndex}">
         <div class="page-front">
           <img src="${imgFrente}" loading="lazy" alt="Página ${p}">
         </div>
@@ -52,51 +48,37 @@ export async function renderAlbumFlip(containerId, item) {
   const book = document.getElementById('interactiveBook');
   const hojas = container.querySelectorAll('.album-page');
 
-  // Función crítica anti-parpadeo y anti-cuelgues por Zoom:
-  // Gestiona de forma estricta qué hojas tienen activados sus efectos en la GPU del móvil
-  function actualizarAislamientoHojas() {
+  // FUNCIÓN MAESTRA DE ORDENACIÓN DE CAPAS REAL
+  function actualizarZIndexes() {
     hojas.forEach((hoja, index) => {
-      const estaVolteada = hoja.classList.contains('flipped');
-      
-      // Buscamos cuál es la hoja que el usuario está interactuando actualmente
-      // Si está volteada, su z-index pasa al frente de la izquierda, si no, se queda a la derecha
-      if (estaVolteada) {
+      if (hoja.classList.contains('flipped')) {
+        // MONTÓN IZQUIERDO: Las hojas ya pasadas se apilan de forma que las más altas en índice queden arriba
         hoja.style.zIndex = index + 1;
       } else {
+        // MONTÓN DERECHO: Las hojas pendientes se apilan de forma que las más bajas en índice queden arriba
         hoja.style.zIndex = totalHojas - index;
-      }
-
-      // Truco maestro: Solo dejamos en modo interactivo/visible la hoja actual y sus adyacentes
-      // para que el motor gráfico no parpadee ni se quede sin memoria RAM al aplicar el Zoom
-      const esHojaCercana = hojas[index - 1]?.classList.contains('flipped') !== estaVolteada || 
-                            hoja.classList.contains('flipped') !== hojas[index + 1]?.classList.contains('flipped');
-
-      if (index === 0 || index === totalHojas - 1 || esHojaCercana) {
-        hoja.classList.add('active-pair');
-      } else {
-        hoja.classList.remove('active-pair');
       }
     });
   }
 
-  // Inicializamos el estado al cargar el álbum
-  actualizarAislamientoHojas();
+  // Inicializamos el orden del libro al cargar
+  actualizarZIndexes();
 
-  hojas.forEach((hoja, index) => {
+  hojas.forEach((hoja) => {
     hoja.addEventListener('click', (e) => {
       const rect = book.getBoundingClientRect();
       const xClick = e.clientX - rect.left; 
       const mitadLibro = rect.width / 2;
 
-      // AVANZAR HOJA (Clic en mitad derecha y la hoja no está volteada)
+      // AVANZAR HOJA (Clic mitad derecha)
       if (xClick > mitadLibro && !hoja.classList.contains('flipped')) {
         hoja.classList.add('flipped');
-        actualizarAislamientoHojas();
+        actualizarZIndexes();
       } 
-      // RETROCEDER HOJA (Clic en mitad izquierda y la hoja ya está volteada)
+      // RETROCEDER HOJA (Clic mitad izquierda)
       else if (xClick <= mitadLibro && hoja.classList.contains('flipped')) {
         hoja.classList.remove('flipped');
-        actualizarAislamientoHojas();
+        actualizarZIndexes();
       }
     });
   });

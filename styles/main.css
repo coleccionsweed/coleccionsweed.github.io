@@ -496,7 +496,7 @@ main {
   margin-bottom: 25px;
 }
 
-/* Contenedor con Perspectiva 3D Real */
+/* Perspectiva controlada nativa */
 .book-container {
   display: flex;
   justify-content: center;
@@ -507,7 +507,7 @@ main {
   margin: 0 auto;
 }
 
-/* El Cuerpo del Libro */
+/* El Libro */
 .book {
   position: relative;
   width: 100%; 
@@ -518,7 +518,7 @@ main {
   margin: 0 auto;
 }
 
-/* Cada Hoja: Transición suave y limpia original */
+/* Cada Hoja */
 .album-page {
   position: absolute;
   width: 50%;
@@ -528,24 +528,11 @@ main {
   transform-origin: left center;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.2s ease;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
   cursor: pointer;
-  will-change: transform;
-  
-  /* Por defecto ocultamos la visibilidad para proteger el Zoom en móviles */
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
 }
 
-/* Solo las páginas visibles de forma activa se procesan en la GPU */
-.album-page.active-pair {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
-/* Caras de la hoja: Aislamiento estricto de buffers ocultos */
+/* Caras de las páginas: Ocultamos de forma estricta los reversos */
 .page-front, .page-back {
   position: absolute;
   width: 100%;
@@ -567,13 +554,13 @@ main {
   display: block;
 }
 
-/* Cara Frontal */
+/* Cara frontal en su posición por defecto */
 .page-front {
   transform: rotateY(0deg);
   -webkit-transform: rotateY(0deg);
 }
 
-/* Cara Trasera (Se invierte para verse derecha al girar) */
+/* Cara trasera girada desde el inicio */
 .page-back {
   transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
@@ -586,7 +573,7 @@ main {
   background: #1a1f2c;
 }
 
-/* Animación de giro completo hacia la izquierda */
+/* Giro físico completo de la hoja */
 .album-page.flipped {
   transform: rotateY(-180deg);
   -webkit-transform: rotateY(-180deg);
