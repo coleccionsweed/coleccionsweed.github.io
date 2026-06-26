@@ -22,14 +22,12 @@ export async function renderAlbumFlip(containerId, item) {
     const imgDorso = paginas[p + 1] || ''; 
     const hojaIndex = p / 2;
 
+    // Calculamos el orden matemático puro para CSS
     const zNormal = totalHojas - hojaIndex;
     const zFlipped = hojaIndex + 1;
-    
-    // Separación física micrométrica para evitar colisiones 3D en la última página
-    const zDepth = -(hojaIndex * 0.5); 
 
     htmlHojas += `
-      <div class="album-page" style="--z-normal: ${zNormal}; --z-flipped: ${zFlipped}; --z-depth: ${zDepth}px;" data-index="${hojaIndex}">
+      <div class="album-page" style="--z-normal: ${zNormal}; --z-flipped: ${zFlipped};" data-index="${hojaIndex}">
         <div class="page-front">
           <img src="${imgFrente}" loading="lazy" alt="Página ${p}">
         </div>

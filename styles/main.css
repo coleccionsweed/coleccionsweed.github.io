@@ -474,11 +474,7 @@ main {
   border-radius: 10px; box-shadow: 0 0 20px rgba(255,255,255,0.1);
 }
 
-/* ==========================================================================
-   📖 ÁLBUM INTERACTIVO 3D (Anti-Parpadeo y Optimizado para Móviles)
-   ========================================================================== */
-
-/* --- Contenedor Global --- */
+/* --- Contenedor Global del Álbum Escaneado --- */
 .album-flip-section {
   margin: 40px auto;
   text-align: center;
@@ -500,7 +496,6 @@ main {
   margin-bottom: 25px;
 }
 
-/* --- Perspectiva Controlada --- */
 .book-container {
   display: flex;
   justify-content: center;
@@ -511,7 +506,6 @@ main {
   margin: 0 auto;
 }
 
-/* --- El Cuerpo del Libro --- */
 .book {
   position: relative;
   width: 100%; 
@@ -522,7 +516,7 @@ main {
   margin: 0 auto;
 }
 
-/* --- Sistema de Hojas (Z-Index Diferido y Z-Depth Físico) --- */
+/* LA MAGIA OCURRE AQUÍ */
 .album-page {
   position: absolute;
   width: 50%;
@@ -533,49 +527,33 @@ main {
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
   
-  /* Orden de apilamiento matemático gestionado por las variables del JS */
+  /* Cargamos la capa normal por defecto */
   z-index: var(--z-normal);
   
-  /* Separación micrométrica para evitar colisiones gráficas al girar */
-  transform: translateZ(var(--z-depth));
-  -webkit-transform: translateZ(var(--z-depth));
-  
-  /* Magia anti-parpadeo: el z-index espera 0.3s a que la hoja esté de canto */
+  /* El transform dura 0.6s. El z-index cambia en 0s pero espera 0.3s a que la hoja esté a 90 grados */
   transition: transform 0.6s ease-in-out, z-index 0s 0.3s;
   cursor: pointer;
   
-  /* Elimina el fogonazo azul nativo al tocar en móviles */
+  /* Quita el fogonazo azul molesto al tocar en pantallas de móviles táctiles */
   -webkit-tap-highlight-color: transparent;
 }
 
-/* --- Giro Físico --- */
-.album-page.flipped {
-  /* Giramos manteniendo la misma profundidad física para que Safari/Chrome no se pierdan */
-  transform: rotateY(-180deg) translateZ(var(--z-depth));
-  -webkit-transform: rotateY(-180deg) translateZ(var(--z-depth));
-  z-index: var(--z-flipped);
-}
-
-/* --- Caras de las Hojas (Aislamiento Estricto) --- */
 .page-front, .page-back {
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  
-  /* Ocultamos el reverso de la textura sin que el navegador dude */
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  
-  /* Forzamos a la GPU a crear una capa de textura sólida */
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  
   box-shadow: inset 4px 0 10px rgba(0,0,0,0.25), 4px 6px 12px rgba(0,0,0,0.3);
   background: #141822;
   border-radius: 0 6px 6px 0;
   overflow: hidden;
+  
+  /* Forzamos a la GPU del móvil a crear una textura fija */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
 .page-front img, .page-back img {
@@ -586,7 +564,6 @@ main {
 }
 
 .page-back {
-  /* La cara trasera se invierte desde el inicio y se sella en la GPU */
   transform: rotateY(180deg) translateZ(0);
   -webkit-transform: rotateY(180deg) translateZ(0);
   border-radius: 6px 0 0 6px;
@@ -598,17 +575,16 @@ main {
   background: #1a1f2c;
 }
 
-/* ==========================================================================
-   📱 ADAPTACIÓN PARA MÓVILES
-   ========================================================================== */
-@media (max-width: 768px) {
-  .album-title-section { 
-    font-size: 18px; 
-  }
-  
-  .album-flip-section { 
-    padding: 0 10px; 
-  }
+/* Al voltear, cambiamos el z-index de destino. CSS usará el temporizador de arriba para aplicarlo */
+.album-page.flipped {
+  transform: rotateY(-180deg);
+  -webkit-transform: rotateY(-180deg);
+  z-index: var(--z-flipped);
+}
+
+@media (max-width: 480px) {
+  .album-title-section { font-size: 18px; }
+  .album-flip-section { padding: 0 10px; }
   
   /* Sombra del lomo más sutil para pantallas estrechas */
   .page-front, .page-back {
