@@ -1,4 +1,5 @@
 import { renderStickers } from './stickers.js';
+import { renderAlbumFlip } from './albumFlip.js';
 
 // Función auxiliar para verificar si una imagen existe realmente en el servidor
 function comprobarSiExisteImagen(src) {
@@ -119,6 +120,14 @@ export async function renderDetail(item) {
   }
   
   if (item.category === 'card-collection') {
+		// Creamos el contenedor del Álbum 3D dinámicamente
+		const albumWrapper = document.createElement('div');
+		albumWrapper.id = 'album-flip-container';
+		grid.appendChild(albumWrapper);
+	  
+		// Lanzamos su renderizado (si la carpeta /album/ tiene imágenes, se mostrará)
+		await renderAlbumFlip('album-flip-container', item);
+  
         const wrapper = document.createElement('div');
         wrapper.id = 'stickers-container';
         document.getElementById('collectionGrid').appendChild(wrapper);

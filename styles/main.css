@@ -473,3 +473,99 @@ main {
   max-width: 90vw; max-height: 85vh;
   border-radius: 10px; box-shadow: 0 0 20px rgba(255,255,255,0.1);
 }
+
+/* --- Efecto Realista de Álbum 3D (Page Flip) --- */
+.album-flip-section {
+  margin: 40px auto;
+  text-align: center;
+  max-width: 900px;
+  padding: 0 20px;
+}
+
+.album-title-section {
+  color: #fff;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.album-hint {
+  color: #6b7280;
+  font-size: 13px;
+  margin-bottom: 25px;
+}
+
+/* Contenedor con perspectiva 3D */
+.book-container {
+  perspective: 1500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+/* El libro ocupa la mitad del ancho extendido (visto desde el centro) */
+.book {
+  position: relative;
+  width: 400px;
+  height: 550px;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+  /* Desplaza el eje ligeramente a la derecha para simular el lomo abierto */
+  transform: translateX(25%); 
+}
+
+/* Cada hoja del álbum */
+.album-page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transform-origin: left center; /* Gira sobre el lomo izquierdo */
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+  cursor: pointer;
+}
+
+/* Caras de la hoja */
+.page-front, .page-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Oculta la parte trasera mientras gira */
+  box-shadow: inset 3px 0 10px rgba(0,0,0,0.2), 5px 5px 15px rgba(0,0,0,0.3);
+  border-radius: 0 5px 5px 0;
+  overflow: hidden;
+  background: #141822;
+}
+
+.page-front img, .page-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* La parte trasera de la hoja debe estar invertida por defecto */
+.page-back {
+  transform: rotateY(180deg);
+  border-radius: 5px 0 0 5px;
+}
+
+.page-empty {
+  width: 100%;
+  height: 100%;
+  background: #1a1f2c;
+}
+
+/* Clase desencadenada por JS para voltear la página */
+.album-page.flipped {
+  transform: rotateY(-180deg);
+}
+
+/* Responsivo para móviles */
+@media (max-width: 600px) {
+  .book {
+    width: 280px;
+    height: 390px;
+  }
+}
