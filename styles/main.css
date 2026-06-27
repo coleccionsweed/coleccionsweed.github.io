@@ -474,120 +474,17 @@ main {
   border-radius: 10px; box-shadow: 0 0 20px rgba(255,255,255,0.1);
 }
 
-/* --- Contenedor Global del Álbum Escaneado --- */
-.album-flip-section {
-  margin: 40px auto;
-  text-align: center;
-  width: 100%;
-  max-width: 800px;
-  padding: 0 20px;
-  box-sizing: border-box;
+/* Añade esto a tu main.css */
+.flipbook {
+    margin: 20px auto;
+    /* Esto previene que iOS intente procesar gestos de zoom/scroll sobre el libro */
+    touch-action: none; 
 }
 
-.album-title-section {
-  color: #fff;
-  font-size: 22px;
-  margin-bottom: 5px;
-}
-
-.album-hint {
-  color: #6b7280;
-  font-size: 13px;
-  margin-bottom: 25px;
-}
-
-.book-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  perspective: 2000px; 
-  -webkit-perspective: 2000px;
-  width: 100%;
-  margin: 0 auto;
-}
-
-.book {
-  position: relative;
-  width: 100%; 
-  max-width: 760px; 
-  aspect-ratio: 1.41 / 1; 
-  transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d;
-  margin: 0 auto;
-}
-
-/* LA MAGIA OCURRE AQUÍ */
-.album-page {
-  position: absolute;
-  width: 50%;
-  height: 100%;
-  top: 0;
-  right: 0; 
-  transform-origin: left center;
-  transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d;
-  
-  /* Cargamos la capa normal por defecto */
-  z-index: var(--z-normal);
-  
-  /* El transform dura 0.6s. El z-index cambia en 0s pero espera 0.3s a que la hoja esté a 90 grados */
-  transition: transform 0.6s ease-in-out, z-index 0s 0.3s;
-  cursor: pointer;
-  
-  /* Quita el fogonazo azul molesto al tocar en pantallas de móviles táctiles */
-  -webkit-tap-highlight-color: transparent;
-}
-
-.page-front, .page-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  box-shadow: inset 4px 0 10px rgba(0,0,0,0.25), 4px 6px 12px rgba(0,0,0,0.3);
-  background: #141822;
-  border-radius: 0 6px 6px 0;
-  overflow: hidden;
-  
-  /* Forzamos a la GPU del móvil a crear una textura fija */
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-}
-
-.page-front img, .page-back img {
-  width: 100%;
-  height: 100%;
-  object-fit: fill; 
-  display: block;
-}
-
-.page-back {
-  transform: rotateY(180deg) translateZ(0);
-  -webkit-transform: rotateY(180deg) translateZ(0);
-  border-radius: 6px 0 0 6px;
-}
-
-.page-empty {
-  width: 100%;
-  height: 100%;
-  background: #1a1f2c;
-}
-
-/* Al voltear, cambiamos el z-index de destino. CSS usará el temporizador de arriba para aplicarlo */
-.album-page.flipped {
-  transform: rotateY(-180deg);
-  -webkit-transform: rotateY(-180deg);
-  z-index: var(--z-flipped);
-}
-
-@media (max-width: 480px) {
-  .album-title-section { font-size: 18px; }
-  .album-flip-section { padding: 0 10px; }
-  
-  /* Sombra del lomo más sutil para pantallas estrechas */
-  .page-front, .page-back {
-    box-shadow: inset 2px 0 5px rgba(0,0,0,0.15), 2px 3px 6px rgba(0,0,0,0.2) !important;
-  }
+/* Hacerlo responsive */
+@media (max-width: 768px) {
+    .flipbook {
+        width: 100vw !important;
+        height: 70vh !important;
+    }
 }

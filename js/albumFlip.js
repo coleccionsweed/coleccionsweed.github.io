@@ -1,3 +1,4 @@
+
 const albumEscaneadoConfigs = {
   "la-liga-04-05-coleccion-incompleta": 53
 };
@@ -6,67 +7,53 @@ export async function renderAlbumFlip(containerId, item) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
-  const totalPaginas = albumEscaneadoConfigs[item.folder];
-  if (!totalPaginas || totalPaginas === 0) return;
+  const totalPaginas = albumEscaneadoConfigs[item.folder] || 0;
+  if (totalPaginas === 0) return;
 
-  const paginas = [];
-  for (let i = 0; i <= totalPaginas; i++) {
-    paginas.push(`images/${item.category}/${item.folder}/album/${i}.webp`);
-  }
-
+  // 1. Generamos el HTML necesario para turn.js
   let htmlHojas = '';
-  const totalHojas = Math.ceil(paginas.length / 2);
-
-  for (let p = 0; p < paginas.length; p += 2) {
-    const imgFrente = paginas[p];
-    const imgDorso = paginas[p + 1] || ''; 
-    const hojaIndex = p / 2;
-
-    // Calculamos el orden matemático puro para CSS
-    const zNormal = totalHojas - hojaIndex;
-    const zFlipped = hojaIndex + 1;
-
+  for (let i = 0; i <= totalPaginas; i++) {
     htmlHojas += `
-      <div class="album-page" style="--z-normal: ${zNormal}; --z-flipped: ${zFlipped};" data-index="${hojaIndex}">
-        <div class="page-front">
-          <img src="${imgFrente}" loading="lazy" alt="Página ${p}">
-        </div>
-        <div class="page-back">
-          ${imgDorso ? `<img src="${imgDorso}" loading="lazy" alt="Página ${p + 1}">` : '<div class="page-empty"></div>'}
-        </div>
-      </div>
-    `;
+      <div class="page">
+        <img src="images/${item.category}/${item.folder}/album/${i}.webp" 
+             style="width:100%; height:100%; object-fit:contain;" 
+             loading="lazy" 
+             alt="Página ${i}">
+      </div>`;
   }
 
+  // 2. Insertamos el contenedor del flipbook
   container.innerHTML = `
-    <div class="album-flip-section">
-      <h3 class="album-title-section">Álbum Escaneado</h3>
-      <p class="album-hint">Toca el lado derecho para avanzar o el izquierdo para retroceder</p>
-      <div class="book-container">
-        <div class="book" id="interactiveBook">
-          ${htmlHojas}
-        </div>
-      </div>
+    <div id="flipbook-wrapper" class="flipbook">
+      ${htmlHojas}
     </div>
   `;
 
-  const book = document.getElementById('interactiveBook');
-  const hojas = container.querySelectorAll('.album-page');
+  // 3. Inicializamos turn.js 
+  // Usamos window.$ para asegurar compatibilidad con jQuery global
+  const initFlipbook = () => {
+    if (window.$ && window.$.fn.turn) {
+      window.$("#flipbook-wrapper").turn({
+        width: 800,
+        height: 550,
+        autoCenter: true,
+        display: 'double',
+        acceleration: true,
+        gradients: true,
+        elevation: 50,
+        when: {
+          turning: function(event, page, view) {}
+        }
+      });
+    } else {
+      console.error("turn.js o jQuery no están cargados.");
+    }
+  };
 
-  hojas.forEach((hoja) => {
-    hoja.addEventListener('click', (e) => {
-      const rect = book.getBoundingClientRect();
-      const xClick = e.clientX - rect.left; 
-      const mitadLibro = rect.width / 2;
-
-      // AVANZAR
-      if (xClick > mitadLibro && !hoja.classList.contains('flipped')) {
-        hoja.classList.add('flipped');
-      } 
-      // RETROCEDER
-      else if (xClick <= mitadLibro && hoja.classList.contains('flipped')) {
-        hoja.classList.remove('flipped');
-      }
-    });
-  });
+  // Esperamos a que la librería esté lista
+  if (document.readyState === 'complete') {
+    initFlipbook();
+  } else {
+    window.$(document).ready(initFlipbook);
+  }
 }
