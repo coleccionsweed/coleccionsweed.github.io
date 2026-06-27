@@ -12,6 +12,9 @@ function comprobarSiExisteImagen(src) {
 }
 
 export async function renderDetail(item) {
+  const visor = document.getElementById('visor-3d-container');
+  if (visor) visor.style.display = 'none';
+  
   // =======================================================
   // 1. PASO ASÍNCRONO: Buscar imágenes (La galería sigue intacta y bonita en pantalla)
   // =======================================================
@@ -99,6 +102,11 @@ export async function renderDetail(item) {
   // 4. PASO DE EVENTOS: Asignar listeners del slider y botón
   // =======================================================
   document.getElementById('backBtn').addEventListener('click', () => {
+    window.location.hash = ''; 
+  });
+  
+  document.getElementById('backBtn').addEventListener('click', () => {
+    if (visor) visor.style.display = 'block'; 
     window.location.hash = ''; 
   });
 

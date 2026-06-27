@@ -37,6 +37,9 @@ function handleRoute() {
 
   // Vista Lista
   if (!id) {
+	const visor = document.getElementById('visor-3d-container');
+    if (visor) visor.style.display = 'block';
+	
     if (filters) filters.style.display = ''; 
     if (counter) counter.style.display = '';
     
