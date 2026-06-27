@@ -54,40 +54,22 @@ export async function renderAlbumFlip(containerId, item) {
   const hojas = container.querySelectorAll('.album-page');
 
   hojas.forEach((hoja) => {
-    let startX = 0, startY = 0, isMoving = false;
-
-    // Detectamos si el usuario se mueve (gesto de zoom o scroll)
-    hoja.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-      startY = e.touches[0].clientY;
-      isMoving = false;
-    }, { passive: true });
-
-    hoja.addEventListener('touchmove', (e) => {
-      const diffX = Math.abs(e.touches[0].clientX - startX);
-      const diffY = Math.abs(e.touches[0].clientY - startY);
-      if (diffX > 10 || diffY > 10) isMoving = true;
-    }, { passive: true });
-
-    // Solo procesamos el clic si el toque fue firme (no hubo movimiento)
-    hoja.addEventListener('touchend', (e) => {
-      if (isMoving) return;
-
+    // Usamos pointerdown para evitar el retraso y errores de Safari
+    hoja.addEventListener('pointerdown', (e) => {
+      // Importante: No permitimos que el evento suba al navegador
+      e.stopPropagation();
+      
       const rect = book.getBoundingClientRect();
-      const xClick = e.changedTouches[0].clientX - rect.left;
-      const mitadLibro = rect.width / 2;
-
-      if (xClick > mitadLibro && !hoja.classList.contains('flipped')) hoja.classList.add('flipped');
-      else if (xClick <= mitadLibro && hoja.classList.contains('flipped')) hoja.classList.remove('flipped');
-    }, { passive: false });
-
-    // Desktop
-    hoja.addEventListener('click', (e) => {
-      const rect = book.getBoundingClientRect();
+      // Calculamos la posición respecto al elemento libro
       const xClick = e.clientX - rect.left;
       const mitadLibro = rect.width / 2;
-      if (xClick > mitadLibro && !hoja.classList.contains('flipped')) hoja.classList.add('flipped');
-      else if (xClick <= mitadLibro && hoja.classList.contains('flipped')) hoja.classList.remove('flipped');
-    });
+
+      // Lógica de volteo
+      if (xClick > mitadLibro && !hoja.classList.contains('flipped')) {
+        hoja.classList.add('flipped');
+      } else if (xClick <= mitadLibro && hoja.classList.contains('flipped')) {
+        hoja.classList.remove('flipped');
+      }
+    }, { passive: false });
   });
 }
