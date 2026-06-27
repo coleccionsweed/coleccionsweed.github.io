@@ -37,36 +37,37 @@ export async function renderAlbumFlip(containerId, item) {
     `;
   }
 
-  // Insertamos el Libro y la CAPA DE CRISTAL al mismo nivel
+  // AQUÍ ESTÁ EL ARREGLO: La caja 3D y la caja 2D están totalmente separadas
   container.innerHTML = `
     <div class="album-flip-section">
       <h3 class="album-title-section">Álbum Escaneado</h3>
       <p class="album-hint">Toca el lado derecho para avanzar o el izquierdo para retroceder</p>
-      <div class="book-container">
-        <div class="book" id="interactiveBook">
-          ${htmlHojas}
+      
+      <div class="book-wrapper">
+        <div class="book-container">
+          <div class="book" id="interactiveBook">
+            ${htmlHojas}
+          </div>
         </div>
+        
         <div id="bookTouchOverlay" class="book-touch-overlay"></div>
       </div>
     </div>
   `;
 
-  // --- NUEVA LÓGICA DE CONTROL ---
+  // Lógica de paso de página (exactamente igual que antes)
   const overlay = document.getElementById('bookTouchOverlay');
   const hojas = Array.from(container.querySelectorAll('.album-page'));
 
-  // Solo hay 1 evento click en todo el libro, y es en una capa 2D plana.
   overlay.addEventListener('click', (e) => {
     const rect = overlay.getBoundingClientRect();
     const xClick = e.clientX - rect.left; 
     const mitadLibro = rect.width / 2;
 
     if (xClick > mitadLibro) {
-      // AVANZAR: Buscamos la primera hoja que NO esté volteada y la volteamos
       const hojaAvanzar = hojas.find(h => !h.classList.contains('flipped'));
       if (hojaAvanzar) hojaAvanzar.classList.add('flipped');
     } else {
-      // RETROCEDER: Buscamos la última hoja que SÍ esté volteada y la devolvemos
       const hojasVolteadas = hojas.filter(h => h.classList.contains('flipped'));
       if (hojasVolteadas.length > 0) {
         const hojaRetroceder = hojasVolteadas[hojasVolteadas.length - 1];
