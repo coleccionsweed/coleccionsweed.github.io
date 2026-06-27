@@ -16,7 +16,7 @@ export async function initStatsPage() {
   if (!statsContainer) return;
 
   setTimeout(() => {
-    inicializarVisor('visor-3d-container', 'modelos/tarzan.glb');
+    inicializarVisor('visor-3d-container', 'modelos/mapParis.glb');
   }, 100);
   
   // 1. Efecto de carga premium mientras lee los archivos JSON
