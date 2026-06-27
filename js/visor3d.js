@@ -4,11 +4,14 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 export function inicializarVisor(containerId, rutaModelo) {
     const container = document.getElementById(containerId);
-    
+    // Si no existe el contenedor en esta página (ej: falta en stats.html), salimos
+    if (!container) return;
+	
     // Escena
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+	renderer.setClearColor(0x000000, 0); // El 0 es la transparencia total
     
     renderer.setSize(container.clientWidth, container.clientHeight);
     container.appendChild(renderer.domElement);
