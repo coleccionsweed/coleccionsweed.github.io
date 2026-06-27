@@ -11,7 +11,7 @@ export function inicializarVisor(containerId, rutaModelo) {
     
     // 1. CÁMARA MÁS ALEJADA
     const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
-    camera.position.set(0, 0, 25);
+    camera.position.set(0, 0, 30);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(container.clientWidth, container.clientHeight);
