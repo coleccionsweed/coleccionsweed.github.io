@@ -3,9 +3,6 @@ import { loadCollection } from './dataLoader.js';
 import { t } from './translations.js';
 import { inicializarVisor } from './visor3d.js';
 
-// Inicializa el visor al cargar la página
-inicializarVisor('visor-3d-container', 'modelos/tarzan.glb');
-
 let charts = { categories: null };
 
 function parsePrice(priceStr) {
@@ -18,6 +15,10 @@ export async function initStatsPage() {
   const statsContainer = document.getElementById('statsView');
   if (!statsContainer) return;
 
+  setTimeout(() => {
+    inicializarVisor('visor-3d-container', 'modelos/tarzan.glb');
+  }, 100);
+  
   // 1. Efecto de carga premium mientras lee los archivos JSON
   statsContainer.innerHTML = `
     <div style="text-align: center; padding: 100px 0;">

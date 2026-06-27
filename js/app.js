@@ -4,10 +4,7 @@ import { setupFilters } from './filters.js'
 import { renderDetail } from './detail.js'
 import { inicializarVisor } from './visor3d.js';
 
-// app.js
-document.addEventListener('DOMContentLoaded', () => {
-  inicializarVisor('visor-3d-container', 'modelos/entei.glb');
-});
+
 
 let allItems = []
 let itemsAMostrar = []        
@@ -90,3 +87,7 @@ function handleRoute() {
 }
 
 init();
+
+document.addEventListener('DOMContentLoaded', () => {
+  inicializarVisor('visor-3d-container', 'modelos/esmeralda.glb');
+});
