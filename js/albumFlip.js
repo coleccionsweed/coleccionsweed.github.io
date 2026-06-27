@@ -50,23 +50,34 @@ export async function renderAlbumFlip(containerId, item) {
     </div>
   `;
 
-  const book = document.getElementById('interactiveBook');
+ const book = document.getElementById('interactiveBook');
   const hojas = container.querySelectorAll('.album-page');
+  let isAnimating = false; // Bandera de seguridad
 
   hojas.forEach((hoja) => {
     hoja.addEventListener('click', (e) => {
+      // Si ya hay una animación en curso, ignoramos el clic
+      if (isAnimating) return;
+
       const rect = book.getBoundingClientRect();
       const xClick = e.clientX - rect.left; 
       const mitadLibro = rect.width / 2;
 
-      // AVANZAR
-      if (xClick > mitadLibro && !hoja.classList.contains('flipped')) {
-        hoja.classList.add('flipped');
-      } 
-      // RETROCEDER
-      else if (xClick <= mitadLibro && hoja.classList.contains('flipped')) {
-        hoja.classList.remove('flipped');
+      // Determinamos acción
+      const avanzar = xClick > mitadLibro && !hoja.classList.contains('flipped');
+      const retroceder = xClick <= mitadLibro && hoja.classList.contains('flipped');
+
+      if (avanzar || retroceder) {
+        isAnimating = true; // Bloqueamos entrada
+        
+        if (avanzar) hoja.classList.add('flipped');
+        else hoja.classList.remove('flipped');
+
+        // Liberamos tras 600ms (la duración de tu transición CSS)
+        setTimeout(() => {
+          isAnimating = false;
+        }, 600);
       }
-    });
+    }, { passive: false }); // { passive: false } permite prevenir comportamientos por defecto
   });
 }
