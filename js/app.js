@@ -2,6 +2,10 @@ import { loadCollection } from './dataLoader.js'
 import { renderItems } from './renderer.js'
 import { setupFilters } from './filters.js'
 import { renderDetail } from './detail.js'
+import { inicializarVisor } from './visor3d.js';
+
+// Inicializa el visor al cargar la página
+inicializarVisor('visor-3d-container', 'modelos/entei.glb');
 
 let allItems = []
 let itemsAMostrar = []        

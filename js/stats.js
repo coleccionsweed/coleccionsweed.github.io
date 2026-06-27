@@ -1,6 +1,10 @@
 // js/stats.js
 import { loadCollection } from './dataLoader.js';
 import { t } from './translations.js';
+import { inicializarVisor } from './visor3d.js';
+
+// Inicializa el visor al cargar la página
+inicializarVisor('visor-3d-container', 'modelos/tarzan.glb');
 
 let charts = { categories: null };
 
