@@ -22,12 +22,11 @@ export async function renderAlbumFlip(containerId, item) {
     const imgDorso = paginas[p + 1] || ''; 
     const hojaIndex = p / 2;
 
-    // Calculamos el orden matemático puro para CSS
     const zNormal = totalHojas - hojaIndex;
     const zFlipped = hojaIndex + 1;
 
     htmlHojas += `
-      <div class="album-page" style="--z-normal: ${zNormal}; --z-flipped: ${zFlipped};" data-index="${hojaIndex}">
+      <div class="album-page" style="--z-normal: ${zNormal}; --z-flipped: ${zFlipped};">
         <div class="page-front">
           <img src="${imgFrente}" loading="lazy" alt="Página ${p}">
         </div>
@@ -38,6 +37,7 @@ export async function renderAlbumFlip(containerId, item) {
     `;
   }
 
+  // Insertamos el Libro y la CAPA DE CRISTAL al mismo nivel
   container.innerHTML = `
     <div class="album-flip-section">
       <h3 class="album-title-section">Álbum Escaneado</h3>
@@ -46,48 +46,32 @@ export async function renderAlbumFlip(containerId, item) {
         <div class="book" id="interactiveBook">
           ${htmlHojas}
         </div>
+        <div id="bookTouchOverlay" class="book-touch-overlay"></div>
       </div>
     </div>
   `;
 
-  const book = document.getElementById('interactiveBook');
-  const hojas = container.querySelectorAll('.album-page');
+  // --- NUEVA LÓGICA DE CONTROL ---
+  const overlay = document.getElementById('bookTouchOverlay');
+  const hojas = Array.from(container.querySelectorAll('.album-page'));
 
-  hojas.forEach((hoja) => {
-    let startX = 0, startY = 0, isMoving = false;
+  // Solo hay 1 evento click en todo el libro, y es en una capa 2D plana.
+  overlay.addEventListener('click', (e) => {
+    const rect = overlay.getBoundingClientRect();
+    const xClick = e.clientX - rect.left; 
+    const mitadLibro = rect.width / 2;
 
-    // Detectamos si el usuario se mueve (gesto de zoom o scroll)
-    hoja.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-      startY = e.touches[0].clientY;
-      isMoving = false;
-    }, { passive: true });
-
-    hoja.addEventListener('touchmove', (e) => {
-      const diffX = Math.abs(e.touches[0].clientX - startX);
-      const diffY = Math.abs(e.touches[0].clientY - startY);
-      if (diffX > 10 || diffY > 10) isMoving = true;
-    }, { passive: true });
-
-    // Solo procesamos el clic si el toque fue firme (no hubo movimiento)
-    hoja.addEventListener('touchend', (e) => {
-      if (isMoving) return;
-
-      const rect = book.getBoundingClientRect();
-      const xClick = e.changedTouches[0].clientX - rect.left;
-      const mitadLibro = rect.width / 2;
-
-      if (xClick > mitadLibro && !hoja.classList.contains('flipped')) hoja.classList.add('flipped');
-      else if (xClick <= mitadLibro && hoja.classList.contains('flipped')) hoja.classList.remove('flipped');
-    }, { passive: false });
-
-    // Desktop
-    hoja.addEventListener('click', (e) => {
-      const rect = book.getBoundingClientRect();
-      const xClick = e.clientX - rect.left;
-      const mitadLibro = rect.width / 2;
-      if (xClick > mitadLibro && !hoja.classList.contains('flipped')) hoja.classList.add('flipped');
-      else if (xClick <= mitadLibro && hoja.classList.contains('flipped')) hoja.classList.remove('flipped');
-    });
+    if (xClick > mitadLibro) {
+      // AVANZAR: Buscamos la primera hoja que NO esté volteada y la volteamos
+      const hojaAvanzar = hojas.find(h => !h.classList.contains('flipped'));
+      if (hojaAvanzar) hojaAvanzar.classList.add('flipped');
+    } else {
+      // RETROCEDER: Buscamos la última hoja que SÍ esté volteada y la devolvemos
+      const hojasVolteadas = hojas.filter(h => h.classList.contains('flipped'));
+      if (hojasVolteadas.length > 0) {
+        const hojaRetroceder = hojasVolteadas[hojasVolteadas.length - 1];
+        hojaRetroceder.classList.remove('flipped');
+      }
+    }
   });
 }
