@@ -491,22 +491,23 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  perspective: 2000px;
+  perspective: 2000px; 
   -webkit-perspective: 2000px;
   width: 100%;
   margin: 0 auto;
-  touch-action: pan-x pan-y;
+  /* PERMITE ZOOM Y GESTOS, PERO EVITA DESTELLOS AZULES */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .book {
   position: relative;
-  width: 100%;
-  max-width: 760px;
-  aspect-ratio: 1.41 / 1;
+  width: 100%; 
+  max-width: 760px; 
+  aspect-ratio: 1.41 / 1; 
   transform-style: preserve-3d;
-  touch-action: none;
-  -webkit-user-select: none;
-  user-select: none;
+  -webkit-transform-style: preserve-3d;
+  margin: 0 auto;
 }
 
 .album-page {
