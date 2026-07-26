@@ -229,12 +229,16 @@ main {
   flex-wrap: wrap;
 }
 
+.toolbar__row--search { gap: 12px; }
+
 /* --- Buscador --- */
+/* Línea propia y ancha: con el buscador metido junto a los selectores el
+   texto de ayuda se cortaba a media palabra. */
 .search-field {
   position: relative;
-  flex: 1 1 260px;
+  flex: 1 1 320px;
   min-width: 0;
-  max-width: 420px;
+  max-width: 560px;
 }
 
 .search-field__icon {
@@ -250,7 +254,8 @@ main {
 #search {
   width: 100%;
   height: var(--control-h);
-  padding: 0 38px;
+  /* Sin valor no hay botón de borrar: el hueco derecho solo lo ocupa el atajo. */
+  padding: 0 34px 0 36px;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--r-sm);
@@ -259,7 +264,40 @@ main {
   transition: border-color 0.15s var(--ease), background 0.15s var(--ease);
 }
 
-#search::placeholder { color: var(--text-mute); }
+.search-field.has-value #search { padding-right: 38px; }
+
+#search::placeholder {
+  color: var(--text-mute);
+  text-overflow: ellipsis;
+}
+
+/* Pista del atajo de teclado, se aparta cuando el campo está en uso */
+.search-field__kbd {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  min-width: 18px;
+  height: 19px;
+  padding: 0 5px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 3px;
+  background: var(--surface-2);
+  color: var(--text-mute);
+  font-size: 11px;
+  font-family: inherit;
+  line-height: 1;
+}
+
+.search-field.has-value .search-field__kbd,
+.search-field:focus-within .search-field__kbd { display: none; }
+
+@media (hover: none) {
+  .search-field__kbd { display: none; }
+}
 
 #search:focus {
   border-color: var(--accent);
@@ -406,6 +444,55 @@ main {
   background: var(--surface-3);
   color: #fff;
 }
+
+/* --- Barra de categorías --- */
+/* Muestra de un vistazo qué hay en la colección y cuánto, y filtra al pulsar. */
+.cat-bar {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.cat-bar::-webkit-scrollbar { display: none; }
+
+.cat-pill {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 34px;
+  padding: 0 11px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  color: var(--text-dim);
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background 0.15s var(--ease), border-color 0.15s var(--ease), color 0.15s var(--ease);
+}
+
+.cat-pill:hover { background: var(--surface-2); border-color: var(--line-strong); color: var(--text); }
+
+.cat-pill__icon { font-size: 13px; line-height: 1; }
+
+.cat-pill__n {
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: var(--surface-3);
+  color: var(--text-mute);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.cat-pill[aria-pressed='true'] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.cat-pill[aria-pressed='true'] .cat-pill__n { background: rgba(0, 0, 0, 0.25); color: #fff; }
 
 /* --- Chips de filtros activos --- */
 .active-filters {
@@ -576,6 +663,22 @@ main {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* Coincidencias de la búsqueda dentro del título */
+.card-title mark {
+  background: rgba(91, 124, 250, 0.28);
+  color: #fff;
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+/* Entrada suave solo de las tarjetas nuevas de cada tanda */
+.card.is-entering { animation: card-in 0.28s var(--ease-out) both; }
+
+@keyframes card-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
 }
 
 .card-subtitle {
@@ -912,6 +1015,13 @@ main {
 }
 .tag--accent { color: var(--text); }
 .tag--price { color: var(--text); font-weight: 600; }
+
+/* La franquicia es un enlace: lleva a la galería filtrada por ella */
+a.tag {
+  text-decoration: none;
+  transition: background 0.15s var(--ease), border-color 0.15s var(--ease), color 0.15s var(--ease);
+}
+a.tag:hover { background: var(--surface-3); border-color: var(--line-strong); color: #fff; }
 .tag small { color: var(--text-mute); font-weight: 400; }
 
 .info-grid {
@@ -1022,6 +1132,45 @@ main {
 }
 
 .section__hint { color: var(--text-mute); font-size: 13.5px; margin-bottom: 20px; }
+
+.section__more {
+  margin-left: auto;
+  color: var(--text-dim);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.section__more:hover { color: var(--accent-2); }
+
+/* --- Tira horizontal de objetos relacionados --- */
+.strip {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 175px;
+  gap: 12px;
+  margin-top: 16px;
+  padding-bottom: 8px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  overscroll-behavior-x: contain;
+}
+
+.strip__card { scroll-snap-align: start; }
+.strip__card .card-title { font-size: 13.5px; }
+.strip__card .card-meta { display: none; }
+
+@media (max-width: 860px) {
+  .strip { grid-auto-columns: 142px; gap: 10px; }
+}
+
+/* Contexto de la franquicia bajo el título de la ficha */
+.detail-context {
+  font-size: 13px;
+  color: var(--text-mute);
+  margin-top: 2px;
+}
+.detail-context strong { color: var(--text-dim); font-weight: 600; }
 
 /* =========================================================
    6. LECTOR DE ÁLBUM
@@ -1699,10 +1848,13 @@ body.no-scroll { overflow: hidden; }
   main { padding: 18px 14px 50px; }
 
   #filters { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; }
+  #filters .select-wrap:last-child { grid-column: 1 / -1; }
   .search-field { flex: 1 1 100%; max-width: none; }
   .toolbar__row { gap: 8px; }
-  .view-toggle { flex: 1 1 100%; }
-  .view-toggle button { flex: 1; justify-content: center; }
+  .view-toggle { flex: 0 0 auto; }
+  .view-toggle button { padding: 0 10px; }
+  .view-toggle button span { display: none; }
+  .cat-bar { margin: 0 -14px; padding: 0 14px 2px; }
 
   .collection-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 152px), 1fr)); gap: 10px; }
   .card { border-radius: var(--r-sm); }

@@ -3,6 +3,7 @@ import { renderAlbumFlip, destroyAlbumFlip } from './albumFlip.js';
 import { openLightbox } from './lightbox.js';
 import { catCorta, catIcono, etiquetaCampo, chevron } from './translations.js';
 import { formatPrice } from './dataLoader.js';
+import { renderStrip } from './renderer.js';
 
 const MAX_IMAGES = 24;
 
@@ -78,7 +79,7 @@ async function findImages(item) {
 export async function renderDetail(item, context = {}) {
   destroyAlbumFlip();
 
-  const { prev = null, next = null, onNavigate = null } = context;
+  const { prev = null, next = null, onNavigate = null, collection = [] } = context;
 
   // En la ficha no pintamos ni filtros, ni totales de la colección, ni el 3D.
   ['toolbar', 'items-counter', 'viewer3d', 'siteFooter'].forEach((id) => {
@@ -90,9 +91,21 @@ export async function renderDetail(item, context = {}) {
 
   const images = await findImages(item);
 
+  // --- Contexto: qué más hay de esta franquicia / categoría ---
+  const sameFranchise = item.franchise
+    ? collection.filter((entry) => entry.franchise === item.franchise && entry.id !== item.id)
+    : [];
+  const sameCategory = collection.filter((entry) => entry.category === item.category && entry.id !== item.id);
+
+  const franchiseTotal = item.franchise
+    ? collection.filter((entry) => entry.franchise === item.franchise).reduce((sum, entry) => sum + entry.totalValue, 0)
+    : 0;
+
   // --- Etiquetas destacadas ---
   const tags = [];
-  if (item.franchise) tags.push(`<span class="tag tag--accent">${catIcono(item.category)} ${escapeHtml(item.franchise)}</span>`);
+  if (item.franchise) {
+    tags.push(`<a class="tag tag--accent" href="?fran=${encodeURIComponent(item.franchise)}">${catIcono(item.category)} ${escapeHtml(item.franchise)}</a>`);
+  }
   if (item.year) tags.push(`<span class="tag">📅 ${escapeHtml(item.year)}</span>`);
   if (item.brand) tags.push(`<span class="tag">🏷️ ${escapeHtml(item.brand)}</span>`);
   if (item.condition) tags.push(`<span class="tag">${item.condition === 'Usado' ? '🟡' : '🟢'} ${escapeHtml(item.condition)}</span>`);
@@ -164,6 +177,13 @@ export async function renderDetail(item, context = {}) {
           <h1>${escapeHtml(item.name)}</h1>
           <p class="subtitle">${escapeHtml(item.franchise || item.brand || '')}</p>
 
+          ${item.franchise && sameFranchise.length ? `
+            <p class="detail-context">
+              <strong class="num">${sameFranchise.length + 1}</strong> objetos de ${escapeHtml(item.franchise)}
+              <span class="results-bar__sep">·</span>
+              <span class="num">${formatPrice(franchiseTotal)}</span> invertidos
+            </p>` : ''}
+
           <div class="detail-tags">${tags.join('')}</div>
           <div class="info-grid">${infoBlocks.join('')}</div>
 
@@ -211,6 +231,32 @@ export async function renderDetail(item, context = {}) {
     renderStickers('stickers-container', item.folder);
     if (!stickersWrapper.childElementCount) stickersWrapper.remove();
   }
+
+  // --- Objetos relacionados ---
+  addStrip(grid, `Más de ${item.franchise}`, sameFranchise, `?fran=${encodeURIComponent(item.franchise || '')}`);
+  // Si ya se ha visto casi toda la franquicia, la categoría aporta más.
+  if (sameFranchise.length < 12) {
+    const resto = sameCategory.filter((entry) => entry.franchise !== item.franchise);
+    addStrip(grid, `Más en ${catCorta(item.category)}`, resto, `?cat=${encodeURIComponent(item.category)}`);
+  }
+}
+
+/** Añade una tira horizontal de objetos relacionados, si hay suficientes. */
+function addStrip(grid, title, items, href) {
+  if (items.length < 2) return;
+
+  const section = document.createElement('section');
+  section.className = 'section';
+  section.innerHTML = `
+    <div class="section__head">
+      <h3 class="section__title">${escapeHtml(title)}</h3>
+      <span class="section__count">${items.length}</span>
+      ${items.length > 12 ? `<a class="section__more" href="${href}">Ver todos →</a>` : ''}
+    </div>
+  `;
+
+  renderStrip(section, items.slice(0, 12));
+  grid.appendChild(section);
 }
 
 function setupGallery(images, name) {

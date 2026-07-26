@@ -41,17 +41,24 @@
 
   <main>
     <div class="toolbar" id="toolbar">
-      <div class="toolbar__row">
+      <div class="toolbar__row toolbar__row--search">
         <div class="search-field" id="searchField">
           <span class="search-field__icon" aria-hidden="true">🔍</span>
           <input id="search" type="search" placeholder="Buscar por nombre, marca, año…" autocomplete="off" aria-label="Buscar en la colección">
           <button class="search-field__clear" id="searchClear" type="button" aria-label="Borrar búsqueda">✕</button>
+          <kbd class="search-field__kbd" aria-hidden="true">/</kbd>
         </div>
 
+        <div class="view-toggle" role="group" aria-label="Modo de vista">
+          <button type="button" id="viewGrid" aria-pressed="true">▦<span>Cuadrícula</span></button>
+          <button type="button" id="viewList" aria-pressed="false">☰<span>Lista</span></button>
+        </div>
+      </div>
+
+      <nav class="cat-bar" id="catBar" aria-label="Filtrar por categoría"></nav>
+
+      <div class="toolbar__row">
         <div id="filters">
-          <div class="select-wrap">
-            <select id="categoryFilter" aria-label="Filtrar por categoría"></select>
-          </div>
           <div class="select-wrap">
             <select id="franchiseFilter" aria-label="Filtrar por franquicia"></select>
           </div>
@@ -70,13 +77,8 @@
           </div>
         </div>
 
-        <div class="view-toggle" role="group" aria-label="Modo de vista">
-          <button type="button" id="viewGrid" aria-pressed="true">▦ Cuadrícula</button>
-          <button type="button" id="viewList" aria-pressed="false">☰ Lista</button>
-        </div>
+        <div class="active-filters" id="activeFilters"></div>
       </div>
-
-      <div class="active-filters" id="activeFilters"></div>
     </div>
 
     <div id="items-counter" class="results-bar" role="status" aria-live="polite"></div>

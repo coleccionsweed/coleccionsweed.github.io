@@ -105,7 +105,8 @@ function handleRoute() {
   const context = {
     prev: index > 0 ? filteredItems[index - 1] : null,
     next: index >= 0 && index < filteredItems.length - 1 ? filteredItems[index + 1] : null,
-    onNavigate: (target) => { window.location.hash = target.id; }
+    onNavigate: (target) => { window.location.hash = target.id; },
+    collection: allItems
   };
 
   window.scrollTo(0, 0);
