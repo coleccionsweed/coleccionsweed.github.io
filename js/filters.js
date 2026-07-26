@@ -58,6 +58,8 @@ export function setupFilters(items, onChange) {
   /**
    * Pastillas de categoría con el número de objetos que quedarían al pulsarlas
    * (es decir, contando el resto de filtros pero no la categoría actual).
+   * Van ordenadas de más a menos objetos, así que las categorías con más peso
+   * quedan siempre delante; a igualdad de cantidad, por orden alfabético.
    */
   function renderCatBar() {
     if (!catBar) return;
@@ -66,6 +68,11 @@ export function setupFilters(items, onChange) {
     const counts = new Map();
     base.forEach((item) => counts.set(item.category, (counts.get(item.category) || 0) + 1));
 
+    const ordenadas = categories
+      .map((category) => ({ category, count: counts.get(category) || 0 }))
+      .filter((entry) => entry.count > 0 || state.cat === entry.category)  // sin categorías vacías
+      .sort((a, b) => b.count - a.count || catCorta(a.category).localeCompare(catCorta(b.category), 'es'));
+
     const pills = [
       `<button class="cat-pill" type="button" data-cat="" aria-pressed="${!state.cat}">
          <span class="cat-pill__icon">✦</span>Todo
@@ -73,12 +80,9 @@ export function setupFilters(items, onChange) {
        </button>`
     ];
 
-    categories.forEach((category) => {
-      const count = counts.get(category) || 0;
-      const active = state.cat === category;
-      if (!count && !active) return;   // no ofrecemos categorías vacías
+    ordenadas.forEach(({ category, count }) => {
       pills.push(`
-        <button class="cat-pill" type="button" data-cat="${category}" aria-pressed="${active}">
+        <button class="cat-pill" type="button" data-cat="${category}" aria-pressed="${state.cat === category}">
           <span class="cat-pill__icon">${catIcono(category)}</span>${catCorta(category)}
           <span class="cat-pill__n num">${formatNumber(count)}</span>
         </button>
