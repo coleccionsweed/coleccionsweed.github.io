@@ -86,9 +86,21 @@ export function setupFilters(items, onChange) {
     });
 
     catBar.innerHTML = pills.join('');
+    updateCatFades();
+  }
+
+  /** Marca si la barra está desplazada o al final, para los degradados. */
+  function updateCatFades() {
+    if (!catBar) return;
+    const max = catBar.scrollWidth - catBar.clientWidth;
+    catBar.classList.toggle('is-scrolled', catBar.scrollLeft > 4);
+    catBar.classList.toggle('is-end', max <= 0 || catBar.scrollLeft >= max - 4);
   }
 
   if (catBar) {
+    catBar.addEventListener('scroll', updateCatFades, { passive: true });
+    window.addEventListener('resize', updateCatFades, { passive: true });
+
     catBar.addEventListener('click', (event) => {
       const pill = event.target.closest('[data-cat]');
       if (!pill) return;

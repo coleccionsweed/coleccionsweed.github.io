@@ -446,16 +446,14 @@ main {
 }
 
 /* --- Barra de categorías --- */
-/* Muestra de un vistazo qué hay en la colección y cuánto, y filtra al pulsar. */
+/* Muestra de un vistazo qué hay en la colección y cuánto, y filtra al pulsar.
+   En pantalla ancha se reparten en varias filas para que se vean TODAS; solo
+   en móvil, donde no caben de ninguna manera, pasan a desplazarse. */
 .cat-bar {
   display: flex;
+  flex-wrap: wrap;
   gap: 6px;
-  overflow-x: auto;
-  padding-bottom: 2px;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
 }
-.cat-bar::-webkit-scrollbar { display: none; }
 
 .cat-pill {
   flex: 0 0 auto;
@@ -1854,7 +1852,34 @@ body.no-scroll { overflow: hidden; }
   .view-toggle { flex: 0 0 auto; }
   .view-toggle button { padding: 0 10px; }
   .view-toggle button span { display: none; }
-  .cat-bar { margin: 0 -14px; padding: 0 14px 2px; }
+
+  /* En móvil se desplazan en una sola fila, de borde a borde de la pantalla.
+     El degradado del extremo avisa de que hay más y desaparece al llegar. */
+  .cat-bar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin: 0 -14px;
+    padding: 0 14px 2px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 26px), transparent);
+    mask-image: linear-gradient(to right, #000 calc(100% - 26px), transparent);
+  }
+  .cat-bar::-webkit-scrollbar { display: none; }
+
+  .cat-bar.is-scrolled {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 26px, #000 calc(100% - 26px), transparent);
+    mask-image: linear-gradient(to right, transparent, #000 26px, #000 calc(100% - 26px), transparent);
+  }
+
+  .cat-bar.is-end {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 26px);
+    mask-image: linear-gradient(to right, transparent, #000 26px);
+  }
+  .cat-bar.is-end:not(.is-scrolled) {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
 
   .collection-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 152px), 1fr)); gap: 10px; }
   .card { border-radius: var(--r-sm); }
