@@ -4,6 +4,8 @@
  * desplazar la imagen ampliada, deslizar para cambiar y teclado.
  */
 
+import { chevron } from './translations.js';
+
 const MAX_SCALE = 5;
 const MIN_SCALE = 1;
 
@@ -35,8 +37,8 @@ export function openLightbox({ items, index = 0, hint = '' }) {
       <img class="lightbox__img" alt="" draggable="false">
     </div>
     <button class="lightbox__close" type="button" aria-label="Cerrar (Esc)">✕</button>
-    <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Anterior">‹</button>
-    <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Siguiente">›</button>
+    <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Anterior">${chevron('left')}</button>
+    <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Siguiente">${chevron('right')}</button>
     <div class="lightbox__bar">
       <b class="lightbox__label"></b>
       <span class="lightbox__hint">${hint || 'Rueda o pinza para ampliar · doble toque para acercar'}</span>

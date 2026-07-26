@@ -1,7 +1,7 @@
 import { renderStickers } from './stickers.js';
 import { renderAlbumFlip, destroyAlbumFlip } from './albumFlip.js';
 import { openLightbox } from './lightbox.js';
-import { catCorta, catIcono, etiquetaCampo } from './translations.js';
+import { catCorta, catIcono, etiquetaCampo, chevron } from './translations.js';
 import { formatPrice } from './dataLoader.js';
 
 const MAX_IMAGES = 24;
@@ -79,14 +79,14 @@ export async function renderDetail(item, context = {}) {
   destroyAlbumFlip();
 
   const { prev = null, next = null, onNavigate = null } = context;
-  const viewer = document.getElementById('viewer3d');
-  if (viewer) viewer.classList.add('hidden');
+
+  // En la ficha no pintamos ni filtros, ni totales de la colección, ni el 3D.
+  ['toolbar', 'items-counter', 'viewer3d', 'siteFooter'].forEach((id) => {
+    const node = document.getElementById(id);
+    if (node) node.classList.add('hidden');
+  });
 
   const grid = document.getElementById('collectionGrid');
-  const toolbar = document.getElementById('toolbar');
-  const counter = document.getElementById('items-counter');
-  if (toolbar) toolbar.classList.add('hidden');
-  if (counter) counter.classList.add('hidden');
 
   const images = await findImages(item);
 
@@ -131,21 +131,21 @@ export async function renderDetail(item, context = {}) {
   grid.innerHTML = `
     <div class="detail-container">
       <div class="detail-header">
-        <button id="backBtn" class="back-btn" type="button">← Volver a la galería</button>
+        <button id="backBtn" class="back-btn" type="button">${chevron('left')} Volver a la galería</button>
         <div class="detail-nav">
-          <button id="prevItem" type="button" aria-label="Objeto anterior" ${prev ? '' : 'disabled'}>‹</button>
-          <button id="nextItem" type="button" aria-label="Objeto siguiente" ${next ? '' : 'disabled'}>›</button>
+          <button id="prevItem" type="button" aria-label="Objeto anterior" ${prev ? '' : 'disabled'}>${chevron('left')}</button>
+          <button id="nextItem" type="button" aria-label="Objeto siguiente" ${next ? '' : 'disabled'}>${chevron('right')}</button>
         </div>
       </div>
 
       <div class="detail">
         <div class="gallery">
           <div class="slider" id="slider">
-            <button class="nav prev" type="button" aria-label="Imagen anterior" ${images.length <= 1 ? 'hidden' : ''}>‹</button>
+            <button class="nav prev" type="button" aria-label="Imagen anterior" ${images.length <= 1 ? 'hidden' : ''}>${chevron('left')}</button>
             <div class="slider-window">
               <img id="sliderImage" src="${images[0]}" alt="${escapeHtml(item.name)}" draggable="false">
             </div>
-            <button class="nav next" type="button" aria-label="Imagen siguiente" ${images.length <= 1 ? 'hidden' : ''}>›</button>
+            <button class="nav next" type="button" aria-label="Imagen siguiente" ${images.length <= 1 ? 'hidden' : ''}>${chevron('right')}</button>
             <button class="slider__zoom" id="sliderZoom" type="button" aria-label="Ver a pantalla completa">⤢</button>
             ${images.length > 1 ? `<span class="slider__count num" id="sliderCount">1 / ${images.length}</span>` : ''}
           </div>

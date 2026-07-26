@@ -14,6 +14,7 @@
  */
 
 import { openLightbox } from './lightbox.js';
+import { chevron } from './translations.js';
 
 const albumEscaneadoConfigs = {
   'la-liga-04-05-coleccion-incompleta': 53
@@ -72,9 +73,9 @@ function createReader(container, pages, albumName) {
       <p class="section__hint" id="albumHint"></p>
 
       <div class="album__stage" id="albumStage">
-        <button class="album__arrow album__arrow--prev" id="albumPrev" type="button" aria-label="Página anterior">‹</button>
+        <button class="album__arrow album__arrow--prev" id="albumPrev" type="button" aria-label="Página anterior">${chevron('left')}</button>
         <div id="albumSurface"></div>
-        <button class="album__arrow album__arrow--next" id="albumNext" type="button" aria-label="Página siguiente">›</button>
+        <button class="album__arrow album__arrow--next" id="albumNext" type="button" aria-label="Página siguiente">${chevron('right')}</button>
       </div>
 
       <div class="album__bar">

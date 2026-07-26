@@ -81,6 +81,16 @@ export const etiquetasCampo = {
   franchise: 'Franquicia'
 };
 
+/**
+ * Flechas en SVG. Los caracteres ‹ › no se centran igual en cada tipografía y
+ * quedaban descolocados dentro del círculo; un trazo vectorial siempre cae en
+ * el centro exacto.
+ */
+export function chevron(direction = 'right') {
+  const path = direction === 'left' ? 'M15 5 L8 12 L15 19' : 'M9 5 L16 12 L9 19';
+  return `<svg class="chev" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="${path}"/></svg>`;
+}
+
 /** Traduce de forma segura: si no existe la clave, devuelve el original. */
 export function t(palabra) {
   return diccionario[palabra] || palabra;

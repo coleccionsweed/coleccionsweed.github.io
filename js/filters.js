@@ -72,8 +72,10 @@ export function setupFilters(items, onChange) {
     window.history.replaceState(null, '', url);
   }
 
-  // --- Contador de resultados con valor acumulado ---
-  function updateCounter(shown) {
+  // --- Resumen de resultados ---
+  // Siempre sobre el total filtrado, nunca sobre lo que se lleva cargado:
+  // el scroll infinito iría cambiando la cifra y no significa nada.
+  function updateCounter() {
     if (!counter) return;
 
     if (!filtered.length) {
@@ -83,17 +85,13 @@ export function setupFilters(items, onChange) {
 
     const value = filtered.reduce((sum, item) => sum + item.totalValue, 0);
     const units = filtered.reduce((sum, item) => sum + item.quantity, 0);
-    const isPartial = filtered.length !== totalAbsoluto;
 
     counter.innerHTML = `
-      <span>Mostrando <strong class="num">${formatNumber(shown)}</strong> de
-        <strong class="num">${formatNumber(filtered.length)}</strong>
-        ${isPartial ? `objetos <span class="results-bar__sep">·</span> ${formatNumber(totalAbsoluto)} en total` : 'objetos'}
-      </span>
+      <span><strong class="num">${formatNumber(filtered.length)}</strong> objetos</span>
       <span class="results-bar__sep">·</span>
       <span><strong class="num">${formatNumber(units)}</strong> unidades</span>
       <span class="results-bar__sep">·</span>
-      <span>Valor: <span class="results-bar__value num">${formatPrice(value)}</span></span>
+      <span><span class="results-bar__value num">${formatPrice(value)}</span></span>
     `;
   }
 
@@ -181,9 +179,8 @@ export function setupFilters(items, onChange) {
   }
 
   function emit() {
-    const slice = filtered.slice(0, limit);
-    updateCounter(slice.length);
-    onChange(slice, filtered);
+    updateCounter();
+    onChange(filtered.slice(0, limit), filtered);
   }
 
   function loadMore() {

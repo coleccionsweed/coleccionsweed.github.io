@@ -74,13 +74,10 @@ function setupViewToggle() {
 function showListView() {
   destroyAlbumFlip();
 
-  const toolbar = document.getElementById('toolbar');
-  const counter = document.getElementById('items-counter');
-  const viewer = document.getElementById('viewer3d');
-
-  if (toolbar) toolbar.classList.remove('hidden');
-  if (counter) counter.classList.remove('hidden');
-  if (viewer) viewer.classList.remove('hidden');
+  ['toolbar', 'items-counter', 'viewer3d', 'siteFooter'].forEach((id) => {
+    const node = document.getElementById(id);
+    if (node) node.classList.remove('hidden');
+  });
 
   renderItems(visibleItems);
   requestAnimationFrame(() => window.scrollTo(0, savedScroll));
