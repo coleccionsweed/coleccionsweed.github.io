@@ -146,7 +146,7 @@ export async function initStatsPage() {
 
     <div class="kpi-grid">
       ${kpi('Total invertido', formatPrice(totalValue), 'Precio × cantidad')}
-      ${kpi('Objetos distintos', formatNumber(items.length), `${formatNumber(totalUnits)} unidades con repetidos`)}
+      ${kpi('Objetos distintos', formatNumber(items.length), `${formatNumber(totalUnits)} uds. con repetidos`)}
       ${kpi('Precio medio', formatPrice(avgPrice), `Mediana ${formatPrice(medianPrice)}`)}
       ${kpi('Objeto más caro', formatPrice(mostExpensive.priceValue), escapeHtml(mostExpensive.name))}
       ${kpi('Categoría líder', `${catIcono(topCategory.key)} ${escapeHtml(catCorta(topCategory.key))}`, `${formatNumber(topCategory.units)} unidades`)}
