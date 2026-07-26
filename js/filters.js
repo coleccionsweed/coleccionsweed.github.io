@@ -19,9 +19,7 @@ export function setupFilters(items, onChange) {
   const counter = document.getElementById('items-counter');
   const chips = document.getElementById('activeFilters');
   const sentinel = document.getElementById('loadMoreSentinel');
-  const footerTotal = document.getElementById('footerTotal');
 
-  const totalAbsoluto = items.length;
   let filtered = [];
   let limit = PAGE_SIZE;
 
@@ -246,11 +244,6 @@ export function setupFilters(items, onChange) {
   [category, franchise, brand, sortOrder].forEach((control) => {
     control.addEventListener('change', () => apply());
   });
-
-  if (footerTotal) {
-    const totalValue = items.reduce((sum, item) => sum + item.totalValue, 0);
-    footerTotal.textContent = `${formatNumber(totalAbsoluto)} objetos · ${formatPrice(totalValue)}`;
-  }
 
   readUrl();
   apply();

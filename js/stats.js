@@ -204,15 +204,15 @@ export async function initStatsPage() {
 
       <div class="panel panel--wide">
         <div class="panel__title">Resumen por categoría</div>
-        <div style="overflow-x: auto;">
+        <div class="table-scroll">
           <table class="data-table">
             <thead>
               <tr>
                 <th>Categoría</th>
                 <th>Objetos</th>
-                <th>Unidades</th>
-                <th>Precio medio</th>
-                <th>% del gasto</th>
+                <th class="col-opt">Unidades</th>
+                <th class="col-opt">Precio medio</th>
+                <th class="col-opt">% del gasto</th>
                 <th>Invertido</th>
               </tr>
             </thead>
@@ -221,9 +221,9 @@ export async function initStatsPage() {
                 <tr>
                   <td class="cell-name">${catIcono(row.key)} ${escapeHtml(catCorta(row.key))}</td>
                   <td class="cell-num">${formatNumber(row.items)}</td>
-                  <td class="cell-num">${formatNumber(row.units)}</td>
-                  <td class="cell-num">${formatPrice(row.items ? row.value / row.units : 0)}</td>
-                  <td class="cell-num">${totalValue ? ((row.value / totalValue) * 100).toFixed(1) : '0'} %</td>
+                  <td class="cell-num col-opt">${formatNumber(row.units)}</td>
+                  <td class="cell-num col-opt">${formatPrice(row.units ? row.value / row.units : 0)}</td>
+                  <td class="cell-num col-opt">${totalValue ? ((row.value / totalValue) * 100).toFixed(1) : '0'} %</td>
                   <td class="cell-num">${formatPrice(row.value)}</td>
                 </tr>
               `).join('')}
@@ -262,20 +262,30 @@ export async function initStatsPage() {
 
       <div class="panel panel--wide">
         <div class="panel__title">Objetos más valiosos</div>
-        <table class="data-table">
-          <thead><tr><th class="cell-rank">#</th><th>Objeto</th><th>Categoría</th><th>Año</th><th>Valor</th></tr></thead>
-          <tbody>
-            ${topItems.map((item, index) => `
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
               <tr>
-                <td class="cell-rank">${index + 1}</td>
-                <td class="cell-name"><a href="/#${item.id}">${escapeHtml(item.name)}</a></td>
-                <td>${escapeHtml(catCorta(item.category))}</td>
-                <td class="cell-num">${item.year || '—'}</td>
-                <td class="cell-num">${formatPrice(item.totalValue)}</td>
+                <th class="cell-rank">#</th>
+                <th>Objeto</th>
+                <th class="col-opt">Categoría</th>
+                <th class="col-opt">Año</th>
+                <th>Valor</th>
               </tr>
-            `).join('')}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              ${topItems.map((item, index) => `
+                <tr>
+                  <td class="cell-rank">${index + 1}</td>
+                  <td class="cell-name"><a href="/#${item.id}">${escapeHtml(item.name)}</a></td>
+                  <td class="col-opt">${escapeHtml(catCorta(item.category))}</td>
+                  <td class="cell-num col-opt">${item.year || '—'}</td>
+                  <td class="cell-num">${formatPrice(item.totalValue)}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   `;

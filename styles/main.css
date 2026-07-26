@@ -1148,11 +1148,14 @@ main {
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
   z-index: var(--z-normal);
-  transition: transform 0.62s var(--ease), z-index 0s 0.31s;
+  /* Sin `will-change` fijo ni conmutado: promoverla y degradarla en cada giro
+     obligaba a repintar la hoja y era lo que hacía aparecer la sombra tarde.
+     El navegador ya crea la capa solo mientras dura la transición. */
+  transition: transform var(--flip-duration, 620ms) var(--ease);
 }
 
-/* Solo la hoja en movimiento pide capa a la GPU */
-.album-page.is-turning { will-change: transform; }
+/* Saltos de varias hojas (barra deslizante): se colocan sin animar */
+.album__book-inner.is-jumping .album-page { transition: none; }
 
 .page-front,
 .page-back {
@@ -1163,8 +1166,6 @@ main {
   background: var(--surface);
   border-radius: 0 3px 3px 0;
   overflow: hidden;
-  /* Sombra interior mínima: solo para insinuar el pliegue del lomo */
-  box-shadow: inset 4px 0 10px -6px rgba(0, 0, 0, 0.6);
 }
 
 .page-front img,
@@ -1179,7 +1180,6 @@ main {
   transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
   border-radius: 3px 0 0 3px;
-  box-shadow: inset -4px 0 10px -6px rgba(0, 0, 0, 0.6);
 }
 
 .page-empty { width: 100%; height: 100%; background: var(--surface-2); }
@@ -1580,6 +1580,15 @@ body.no-scroll { overflow: hidden; }
 .chart-box--donut { max-width: 330px; margin: 0 auto; aspect-ratio: 1; height: auto; }
 
 /* --- Tablas de datos --- */
+/* Si aun así no cabe, la tabla se desplaza dentro de su caja: nunca empuja
+   la página hacia la derecha. */
+.table-scroll {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .data-table { width: 100%; border-collapse: collapse; font-size: 14px; }
 
 .data-table th {
@@ -1713,7 +1722,18 @@ body.no-scroll { overflow: hidden; }
   .panel { padding: 16px 15px 18px; }
   .chart-box { height: 260px; }
   .data-table { font-size: 13px; }
-  .data-table .cell-name { max-width: 150px; }
+
+  /* En móvil dejamos solo lo esencial: nombre y cifra. Las columnas
+     secundarias se ocultan y el nombre parte de línea, en vez de estirar
+     la tabla hacia la derecha. */
+  .data-table .col-opt { display: none; }
+  .data-table th,
+  .data-table td { padding-right: 8px; }
+  .data-table .cell-name {
+    max-width: none;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
   .viewer-3d__canvas { height: 280px; }
   .section { margin-top: 34px; padding-top: 26px; }
 }

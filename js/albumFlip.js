@@ -24,6 +24,7 @@ const MODE_KEY = 'sweed:album-mode';
 const SPREAD_MIN_WIDTH = 820;   // por debajo de esto, una sola página
 const LOAD_WINDOW = 2;          // páginas cargadas a cada lado
 const KEEP_WINDOW = 8;          // páginas que se conservan antes de liberar
+const FLIP_MS = 620;            // debe coincidir con --flip-duration del CSS
 
 let active = null;
 
@@ -89,6 +90,7 @@ function createReader(container, pages, albumName) {
   `;
 
   const section = container.querySelector('.album');
+  section.style.setProperty('--flip-duration', `${FLIP_MS}ms`);
   const stage = container.querySelector('#albumStage');
   const surface = container.querySelector('#albumSurface');
   const hint = container.querySelector('#albumHint');
@@ -255,6 +257,10 @@ function createReader(container, pages, albumName) {
   }
 
   function paint({ animate = true } = {}) {
+    // Primero las imágenes: así la hoja que va a girar ya tiene su foto puesta
+    // y no aparece a medio giro.
+    paintWindow();
+
     if (mode === 'single') {
       const track = surface.querySelector('#albumTrack');
       if (track) {
@@ -265,22 +271,57 @@ function createReader(container, pages, albumName) {
         if (animate) animTimer = setTimeout(() => track.classList.remove('is-animating'), 380);
       }
     } else {
-      const flipped = flippedCount();
-      surface.querySelectorAll('.album-page').forEach((sheet, index) => {
-        const shouldFlip = index < flipped;
-        if (sheet.classList.contains('flipped') === shouldFlip) return;
-        sheet.classList.toggle('flipped', shouldFlip);
-        // will-change solo mientras gira: evita 27 capas GPU permanentes.
-        sheet.classList.add('is-turning');
-        setTimeout(() => sheet.classList.remove('is-turning'), 700);
-      });
+      paintSpread(animate);
     }
 
-    paintWindow();
     counter.innerHTML = `${visibleLabel()} <small>/ ${total}</small>`;
     scrub.value = String(page);
     prevBtn.disabled = atStart();
     nextBtn.disabled = atEnd();
+  }
+
+  /**
+   * Coloca las hojas del libro.
+   *
+   * El z-index de la hoja que gira se sube a mano durante el giro en vez de
+   * conmutarlo a mitad de la animación con un `transition: z-index`: ese salto
+   * era lo que producía el parpadeo. Y si cambian varias hojas de golpe (al
+   * arrastrar la barra) se aplica sin animación, porque ver 20 páginas girando
+   * a la vez no aporta nada y satura la GPU.
+   */
+  function paintSpread(animate) {
+    const flipped = flippedCount();
+    const sheets = surface.querySelectorAll('.album-page');
+    const cambian = [];
+
+    sheets.forEach((sheet, index) => {
+      const shouldFlip = index < flipped;
+      if (sheet.classList.contains('flipped') !== shouldFlip) cambian.push([sheet, shouldFlip]);
+    });
+
+    if (!cambian.length) return;
+
+    const book = surface.querySelector('#albumBook');
+    const salto = !animate || cambian.length > 1;
+
+    if (salto && book) book.classList.add('is-jumping');
+
+    cambian.forEach(([sheet, shouldFlip]) => {
+      sheet.classList.toggle('flipped', shouldFlip);
+
+      if (salto) return;
+      // Hoja en movimiento siempre por encima del resto mientras dura el giro.
+      sheet.style.zIndex = String(sheetCount + 10);
+      clearTimeout(sheet.dataset.timer);
+      const timer = setTimeout(() => { sheet.style.zIndex = ''; }, FLIP_MS);
+      sheet.dataset.timer = String(timer);
+    });
+
+    if (salto && book) {
+      // Forzamos el reflujo para que el cambio se aplique sin transición.
+      void book.offsetWidth;
+      book.classList.remove('is-jumping');
+    }
   }
 
   function measure() {
