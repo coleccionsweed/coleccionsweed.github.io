@@ -1,134 +1,262 @@
 // js/filters.js
-import { t } from './translations.js';
+import { t, catCorta } from './translations.js';
+import { formatPrice, formatNumber } from './dataLoader.js';
 
+const PAGE_SIZE = 24;
+
+/**
+ * Monta buscador, filtros, orden y scroll infinito.
+ * `onChange(items)` recibe siempre el trozo visible de la lista ya filtrada.
+ */
 export function setupFilters(items, onChange) {
-
   const category = document.getElementById('categoryFilter');
   const franchise = document.getElementById('franchiseFilter');
+  const brand = document.getElementById('brandFilter');
   const sortOrder = document.getElementById('sortOrder');
   const search = document.getElementById('search');
-  const counterContainer = document.getElementById('items-counter');
+  const searchField = document.getElementById('searchField');
+  const searchClear = document.getElementById('searchClear');
+  const counter = document.getElementById('items-counter');
+  const chips = document.getElementById('activeFilters');
+  const sentinel = document.getElementById('loadMoreSentinel');
+  const footerTotal = document.getElementById('footerTotal');
 
-  // Guardamos el total real de la colección (esto no cambia nunca)
   const totalAbsoluto = items.length;
-  
-  let itemsFiltradosYOrdenados = [];
-  let limiteActual = 20; 
+  let filtered = [];
+  let limit = PAGE_SIZE;
 
-  // --- Inicialización de los selectores ---
-  const categories = [...new Set(items.map(i => i.category))]
-    .filter(Boolean)
-    .sort((a, b) => t(a).localeCompare(t(b)));
+  // --- Rellenado de los selectores ---
+  function fillSelect(select, values, placeholderKey, translate) {
+    const options = values
+      .filter(Boolean)
+      .filter((value, index, all) => all.indexOf(value) === index)
+      .sort((a, b) => translate(a).localeCompare(translate(b), 'es'));
 
-  const franchises = [...new Set(items.map(i => i.franchise))]
-    .filter(Boolean)
-    .sort((a, b) => t(a).localeCompare(t(b)));
-
-  category.innerHTML = `<option value="">${t('Category')}</option>` +
-    categories.map(c => `<option value="${c}">${t(c)}</option>`).join('');
-
-  franchise.innerHTML = `<option value="">${t('Franchise')}</option>` +
-    franchises.map(f => `<option value="${f}">${t(f)}</option>`).join('');
-
-  // --- Funciones auxiliares ---
-  function parsePrice(priceStr) {
-    if (!priceStr) return 0;
-    const clean = priceStr.replace('€', '').replace(',', '.').trim();
-    const parsed = parseFloat(clean);
-    return isNaN(parsed) ? 0 : parsed;
+    select.innerHTML =
+      `<option value="">${t(placeholderKey)}</option>` +
+      options.map((value) => `<option value="${value}">${translate(value)}</option>`).join('');
   }
 
-  function actualizarContador(mostrados, totalGeneral) {
-    if (!counterContainer) return;
-    
-    if (mostrados === 0) {
-      counterContainer.textContent = "No se encontraron objetos";
-    } else {
-      // Muestra: "Mostrando X de Y objetos"
-      counterContainer.textContent = `Mostrando ${mostrados} de ${totalGeneral} objetos`;
-    }
-  }
+  fillSelect(category, items.map((i) => i.category), 'Category', catCorta);
+  fillSelect(franchise, items.map((i) => i.franchise), 'Franchise', (v) => v);
+  fillSelect(brand, items.map((i) => i.brand), 'Brand', (v) => v);
 
-  // --- Lógica de Scroll Infinito ---
-  window.onscroll = () => {
-    if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 100) {
-      if (limiteActual < itemsFiltradosYOrdenados.length) {
-        limiteActual += 20; 
-        
-        const porciones = itemsFiltradosYOrdenados.slice(0, limiteActual);
-        onChange(porciones);
-
-        // Actualizamos el contador con los nuevos cargados vs el total de la base de datos
-        actualizarContador(porciones.length, totalAbsoluto);
-      }
-    }
+  // --- Estado en la URL: los filtros se pueden compartir y sobreviven al F5 ---
+  const controls = {
+    q: search,
+    cat: category,
+    fran: franchise,
+    brand,
+    sort: sortOrder
   };
 
-  // --- Lógica principal de filtrado y ordenación ---
-  function apply() {
-    limiteActual = 20; 
-
-	// 1. Filtrado
-    let result = items.filter(i => {
-      const searchTerm = search.value ? search.value.toLowerCase().trim() : '';
-      
-      const matchesCategory = !category.value || i.category === category.value;
-      const matchesFranchise = !franchise.value || i.franchise === franchise.value;
-      
-      let matchesSearch = true;
-      if (searchTerm) {
-        // Campos para buscar de forma segura
-        const fieldsToSearch = [
-          i.name,
-          i.franchise,
-          i.platform,
-          i.brand,
-          i.year
-        ];
-
-        // Comprobamos si alguno de los campos existentes contiene el texto
-        matchesSearch = fieldsToSearch.some(field => {
-          if (field === undefined || field === null) return false;
-          return field.toString().toLowerCase().includes(searchTerm);
-        });
-      }
-
-      return matchesCategory && matchesFranchise && matchesSearch;
+  function readUrl() {
+    const params = new URLSearchParams(window.location.search);
+    Object.entries(controls).forEach(([key, control]) => {
+      const value = params.get(key);
+      if (value === null) return;
+      // Solo aceptamos valores que existan de verdad en el selector.
+      if (control.tagName === 'SELECT' && !Array.from(control.options).some((o) => o.value === value)) return;
+      control.value = value;
     });
-
-    // 2. Ordenación (Corregido: Si no hay valor o es name-asc, ordena A-Z)
-    const order = sortOrder.value;
-    if (order === 'name-desc') {
-      result.sort((a, b) => (b.name || '').localeCompare(a.name || ''));
-    } else if (order === 'price-asc') {
-      result.sort((a, b) => parsePrice(a.purchasePrice) - parsePrice(b.purchasePrice));
-    } else if (order === 'price-desc') {
-      result.sort((a, b) => parsePrice(b.purchasePrice) - parsePrice(a.purchasePrice));
-    } else if (order === 'year-asc') {
-      result.sort((a, b) => parseInt(a.year || 0, 10) - parseInt(b.year || 0, 10));
-    } else if (order === 'year-desc') {
-      result.sort((a, b) => parseInt(b.year || 0, 10) - parseInt(a.year || 0, 10));
-    } else {
-      // Por defecto (cuando está vacío "Ordenar por..." o se selecciona "name-asc") ordena de la A a la Z
-      result.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
-    }
-
-    itemsFiltradosYOrdenados = result;
-    const primeraTanda = itemsFiltradosYOrdenados.slice(0, limiteActual);
-
-    // 3. Actualizar contador usando el total absoluto
-    actualizarContador(primeraTanda.length, totalAbsoluto);
-
-    // 4. Enviar resultados al renderizador
-    onChange(primeraTanda);
   }
 
+  function writeUrl() {
+    const params = new URLSearchParams();
+    Object.entries(controls).forEach(([key, control]) => {
+      const value = control.value.trim ? control.value.trim() : control.value;
+      if (value && !(key === 'sort' && value === 'name-asc')) params.set(key, value);
+    });
+    const query = params.toString();
+    const url = `${window.location.pathname}${query ? '?' + query : ''}${window.location.hash}`;
+    window.history.replaceState(null, '', url);
+  }
+
+  // --- Contador de resultados con valor acumulado ---
+  function updateCounter(shown) {
+    if (!counter) return;
+
+    if (!filtered.length) {
+      counter.innerHTML = '<span>Sin resultados</span>';
+      return;
+    }
+
+    const value = filtered.reduce((sum, item) => sum + item.totalValue, 0);
+    const units = filtered.reduce((sum, item) => sum + item.quantity, 0);
+    const isPartial = filtered.length !== totalAbsoluto;
+
+    counter.innerHTML = `
+      <span>Mostrando <strong class="num">${formatNumber(shown)}</strong> de
+        <strong class="num">${formatNumber(filtered.length)}</strong>
+        ${isPartial ? `objetos <span class="results-bar__sep">·</span> ${formatNumber(totalAbsoluto)} en total` : 'objetos'}
+      </span>
+      <span class="results-bar__sep">·</span>
+      <span><strong class="num">${formatNumber(units)}</strong> unidades</span>
+      <span class="results-bar__sep">·</span>
+      <span>Valor: <span class="results-bar__value num">${formatPrice(value)}</span></span>
+    `;
+  }
+
+  // --- Chips de filtros activos ---
+  function renderChips() {
+    if (!chips) return;
+
+    const activos = [
+      { key: 'cat', label: 'Categoría', control: category, text: catCorta(category.value) },
+      { key: 'fran', label: 'Franquicia', control: franchise, text: franchise.value },
+      { key: 'brand', label: 'Marca', control: brand, text: brand.value },
+      { key: 'q', label: 'Búsqueda', control: search, text: search.value.trim() }
+    ].filter((entry) => entry.control.value.trim());
+
+    [category, franchise, brand].forEach((select) => {
+      select.classList.toggle('is-active', Boolean(select.value));
+    });
+
+    if (!activos.length) {
+      chips.innerHTML = '';
+      return;
+    }
+
+    chips.innerHTML =
+      activos
+        .map(
+          (entry) => `
+        <span class="chip">
+          <span class="chip__label">${entry.label}:</span>${entry.text}
+          <button type="button" data-clear="${entry.key}" aria-label="Quitar filtro ${entry.label}">✕</button>
+        </span>`
+        )
+        .join('') +
+      (activos.length > 1 ? '<button class="chip chip--reset" type="button" data-clear="all">Limpiar todo</button>' : '');
+  }
+
+  if (chips) {
+    chips.addEventListener('click', (event) => {
+      const target = event.target.closest('[data-clear]');
+      if (!target) return;
+      const key = target.dataset.clear;
+      if (key === 'all') {
+        category.value = '';
+        franchise.value = '';
+        brand.value = '';
+        search.value = '';
+      } else {
+        controls[key].value = '';
+      }
+      apply();
+    });
+  }
+
+  // --- Ordenación ---
+  const sorters = {
+    'name-asc': (a, b) => a.name.localeCompare(b.name, 'es'),
+    'name-desc': (a, b) => b.name.localeCompare(a.name, 'es'),
+    'price-asc': (a, b) => a.priceValue - b.priceValue || a.name.localeCompare(b.name, 'es'),
+    'price-desc': (a, b) => b.priceValue - a.priceValue || a.name.localeCompare(b.name, 'es'),
+    'year-asc': (a, b) => (a.yearValue ?? 9999) - (b.yearValue ?? 9999) || a.name.localeCompare(b.name, 'es'),
+    'year-desc': (a, b) => (b.yearValue ?? -1) - (a.yearValue ?? -1) || a.name.localeCompare(b.name, 'es')
+  };
+
+  // --- Filtrado principal ---
+  function apply({ resetLimit = true } = {}) {
+    if (resetLimit) limit = PAGE_SIZE;
+
+    const term = search.value.trim().toLowerCase();
+    const words = term ? term.split(/\s+/) : [];
+
+    filtered = items.filter((item) => {
+      if (category.value && item.category !== category.value) return false;
+      if (franchise.value && item.franchise !== franchise.value) return false;
+      if (brand.value && item.brand !== brand.value) return false;
+      // Todas las palabras deben aparecer: "panini 2004" funciona.
+      return words.every((word) => item.searchText.includes(word));
+    });
+
+    filtered.sort(sorters[sortOrder.value] || sorters['name-asc']);
+
+    if (searchField) searchField.classList.toggle('has-value', Boolean(search.value));
+    renderChips();
+    writeUrl();
+    emit();
+  }
+
+  function emit() {
+    const slice = filtered.slice(0, limit);
+    updateCounter(slice.length);
+    onChange(slice, filtered);
+  }
+
+  function loadMore() {
+    if (limit >= filtered.length) return false;
+    limit += PAGE_SIZE;
+    emit();
+    return true;
+  }
+
+  // --- Scroll infinito ---
+  // El sentinel con IntersectionObserver es el mecanismo principal; el listener
+  // de scroll queda como red de seguridad (el observador no vuelve a avisar si
+  // el sentinel sigue visible sin cambiar de estado).
+  const MARGIN = 600;
+
+  function nearBottom() {
+    if (sentinel) {
+      const rect = sentinel.getBoundingClientRect();
+      return rect.top <= window.innerHeight + MARGIN;
+    }
+    return window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - MARGIN;
+  }
+
+  function fillViewport() {
+    if (window.location.hash) return;   // en la vista de detalle no cargamos más
+    let guard = 0;
+    while (guard++ < 10 && nearBottom() && loadMore()) { /* seguir llenando */ }
+  }
+
+  if (sentinel && window.IntersectionObserver) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) fillViewport();
+      },
+      { rootMargin: `${MARGIN}px 0px` }
+    );
+    observer.observe(sentinel);
+  }
+
+  let scrollQueued = false;
+  window.addEventListener('scroll', () => {
+    if (scrollQueued) return;
+    scrollQueued = true;
+    setTimeout(() => {
+      scrollQueued = false;
+      fillViewport();
+    }, 90);
+  }, { passive: true });
+
   // --- Listeners ---
-  category.onchange = apply;
-  franchise.onchange = apply;
-  sortOrder.onchange = apply;
-  search.oninput = apply;
-  
-  // Ejecución inicial para que al entrar ya se vea el estado correcto y ordenado de la A-Z
+  let debounce = null;
+  search.addEventListener('input', () => {
+    clearTimeout(debounce);
+    debounce = setTimeout(apply, 140);
+  });
+  if (searchClear) {
+    searchClear.addEventListener('click', () => {
+      search.value = '';
+      search.focus();
+      apply();
+    });
+  }
+  [category, franchise, brand, sortOrder].forEach((control) => {
+    control.addEventListener('change', () => apply());
+  });
+
+  if (footerTotal) {
+    const totalValue = items.reduce((sum, item) => sum + item.totalValue, 0);
+    footerTotal.textContent = `${formatNumber(totalAbsoluto)} objetos · ${formatPrice(totalValue)}`;
+  }
+
+  readUrl();
   apply();
+
+  return { apply: () => apply({ resetLimit: false }) };
 }

@@ -1,178 +1,405 @@
 // js/stats.js
-import { loadCollection } from './dataLoader.js';
-import { t } from './translations.js';
+import { loadCollection, formatPrice, formatNumber } from './dataLoader.js';
+import { catCorta, catIcono } from './translations.js';
 import { inicializarVisor } from './visor3d.js';
 
-let charts = { categories: null };
+const PALETTE = [
+  '#6366f1', '#22d3ee', '#10b981', '#f59e0b', '#ef4444',
+  '#ec4899', '#a855f7', '#84cc16', '#f97316', '#14b8a6',
+  '#3b82f6', '#eab308', '#f43f5e', '#8b5cf6', '#06b6d4', '#64748b'
+];
 
-function parsePrice(priceStr) {
-  if (!priceStr) return 0;
-  let clean = priceStr.replace('€', '').replace(/\s/g, '').replace('.', '').replace(',', '.');
-  return parseFloat(clean) || 0;
+const GRID_COLOR = 'rgba(255,255,255,0.055)';
+const TICK_COLOR = '#8891a0';
+
+const charts = [];
+
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+/** Agrupa y suma: devuelve [{ key, units, value, items }] ordenado. */
+function group(items, keyFn, fallback) {
+  const map = new Map();
+
+  items.forEach((item) => {
+    const key = keyFn(item) || fallback;
+    const bucket = map.get(key) || { key, units: 0, value: 0, items: 0 };
+    bucket.units += item.quantity;
+    bucket.value += item.totalValue;
+    bucket.items += 1;
+    map.set(key, bucket);
+  });
+
+  return [...map.values()];
 }
 
 export async function initStatsPage() {
-  const statsContainer = document.getElementById('statsView');
-  if (!statsContainer) return;
+  const view = document.getElementById('statsView');
+  if (!view) return;
 
-  setTimeout(() => {
-    inicializarVisor('visor-3d-container', 'modelos/mapParis.glb');
-  }, 100);
-  
-  // 1. Efecto de carga premium mientras lee los archivos JSON
-  statsContainer.innerHTML = `
-    <div style="text-align: center; padding: 100px 0;">
-      <h2 style="color: #fff; font-size: 22px;">📊 Cargando base de datos global...</h2>
-      <p style="color: #6b7280; margin-top: 10px; font-size: 14px;">Procesando el inventario completo de forma independiente.</p>
+  view.innerHTML = `
+    <div class="loading-block">
+      <div class="album__spinner" aria-hidden="true"></div>
+      <h2>Calculando estadísticas…</h2>
+      <p>Leyendo el inventario completo.</p>
     </div>
   `;
 
-  // 2. Carga directa de la base de datos (Lee el 100% de los elementos reales)
-  const rawItems = await loadCollection();
+  const items = await loadCollection();
 
-  let totalValue = 0;
-  let totalItems = rawItems.length;
-  let totalQuantity = 0;
+  if (!items.length) {
+    view.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-state__icon">📉</div>
+        <h3>No se pudo cargar el inventario</h3>
+        <p>Revisa que los archivos de <code>data/</code> estén accesibles.</p>
+      </div>
+    `;
+    return;
+  }
 
-  const categoriesMap = {};
-  const franchisesValueMap = {};    
-  const franchisesQuantityMap = {}; 
+  // --- Totales ---
+  const totalValue = items.reduce((sum, item) => sum + item.totalValue, 0);
+  const totalUnits = items.reduce((sum, item) => sum + item.quantity, 0);
+  const withPrice = items.filter((item) => item.priceValue > 0);
+  const avgPrice = withPrice.length ? withPrice.reduce((s, i) => s + i.priceValue, 0) / withPrice.length : 0;
+  const mostExpensive = items.reduce((best, item) => (item.priceValue > (best?.priceValue ?? -1) ? item : best), null);
 
-  rawItems.forEach(item => {
-    const qty = parseInt(item.quantity) || 1;
-    const price = parsePrice(item.purchasePrice);
-    const itemTotalValue = price * qty;
+  const byCategory = group(items, (i) => i.category, 'sin-categoria').sort((a, b) => b.units - a.units);
+  const byFranchise = group(items, (i) => i.franchise, 'Sin franquicia');
+  const byBrand = group(items, (i) => i.brand, 'Sin marca');
+  const byYear = group(items, (i) => i.yearValue, null)
+    .filter((bucket) => bucket.key !== null)
+    .sort((a, b) => a.key - b.key);
 
-    totalQuantity += qty;
-    totalValue += itemTotalValue;
+  const topCategory = byCategory[0];
+  const franchisesByValue = [...byFranchise].sort((a, b) => b.value - a.value).slice(0, 8);
+  const franchisesByUnits = [...byFranchise]
+    .filter((bucket) => bucket.key !== 'Sin franquicia')
+    .sort((a, b) => b.units - a.units)
+    .slice(0, 8);
+  const brandsByValue = [...byBrand].sort((a, b) => b.value - a.value).slice(0, 8);
+  const topItems = [...items].sort((a, b) => b.totalValue - a.totalValue).slice(0, 8);
 
-    const cat = item.category || 'Sin Categoría';
-    categoriesMap[cat] = (categoriesMap[cat] || 0) + qty;
+  // --- Maquetación ---
+  view.innerHTML = `
+    <div class="page-head">
+      <h2>Estadísticas globales</h2>
+      <p>${formatNumber(items.length)} objetos distintos analizados · ${byCategory.length} categorías · ${byFranchise.length} franquicias</p>
+    </div>
 
-    const fran = item.franchise || 'Sin Franquicia';
-    franchisesValueMap[fran] = (franchisesValueMap[fran] || 0) + itemTotalValue;
-    franchisesQuantityMap[fran] = (franchisesQuantityMap[fran] || 0) + qty;
-  });
+    <div class="kpi-grid">
+      ${kpi('Total invertido', formatPrice(totalValue), '#10b981', 'Suma de precio × cantidad')}
+      ${kpi('Objetos distintos', formatNumber(items.length), '#ffffff', `${formatNumber(totalUnits)} unidades contando repetidos`)}
+      ${kpi('Precio medio', formatPrice(avgPrice), '#6366f1', `Sobre ${formatNumber(withPrice.length)} objetos con precio`)}
+      ${kpi('Categoría líder', `${catIcono(topCategory.key)} ${escapeHtml(catCorta(topCategory.key))}`, '#22d3ee', `${formatNumber(topCategory.units)} unidades`)}
+      ${kpi('Objeto más caro', formatPrice(mostExpensive.priceValue), '#f59e0b', escapeHtml(mostExpensive.name))}
+      ${kpi('Rango de años', byYear.length ? `${byYear[0].key}–${byYear[byYear.length - 1].key}` : '—', '#a855f7', `${byYear.length} años representados`)}
+    </div>
 
-  // 3. Inyección del diseño HTML del Dashboard (Maquetación dinámica Móvil/PC de alto rendimiento)
-  statsContainer.innerHTML = `
-    <div class="detail-container" style="width: 100%; max-width: 100%; overflow-x: hidden;">
-      <div class="detail-header" style="margin-bottom: 32px;">
-        <h2 style="font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 4px;">Estadísticas Globales</h2>
+    <div class="panel-grid">
+      <div class="panel">
+        <div class="panel__title">🍩 Unidades por categoría</div>
+        <div class="chart-box chart-box--donut"><canvas id="chartCategories"></canvas></div>
       </div>
 
-      <div class="info-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin-bottom: 32px; width: 100%;">
-        <div style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
-          <span style="font-size: 11px; color: #6b7280; font-weight: 700; letter-spacing: 1px;">TOTAL GASTADO</span>
-          <b style="font-size: 26px; color: #10b981; font-weight: 700; margin-top: 8px; display: block;">${totalValue.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}</b>
-        </div>
-        <div style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
-          <span style="font-size: 11px; color: #6b7280; font-weight: 700; letter-spacing: 1px;">TOTAL DIFERENTES</span>
-          <b style="font-size: 26px; color: #ffffff; font-weight: 700; margin-top: 8px; display: block;">${totalItems} <span style="font-size: 14px; color: #6b7280; font-weight: 400;">uds</span></b>
-        </div>
-        <div style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
-          <span style="font-size: 11px; color: #6b7280; font-weight: 700; letter-spacing: 1px;">TOTAL EN STOCK</span>
-          <b style="font-size: 26px; color: #f59e0b; font-weight: 700; margin-top: 8px; display: block;">${totalQuantity} <span style="font-size: 14px; color: #6b7280; font-weight: 400;">uds</span></b>
-        </div>
+      <div class="panel">
+        <div class="panel__title">💰 Inversión por categoría</div>
+        <div class="chart-box"><canvas id="chartCategoryValue"></canvas></div>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 450px), 1fr)); gap: 32px; align-items: start; width: 100%;">
-        
-        <div class="info-card" style="display: flex; flex-direction: column; align-items: center; background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.02); width: 100%; box-sizing: border-box;">
-          <h4 style="font-size: 14px; font-weight: 700; color: #fff; width: 100%; text-align: left; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.5px;">🍩 Unidades por Categoría</h4>
-          <div style="width: 100%; max-width: 340px; aspect-ratio: 1 / 1; position: relative; margin: 0 auto;">
-            <canvas id="chartCategories"></canvas>
-          </div>
-        </div>
+      <div class="panel panel--wide">
+        <div class="panel__title">📈 Objetos por año de edición</div>
+        <div class="chart-box chart-box--tall"><canvas id="chartYears"></canvas></div>
+      </div>
 
-        <div style="display: flex; flex-direction: column; gap: 32px; width: 100%;">
-          <div class="info-card" style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.02); width: 100%; box-sizing: border-box; overflow-x: auto;">
-            <h4 style="font-size: 14px; font-weight: 700; color: #10b981; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px;">🏆 Top 5 Franquicias Líderes (Valor)</h4>
-            <div id="topFranchisesTable"></div>
-          </div>
+      <div class="panel">
+        <div class="panel__title">🏆 Franquicias por inversión</div>
+        ${table(['#', 'Franquicia', 'Invertido'], franchisesByValue, (row, max) => [
+          escapeHtml(row.key),
+          formatPrice(row.value),
+          row.value / max
+        ])}
+      </div>
 
-          <div class="info-card" style="background: #141822; padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.02); width: 100%; box-sizing: border-box; overflow-x: auto;">
-            <h4 style="font-size: 14px; font-weight: 700; color: #f59e0b; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px;">📦 Top 5 Franquicias Líderes (Unidades)</h4>
-            <div id="topFranchisesQtyTable"></div>
-          </div>
-        </div>
+      <div class="panel">
+        <div class="panel__title">📦 Franquicias por unidades</div>
+        ${table(['#', 'Franquicia', 'Unidades'], franchisesByUnits, (row, max) => [
+          escapeHtml(row.key),
+          `${formatNumber(row.units)} uds`,
+          row.units / max
+        ], 'units')}
+      </div>
 
+      <div class="panel">
+        <div class="panel__title">🏷️ Marcas por inversión</div>
+        ${table(['#', 'Marca', 'Invertido'], brandsByValue, (row, max) => [
+          escapeHtml(row.key),
+          formatPrice(row.value),
+          row.value / max
+        ])}
+      </div>
+
+      <div class="panel">
+        <div class="panel__title">💎 Objetos más valiosos</div>
+        <table class="data-table">
+          <thead><tr><th class="cell-rank">#</th><th>Objeto</th><th>Valor</th></tr></thead>
+          <tbody>
+            ${topItems.map((item, index) => `
+              <tr>
+                <td class="cell-rank">${index + 1}</td>
+                <td class="cell-name">
+                  <a href="/#${item.id}" style="color:inherit;text-decoration:none;">${escapeHtml(item.name)}</a>
+                </td>
+                <td class="cell-num">${formatPrice(item.totalValue)}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
       </div>
     </div>
   `;
 
-  // 4. Inicialización segura de los gráficos con Chart.js
-  const ctxCat = document.getElementById('chartCategories');
-  if (ctxCat) {
-    const rawCategories = Object.keys(categoriesMap);
-    const translatedLabels = rawCategories.map(catKey => t(catKey));
+  drawCharts({ byCategory, byYear });
+  initViewerWhenVisible();
+}
 
-    if (charts.categories) charts.categories.destroy();
-    charts.categories = new Chart(ctxCat, {
+function kpi(label, value, color, foot) {
+  return `
+    <div class="kpi" style="--kpi-color: ${color};">
+      <span class="kpi__label">${label}</span>
+      <span class="kpi__value">${value}</span>
+      <span class="kpi__foot">${foot}</span>
+    </div>
+  `;
+}
+
+/** Tabla con barra proporcional; `mapRow` devuelve [nombre, valor, ratio]. */
+function table(headers, rows, mapRow, unit = 'value') {
+  if (!rows.length) {
+    return '<p class="section__hint" style="margin:0;">No hay datos suficientes.</p>';
+  }
+
+  const max = Math.max(...rows.map((row) => (unit === 'units' ? row.units : row.value))) || 1;
+
+  return `
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th class="cell-rank">${headers[0]}</th>
+          <th>${headers[1]}</th>
+          <th>${headers[2]}</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${rows.map((row, index) => {
+          const [name, formatted, ratio] = mapRow(row, max);
+          return `
+            <tr>
+              <td class="cell-rank">${index + 1}</td>
+              <td class="cell-name">${name}</td>
+              <td class="cell-num bar-cell">
+                <span class="bar-cell__fill" style="width: ${Math.max(3, ratio * 100)}%; opacity: ${0.18 + ratio * 0.5};"></span>
+                <span style="position: relative;">${formatted}</span>
+              </td>
+            </tr>
+          `;
+        }).join('')}
+      </tbody>
+    </table>
+  `;
+}
+
+function drawCharts({ byCategory, byYear }) {
+  if (typeof Chart === 'undefined') {
+    console.warn('Chart.js no está disponible: se muestran solo las tablas.');
+    return;
+  }
+
+  Chart.defaults.font.family = "'Inter', 'Segoe UI', system-ui, sans-serif";
+  Chart.defaults.color = TICK_COLOR;
+
+  charts.forEach((chart) => chart.destroy());
+  charts.length = 0;
+
+  const tooltip = {
+    backgroundColor: 'rgba(12,14,20,0.95)',
+    borderColor: 'rgba(255,255,255,0.12)',
+    borderWidth: 1,
+    padding: 12,
+    cornerRadius: 10,
+    titleColor: '#fff',
+    bodyColor: '#cbd3e0',
+    displayColors: true,
+    boxPadding: 4
+  };
+
+  // --- Donut: unidades por categoría ---
+  const donut = document.getElementById('chartCategories');
+  if (donut) {
+    charts.push(new Chart(donut, {
       type: 'doughnut',
       data: {
-        labels: translatedLabels,
+        labels: byCategory.map((bucket) => catCorta(bucket.key)),
         datasets: [{
-          data: Object.values(categoriesMap),
-          backgroundColor: ['#6366f1', '#10b981', '#f59e0b', '#ef4444', '#ec4899', '#06b6d4', '#a855f7'],
+          data: byCategory.map((bucket) => bucket.units),
+          backgroundColor: byCategory.map((_, i) => PALETTE[i % PALETTE.length]),
           borderWidth: 3,
-          borderColor: '#141822'
+          borderColor: '#12151e',
+          hoverOffset: 10
         }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: { 
-          legend: { 
-            position: 'bottom', 
-            labels: { 
-              color: '#9aa3b2', 
-              padding: 16,
-              font: { size: 11, family: 'system-ui' } 
-            } 
-          } 
+        cutout: '58%',
+        plugins: {
+          tooltip: {
+            ...tooltip,
+            callbacks: {
+              label: (ctx) => {
+                const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
+                const pct = ((ctx.parsed / total) * 100).toFixed(1);
+                return ` ${formatNumber(ctx.parsed)} uds · ${pct}%`;
+              }
+            }
+          },
+          legend: {
+            position: 'bottom',
+            labels: { padding: 12, boxWidth: 9, boxHeight: 9, usePointStyle: true, font: { size: 11.5 } }
+          }
         }
       }
-    });
+    }));
   }
 
-	// Generar Tabla de Top Franquicias por Valor
-	const topFranchisesValue = Object.entries(franchisesValueMap).sort((a, b) => b[1] - a[1]).slice(0, 5);
-	document.getElementById('topFranchisesTable').innerHTML = renderPremiumTable(
-	['Franquicia', 'Valor Acumulado'],
-	topFranchisesValue.map(([n, v]) => [n, v.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })])
-	);
+  // --- Barras horizontales: inversión por categoría ---
+  const valueCanvas = document.getElementById('chartCategoryValue');
+  if (valueCanvas) {
+    const sorted = [...byCategory].sort((a, b) => b.value - a.value);
+    charts.push(new Chart(valueCanvas, {
+      type: 'bar',
+      data: {
+        labels: sorted.map((bucket) => catCorta(bucket.key)),
+        datasets: [{
+          data: sorted.map((bucket) => Number(bucket.value.toFixed(2))),
+          backgroundColor: sorted.map((_, i) => PALETTE[i % PALETTE.length] + 'cc'),
+          borderColor: sorted.map((_, i) => PALETTE[i % PALETTE.length]),
+          borderWidth: 1,
+          borderRadius: 6,
+          barThickness: 'flex',
+          maxBarThickness: 22
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: { ...tooltip, callbacks: { label: (ctx) => ` ${formatPrice(ctx.parsed.x)}` } }
+        },
+        scales: {
+          x: {
+            grid: { color: GRID_COLOR },
+            border: { display: false },
+            ticks: { callback: (value) => `${value} €`, font: { size: 11 } }
+          },
+          y: { grid: { display: false }, border: { display: false }, ticks: { font: { size: 11.5 } } }
+        }
+      }
+    }));
+  }
 
-	// Generar Tabla de Top Franquicias por Unidades
-	const topFranchisesQty = Object.entries(franchisesQuantityMap)
-	  .filter(([name]) => name !== 'Sin Franquicia')
-	  .sort((a, b) => b[1] - a[1])
-	  .slice(0, 5);
-
-	document.getElementById('topFranchisesQtyTable').innerHTML = renderPremiumTable(
-	  ['Franquicia', 'Total Unidades'],
-	  topFranchisesQty.map(([n, q]) => [n, `${q.toLocaleString('es-ES')} uds`])
-	);
+  // --- Línea + barras: objetos y gasto por año ---
+  const yearsCanvas = document.getElementById('chartYears');
+  if (yearsCanvas && byYear.length) {
+    charts.push(new Chart(yearsCanvas, {
+      data: {
+        labels: byYear.map((bucket) => bucket.key),
+        datasets: [
+          {
+            type: 'bar',
+            label: 'Objetos',
+            data: byYear.map((bucket) => bucket.items),
+            backgroundColor: 'rgba(99,102,241,0.55)',
+            borderColor: '#6366f1',
+            borderWidth: 1,
+            borderRadius: 5,
+            yAxisID: 'y'
+          },
+          {
+            type: 'line',
+            label: 'Invertido',
+            data: byYear.map((bucket) => Number(bucket.value.toFixed(2))),
+            borderColor: '#22d3ee',
+            backgroundColor: 'rgba(34,211,238,0.12)',
+            borderWidth: 2,
+            fill: true,
+            tension: 0.35,
+            pointRadius: 2.5,
+            pointHoverRadius: 5,
+            yAxisID: 'y1'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { labels: { usePointStyle: true, boxWidth: 9, boxHeight: 9, padding: 14 } },
+          tooltip: {
+            ...tooltip,
+            callbacks: {
+              label: (ctx) => (ctx.dataset.yAxisID === 'y1'
+                ? ` Invertido: ${formatPrice(ctx.parsed.y)}`
+                : ` Objetos: ${formatNumber(ctx.parsed.y)}`)
+            }
+          }
+        },
+        scales: {
+          x: { grid: { display: false }, border: { display: false }, ticks: { font: { size: 10.5 }, maxRotation: 60 } },
+          y: {
+            position: 'left',
+            beginAtZero: true,
+            grid: { color: GRID_COLOR },
+            border: { display: false },
+            title: { display: true, text: 'Objetos', font: { size: 10.5 } }
+          },
+          y1: {
+            position: 'right',
+            beginAtZero: true,
+            grid: { display: false },
+            border: { display: false },
+            ticks: { callback: (value) => `${value} €`, font: { size: 10.5 } }
+          }
+        }
+      }
+    }));
+  }
 }
 
-function renderPremiumTable(headers, rows) {
-  if (rows.length === 0) return `<p style="color:#6b7280; font-style:italic; font-size:14px; margin-top:8px;">No hay datos suficientes.</p>`;
-  return `
-    <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; color: #e2e8f0; margin-top: 8px;">
-      <thead>
-        <tr style="border-bottom: 1px solid rgba(255,255,255,0.08); color: #6b7280;">
-          <th style="padding: 8px 0; font-weight: 600;">${headers[0]}</th>
-          <th style="padding: 8px 0; text-align: right; font-weight: 600;">${headers[1]}</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${rows.map(([c1, c2]) => `
-          <tr style="border-bottom: 1px solid rgba(255,255,255,0.03);">
-            <td style="padding: 10px 0; color: #fff; font-weight: 500; white-space: nowrap; max-width: 180px; overflow: hidden; text-overflow: ellipsis;">${c1}</td>
-            <td style="padding: 10px 0; text-align: right; font-weight: 700; color: #aeb6c4; white-space: nowrap;">${c2}</td>
-          </tr>
-        `).join('')}
-      </tbody>
-    </table>
-  `;
+/** El visor 3D solo arranca cuando entra en pantalla (ahorra datos en móvil). */
+function initViewerWhenVisible() {
+  const target = document.getElementById('visor-3d-container');
+  if (!target) return;
+
+  if (!window.IntersectionObserver) {
+    inicializarVisor('visor-3d-container', 'modelos/mapParis.glb');
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    if (!entries.some((entry) => entry.isIntersecting)) return;
+    observer.disconnect();
+    inicializarVisor('visor-3d-container', 'modelos/mapParis.glb');
+  }, { rootMargin: '200px' });
+
+  observer.observe(target);
 }

@@ -1,146 +1,291 @@
 import { renderStickers } from './stickers.js';
-import { renderAlbumFlip } from './albumFlip.js';
+import { renderAlbumFlip, destroyAlbumFlip } from './albumFlip.js';
+import { openLightbox } from './lightbox.js';
+import { catCorta, catIcono, etiquetaCampo } from './translations.js';
+import { formatPrice } from './dataLoader.js';
 
-// Función auxiliar para verificar si una imagen existe realmente en el servidor
-function comprobarSiExisteImagen(src) {
+const MAX_IMAGES = 24;
+
+const CAMPOS_OCULTOS = new Set([
+  'id', 'name', 'franchise', 'folder', 'category', 'tags', 'notes',
+  'priceValue', 'totalValue', 'yearValue', 'image', 'searchText',
+  'purchasePrice', 'year', 'brand', 'quantity', 'condition'
+]);
+
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+/** Copia al portapapeles con respaldo para navegadores sin permiso o sin HTTPS. */
+async function copyText(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch { /* probamos el método antiguo */ }
+
+  try {
+    const helper = document.createElement('textarea');
+    helper.value = text;
+    helper.setAttribute('readonly', '');
+    helper.style.cssText = 'position:fixed;top:-1000px;opacity:0;';
+    document.body.appendChild(helper);
+    helper.select();
+    const ok = document.execCommand('copy');
+    helper.remove();
+    return ok;
+  } catch {
+    return false;
+  }
+}
+
+function imageExists(src) {
   return new Promise((resolve) => {
     const img = new Image();
-    img.onload = () => resolve(true);  
-    img.onerror = () => resolve(false); 
+    img.onload = () => resolve(true);
+    img.onerror = () => resolve(false);
     img.src = src;
   });
 }
 
-export async function renderDetail(item) {
-  const visor = document.getElementById('visor-3d-container');
-  if (visor) visor.style.display = 'none';
-  
-  // =======================================================
-  // 1. PASO ASÍNCRONO: Buscar imágenes (La galería sigue intacta y bonita en pantalla)
-  // =======================================================
-  const images = [];
-  let i = 1;
-  
-  while (true) {
-    const imgUrl = `images/${item.category}/${item.folder}/${i}.webp`;
-    const existe = await comprobarSiExisteImagen(imgUrl);
-    
-    if (!existe) {
-      break; 
+/**
+ * Busca las imágenes 1.webp, 2.webp… en paralelo por tandas.
+ * La versión anterior las pedía de una en una esperando cada 404.
+ */
+async function findImages(item) {
+  const found = [];
+  const BATCH = 6;
+
+  for (let start = 1; start <= MAX_IMAGES; start += BATCH) {
+    const batch = [];
+    for (let i = start; i < start + BATCH && i <= MAX_IMAGES; i++) {
+      const src = `images/${item.category}/${item.folder}/${i}.webp`;
+      batch.push(imageExists(src).then((exists) => (exists ? src : null)));
     }
-    
-    images.push(imgUrl);
-    i++;
+
+    const results = await Promise.all(batch);
+    const cut = results.indexOf(null);
+    found.push(...(cut === -1 ? results : results.slice(0, cut)));
+    if (cut !== -1) break;
   }
 
-  if (images.length === 0) {
-    images.push(`images/${item.category}/${item.folder}/1.webp`);
+  return found.length ? found : [`images/${item.category}/${item.folder}/1.webp`];
+}
+
+export async function renderDetail(item, context = {}) {
+  destroyAlbumFlip();
+
+  const { prev = null, next = null, onNavigate = null } = context;
+  const viewer = document.getElementById('viewer3d');
+  if (viewer) viewer.classList.add('hidden');
+
+  const grid = document.getElementById('collectionGrid');
+  const toolbar = document.getElementById('toolbar');
+  const counter = document.getElementById('items-counter');
+  if (toolbar) toolbar.classList.add('hidden');
+  if (counter) counter.classList.add('hidden');
+
+  const images = await findImages(item);
+
+  // --- Etiquetas destacadas ---
+  const tags = [];
+  if (item.franchise) tags.push(`<span class="tag tag--accent">${catIcono(item.category)} ${escapeHtml(item.franchise)}</span>`);
+  if (item.year) tags.push(`<span class="tag">📅 ${escapeHtml(item.year)}</span>`);
+  if (item.brand) tags.push(`<span class="tag">🏷️ ${escapeHtml(item.brand)}</span>`);
+  if (item.condition) tags.push(`<span class="tag">${item.condition === 'Usado' ? '🟡' : '🟢'} ${escapeHtml(item.condition)}</span>`);
+  if (item.quantity > 1) tags.push(`<span class="tag">×${item.quantity} unidades</span>`);
+  if (item.priceValue > 0) {
+    const unit = item.quantity > 1 ? ` <small>(${formatPrice(item.priceValue)} c/u)</small>` : '';
+    tags.push(`<span class="tag tag--price">💰 ${formatPrice(item.totalValue)}${unit}</span>`);
   }
 
-  // =======================================================
-  // 2. PASO DE CÓMPUTO: Procesar JSON y textos (Aún no tocamos la pantalla)
-  // =======================================================
-  const clavesAIgnorar = ['id', 'name', 'franchise', 'folder', 'category', 'tags', 'notes'];
-  const diccionarioEtiquetas = {
-    type: 'Tipo', brand: 'Marca', condition: 'Estado', language: 'Idioma', purchasePrice: 'Precio', quantity: 'Cantidad', barcode: 'Cód. Barras', author: 'Autor', year: 'Año', grade: 'Grade', platform: 'Plataforma'
-  };
+  // --- Resto de campos del JSON, en su rejilla ---
+  const infoBlocks = [
+    `<div><span>Categoría</span><b>${catIcono(item.category)} ${escapeHtml(catCorta(item.category))}</b></div>`
+  ];
 
-  function obtenerEtiquetaLegible(clave) {
-    if (diccionarioEtiquetas[clave]) return diccionarioEtiquetas[clave];
-    return clave.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase()).trim();
-  }
+  Object.keys(item).forEach((key) => {
+    if (CAMPOS_OCULTOS.has(key)) return;
+    const value = item[key];
+    if (value === undefined || value === null || value === '') return;
 
-  const bloquesInfoHTML = [];
-  Object.keys(item).forEach(key => {
-    if (!clavesAIgnorar.includes(key) && item[key] !== undefined && item[key] !== null && item[key] !== '') {
-      bloquesInfoHTML.push(`<div><span>${obtenerEtiquetaLegible(key)}</span><b>${item[key]}</b></div>`);
+    if (key === 'barcode') {
+      infoBlocks.push(`
+        <div>
+          <span>${etiquetaCampo(key)}</span>
+          <button class="copy-btn" type="button" data-copy="${escapeHtml(value)}">
+            <span class="num">${escapeHtml(value)}</span><small>copiar</small>
+          </button>
+        </div>
+      `);
+      return;
     }
+
+    infoBlocks.push(`<div><span>${etiquetaCampo(key)}</span><b>${escapeHtml(value)}</b></div>`);
   });
 
-  // =======================================================
-  // 3. PASO DOM ATÓMICO: Modificamos todo a la vez en el mismo milisegundo
-  // =======================================================
-  const grid = document.getElementById('collectionGrid');
-  const filters = document.getElementById('filters');
-
-  if (filters) filters.style.display = 'none'; // Ocultamos barra superior
-  grid.className = '';                         // Quitamos rejilla de la galería
-  
-  // Inyectamos el nuevo HTML encima del anterior eliminando las tarjetas al instante
+  grid.className = '';
   grid.innerHTML = `
     <div class="detail-container">
       <div class="detail-header">
-        <button id="backBtn" class="back-btn">← Volver a la galería</button>
+        <button id="backBtn" class="back-btn" type="button">← Volver a la galería</button>
+        <div class="detail-nav">
+          <button id="prevItem" type="button" aria-label="Objeto anterior" ${prev ? '' : 'disabled'}>‹</button>
+          <button id="nextItem" type="button" aria-label="Objeto siguiente" ${next ? '' : 'disabled'}>›</button>
+        </div>
       </div>
-      
+
       <div class="detail">
-        <div class="slider">
-          <button class="nav prev" ${images.length <= 1 ? 'style="display:none;"' : ''}>‹</button>
-          
-          <div class="slider-window">
-            <img id="sliderImage" src="${images[0]}" alt="${item.name}" />
+        <div class="gallery">
+          <div class="slider" id="slider">
+            <button class="nav prev" type="button" aria-label="Imagen anterior" ${images.length <= 1 ? 'hidden' : ''}>‹</button>
+            <div class="slider-window">
+              <img id="sliderImage" src="${images[0]}" alt="${escapeHtml(item.name)}" draggable="false">
+            </div>
+            <button class="nav next" type="button" aria-label="Imagen siguiente" ${images.length <= 1 ? 'hidden' : ''}>›</button>
+            <button class="slider__zoom" id="sliderZoom" type="button" aria-label="Ver a pantalla completa">⤢</button>
+            ${images.length > 1 ? `<span class="slider__count num" id="sliderCount">1 / ${images.length}</span>` : ''}
           </div>
-          
-          <button class="nav next" ${images.length <= 1 ? 'style="display:none;"' : ''}>›</button>
+
+          ${images.length > 1 ? `
+            <div class="thumbs" id="thumbs">
+              ${images.map((src, i) => `
+                <button class="thumb" type="button" data-index="${i}" aria-current="${i === 0}" aria-label="Imagen ${i + 1}">
+                  <img src="${src}" alt="" loading="lazy" decoding="async">
+                </button>
+              `).join('')}
+            </div>` : ''}
         </div>
 
         <div class="info-card">
-          <h1>${item.name}</h1>
-          <p class="subtitle">${item.franchise || ''}</p>
+          <h1>${escapeHtml(item.name)}</h1>
+          <p class="subtitle">${escapeHtml(item.franchise || item.brand || '')}</p>
 
-          <div class="info-grid">
-            ${bloquesInfoHTML.join('')}
-          </div>
+          <div class="detail-tags">${tags.join('')}</div>
+          <div class="info-grid">${infoBlocks.join('')}</div>
 
-          ${item.notes ? `<div class="notes">${item.notes}</div>` : ''}
+          ${item.notes ? `<div class="notes"><strong>Notas</strong>${escapeHtml(item.notes)}</div>` : ''}
         </div>
       </div>
     </div>
   `;
 
-  // =======================================================
-  // 4. PASO DE EVENTOS: Asignar listeners del slider y botón
-  // =======================================================
+  // --- Navegación ---
   document.getElementById('backBtn').addEventListener('click', () => {
-    window.location.hash = ''; 
+    window.location.hash = '';
   });
-  
-  document.getElementById('backBtn').addEventListener('click', () => {
-    if (visor) visor.style.display = 'block'; 
-    window.location.hash = ''; 
+
+  const prevItemBtn = document.getElementById('prevItem');
+  const nextItemBtn = document.getElementById('nextItem');
+  if (prev && onNavigate) prevItemBtn.addEventListener('click', () => onNavigate(prev));
+  if (next && onNavigate) nextItemBtn.addEventListener('click', () => onNavigate(next));
+
+  // --- Copiar código de barras ---
+  grid.querySelectorAll('[data-copy]').forEach((button) => {
+    button.addEventListener('click', async () => {
+      const small = button.querySelector('small');
+      small.textContent = (await copyText(button.dataset.copy)) ? '¡copiado!' : 'no se pudo copiar';
+      setTimeout(() => { small.textContent = 'copiar'; }, 1800);
+    });
+  });
+
+  // --- Galería: flechas, miniaturas, deslizamiento, teclado y zoom ---
+  setupGallery(images, item.name);
+
+  // --- Extras de las colecciones de cromos ---
+  if (item.category === 'card-collection') {
+    const albumWrapper = document.createElement('div');
+    albumWrapper.id = 'album-flip-container';
+    albumWrapper.className = 'section';
+    grid.appendChild(albumWrapper);
+    await renderAlbumFlip('album-flip-container', item);
+    if (!albumWrapper.childElementCount) albumWrapper.remove();
+
+    const stickersWrapper = document.createElement('div');
+    stickersWrapper.id = 'stickers-container';
+    stickersWrapper.className = 'section';
+    grid.appendChild(stickersWrapper);
+    renderStickers('stickers-container', item.folder);
+    if (!stickersWrapper.childElementCount) stickersWrapper.remove();
+  }
+}
+
+function setupGallery(images, name) {
+  const slider = document.getElementById('slider');
+  const img = document.getElementById('sliderImage');
+  const count = document.getElementById('sliderCount');
+  const thumbs = document.getElementById('thumbs');
+  const zoomBtn = document.getElementById('sliderZoom');
+  let index = 0;
+
+  img.addEventListener('error', () => { img.style.opacity = '0.15'; }, { once: true });
+
+  function show(next) {
+    index = (next + images.length) % images.length;
+    img.classList.add('is-swapping');
+    const loader = new Image();
+    loader.onload = loader.onerror = () => {
+      img.src = images[index];
+      img.classList.remove('is-swapping');
+    };
+    loader.src = images[index];
+
+    if (count) count.textContent = `${index + 1} / ${images.length}`;
+    if (thumbs) {
+      thumbs.querySelectorAll('.thumb').forEach((thumb, i) => {
+        thumb.setAttribute('aria-current', String(i === index));
+        if (i === index) thumb.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
+      });
+    }
+  }
+
+  zoomBtn.addEventListener('click', () => {
+    openLightbox({ items: images.map((src) => ({ src, label: name })), index });
   });
 
   if (images.length > 1) {
-    let index = 0;
-    const imgElement = document.getElementById('sliderImage');
-    const prevBtn = grid.querySelector('.prev');
-    const nextBtn = grid.querySelector('.next');
+    slider.querySelector('.prev').addEventListener('click', () => show(index - 1));
+    slider.querySelector('.next').addEventListener('click', () => show(index + 1));
 
-    nextBtn.addEventListener('click', () => {
-      index = (index + 1) % images.length;
-      imgElement.src = images[index];
+    if (thumbs) {
+      thumbs.addEventListener('click', (event) => {
+        const thumb = event.target.closest('.thumb');
+        if (thumb) show(Number(thumb.dataset.index));
+      });
+    }
+
+    // Deslizamiento horizontal sobre la imagen.
+    let start = null;
+    slider.addEventListener('pointerdown', (event) => {
+      start = { x: event.clientX, y: event.clientY };
+    });
+    slider.addEventListener('pointerup', (event) => {
+      if (!start) return;
+      const dx = event.clientX - start.x;
+      const dy = event.clientY - start.y;
+      start = null;
+      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) show(index + (dx < 0 ? 1 : -1));
     });
 
-    prevBtn.addEventListener('click', () => {
-      index = (index - 1 + images.length) % images.length;
-      imgElement.src = images[index];
+    document.addEventListener('keydown', function onKey(event) {
+      if (!slider.isConnected) {
+        document.removeEventListener('keydown', onKey);
+        return;
+      }
+      if (document.querySelector('.lightbox')) return;
+      // Las flechas del álbum tienen prioridad si está a la vista.
+      const album = document.getElementById('albumStage');
+      if (album) {
+        const rect = album.getBoundingClientRect();
+        if (rect.bottom > 0 && rect.top < window.innerHeight) return;
+      }
+      if (event.key === 'ArrowRight') show(index + 1);
+      else if (event.key === 'ArrowLeft') show(index - 1);
+      else return;
+      event.preventDefault();
     });
-  }
-  
-  if (item.category === 'card-collection') {
-		// Creamos el contenedor del Álbum 3D dinámicamente
-		const albumWrapper = document.createElement('div');
-		albumWrapper.id = 'album-flip-container';
-		grid.appendChild(albumWrapper);
-	  
-		// Lanzamos su renderizado (si la carpeta /album/ tiene imágenes, se mostrará)
-		await renderAlbumFlip('album-flip-container', item);
-  
-        const wrapper = document.createElement('div');
-        wrapper.id = 'stickers-container';
-        document.getElementById('collectionGrid').appendChild(wrapper);
-        
-        // Pasamos el ID del folder tal como está en tu JSON
-        renderStickers('stickers-container', item.folder);
   }
 }

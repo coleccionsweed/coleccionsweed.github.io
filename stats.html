@@ -3,22 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Colección Sweed - Estadísticas</title>
-  <link rel="stylesheet" href="styles/main.css">
+  <title>Colección Sweed — Estadísticas</title>
+  <meta name="description" content="Estadísticas y análisis de la colección: gasto, unidades, categorías, marcas y franquicias.">
   <link rel="stylesheet" href="styles/main.css">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-
   <link rel="manifest" href="site.webmanifest">
-
-  <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
-
+  <link rel="mask-icon" href="safari-pinned-tab.svg" color="#6366f1">
   <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="theme-color" content="#ffffff">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script type="importmap">
+  <meta name="theme-color" content="#07080c">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script type="importmap">
   {
     "imports": {
       "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
@@ -30,26 +27,39 @@
 <body>
 
   <header class="topbar">
-    <div style="display: flex; align-items: center; gap: 30px;">
-      <h1 style="margin: 0;"><a href="/" style="color: inherit; text-decoration: none;">Colección Sweed</a></h1>
-      
-      <nav class="nav-links" style="display: flex; gap: 20px;">
-        <a href="/" style="color: #6b7280; font-weight: 700; text-decoration: none; font-size: 15px; transition: color 0.2s;">🖼️ Galería</a>
-        <a href="stats" style="color: #ffffff; font-weight: 700; text-decoration: none; font-size: 15px;">📊 Estadísticas</a>
+    <div class="topbar__inner">
+      <a class="brand" href="/">
+        <span class="brand__mark" aria-hidden="true">✦</span>
+        Colección Sweed
+      </a>
+
+      <nav class="nav-links" aria-label="Secciones">
+        <a href="/">🖼️ Galería</a>
+        <a href="stats" aria-current="page">📊 Estadísticas</a>
       </nav>
     </div>
   </header>
 
-  <main style="max-width: 1300px; margin: 0 auto; padding: 40px 20px;">
-    <section id="statsView" style="width: 100%;"></section>
-	<div id="visor-3d-container" style="width: 100%; height: 400px; overflow: hidden;"></div>
+  <main>
+    <section id="statsView"></section>
+
+    <section class="viewer-3d" id="viewer3d">
+      <div class="viewer-3d__head">
+        <h3>🧊 Pieza en 3D</h3>
+        <span>Arrastra para girar</span>
+      </div>
+      <div class="viewer-3d__canvas" id="visor-3d-container"></div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <span>Colección Sweed — catálogo personal</span>
+    <span><a href="/" style="color: inherit;">Volver a la galería</a></span>
+  </footer>
 
   <script type="module">
     import { initStatsPage } from './js/stats.js';
-    document.addEventListener('DOMContentLoaded', () => {
-      initStatsPage();
-    });
+    initStatsPage();
   </script>
 </body>
 </html>

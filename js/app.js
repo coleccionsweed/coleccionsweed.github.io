@@ -1,96 +1,146 @@
-import { loadCollection } from './dataLoader.js'
-import { renderItems } from './renderer.js'
-import { setupFilters } from './filters.js'
-import { renderDetail } from './detail.js'
+import { loadCollection } from './dataLoader.js';
+import { renderItems, renderSkeletons, setView, getView } from './renderer.js';
+import { setupFilters } from './filters.js';
+import { renderDetail } from './detail.js';
+import { destroyAlbumFlip } from './albumFlip.js';
 import { inicializarVisor } from './visor3d.js';
 
+const VIEW_KEY = 'sweed:view';
 
-
-let allItems = []
-let itemsAMostrar = []        
-let posicionScrollGuardada = 0 
+let allItems = [];
+let visibleItems = [];   // el trozo que se está pintando
+let filteredItems = [];  // toda la lista filtrada (para anterior/siguiente)
+let savedScroll = 0;
 
 async function init() {
   if ('scrollRestoration' in window.history) {
     window.history.scrollRestoration = 'manual';
   }
 
-  allItems = await loadCollection()
-  itemsAMostrar = allItems 
+  restoreView();
+  renderSkeletons(12);
 
-  setupFilters(allItems, (filteredItems) => {
-    itemsAMostrar = filteredItems 
-    if (!window.location.hash) {
-      renderItems(filteredItems)
-    }
-  })
+  allItems = await loadCollection();
+  visibleItems = allItems;
+  filteredItems = allItems;
 
-  handleRoute()
-  window.addEventListener('hashchange', handleRoute)
+  setupFilters(allItems, (slice, all) => {
+    visibleItems = slice;
+    filteredItems = all;
+    if (!window.location.hash) renderItems(slice);
+  });
+
+  setupViewToggle();
+  handleRoute();
+  window.addEventListener('hashchange', handleRoute);
+}
+
+// ---------------------------------------------------------------
+// Vista cuadrícula / lista
+// ---------------------------------------------------------------
+function restoreView() {
+  let stored = null;
+  try { stored = localStorage.getItem(VIEW_KEY); } catch { /* ignorar */ }
+  setView(stored === 'list' ? 'list' : 'grid');
+}
+
+function setupViewToggle() {
+  const gridBtn = document.getElementById('viewGrid');
+  const listBtn = document.getElementById('viewList');
+  if (!gridBtn || !listBtn) return;
+
+  function sync() {
+    const view = getView();
+    gridBtn.setAttribute('aria-pressed', String(view === 'grid'));
+    listBtn.setAttribute('aria-pressed', String(view === 'list'));
+  }
+
+  function choose(view) {
+    if (getView() === view) return;
+    setView(view);
+    try { localStorage.setItem(VIEW_KEY, view); } catch { /* ignorar */ }
+    sync();
+    if (!window.location.hash) renderItems(visibleItems);
+  }
+
+  gridBtn.addEventListener('click', () => choose('grid'));
+  listBtn.addEventListener('click', () => choose('list'));
+  sync();
+}
+
+// ---------------------------------------------------------------
+// Enrutado
+// ---------------------------------------------------------------
+function showListView() {
+  destroyAlbumFlip();
+
+  const toolbar = document.getElementById('toolbar');
+  const counter = document.getElementById('items-counter');
+  const viewer = document.getElementById('viewer3d');
+
+  if (toolbar) toolbar.classList.remove('hidden');
+  if (counter) counter.classList.remove('hidden');
+  if (viewer) viewer.classList.remove('hidden');
+
+  renderItems(visibleItems);
+  requestAnimationFrame(() => window.scrollTo(0, savedScroll));
 }
 
 function handleRoute() {
-  const id = window.location.hash.replace('#', '')
-  const grid = document.getElementById('collectionGrid')
-  const filters = document.getElementById('filters')
-  const counter = document.getElementById('items-counter') 
+  const id = decodeURIComponent(window.location.hash.replace('#', ''));
 
-  // Vista Lista
   if (!id) {
-	const visor = document.getElementById('visor-3d-container');
-    if (visor) visor.style.display = 'block';
-	
-    if (filters) filters.style.display = ''; 
-    if (counter) counter.style.display = '';
-    
-    grid.style.display = ''; 
-    grid.style.opacity = '1'; 
-    grid.style.height = 'auto';
-    grid.className = 'collection-grid';
-    
-    renderItems(itemsAMostrar);
-
-    setTimeout(() => {
-      window.scrollTo(0, posicionScrollGuardada);
-    }, 0);
+    showListView();
     return;
   }
 
-  // Vista Detalle
-  const item = allItems.find(i => i.id === id);
-
-  if (item) {
-    posicionScrollGuardada = window.scrollY;
-
-    // Ocultamos elementos: el navegador los ignora y el CSS colapsa el espacio
-    if (filters) filters.style.display = 'none';
-    if (counter) counter.style.display = 'none';
-
-    grid.style.height = grid.offsetHeight + 'px'; 
-    grid.style.opacity = '0';
-    
-    requestAnimationFrame(() => {
-      grid.innerHTML = ''; 
-      window.scrollTo(0, 0);
-      renderDetail(item); 
-      
-      grid.style.height = 'auto';
-      grid.style.opacity = '1'; 
-    });
-    
-  } else {
-    // Reset de seguridad
-    if (filters) filters.style.display = '';
-    if (counter) counter.style.display = '';
-    grid.style.display = '';
-    grid.style.opacity = '1';
-    grid.className = 'collection-grid';
-    renderItems(itemsAMostrar);
+  const item = allItems.find((entry) => entry.id === id);
+  if (!item) {
+    window.location.replace(`${window.location.pathname}${window.location.search}`);
+    showListView();
+    return;
   }
+
+  if (!window.__sweedInDetail) savedScroll = window.scrollY;
+  window.__sweedInDetail = true;
+
+  const index = filteredItems.findIndex((entry) => entry.id === id);
+  const context = {
+    prev: index > 0 ? filteredItems[index - 1] : null,
+    next: index >= 0 && index < filteredItems.length - 1 ? filteredItems[index + 1] : null,
+    onNavigate: (target) => { window.location.hash = target.id; }
+  };
+
+  window.scrollTo(0, 0);
+  document.getElementById('collectionGrid').innerHTML = '';
+  renderDetail(item, context);
+}
+
+// Al volver a la lista dejamos de estar en detalle.
+window.addEventListener('hashchange', () => {
+  if (!window.location.hash) window.__sweedInDetail = false;
+});
+
+// ---------------------------------------------------------------
+// Visor 3D: solo se carga cuando se ve (three.js pesa)
+// ---------------------------------------------------------------
+function initViewerWhenVisible() {
+  const target = document.getElementById('visor-3d-container');
+  if (!target) return;
+
+  if (!window.IntersectionObserver) {
+    inicializarVisor('visor-3d-container', 'modelos/esmeralda.glb');
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    if (!entries.some((entry) => entry.isIntersecting)) return;
+    observer.disconnect();
+    inicializarVisor('visor-3d-container', 'modelos/esmeralda.glb');
+  }, { rootMargin: '200px' });
+
+  observer.observe(target);
 }
 
 init();
-
-document.addEventListener('DOMContentLoaded', () => {
-  inicializarVisor('visor-3d-container', 'modelos/esmeralda.glb');
-});
+initViewerWhenVisible();
