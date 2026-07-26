@@ -1022,9 +1022,13 @@ a.tag {
 a.tag:hover { background: var(--surface-3); border-color: var(--line-strong); color: #fff; }
 .tag small { color: var(--text-mute); font-weight: 400; }
 
+/* Datos tipo tabla: separadores de 1px, sin tarjetas flotantes.
+   Va con flex y no con grid a propósito: la rejilla dejaba celdas vacías al
+   final y por ellas asomaba el gris del contenedor. Con flex las celdas crecen
+   hasta llenar cada fila, así que el gris solo se ve en los separadores. */
 .info-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 1px;
   background: var(--line);
   border: 1px solid var(--line);
@@ -1032,8 +1036,8 @@ a.tag:hover { background: var(--surface-3); border-color: var(--line-strong); co
   overflow: hidden;
 }
 
-/* Rejilla de datos tipo tabla: separadores de 1px, sin tarjetas flotantes */
 .info-grid > div {
+  flex: 1 1 145px;
   background: var(--surface);
   padding: 11px 13px;
   display: flex;
@@ -1650,9 +1654,11 @@ body.no-scroll { overflow: hidden; }
 
 .page-head p { color: var(--text-mute); font-size: 14px; margin-top: 3px; }
 
+/* Misma técnica que .info-grid: flex para que ninguna fila quede a medias
+   y el gris del fondo solo aparezca como separador. */
 .kpi-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 1px;
   background: var(--line);
   border: 1px solid var(--line);
@@ -1661,24 +1667,21 @@ body.no-scroll { overflow: hidden; }
   margin-bottom: 14px;
 }
 
-/* A partir de este ancho caben todos en una sola línea: se reparten el hueco
-   a partes iguales en vez de dejar una segunda fila medio vacía. */
-@media (min-width: 1080px) {
-  .kpi-grid {
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(0, 1fr);
-    grid-template-columns: none;
-  }
-}
-
 /* KPIs como una franja de datos continua, sin tarjetas ni degradados */
 .kpi {
+  flex: 1 1 165px;
   background: var(--surface);
   padding: 14px 15px;
   display: flex;
   flex-direction: column;
   gap: 3px;
   min-width: 0;
+}
+
+/* A partir de este ancho caben todos en una sola línea. */
+@media (min-width: 1080px) {
+  .kpi-grid { flex-wrap: nowrap; }
+  .kpi { flex: 1 1 0; }
 }
 
 .kpi__label {
@@ -1957,7 +1960,7 @@ body.no-scroll { overflow: hidden; }
   .album__counter { min-width: 66px; font-size: 12.5px; }
   .album__btn { height: 30px; padding: 0 9px; font-size: 12px; }
   .thumb { flex-basis: 48px; width: 48px; }
-  .info-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+  .info-grid > div { flex-basis: 130px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
