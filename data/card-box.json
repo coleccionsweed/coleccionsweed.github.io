@@ -115,5 +115,31 @@
     "language": "Inglés",
     "folder": "harry-potter-y-la-piedra-filosofal-20-aniversario-caja-de-cartas",
     "category": "card-box"
+  },
+  {
+    "id": "2026-fifa-world-cup-united-edition-caja-de-cromos",
+    "name": "2026 FIFA World Cup - United Edition - Caja de cromos",
+    "franchise": "World Cup",
+    "brand": "Panini",
+    "purchasePrice": "0,00€",
+	"year": "2026",
+    "condition": "Nuevo",
+    "barcode": "8051708032482",
+    "language": "Inglés",
+    "folder": "2026-fifa-world-cup-united-edition-caja-de-cromos",
+    "category": "card-box"
+  },
+  {
+    "id": "2026-fifa-world-cup-united-edition-update-set",
+    "name": "2026 FIFA World Cup - United Edition - Update Set",
+    "franchise": "World Cup",
+    "brand": "Panini",
+    "purchasePrice": "0,00€",
+	"year": "2026",
+    "condition": "Nuevo",
+    "barcode": "8051708039429",
+    "language": "Inglés",
+    "folder": "2026-fifa-world-cup-united-edition-update-set",
+    "category": "card-box"
   }
 ]
