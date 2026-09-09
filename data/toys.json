@@ -1603,5 +1603,17 @@
     "language": "Inglés",
     "folder": "monstruo-de-las-galletas",
     "category": "toys"
+  },
+  {
+    "id": "lego-minifigures-edicion-shrek-71053-coleccion-completa",
+    "name": "LEGO Minifigures - Edición Shrek - 71053 - Colección completa",
+    "franchise": "Shrek",
+    "brand": "Lego",
+    "purchasePrice": "54,33€",
+	"year": "2026",
+    "condition": "Nuevo",
+	"language": "Español",
+    "folder": "lego-minifigures-edicion-shrek-71053-coleccion-completa",
+    "category": "toys"
   }
 ]
