@@ -1577,5 +1577,31 @@
 	"language": "Español",
     "folder": "minifigura-de-portero-de-futbol-serie-29-71052",
     "category": "toys"
+  },
+  {
+    "id": "epi",
+    "name": "Epi",
+    "franchise": "Barrio Sésamo",
+    "brand": "BLOKEES",
+    "purchasePrice": "7,99€",
+	"year": "2025",
+    "condition": "Usado",
+	"barcode": "810181530551",
+    "language": "Inglés",
+    "folder": "epi",
+    "category": "toys"
+  },
+  {
+    "id": "monstruo-de-las-galletas",
+    "name": "Monstruo de las galletas",
+    "franchise": "Barrio Sésamo",
+    "brand": "BLOKEES",
+    "purchasePrice": "7,99€",
+	"year": "2024",
+    "condition": "Usado",
+	"barcode": "858050008985",
+    "language": "Inglés",
+    "folder": "monstruo-de-las-galletas",
+    "category": "toys"
   }
 ]
