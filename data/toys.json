@@ -1612,8 +1612,21 @@
     "purchasePrice": "54,33€",
 	"year": "2026",
     "condition": "Nuevo",
+	"barcode": "5702018067000",
 	"language": "Español",
     "folder": "lego-minifigures-edicion-shrek-71053-coleccion-completa",
+    "category": "toys"
+  },
+  {
+    "id": "moria-orc-deluxe-action-figure-with-sauron-parts",
+    "name": "Moria Orc - Deluxe Action Figure with Sauron parts",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Diamond Select Toys",
+    "purchasePrice": "34,59€",
+	"year": "2024",
+    "condition": "Nuevo",
+    "language": "Inglés",
+    "folder": "moria-orc-deluxe-action-figure-with-sauron-parts",
     "category": "toys"
   }
 ]
