@@ -1098,6 +1098,28 @@ a.tag:hover { background: var(--surface-3); border-color: var(--line-strong); co
 }
 .notes strong { color: var(--text-mute); display: block; margin-bottom: 3px; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.07em; }
 
+/* Enlaces dentro de las notas. Sin esto se quedan con el azul oscuro por
+   defecto del navegador --y con el morado de :visited-- que sobre
+   --surface-2 no hay quien los lea. Se usa --accent-2, el azul claro de la
+   paleta, que es el que contrasta de verdad sobre fondo oscuro. */
+.notes a,
+.notes a:visited {
+  color: var(--accent-2);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: rgba(56, 189, 248, 0.45);
+  /* Una URL larga no tiene espacios donde partirse: sin esto se sale de la
+     caja en pantallas estrechas. */
+  overflow-wrap: anywhere;
+  transition: color 0.15s var(--ease);
+}
+
+.notes a:hover,
+.notes a:focus-visible {
+  color: #7dd3fc;
+  text-decoration-color: currentColor;
+}
+
 /* --- Secciones grandes bajo el detalle --- */
 .section {
   margin-top: 46px;
