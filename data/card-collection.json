@@ -717,5 +717,16 @@
     "folder": "buscando-a-nemo-completa-sin-album",
     "category": "card-collection",
 	"notes" : "La colección está compuesta por 226 cromos."
+  },
+  {
+    "id": "pokemon-tcg-coleccion",
+    "name": "Pokémon TCG - Colección",
+    "franchise": "Pokémon",
+    "brand": "The Pokémon Company",
+    "condition": "Used",
+    "language": "Español",
+    "folder": "pokemon-tcg-coleccion",
+    "category": "card-collection",
+	"notes" : "Para ver la colección completa: https://shorturl.at/Sfagq"
   }
 ]
