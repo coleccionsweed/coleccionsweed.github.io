@@ -21,6 +21,28 @@ function escapeHtml(value) {
     .replace(/"/g, '&quot;');
 }
 
+/**
+ * Escapa el texto y DESPUÉS convierte en enlaces las URLs que contenga.
+ *
+ * Es el orden importante: escapar primero deja el texto inerte (un <script>
+ * escrito en las notas no puede hacer nada), y solo entonces se añade el
+ * marcado que sí queremos. Al revés, cualquier cosa escrita en el JSON de
+ * datos acabaría ejecutándose en la página.
+ *
+ * Se reconocen tanto las URLs con esquema (https://...) como las que empiezan
+ * por www., porque en unas notas escritas a mano aparecen de las dos formas.
+ */
+function escapeHtmlWithLinks(value) {
+  const escapado = escapeHtml(value);
+  // El paréntesis y los signos finales se excluyen a propósito: una URL al
+  // final de una frase se escribe muchas veces seguida de punto o coma, y sin
+  // esto se los tragaba el enlace y el destino quedaba roto.
+  return escapado.replace(/\b(https?:\/\/|www\.)[^\s<]+[^\s<.,;:!?)\]]/gi, (url) => {
+    const destino = url.startsWith('www.') ? `https://${url}` : url;
+    return `<a href="${destino}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+  });
+}
+
 /** Copia al portapapeles con respaldo para navegadores sin permiso o sin HTTPS. */
 async function copyText(text) {
   try {
@@ -187,7 +209,7 @@ export async function renderDetail(item, context = {}) {
           <div class="detail-tags">${tags.join('')}</div>
           <div class="info-grid">${infoBlocks.join('')}</div>
 
-          ${item.notes ? `<div class="notes"><strong>Notas</strong>${escapeHtml(item.notes)}</div>` : ''}
+          ${item.notes ? `<div class="notes"><strong>Notas</strong>${escapeHtmlWithLinks(item.notes)}</div>` : ''}
         </div>
       </div>
     </div>
