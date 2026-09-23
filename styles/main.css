@@ -1095,6 +1095,7 @@ a.tag:hover { background: var(--surface-3); border-color: var(--line-strong); co
   color: var(--text-dim);
   font-size: 14px;
   line-height: 1.6;
+  white-space: pre-line; /* los \n de las notas son saltos de línea */
 }
 .notes strong { color: var(--text-mute); display: block; margin-bottom: 3px; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.07em; }
 
