@@ -1,19 +1,5 @@
 [
   {
-    "id": "el-senor-de-los-anillos-la-trilogia-blu-ray",
-    "name": "El Señor de los Anillos - La trilogía",
-    "franchise": "El Señor de los Anillos",
-	"Platform" : "Blu-ray 4K ULTRA HD",
-    "brand": "Warner Bros. Pictures",
-    "purchasePrice": "139,95€",
-	"year": "2020",
-    "condition": "Usado",
-    "barcode": "8717418578688",
-    "language": "Español",
-    "folder": "el-senor-de-los-anillos-la-trilogia-blu-ray",
-    "category": "films"
-  },
-  {
     "id": "hancock-umd",
     "name": "Hancock",
 	"Platform" : "UMD",
