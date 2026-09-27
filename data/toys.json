@@ -1629,5 +1629,31 @@
     "language": "Inglés",
     "folder": "moria-orc-deluxe-action-figure-with-sauron-parts",
     "category": "toys"
+  },
+  {
+    "id": "esmeralda-djali",
+    "name": "Esmeralda y Djali",
+    "franchise": "El Jorobado de Notre Dame",
+    "brand": "Mattel",
+    "purchasePrice": "0,00€",
+	"year": "1996",
+    "condition": "Nuevo",
+	"barcode": "026676694145",
+	"language" : "Español",
+    "folder": "esmeralda-djali",
+    "category": "toys"
+  },
+  {
+    "id": "sauron-la-comunidad-del-anillo",
+    "name": "Sauron - La Comunidad del Anillo",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Toy Biz",
+    "purchasePrice": "0,00€",
+	"year": "2004",
+    "condition": "Nuevo",
+    "barcode": "035112710974",
+    "language": "Español",
+    "folder": "sauron-la-comunidad-del-anillo",
+    "category": "toys"
   }
 ]
