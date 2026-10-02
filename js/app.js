@@ -4,6 +4,7 @@ import { setupFilters } from './filters.js';
 import { renderDetail } from './detail.js';
 import { destroyAlbumFlip } from './albumFlip.js';
 import { inicializarVisor } from './visor3d.js';
+import { setupScanner } from './scanner.js';
 
 const VIEW_KEY = 'sweed:view';
 
@@ -31,6 +32,7 @@ async function init() {
   });
 
   setupViewToggle();
+  setupScanner();
   handleRoute();
   window.addEventListener('hashchange', handleRoute);
 }
