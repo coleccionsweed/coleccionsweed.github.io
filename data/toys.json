@@ -1094,6 +1094,7 @@
 	"year": "2004",
     "condition": "Nuevo",
 	"barcode": "8410779221865",
+	"quantity": 2,
 	"language": "Español",
     "folder": "peter-pan-disney-heroes",
     "category": "toys"
@@ -1107,6 +1108,7 @@
 	"year": "2004",
     "condition": "Nuevo",
 	"barcode": "8410779222022",
+	"quantity": 2,
 	"language": "Español",
     "folder": "capitan-garfio-disney-heroes",
     "category": "toys"
