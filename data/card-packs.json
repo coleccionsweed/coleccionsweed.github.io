@@ -28,6 +28,20 @@
 	"notes" : "Contiene 12 cartas."
   },
   {
+    "id": "play-booster-the-hobbit",
+    "name": "Play Booster The Hobbit",
+    "franchise": "El Señor de los Anillos",
+    "brand": "Magic",
+    "purchasePrice": "7,00€",
+	"year": "2026",
+    "condition": "Nuevo",
+    "barcode": "195166321875",
+    "language": "Inglés",
+    "folder": "play-booster-the-hobbit",
+    "category": "card-packs",
+	"notes" : "Contiene 14 cartas."
+  },
+  {
     "id": "harry-potter-y-el-prisionero-de-azkaban-card-pack",
     "name": "Harry Potter y el prisionero de Azkaban (Sobre de cartas)",
     "franchise": "Harry Potter",

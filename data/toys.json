@@ -1073,21 +1073,47 @@
     "category": "toys"
   },
   {
-    "id": "peter-pan-disney-heroes",
-    "name": "Peter Pan - Disney Heroes",
+    "id": "peter-pan-campanilla-pirata-disney-heroes",
+    "name": "Peter Pan, Campanilla y pirata - Disney Heroes",
     "franchise": "Peter Pan",
     "brand": "Famosa",
     "purchasePrice": "12,49€",
 	"year": "2004",
     "condition": "Nuevo",
 	"barcode": "8410779221872",
+	"language": "Español",
+    "folder": "peter-pan-campanilla-pirata-disney-heroes",
+    "category": "toys"
+  },
+  {
+    "id": "peter-pan-disney-heroes",
+    "name": "Peter Pan - Disney Heroes",
+    "franchise": "Peter Pan",
+    "brand": "Famosa",
+    "purchasePrice": "4,92€",
+	"year": "2004",
+    "condition": "Nuevo",
+	"barcode": "8410779221865",
 	"language": "Español",
     "folder": "peter-pan-disney-heroes",
     "category": "toys"
   },
   {
-    "id": "wendy-disney-heroes",
-    "name": "Wendy - Disney Heroes",
+    "id": "capitan-garfio-disney-heroes",
+    "name": "Capitán Garfio - Disney Heroes",
+    "franchise": "Peter Pan",
+    "brand": "Famosa",
+    "purchasePrice": "4,92€",
+	"year": "2004",
+    "condition": "Nuevo",
+	"barcode": "8410779222022",
+	"language": "Español",
+    "folder": "capitan-garfio-disney-heroes",
+    "category": "toys"
+  },
+  {
+    "id": "wendy-pirata-disney-heroes",
+    "name": "Wendy y pirata - Disney Heroes",
     "franchise": "Peter Pan",
     "brand": "Famosa",
     "purchasePrice": "12,49€",
@@ -1095,7 +1121,7 @@
     "condition": "Nuevo",
 	"barcode": "8410779221872",
 	"language": "Español",
-    "folder": "wendy-disney-heroes",
+    "folder": "wendy-pirata-disney-heroes",
     "category": "toys"
   },
   {
