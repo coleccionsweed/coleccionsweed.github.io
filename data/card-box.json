@@ -181,18 +181,6 @@
     "category": "card-box"
   },
   {
-    "id": "pokemon-tcg-minilata-pikachu-30-aniversario",
-    "name": "Pokémon TCG - Minilata Pikachu 30º Aniversario",
-    "franchise": "Pokémon",
-    "brand": "The Pokémon Company",
-	"purchasePrice": "13,99€",
-	"year": "2026",
-    "condition": "Nuevo",
-    "language": "Español",
-    "folder": "pokemon-tcg-minilata-pikachu-30-aniversario",
-    "category": "card-box"
-  },
-  {
     "id": "pokemon-tcg-minilata-mew-30-aniversario",
     "name": "Pokémon TCG - Minilata Mew 30º Aniversario",
     "franchise": "Pokémon",
@@ -200,20 +188,9 @@
 	"purchasePrice": "13,99€",
 	"year": "2026",
     "condition": "Nuevo",
+	"barcode": "0196214146433",
     "language": "Español",
     "folder": "pokemon-tcg-minilata-mew-30-aniversario",
-    "category": "card-box"
-  },
-  {
-    "id": "pokemon-tcg-minilata-lapras-30-aniversario",
-    "name": "Pokémon TCG - Minilata Lapras 30º Aniversario",
-    "franchise": "Pokémon",
-    "brand": "The Pokémon Company",
-	"purchasePrice": "13,99€",
-	"year": "2026",
-    "condition": "Nuevo",
-    "language": "Español",
-    "folder": "pokemon-tcg-minilata-lapras-30-aniversario",
     "category": "card-box"
   },
   {

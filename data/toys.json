@@ -1683,5 +1683,18 @@
     "language": "Español",
     "folder": "sauron-la-comunidad-del-anillo",
     "category": "toys"
+  },
+  {
+    "id": "casco-sauron-11373",
+    "name": "Casco Sauron - 11373",
+    "franchise": "El Señor de los Anillos",
+	"brand": "Lego",
+    "purchasePrice": "51,99€",
+	"year": "2026",
+    "condition": "Nuevo",
+	"language": "Español",
+	"barcode": "5702018063576",
+    "folder": "casco-sauron-11373",
+    "category": "toys"
   }
 ]
