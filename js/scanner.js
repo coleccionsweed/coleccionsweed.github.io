@@ -18,9 +18,22 @@ import { escapeHtml } from './renderer.js';
 
 const FORMATS = ['ean_13', 'ean_8', 'upc_a', 'upc_e', 'code_128', 'code_39', 'itf'];
 const SCAN_INTERVAL = 120; // ms entre lecturas: de sobra y no machaca la batería
+const CONFIRM_WINDOW = 1500; // ms: hay que leer el mismo código 2 veces en este margen
+const RETRY_COOLDOWN = 2500; // ms tras "Escanear otro" en que se ignora el último código
+const INVERT_MAX_WIDTH = 1280; // px del fotograma invertido (más no aporta y cuesta)
 
 let detectorPromise = null;
+let detectorIsNative = false;
 let index = null;
+
+// Estado del bucle de lectura
+let session = 0;          // se incrementa al abrir/reanudar: descarta lecturas viejas
+let busy = false;         // hay un detect() en curso
+let frameCount = 0;       // alterna fotograma normal / invertido
+let pending = null;       // { value, at } primera lectura pendiente de confirmar
+let ignored = null;       // { value, until } código a ignorar tras "Escanear otro"
+let invertCanvas = null;
+let invertCtx = null;
 
 let overlay = null;
 let video = null;
@@ -105,7 +118,10 @@ function getDetector() {
       try {
         const supported = await window.BarcodeDetector.getSupportedFormats();
         const formats = FORMATS.filter((f) => supported.includes(f));
-        if (formats.length) return new window.BarcodeDetector({ formats });
+        if (formats.length) {
+          detectorIsNative = true;
+          return new window.BarcodeDetector({ formats });
+        }
       } catch { /* caemos al polyfill */ }
     }
 
@@ -114,6 +130,7 @@ function getDetector() {
     mod.setZXingModuleOverrides({
       locateFile: (path, prefix) => (path.endsWith('.wasm') ? wasmUrl : prefix + path)
     });
+    detectorIsNative = false; // ZXing ya prueba la imagen invertida por su cuenta
     return new mod.BarcodeDetector({ formats: FORMATS });
   })();
 
@@ -289,24 +306,89 @@ async function toggleTorch(button) {
 // ---------------------------------------------------------------
 // Bucle de lectura
 // ---------------------------------------------------------------
-async function tick(detector) {
-  if (!scanning) return;
-  rafId = requestAnimationFrame(() => tick(detector));
+/**
+ * Fotograma con los colores invertidos. Hace falta para los códigos impresos
+ * en claro sobre fondo oscuro (barras blancas sobre caja negra): el lector
+ * nativo de Android no los reconoce tal cual.
+ */
+function invertedFrame() {
+  const vw = video.videoWidth;
+  const vh = video.videoHeight;
+  if (!vw || !vh) return null;
+  const scale = Math.min(1, INVERT_MAX_WIDTH / vw);
+  const w = Math.round(vw * scale);
+  const h = Math.round(vh * scale);
+  if (!invertCanvas) {
+    invertCanvas = document.createElement('canvas');
+    invertCtx = invertCanvas.getContext('2d', { willReadFrequently: true });
+  }
+  if (invertCanvas.width !== w) invertCanvas.width = w;
+  if (invertCanvas.height !== h) invertCanvas.height = h;
+  invertCtx.drawImage(video, 0, 0, w, h);
+  const img = invertCtx.getImageData(0, 0, w, h);
+  const px = img.data;
+  for (let i = 0; i < px.length; i += 4) {
+    px[i] = 255 - px[i];
+    px[i + 1] = 255 - px[i + 1];
+    px[i + 2] = 255 - px[i + 2];
+  }
+  return img;
+}
+
+/** Dígito de control EAN/UPC: descarta lecturas parciales o corruptas. */
+function validChecksum(code) {
+  if (!/^\d{8}$|^\d{12,13}$/.test(code)) return false;
+  const digits = [...code].map(Number);
+  const check = digits.pop();
+  const sum = digits.reverse().reduce((acc, d, i) => acc + d * (i % 2 === 0 ? 3 : 1), 0);
+  return (10 - (sum % 10)) % 10 === check;
+}
+
+function isPlausible(rawValue, format) {
+  if (['ean_13', 'ean_8', 'upc_a'].includes(format)) return validChecksum(rawValue);
+  // ITF y Code 39 dan falsos positivos con trozos de texto o rayas: mínimo 6.
+  if (format === 'itf' || format === 'code_39') return rawValue.length >= 6;
+  return true;
+}
+
+async function tick(detector, mySession) {
+  if (!scanning || mySession !== session) return;
+  rafId = requestAnimationFrame(() => tick(detector, mySession));
 
   const now = performance.now();
-  if (now - lastScan < SCAN_INTERVAL || video.readyState < 2) return;
+  // Nunca dos detect() a la vez: con el polyfill tardan más que el intervalo
+  // y se acumulaban, devolviendo resultados viejos después de reanudar.
+  if (busy || now - lastScan < SCAN_INTERVAL || video.readyState < 2) return;
   lastScan = now;
+  busy = true;
 
   let codes;
   try {
-    codes = await detector.detect(video);
+    // En el lector nativo, uno de cada dos intentos va con la imagen invertida.
+    const useInverted = detectorIsNative && (frameCount++ % 2 === 1);
+    const source = useInverted ? invertedFrame() : video;
+    codes = source ? await detector.detect(source) : [];
   } catch {
+    codes = [];
+  } finally {
+    busy = false;
+  }
+  if (!scanning || mySession !== session || !codes?.length) return;
+
+  const hit = codes.find((c) => c.rawValue && isPlausible(c.rawValue, c.format));
+  if (!hit) return;
+  const { rawValue, format } = hit;
+  const t = performance.now();
+
+  // Recién pulsado "Escanear otro": el mismo código sigue delante de la cámara.
+  if (ignored && ignored.value === rawValue && t < ignored.until) return;
+
+  // Confirmación: el mismo valor dos veces seguidas antes de darlo por bueno.
+  if (!pending || pending.value !== rawValue || t - pending.at > CONFIRM_WINDOW) {
+    pending = { value: rawValue, at: t };
     return;
   }
-  if (!scanning || !codes?.length) return;
-
-  const { rawValue, format } = codes[0];
-  if (!rawValue) return;
+  pending = null;
 
   scanning = false;
   cancelAnimationFrame(rafId);
@@ -315,22 +397,35 @@ async function tick(detector) {
   video.pause();
 
   const matches = await findMatches(rawValue, format);
+  if (mySession !== session || overlay.hidden) return; // se cerró mientras buscaba
   if (matches.length === 1) {
     goTo(matches[0].id);
     return;
   }
+  ignored = { value: rawValue, until: 0 };
   showResults(rawValue, matches);
 }
 
+function startLoop(detector) {
+  session += 1;
+  pending = null;
+  frameCount = 0;
+  scanning = true;
+  lastScan = 0;
+  cancelAnimationFrame(rafId);
+  tick(detector, session);
+}
+
 async function resumeScanning() {
+  if (scanning) return; // doble toque en "Escanear otro"
   hideSheet();
   overlay.classList.remove('is-paused');
   setHint('Apunta al código de barras');
+  if (ignored) ignored.until = performance.now() + RETRY_COOLDOWN;
   await video.play().catch(() => {});
   const detector = await getDetector();
-  scanning = true;
-  lastScan = 0;
-  tick(detector);
+  if (overlay.hidden) return;
+  startLoop(detector);
 }
 
 // ---------------------------------------------------------------
@@ -352,9 +447,8 @@ export async function openScanner() {
     const [, detector] = await Promise.all([startCamera(), getDetector(), getIndex()]);
     if (overlay.hidden) { stopCamera(); return; } // se cerró mientras cargaba
     setHint('Apunta al código de barras');
-    scanning = true;
-    lastScan = 0;
-    tick(detector);
+    ignored = null;
+    startLoop(detector);
   } catch (error) {
     stopCamera();
     const denied = error?.name === 'NotAllowedError' || error?.name === 'SecurityError';
@@ -370,6 +464,7 @@ export async function openScanner() {
 export function closeScanner({ fromHistory = false } = {}) {
   if (!overlay || overlay.hidden) return;
   scanning = false;
+  session += 1;
   cancelAnimationFrame(rafId);
   stopCamera();
   hideSheet();
@@ -381,6 +476,7 @@ export function closeScanner({ fromHistory = false } = {}) {
 function goTo(id) {
   if (!id) return;
   scanning = false;
+  session += 1;
   cancelAnimationFrame(rafId);
   stopCamera();
   hideSheet();
