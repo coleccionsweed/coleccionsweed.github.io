@@ -2223,6 +2223,46 @@ html.scanner-open body { overflow: hidden; }
   color: var(--text);
 }
 
+/* Alternativas: foto y código a mano */
+.scanner__alt {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 20px);
+  display: flex;
+  gap: 10px;
+}
+.scanner.has-sheet .scanner__alt { display: none; }
+.scanner__alt-btn {
+  flex: 1;
+  height: 44px;
+  border: 0;
+  border-radius: var(--r-md);
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+.scanner__alt-btn:active { background: rgba(255, 255, 255, 0.28); }
+.scanner__hint { bottom: calc(env(safe-area-inset-bottom, 0px) + 84px); }
+
+.scanner__manual { display: flex; flex-direction: column; gap: 12px; }
+.scanner__input {
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+  color: var(--text);
+  font-family: ui-monospace, 'SF Mono', Consolas, monospace;
+  font-size: 18px; /* 16px o más: iOS no hace zoom al enfocar */
+  letter-spacing: 0.04em;
+}
+.scanner__input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+
 @media (prefers-reduced-motion: reduce) {
   .scanner__laser { animation: none; }
   .scanner__sheet { animation: none; }

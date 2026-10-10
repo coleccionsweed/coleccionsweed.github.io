@@ -34,6 +34,7 @@ let pending = null;       // { value, at } primera lectura pendiente de confirma
 let ignored = null;       // { value, until } código a ignorar tras "Escanear otro"
 let invertCanvas = null;
 let invertCtx = null;
+let pickingPhoto = false; // abierta la cámara de fotos: la página se oculta pero no hay que cerrar
 
 let overlay = null;
 let video = null;
@@ -165,6 +166,12 @@ function buildOverlay() {
 
     <p class="scanner__hint" data-role="hint">Apunta al código de barras</p>
 
+    <div class="scanner__alt">
+      <button type="button" class="scanner__alt-btn" data-action="photo">📷 Hacer foto</button>
+      <button type="button" class="scanner__alt-btn" data-action="manual">⌨️ Escribir código</button>
+    </div>
+    <input type="file" accept="image/*" capture="environment" data-role="photo" hidden>
+
     <div class="scanner__sheet" data-role="sheet" hidden></div>
   `;
   document.body.appendChild(overlay);
@@ -179,6 +186,33 @@ function buildOverlay() {
     else if (action === 'torch') toggleTorch(button);
     else if (action === 'retry') resumeScanning();
     else if (action === 'open') goTo(button.dataset.id);
+    else if (action === 'photo') {
+      pauseScanning();
+      stopCamera(); // iOS no deja usar la cámara en dos sitios a la vez
+      pickingPhoto = true;
+      overlay.querySelector('[data-role="photo"]').click();
+    } else if (action === 'manual') showManualEntry();
+  });
+
+  const photoInput = overlay.querySelector('[data-role="photo"]');
+  photoInput.addEventListener('change', () => {
+    const file = photoInput.files?.[0];
+    photoInput.value = '';
+    pickingPhoto = false;
+    if (file) readPhoto(file);
+    else resumeScanning(); // canceló la foto
+  });
+  photoInput.addEventListener('cancel', () => {
+    pickingPhoto = false;
+    resumeScanning();
+  });
+
+  overlay.addEventListener('submit', (event) => {
+    const form = event.target.closest('[data-role="manual-form"]');
+    if (!form) return;
+    event.preventDefault();
+    const value = form.querySelector('input').value.trim();
+    if (value) lookUp(value, null);
   });
 
   document.addEventListener('keydown', (event) => {
@@ -187,7 +221,7 @@ function buildOverlay() {
 
   // Si el móvil se bloquea o cambias de app, soltamos la cámara.
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden && overlay && !overlay.hidden) closeScanner();
+    if (document.hidden && overlay && !overlay.hidden && !pickingPhoto) closeScanner();
   });
 
   // El botón atrás del móvil cierra el lector en vez de salir de la web.
@@ -311,28 +345,51 @@ async function toggleTorch(button) {
  * en claro sobre fondo oscuro (barras blancas sobre caja negra): el lector
  * nativo de Android no los reconoce tal cual.
  */
-function invertedFrame() {
-  const vw = video.videoWidth;
-  const vh = video.videoHeight;
-  if (!vw || !vh) return null;
-  const scale = Math.min(1, INVERT_MAX_WIDTH / vw);
-  const w = Math.round(vw * scale);
-  const h = Math.round(vh * scale);
+function grabFrame(source, srcW, srcH, { invert = false, crop = false, maxWidth = INVERT_MAX_WIDTH } = {}) {
+  if (!srcW || !srcH) return null;
+  // Recorte: la franja central, que es donde está la ventana de lectura.
+  const sx = crop ? Math.round(srcW * 0.1) : 0;
+  const sy = crop ? Math.round(srcH * 0.25) : 0;
+  const sw = srcW - sx * 2;
+  const sh = srcH - sy * 2;
+  const scale = Math.min(1, maxWidth / sw);
+  const w = Math.round(sw * scale);
+  const h = Math.round(sh * scale);
   if (!invertCanvas) {
     invertCanvas = document.createElement('canvas');
     invertCtx = invertCanvas.getContext('2d', { willReadFrequently: true });
   }
   if (invertCanvas.width !== w) invertCanvas.width = w;
   if (invertCanvas.height !== h) invertCanvas.height = h;
-  invertCtx.drawImage(video, 0, 0, w, h);
+  invertCtx.drawImage(source, sx, sy, sw, sh, 0, 0, w, h);
   const img = invertCtx.getImageData(0, 0, w, h);
-  const px = img.data;
-  for (let i = 0; i < px.length; i += 4) {
-    px[i] = 255 - px[i];
-    px[i + 1] = 255 - px[i + 1];
-    px[i + 2] = 255 - px[i + 2];
+  if (invert) {
+    const px = img.data;
+    for (let i = 0; i < px.length; i += 4) {
+      px[i] = 255 - px[i];
+      px[i + 1] = 255 - px[i + 1];
+      px[i + 2] = 255 - px[i + 2];
+    }
   }
   return img;
+}
+
+/**
+ * Qué imagen se le pasa al detector en cada intento. Se va rotando:
+ *  - fotograma entero
+ *  - franja central a resolución completa (códigos pequeños o lejos)
+ *  - (solo lector nativo) imagen invertida, para barras claras sobre fondo
+ *    oscuro; ZXing ya lo prueba por su cuenta.
+ */
+function nextSource() {
+  const vw = video.videoWidth;
+  const vh = video.videoHeight;
+  const steps = detectorIsNative ? 4 : 2;
+  const step = frameCount++ % steps;
+  if (step === 0) return video;
+  if (step === 1) return grabFrame(video, vw, vh, { crop: true, maxWidth: 1920 });
+  if (step === 2) return grabFrame(video, vw, vh, { invert: true });
+  return grabFrame(video, vw, vh, { invert: true, crop: true, maxWidth: 1920 });
 }
 
 /** Dígito de control EAN/UPC: descarta lecturas parciales o corruptas. */
@@ -364,9 +421,7 @@ async function tick(detector, mySession) {
 
   let codes;
   try {
-    // En el lector nativo, uno de cada dos intentos va con la imagen invertida.
-    const useInverted = detectorIsNative && (frameCount++ % 2 === 1);
-    const source = useInverted ? invertedFrame() : video;
+    const source = nextSource();
     codes = source ? await detector.detect(source) : [];
   } catch {
     codes = [];
@@ -390,12 +445,23 @@ async function tick(detector, mySession) {
   }
   pending = null;
 
-  scanning = false;
-  cancelAnimationFrame(rafId);
   if (navigator.vibrate) navigator.vibrate(60);
-  overlay.classList.add('is-paused');
-  video.pause();
+  lookUp(rawValue, format);
+}
 
+/** Para el bucle de lectura y congela la imagen. */
+function pauseScanning() {
+  scanning = false;
+  session += 1;
+  cancelAnimationFrame(rafId);
+  overlay.classList.add('is-paused');
+  video?.pause();
+}
+
+/** Busca un código (leído, fotografiado o escrito) y enseña el resultado. */
+async function lookUp(rawValue, format) {
+  pauseScanning();
+  const mySession = session;
   const matches = await findMatches(rawValue, format);
   if (mySession !== session || overlay.hidden) return; // se cerró mientras buscaba
   if (matches.length === 1) {
@@ -404,6 +470,74 @@ async function tick(detector, mySession) {
   }
   ignored = { value: rawValue, until: 0 };
   showResults(rawValue, matches);
+}
+
+// ---------------------------------------------------------------
+// Alternativas: foto y código a mano
+// ---------------------------------------------------------------
+
+/**
+ * Lee el código de una foto. En iPhone es lo más fiable: la cámara de fotos
+ * enfoca de cerca y saca mucha más resolución que el vídeo de Safari.
+ */
+async function readPhoto(file) {
+  pickingPhoto = false;
+  hideSheet();
+  setHint('Leyendo la foto…');
+  try {
+    const detector = await getDetector();
+    const bitmap = await createImageBitmap(file);
+    const w = bitmap.width;
+    const h = bitmap.height;
+    const attempts = [
+      { maxWidth: 2400 },
+      { invert: true, maxWidth: 2400 },
+      { crop: true, maxWidth: 2400 },
+      { maxWidth: 1200 },
+      { invert: true, maxWidth: 1200 }
+    ];
+    for (const opts of attempts) {
+      const img = grabFrame(bitmap, w, h, opts);
+      const codes = img ? await detector.detect(img).catch(() => []) : [];
+      const hit = codes.find((c) => c.rawValue && isPlausible(c.rawValue, c.format));
+      if (hit) {
+        bitmap.close?.();
+        if (navigator.vibrate) navigator.vibrate(60);
+        lookUp(hit.rawValue, hit.format);
+        return;
+      }
+    }
+    bitmap.close?.();
+    setHint('');
+    showSheet(`
+      <div class="scanner__sheet-head"><strong>No se ve ningún código en la foto</strong></div>
+      <p class="scanner__sheet-text">Prueba más cerca, con el código recto y sin reflejos, o escríbelo a mano.</p>
+      <div class="scanner__actions">
+        <button type="button" class="scanner__cta scanner__cta--ghost" data-action="manual">Escribir código</button>
+        <button type="button" class="scanner__cta" data-action="photo">Otra foto</button>
+      </div>
+    `);
+  } catch {
+    setHint('No se pudo leer la foto.', true);
+    resumeScanning();
+  }
+}
+
+function showManualEntry() {
+  pauseScanning();
+  setHint('');
+  showSheet(`
+    <form class="scanner__manual" data-role="manual-form">
+      <label class="scanner__sheet-head" for="scannerManual"><strong>Escribe el código de barras</strong></label>
+      <input id="scannerManual" class="scanner__input" type="text" inputmode="numeric"
+             autocomplete="off" enterkeyhint="search" placeholder="8432752039526">
+      <div class="scanner__actions">
+        <button type="button" class="scanner__cta scanner__cta--ghost" data-action="retry">Volver</button>
+        <button type="submit" class="scanner__cta">Buscar</button>
+      </div>
+    </form>
+  `);
+  overlay.querySelector('#scannerManual')?.focus();
 }
 
 function startLoop(detector) {
@@ -422,10 +556,16 @@ async function resumeScanning() {
   overlay.classList.remove('is-paused');
   setHint('Apunta al código de barras');
   if (ignored) ignored.until = performance.now() + RETRY_COOLDOWN;
-  await video.play().catch(() => {});
-  const detector = await getDetector();
-  if (overlay.hidden) return;
-  startLoop(detector);
+  try {
+    // Al volver de la cámara de fotos, iOS puede haber cortado el vídeo.
+    if (!stream || !track || track.readyState === 'ended') await startCamera();
+    await video.play().catch(() => {});
+    const detector = await getDetector();
+    if (overlay.hidden) return;
+    startLoop(detector);
+  } catch {
+    setHint('No se pudo reabrir la cámara. Usa la foto o escribe el código.', true);
+  }
 }
 
 // ---------------------------------------------------------------
