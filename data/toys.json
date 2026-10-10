@@ -1405,7 +1405,6 @@
     "purchasePrice": "22,31€",
 	"year": "2018",
     "condition": "Nuevo",
-	"barcode": "X0013C5PBL",
 	"language" : "Inglés",
     "folder": "hagrid-coleccion-mini-magicos",
     "category": "toys"
@@ -1697,6 +1696,19 @@
 	"language": "Español",
 	"barcode": "5702018063576",
     "folder": "casco-sauron-11373",
+    "category": "toys"
+  },
+  {
+    "id": "castillo-de-hogwarts-ceremonia-del-sombrero-seleccionador-76460",
+    "name": "Castillo de Hogwarts - Ceremonia del Sombrero Seleccionador - 76460",
+    "franchise": "Harry Potter",
+	"brand": "Lego",
+    "purchasePrice": "14,99€",
+	"year": "2026",
+    "condition": "Usado",
+	"language": "Español",
+	"barcode": "5702018063378",
+    "folder": "castillo-de-hogwarts-ceremonia-del-sombrero-seleccionador-76460",
     "category": "toys"
   }
 ]
