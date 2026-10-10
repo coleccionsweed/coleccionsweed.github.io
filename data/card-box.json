@@ -169,18 +169,6 @@
     "category": "card-box"
   },
   {
-    "id": "pokemon-tcg-minilata-mewtwo-30-aniversario",
-    "name": "Pokémon TCG - Minilata Mewtwo 30º Aniversario",
-    "franchise": "Pokémon",
-    "brand": "The Pokémon Company",
-	"purchasePrice": "13,99€",
-	"year": "2026",
-    "condition": "Nuevo",
-    "language": "Español",
-    "folder": "pokemon-tcg-minilata-mewtwo-30-aniversario",
-    "category": "card-box"
-  },
-  {
     "id": "pokemon-tcg-minilata-mew-30-aniversario",
     "name": "Pokémon TCG - Minilata Mew 30º Aniversario",
     "franchise": "Pokémon",
@@ -201,6 +189,7 @@
 	"purchasePrice": "29,94€",
 	"year": "2026",
     "condition": "Nuevo",
+	"barcode": "",
     "language": "Español",
     "folder": "pokemon-tcg-lote-sobres-30-aniversario",
     "category": "card-box"
