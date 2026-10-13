@@ -193,5 +193,19 @@
     "language": "Español",
     "folder": "pokemon-tcg-lote-sobres-30-aniversario",
     "category": "card-box"
+  },
+  {
+    "id": "pokemon-tcg-lata-megapotencia-mega-darkrai-ex",
+    "name": "Pokémon TCG - Lata Megapotencia - Mega-Darkrai ex",
+    "franchise": "Pokémon",
+    "brand": "The Pokémon Company",
+	"purchasePrice": "24,99€",
+	"year": "2026",
+    "condition": "Nuevo",
+	"barcode": "0196214141827",
+    "language": "Español",
+    "folder": "pokemon-tcg-lata-megapotencia-mega-darkrai-ex",
+    "category": "card-box",
+	"notes": "Contiene 2 sobres de Megaevolución: Oscuridad Absoluta y 2 sobres de Megaevolución: Caos Creciente"
   }
 ]
