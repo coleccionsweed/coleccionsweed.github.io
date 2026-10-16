@@ -56,6 +56,7 @@
   {
     "id": "robots-umd",
     "name": "Robots",
+	"franchise" : "Robots",
 	"Platform" : "UMD",
     "brand": "20th Century Studios",
     "purchasePrice": "1,00€",
