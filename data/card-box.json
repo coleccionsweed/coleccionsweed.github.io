@@ -250,20 +250,6 @@
 	"notes": "Contiene 2 sobres de Celebración 30º Aniversario"
   },
   {
-    "id": "pokemon-tcg-lote-sobres-30-aniversario",
-    "name": "Pokémon TCG - Lote de sobres de mejora 30º Aniversario",
-    "franchise": "Pokémon",
-    "brand": "The Pokémon Company",
-	"purchasePrice": "29,94€",
-	"year": "2026",
-    "condition": "Nuevo",
-	"barcode": "0196214145283",
-    "language": "Español",
-    "folder": "pokemon-tcg-lote-sobres-30-aniversario",
-    "category": "card-box",
-	"notes": "Contiene 6 sobres de Celebración 30º Aniversario"
-  },
-  {
     "id": "pokemon-tcg-lata-megapotencia-mega-darkrai-ex",
     "name": "Pokémon TCG - Lata Megapotencia - Mega-Darkrai ex",
     "franchise": "Pokémon",
