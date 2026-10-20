@@ -179,7 +179,64 @@
 	"barcode": "0196214146433",
     "language": "Español",
     "folder": "pokemon-tcg-minilata-mew-30-aniversario",
-    "category": "card-box"
+    "category": "card-box",
+	"notes": "Contiene 2 sobres de Celebración 30º Aniversario"
+  },
+  {
+    "id": "pokemon-tcg-minilata-pikachu-30-aniversario",
+    "name": "Pokémon TCG - Minilata Pikachu 30º Aniversario",
+    "franchise": "Pokémon",
+    "brand": "The Pokémon Company",
+	"purchasePrice": "13,99€",
+	"year": "2026",
+    "condition": "Nuevo",
+	"barcode": "0196214146730",
+    "language": "Español",
+    "folder": "pokemon-tcg-minilata-pikachu-30-aniversario",
+    "category": "card-box",
+	"notes": "Contiene 2 sobres de Celebración 30º Aniversario"
+  },
+  {
+    "id": "pokemon-tcg-minilata-lapras-30-aniversario",
+    "name": "Pokémon TCG - Minilata Lapras 30º Aniversario",
+    "franchise": "Pokémon",
+    "brand": "The Pokémon Company",
+	"purchasePrice": "13,99€",
+	"year": "2026",
+    "condition": "Nuevo",
+	"barcode": "0196214146587",
+    "language": "Español",
+    "folder": "pokemon-tcg-minilata-lapras-30-aniversario",
+    "category": "card-box",
+	"notes": "Contiene 2 sobres de Celebración 30º Aniversario"
+  },
+  {
+    "id": "pokemon-tcg-minilata-mewtwo-30-aniversario",
+    "name": "Pokémon TCG - Minilata Mewtwo 30º Aniversario",
+    "franchise": "Pokémon",
+    "brand": "The Pokémon Company",
+	"purchasePrice": "13,99€",
+	"year": "2026",
+    "condition": "Nuevo",
+	"barcode": "0196214146686",
+    "language": "Español",
+    "folder": "pokemon-tcg-minilata-mewtwo-30-aniversario",
+    "category": "card-box",
+	"notes": "Contiene 2 sobres de Celebración 30º Aniversario"
+  },
+  {
+    "id": "pokemon-tcg-minilata-zapdos-30-aniversario",
+    "name": "Pokémon TCG - Minilata Zapdos 30º Aniversario",
+    "franchise": "Pokémon",
+    "brand": "The Pokémon Company",
+	"purchasePrice": "13,99€",
+	"year": "2026",
+    "condition": "Nuevo",
+	"barcode": "0196214146884",
+    "language": "Español",
+    "folder": "pokemon-tcg-minilata-zapdos-30-aniversario",
+    "category": "card-box",
+	"notes": "Contiene 2 sobres de Celebración 30º Aniversario"
   },
   {
     "id": "pokemon-tcg-lote-sobres-30-aniversario",
@@ -189,10 +246,11 @@
 	"purchasePrice": "29,94€",
 	"year": "2026",
     "condition": "Nuevo",
-	"barcode": "",
+	"barcode": "0196214145283",
     "language": "Español",
     "folder": "pokemon-tcg-lote-sobres-30-aniversario",
-    "category": "card-box"
+    "category": "card-box",
+	"notes": "Contiene 6 sobres de Celebración 30º Aniversario"
   },
   {
     "id": "pokemon-tcg-lata-megapotencia-mega-darkrai-ex",
