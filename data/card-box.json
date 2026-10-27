@@ -208,6 +208,20 @@
 	"notes": "Contiene 2 sobres de Celebración 30º Aniversario"
   },
   {
+    "id": "pokemon-tcg-minilata-pikachu-dia-30-aniversario",
+    "name": "Pokémon TCG - Minilata Pikachu Día 30º Aniversario",
+    "franchise": "Pokémon",
+    "brand": "The Pokémon Company",
+	"purchasePrice": "13,99€",
+	"year": "2026",
+    "condition": "Nuevo",
+	"barcode": "0196214146488",
+    "language": "Español",
+    "folder": "pokemon-tcg-minilata-pikachu-dia-30-aniversario",
+    "category": "card-box",
+	"notes": "Contiene 2 sobres de Celebración 30º Aniversario"
+  },
+  {
     "id": "pokemon-tcg-minilata-lapras-30-aniversario",
     "name": "Pokémon TCG - Minilata Lapras 30º Aniversario",
     "franchise": "Pokémon",
