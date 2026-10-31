@@ -335,6 +335,12 @@ const albumConfigs = {
 			"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r",
 			...Array.from({ length: 10 }, (_, i) => `m${i + 1}`),
 		]
+    },
+    "harry-potter-always-coleccion-completa": {
+        maxNum: 210,
+		extra: [
+			...Array.from({ length: 10 }, (_, i) => `le${i + 1}`)
+		]
     }
 };
 
