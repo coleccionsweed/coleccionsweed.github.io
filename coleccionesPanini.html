@@ -67,6 +67,7 @@
 	<option value="afcg">Anímales fantásticos: Los crímenes de Grindelwald</option>
 	<option value="afsd">Anímales fantásticos: Los secretos de Dumbledore</option>
 	<option value="hpma">Harry Potter magos y brujas</option>
+	<option value="hpalways">Harry Potter Always</option>
 	<option value="JND">El Jorobado de Notre Dame</option>
 	<option value="tarzan">Tarzan</option>
 	<option value="mulan">Mulán</option>
@@ -400,6 +401,10 @@
 	  numAlbum = 221;
 	  mas = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r"];
 	  for (var i = 1; i <= 10; i++)mas.push("m" + i);
+    }else if (config === "hpalways") {
+      numImages = 210;
+	  numAlbum = 12466;
+	  for (var i = 1; i <= 10; i++)mas.push("le" + i);
     }
 	
     document.getElementById('imageGrid').innerHTML = "";
