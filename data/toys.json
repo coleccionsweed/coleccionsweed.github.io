@@ -1710,5 +1710,18 @@
 	"barcode": "5702018063378",
     "folder": "castillo-de-hogwarts-ceremonia-del-sombrero-seleccionador-76460",
     "category": "toys"
+  },
+  {
+    "id": "jade-charmz",
+    "name": "Jade - Charmz",
+    "franchise": "Bratz",
+    "brand": "MGA Entertainment",
+    "purchasePrice": "26,99€",
+	"year": "2026",
+    "condition": "Nuevo",
+	"barcode": "0035051599357",
+	"language": "Español",
+    "folder": "jade-charmz",
+    "category": "toys"
   }
 ]
