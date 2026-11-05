@@ -899,5 +899,19 @@
     "language": "Español",
     "folder": "harry-potter-campeones-de-quidditch-deluxe-edition-switch",
     "category": "video-games"
+  },
+  {
+    "id": "the-legend-of-zelda-ocarina-of-time",
+    "name": "The Legend of Zelda - Ocarina of Time",
+    "franchise": "The Legend of Zelda",
+	"platform" : "Nintendo Switch",
+    "brand": "Nintendo",
+    "purchasePrice": "59,90€",
+	"year": "2026",
+    "condition": "Usado",
+    "barcode": "045496315528",
+    "language": "Español",
+    "folder": "the-legend-of-zelda-ocarina-of-time",
+    "category": "video-games"
   }
 ]
