@@ -913,5 +913,19 @@
     "language": "Español",
     "folder": "the-legend-of-zelda-ocarina-of-time",
     "category": "video-games"
+  },
+  {
+    "id": "grand-theft-auto-vi-ps5",
+    "name": "Grand Theft Auto VI",
+    "franchise": "Grand Theft Auto",
+	"platform" : "PlayStation 5",
+    "brand": "Rockstar Games",
+    "purchasePrice": "79,99€",
+	"year": "2026",
+    "condition": "Usado",
+    "barcode": "5026555439831",
+    "language": "Español",
+    "folder": "grand-theft-auto-vi-ps5",
+    "category": "video-games"
   }
 ]

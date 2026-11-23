@@ -85,5 +85,18 @@
     "language": "Español",
     "folder": "psp",
     "category": "consoles"
+  },
+  {
+    "id": "playstation-5-digital-edition",
+    "name": "PlayStation 5 Digital Edition",
+    "franchise": "PlayStation",
+    "brand": "Sony",
+    "purchasePrice": "650,00€",
+	"year": "2025",
+    "condition": "Usado",
+	"barcode": "711719020837",
+    "language": "Español",
+    "folder": "playstation-5-digital-edition",
+    "category": "consoles"
   }
 ]
